@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: pauwels-labs
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: oci://274295908850.dkr.ecr.eu-west-1.amazonaws.com/helm

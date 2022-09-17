@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  releaseName: cert-manager
+  serviceAccountName: cert-manager
+  targetNamespace: cert-manager
+  chart:
+    spec:
+      chart: jetstack/cert-manager
+      version: 1.9.1
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 2m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    prometheus:
+      enabled: false
+    image:
+      registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
+      repository: jetstack/cert-manager-controller
+    webhook:
+      image:
+        registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
+        repository: jetstack/cert-manager-webhook
+    cainjector:
+      image:
+        registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
+        repository: jetstack/cert-manager-cainjector
+    startupapicheck:
+      image:
+        registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
+        repository: jetstack/cert-manager-ctl
