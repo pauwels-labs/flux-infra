@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: jetstack/cert-manager
-      version: 1.9.1
+      version: v1.9.1
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
