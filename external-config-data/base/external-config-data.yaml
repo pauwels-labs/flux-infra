@@ -4,6 +4,7 @@ data:
   ecrregion: "eu-west-1"
   ecraccountid: "274295908850"
   ecriamrolearn: "arn:aws:iam::140327370353:role/lefranc-flux-ecr"
+  clustername: "lefranc-0"
 kind: ConfigMap
 metadata:
   name: external-config-data

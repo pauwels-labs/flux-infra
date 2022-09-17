@@ -9,11 +9,11 @@ spec:
   targetNamespace: kube-system
   chart:
     spec:
-      chart: aws-load-balancer-controller
-      version: 1.4.1
+      chart: amazon/aws-load-balancer-controller
+      version: 1.4.4
       sourceRef:
         kind: HelmRepository
-        name: eks-charts
+        name: pauwels-labs
         namespace: flux-system
   interval: 2m
   install:
@@ -24,5 +24,5 @@ spec:
     # values replaced with values on ConfigMap external-config-data
     serviceAccount:
       annotations:
-        eks.amazonaws.com/role-arn: ${awsLoadBalancerControllerIamRoleArn}
-    clusterName: ${clusterName}
+        eks.amazonaws.com/role-arn: ${awslbcontrolleriamrolearn}
+    clusterName: ${clustername}

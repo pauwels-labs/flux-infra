@@ -4,3 +4,4 @@ resources:
 - ecr-credentials-sync
 - sources
 - cert-manager
+- aws-load-balancer-controller

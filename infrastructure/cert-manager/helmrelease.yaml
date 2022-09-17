@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   releaseName: cert-manager
-  serviceAccountName: kustomize-controller
+  serviceAccountName: helm-controller
   targetNamespace: cert-manager
   chart:
     spec:
