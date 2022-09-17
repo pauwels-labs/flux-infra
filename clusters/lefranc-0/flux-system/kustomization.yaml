@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
 - gotk-sync.yaml
 - gotk-components.yaml
-- ecr-credentials-sync.yaml
 patches:
 - patch: |
     - op: add
