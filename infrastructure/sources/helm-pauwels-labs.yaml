@@ -4,6 +4,7 @@ metadata:
   name: pauwels-labs
   namespace: flux-system
 spec:
+  provider: "aws"
   type: "oci"
   interval: 5m
   url: oci://274295908850.dkr.ecr.eu-west-1.amazonaws.com/helm
