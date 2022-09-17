@@ -21,7 +21,9 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    # values replaced with values on ConfigMap external-config-data
+    image:
+      repository: ${ecraccountid}.dkr.ecr.${ecrregion}.amazonaws.com/amazon/aws-load-balancer-controller
+    enableCertManager: true
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${awslbcontrolleriamrolearn}
