@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: pauwels-labs
         namespace: flux-system
-  interval: 2mo
+  interval: 1m
   install:
     crds: CreateReplace
   upgrade:
