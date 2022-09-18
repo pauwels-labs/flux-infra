@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: istio-istiod
-  namespace: istio-system
+  namespace: flux-system
 spec:
   releaseName: istio-istiod
   serviceAccountName: helm-controller
