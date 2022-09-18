@@ -21,5 +21,8 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    global:
+      proxy:
+        logLevel: debug
     revision: "1-15-0"
     revisionTags: ["stable"]
