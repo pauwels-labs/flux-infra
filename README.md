@@ -15,6 +15,8 @@ Notes:
 - Need special patches in
   clusters/lefranc-0/flux-system/kustomization.yaml to enable
   multi-tenant lockdown.
+  
+- Need IAM role that can get authorization tokens for the ECR registry
 
 ### Install cert-manager
 
@@ -39,5 +41,12 @@ Notes:
 
 - Set enableCertManager to true
 
+- An IAM role has to be made with special permissions
+
 ### Install Istio
 
+- Need to make sure ingress TCP port 15017 from the cluster api
+  security group is open on the all node security group otherwise the
+  sidecar injection webhook endpoint can't be hit from the cluster api
+
+- Need to add an istio.io/rev label to all sidecar injected namespaces
