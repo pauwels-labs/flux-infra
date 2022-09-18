@@ -18,6 +18,10 @@ Notes:
   
 - Need IAM role that can get authorization tokens for the ECR registry
 
+- At some point we opened up all TCP ports inbound from the node
+  security group and inbound to the node security group; for something
+  but don't remember what
+
 ### Install cert-manager
 
 - Make sure to have a separate resource for namespace that's installed
@@ -50,3 +54,6 @@ Notes:
   sidecar injection webhook endpoint can't be hit from the cluster api
 
 - Need to add an istio.io/rev label to all sidecar injected namespaces
+
+- Set a revision in istio-base and istio-istiod and revision tags in
+  istio-istiod in order to canary upgrade istio in the future
