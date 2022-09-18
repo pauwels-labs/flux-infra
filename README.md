@@ -37,4 +37,7 @@ Notes:
 
 ### Install AWS load balancer controller
 
+- Set enableCertManager to true
+
 ### Install Istio
+

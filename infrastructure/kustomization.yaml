@@ -5,3 +5,4 @@ resources:
 - sources
 - cert-manager
 - aws-load-balancer-controller
+- istio
