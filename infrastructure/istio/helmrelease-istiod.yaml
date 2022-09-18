@@ -22,4 +22,4 @@ spec:
     crds: CreateReplace
   values:
     revision: "1.15.0"
-    revisionTags: "{stable}"
+    revisionTags: ["stable"]
