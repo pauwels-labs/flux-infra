@@ -21,4 +21,4 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    defaultRevision: "stable"
+    defaultRevision: "1-15-0"
