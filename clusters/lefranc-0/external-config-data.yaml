@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./external-config-data/base
+  path: ./external-config-data/lefranc-0
   prune: true
   wait: true
   timeout: 30s
