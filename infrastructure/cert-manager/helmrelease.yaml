@@ -21,6 +21,11 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    serviceAccount:
+      annotations:
+        eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
+    securityContext:
+      fsGroup: 1001
     installCRDs: true
     prometheus:
       enabled: false
