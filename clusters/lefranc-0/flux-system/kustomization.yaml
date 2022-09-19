@@ -8,5 +8,6 @@ patchesStrategicMerge:
 - patch-helm.yaml
 - patch-kustomize.yaml
 - patch-source.yaml
+- patch-namespace.yaml
 - patch-notification.yaml
 - patch-kustomization.yaml
