@@ -21,6 +21,12 @@ Notes:
 - At some point we opened up all TCP ports inbound from the node
   security group and inbound to the node security group; for something
   but don't remember what
+  
+- Convert patches to patchesStrategicMerge in order to link patches
+  made in Terraform to real files in the flux repo
+  
+- When identifying an item in a list, provide the item's name or some
+  unique identifying characteristic, so that the merge can happen
 
 ### Install cert-manager
 
@@ -72,6 +78,8 @@ Notes:
 ### Install Kiali
 
 - Easy with the operator
+
+- 
 
 ### Intall external-dns
 

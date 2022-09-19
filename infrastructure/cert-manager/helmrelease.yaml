@@ -26,6 +26,8 @@ spec:
         eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
     securityContext:
       fsGroup: 1001
+    extraArgs:
+    - --issuer-ambient-credentials=true
     installCRDs: true
     prometheus:
       enabled: false
