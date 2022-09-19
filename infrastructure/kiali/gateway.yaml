@@ -24,5 +24,4 @@ spec:
     - network.lefranc-0.pauwelslabs.com
     tls:
       mode: SIMPLE
-      serverCertificate: /etc/certs/servercert.pem
-      privateKey: /etc/certs/privatekey.pem
+      credentialName: kiali-tls
