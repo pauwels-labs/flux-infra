@@ -6,4 +6,5 @@ resources:
 - issuer-letsencrypt-prod.yaml
 - certificate.yaml
 - gateway.yaml
+- virtualservice.yaml
 - helmrelease-kiali-operator.yaml
