@@ -23,5 +23,8 @@ spec:
   values:
     cr:
       create: true
+      spec:
+        deployment:
+          image_name: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kiali/kiali
     image:
       repo: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kiali/kiali-operator
