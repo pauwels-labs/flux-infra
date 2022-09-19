@@ -60,6 +60,15 @@ Notes:
   
 - Don't forget to install a gateway
 
+- Outbound calls (and likely inbound?) will not work while istio-proxy
+  is not up. Make sure you wrap the start command with a sleep loop on
+  the proxy healthcheck endpoint at localhost:15021/healthz/ready
+  
+- The istio-proxy will not automatically end when the main container
+  exits. The proxy has a /quitquitquit endpoint on port 15020 that can
+  be called on exit; make sure to configure a call to this endpoint
+  via wget/curl after the main command exits.
+
 ### Install Kiali
 
 - Easy with the operatir
