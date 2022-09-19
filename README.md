@@ -71,6 +71,9 @@ Notes:
 
 ### Install Kiali
 
-- Easy with the operatir
+- Easy with the operator
 
 ### Intall external-dns
+
+- Make sure OIDC provider is copied to the DNS account or IRSA won't
+  work
