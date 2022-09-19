@@ -11,7 +11,6 @@ metadata:
     app.kubernetes.io/version: v0.34.0
     pod-security.kubernetes.io/warn: restricted
     pod-security.kubernetes.io/warn-version: latest
-    istio.io/rev: stable
   name: flux-system
 ---
 apiVersion: apiextensions.k8s.io/v1
@@ -5578,7 +5577,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/helm-controller:v0.24.0
+        image: ghcr.io/fluxcd/helm-controller:v0.24.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -5660,7 +5659,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/kustomize-controller:v0.28.0
+        image: ghcr.io/fluxcd/kustomize-controller:v0.28.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -5741,7 +5740,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/notification-controller:v0.26.0
+        image: ghcr.io/fluxcd/notification-controller:v0.26.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -5833,7 +5832,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/source-controller:v0.29.0
+        image: ghcr.io/fluxcd/source-controller:v0.29.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
