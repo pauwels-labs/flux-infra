@@ -46,6 +46,9 @@ Notes:
   namespace it's going to be in (e.g. cert-manager. The
   serviceAccountName should helm-controller if it's a HelmRelease, and
   kustomize-controller if it's a kustomize overlay.
+  
+- Make sure to add --issuer-ambient-credentials=true or
+  --cluster-issuer-ambient-credentials=true to enable IRSA
 
 ### Install AWS load balancer controller
 
@@ -85,3 +88,6 @@ Notes:
 
 - Make sure OIDC provider is copied to the DNS account or IRSA won't
   work
+
+- Make sure to add istio-virtualservice and istio-gateway as sources
+  in the arguments

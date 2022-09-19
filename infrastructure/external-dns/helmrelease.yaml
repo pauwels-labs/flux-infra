@@ -26,3 +26,8 @@ spec:
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${externaldnsiamrolearn}
+    sources:
+    - service
+    - ingress
+    - istio-gateway
+    - istio-virtualservice
