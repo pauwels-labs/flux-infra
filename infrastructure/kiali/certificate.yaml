@@ -16,7 +16,7 @@ spec:
     size: 2048
   usages:
   - server auth
-- client auth
+  - client auth
   dnsNames:
   - kiali.lefranc-0.${basednszonename}
   issuerRef:
