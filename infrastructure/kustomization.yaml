@@ -7,3 +7,4 @@ resources:
 - aws-load-balancer-controller
 - istio
 - kiali
+- external-dns
