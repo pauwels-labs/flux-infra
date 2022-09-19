@@ -57,3 +57,11 @@ Notes:
 
 - Set a revision in istio-base and istio-istiod and revision tags in
   istio-istiod in order to canary upgrade istio in the future
+  
+- Don't forget to install a gateway
+
+### Install Kiali
+
+- Easy with the operatir
+
+### Intall external-dns

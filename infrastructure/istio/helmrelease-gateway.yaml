@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: istio-gateway
+  namespace: flux-system
+spec:
+  releaseName: istio-gateway
+  serviceAccountName: helm-controller
+  targetNamespace: istio-ingress
+  chart:
+    spec:
+      chart: istio/gateway
+      version: 1.15.0
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 1m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    revision: "stable"
+    service:
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+        service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"

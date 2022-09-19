@@ -4,3 +4,4 @@ resources:
 - namespace.yaml
 - helmrelease-base.yaml
 - helmrelease-istiod.yaml
+- helmrelease-gateway.yaml
