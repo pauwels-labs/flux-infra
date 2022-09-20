@@ -6,6 +6,10 @@ metadata:
 spec:
   hosts:
   - network.lefranc-0.pauwelslabs.com
+  - kiali.kiali.svc.cluster.local
+  - kiali.kiali.svc
+  - kiali.kiali
+  - kiali
   gateways:
   - kiali
   - mesh
