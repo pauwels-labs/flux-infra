@@ -24,6 +24,7 @@ spec:
     revision: "stable"
     service:
       annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: "external"
         service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
         service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
         service.beta.kubernetes.io/aws-load-balancer-manage-backend-security-group-rules: "true"
