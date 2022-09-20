@@ -7,7 +7,7 @@ spec:
   hosts:
   - network.lefranc-0.pauwelslabs.com
   gateways:
-    - kiali
+  - kiali
   - mesh
   http:
   - name: "kiali"
