@@ -19,7 +19,7 @@ spec:
       httpsRedirect: true
   - port:
       number: 443
-      name: https
+      name: https-kiali
       protocol: HTTPS
     hosts:
     - "kiali/network.pauwelslabs.com"
@@ -28,7 +28,7 @@ spec:
       credentialName: tls-network-pauwels-labs
   - port:
       number: 443
-      name: https
+      name: https-github-webhook
       protocol: HTTPS
     hosts:
     - "flux-system/github-webhook.cd.pauwelslabs.com"
