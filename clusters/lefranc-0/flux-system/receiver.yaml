@@ -12,4 +12,4 @@ spec:
     name: github-webhook-hmac
   resources:
     - kind: GitRepository
-      name: flux-infra
+      name: flux-system
