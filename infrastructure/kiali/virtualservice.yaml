@@ -6,13 +6,8 @@ metadata:
 spec:
   hosts:
   - network.pauwelslabs.com
-  - kiali.kiali.svc.cluster.local
-  - kiali.kiali.svc
-  - kiali.kiali
-  - kiali
   gateways:
   - istio-ingress/pauwels-labs
-  - mesh
   http:
   - name: "kiali"
     route:

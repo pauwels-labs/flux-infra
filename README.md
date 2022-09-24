@@ -78,11 +78,13 @@ Notes:
   be called on exit; make sure to configure a call to this endpoint
   via wget/curl after the main command exits.
 
+- When setting up gateways, you can have the same port defined with
+  multiple hosts with different tls secrets, but the port entries have
+  to have different names
+
 ### Install Kiali
 
 - Easy with the operator
-
-- 
 
 ### Intall external-dns
 
