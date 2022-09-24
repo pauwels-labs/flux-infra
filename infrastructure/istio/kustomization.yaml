@@ -4,7 +4,8 @@ resources:
 - namespace.yaml
 - issuer-letsencrypt-staging.yaml
 - issuer-letsencrypt-prod.yaml
-- certificate.yaml
+- certificate-network-pauwels-labs.yaml
+- certificate-github-webhook-cd-pauwels-labs.yaml
 - serviceaccount-helm-controller.yaml
 - helmrelease-base.yaml
 - helmrelease-istiod.yaml
