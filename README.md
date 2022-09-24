@@ -91,3 +91,28 @@ Notes:
 
 - Make sure to add istio-virtualservice and istio-gateway as sources
   in the arguments
+
+
+## Secrets to automate
+
+Bootstraping the cluster is a bit of a tricky matter. Some components,
+like istio and vault, are required to manage networking and secrets,
+respectively, but flux, which depends on those, needs a secret to be
+able to connect to the repository that then configures istio and vault
+in the cluster.
+
+## Multi-tenant networking
+
+Istio will have to be carefully configured to enable multi-tenant
+networking. The gateway deployments and Gateway custom resources will
+need to be managed by the ops team, not the tenant, and tenant
+namespaces will be authorized to create VirtualService resources that
+bind to a particular host in a particular Gateway in the cluster.
+
+Custom domains should be doable; however TLS certificates/secrets have
+to reside in the same namespace that the gateway deployment resides
+in.  This means TLS certificate resources will have to be defined in
+the istio-ingress namespace, and the ops-controlled Gateway resource
+will need to be updated to include the custom domain. It will also
+need to explicitly authorize the tenant and only the tenant namespace
+as capable of binding to it.
