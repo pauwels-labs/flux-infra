@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - gotk-sync.yaml
 - gotk-components.yaml
+- github-webhook-virtual-service.yaml
 patchesStrategicMerge:
 - patch-helm.yaml
 - patch-kustomize.yaml
@@ -10,4 +11,3 @@ patchesStrategicMerge:
 - patch-namespace.yaml
 - patch-notification.yaml
 - patch-kustomization.yaml
-- patch-virtual-service.yaml
