@@ -5,13 +5,13 @@ metadata:
   namespace: kiali
 spec:
   hosts:
-  - network.lefranc-0.pauwelslabs.com
+  - network.pauwelslabs.com
   - kiali.kiali.svc.cluster.local
   - kiali.kiali.svc
   - kiali.kiali
   - kiali
   gateways:
-  - kiali
+  - istio-ingress/pauwels-labs
   - mesh
   http:
   - name: "kiali"
@@ -19,4 +19,4 @@ spec:
     - destination:
         port:
           number: 20001
-        host: kiali.kiali.svc.cluster.local
+        host: kiali
