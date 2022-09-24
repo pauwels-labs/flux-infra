@@ -2,7 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: kiali
-  namespace: kiali
 spec:
   secretName: kiali-tls
   duration: 2160h   # 90d
@@ -18,8 +17,8 @@ spec:
   - server auth
   - client auth
   dnsNames:
-  - kiali.lefranc-0.${basednszonename}
+  - kiali.lefranc-0.pauwelslabs.com
   issuerRef:
     group: cert-manager.io
     kind: Issuer
-    name: letsencrypt-staging
+    name: letsencrypt-prod
