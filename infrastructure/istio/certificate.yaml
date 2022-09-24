@@ -1,9 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: kiali
+  name: network-pauwels-labs
+  namespace: istio-ingress
 spec:
-  secretName: kiali-tls
+  secretName: tls-network-pauwels-labs
   duration: 2160h   # 90d
   renewBefore: 360h # 15d
   subject:
@@ -17,7 +18,7 @@ spec:
   - server auth
   - client auth
   dnsNames:
-  - kiali.lefranc-0.pauwelslabs.com
+  - "network.pauwelslabs.com"
   issuerRef:
     group: cert-manager.io
     kind: Issuer

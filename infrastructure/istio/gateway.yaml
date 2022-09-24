@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: kiali
-  namespace: kiali
+  name: pauwels-labs
+  namespace: istio-ingress
 spec:
   selector:
     app: istio-gateway
@@ -13,7 +13,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - network.lefranc-0.pauwelslabs.com
+    - network.pauwelslabs.com
     tls:
       httpsRedirect: true
   - port:
@@ -21,7 +21,7 @@ spec:
       name: https
       protocol: HTTPS
     hosts:
-    - network.lefranc-0.pauwelslabs.com
+    - "kiali/network.pauwelslabs.com"
     tls:
       mode: SIMPLE
-      credentialName: kiali-tls
+      credentialName: tls-network-pauwels-labs
