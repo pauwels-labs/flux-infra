@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: github-webhook
+  namespace: flux-system
+spec:
+  hosts:
+  - github-webhook.cd.pauwelslabs.com
+  gateways:
+  - istio-ingress/pauwels-labs
+  http:
+  - name: "notification-controller"
+    route:
+    - destination:
+        port:
+          number: 80
+        host: notification-controller
