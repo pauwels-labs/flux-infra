@@ -15,14 +15,3 @@ spec:
         port:
           number: 80
         host: notification-controller
-
-
-  - hosts:
-    - kiali/network.pauwelslabs.com
-    port:
-      name: https
-      number: 443
-      protocol: HTTPS
-    tls:
-      credentialName: tls-network-pauwels-labs
-      mode: SIMPLE
