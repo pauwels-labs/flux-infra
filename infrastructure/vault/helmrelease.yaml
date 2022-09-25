@@ -89,19 +89,19 @@ spec:
               path = "/vault/data"
 
               retry_join {
-                leader_api_addr         = "https://vault-0.vault:8200"
+                leader_api_addr         = "https://vault-0.vault.svc.cluster.local:8200"
                 leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
                 leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
                 leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
               }
               retry_join {
-                leader_api_addr         = "https://vault-1.vault:8200"
+                leader_api_addr         = "https://vault-1.vault.svc.cluster.local:8200"
                 leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
                 leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
                 leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
               }
               retry_join {
-                leader_api_addr         = "https://vault-2.vault:8200"
+                leader_api_addr         = "https://vault-2.vault.svc.cluster.local:8200"
                 leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
                 leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
                 leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
