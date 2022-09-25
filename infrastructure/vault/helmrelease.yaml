@@ -21,10 +21,6 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    server:
-      serviceAccount:
-        annotations:
-          eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
     injector:
       image:
         repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault-k8s
@@ -33,6 +29,9 @@ spec:
     server:
       image:
         repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
       standalone:
         enabled: false
       ha:
