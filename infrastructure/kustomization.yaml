@@ -8,4 +8,3 @@ resources:
 - istio
 - kiali
 - external-dns
-- vault
