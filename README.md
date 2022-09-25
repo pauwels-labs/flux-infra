@@ -31,6 +31,11 @@ Notes:
 - When enabling webhook notifications, make sure to select json as the
   content type of the event in the github settings
 
+- When making strategic merge patches or RFC6902 patches, the resource
+  being patched MUST be defined inside of the resources section of the
+  Kustomization file, even if the resource was already made outside of
+  Flux
+
 ### Install cert-manager
 
 - Make sure to have a separate resource for namespace that's installed
