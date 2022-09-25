@@ -86,7 +86,7 @@ spec:
 
             listener "tcp" {
               address            = "[::]:8201"
-              tls_disable        = false"
+              tls_disable        = "false"
               tls_cert_file      = "/vault/userconfig/tls-server/cert-chain.pem"
               tls_key_file       = "/vault/userconfig/tls-server/key.pem"
               tls_client_ca_file = "/vault/userconfig/tls-server/root-cert.pem"
