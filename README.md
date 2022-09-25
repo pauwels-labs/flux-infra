@@ -103,6 +103,16 @@ Notes:
   in the arguments
 
 
+### Install aws-ebs-csi-driver
+
+- Make sure to deploy KMS key along with a key policy and IAM role
+  that can access it for encrypting the EBS volumes
+  
+- You should use KMS key aliases instead of direct key ARNs in the
+  StorageClass, you can specify an alias ARN in the SC but you cannot
+  specify an alias in the "resource" field of an IAM policy; it MUST
+  be specified as a kms:ResourceAliases condition
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,
