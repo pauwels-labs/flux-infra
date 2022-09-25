@@ -35,10 +35,10 @@ spec:
         repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault
       serviceAccount:
         annotations:
-          eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
+          eks.amazonaws.com/role-arn: ${vaultiamrolearn}
       annotations:
-        # traffic.sidecar.istio.io/excludeInboundPorts: "8201"
-        # traffic.sidecar.istio.io/excludeOutboundPorts: "8201"
+        traffic.sidecar.istio.io/excludeInboundPorts: "8201"
+        traffic.sidecar.istio.io/excludeOutboundPorts: "8201"
         proxy.istio.io/config: |
           proxyMetadata:
             OUTPUT_CERTS: /etc/tls-server
@@ -48,16 +48,10 @@ spec:
       - name: tls-server
         emptyDir:
           medium: Memory
-      # - name: tls-ca
-      #   configMap:
-      #     name: istio-ca-root-cert
       volumeMounts:
       - mountPath: /vault/userconfig/tls-server
         name: tls-server
         readOnly: true
-      # - mountPath: /vault/userconfig/tls-ca
-      #   name: tls-ca
-      #   readOnly: true
       standalone:
         enabled: false
       dataStorage:
@@ -78,6 +72,11 @@ spec:
           setNodeId: true
           config: |
             ui = true
+
+            seal "awskms" {
+              region     = "${vaultunsealkeyregion}"
+              kms_key_id = "${vaultunsealkeyalias}"
+            }
 
             listener "tcp" {
               address     = "[::]:8200"
