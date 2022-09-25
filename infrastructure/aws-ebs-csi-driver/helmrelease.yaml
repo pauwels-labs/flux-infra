@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: aws-ebs-csi-driver
+  namespace: flux-system
+spec:
+  releaseName: aws-ebs-csi-driver
+  serviceAccountName: helm-controller
+  targetNamespace: kube-system
+  chart:
+    spec:
+      chart: amazon/aws-ebs-csi-driver
+      version: v2.11.1
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 2m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    controller:
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: ${awsebscsidriveriamrolearn}
+      k8sTagClusterId: ${clustername}
+    storageClasses:
+    - name: gp3
+      annotations:
+        storageclass.kubernetes.io/is-default-class: "true"
+      volumeBindingMode: WaitForFirstConsumer
+      reclaimPolicy: "Retain"
+      parameters:
+        encrypted: "true"
+        kmsKeyId: ${awsebscsidriverkmskeyid}
+        type: "gp3"
+    image:
+      repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/amazon/aws-ebs-csi-driver
+    sidecars:
+      provisioner:
+        image:
+          repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-provisioner
+      attacher:
+        image:
+          repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-attacher
+      snapshotter:
+        image:
+          repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-snapshotter
+      livenessprobe:
+        image:
+          repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/livenessprobe
+      resizer:
+        image:
+          repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-resizer
+      nodeDriverRegistrar:
+        image:
+          repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-node-driver-registrar

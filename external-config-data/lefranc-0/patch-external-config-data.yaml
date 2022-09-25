@@ -7,6 +7,8 @@ data:
   clustername: "lefranc-0"
   externaldnsiamrolearn: "arn:aws:iam::114374921412:role/lefranc-external-dns"
   certmanageriamrolearn: "arn:aws:iam::114374921412:role/lefranc-cert-manager"
+  awsebscsidriveriamrolearn: "arn:aws:iam::140327370353:role/lefranc-ebs-csi-driver"
+  awsebscsidriverkmskeyid: "arn:aws:kms:eu-west-1:760517686064:key/deaa950e-bcab-40cf-be61-9ba22c8ae7c3"
   basednszonename: "pauwelslabs.com"
   basednszoneid: "Z038797119PMDLQ7MG4L9"
 kind: ConfigMap
