@@ -34,6 +34,8 @@ spec:
           eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
       standalone:
         enabled: false
+      dataStorage:
+        storageClass: "gp3"
       ha:
         enabled: true
         raft:
