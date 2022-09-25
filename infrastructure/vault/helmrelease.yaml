@@ -1,0 +1,44 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vault
+  namespace: flux-system
+spec:
+  releaseName: vault
+  serviceAccountName: helm-controller
+  targetNamespace: vault
+  chart:
+    spec:
+      chart: hashicorp/vault
+      version: 0.22.0
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 2m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    server:
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
+    injector:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault-k8s
+      agentImage:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault
+    server:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault
+      standalone:
+        enabled: false
+      ha:
+        enabled: true
+        raft:
+          enabled: true
+    csi:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault-csi-provider

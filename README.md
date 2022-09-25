@@ -28,6 +28,9 @@ Notes:
 - When identifying an item in a list, provide the item's name or some
   unique identifying characteristic, so that the merge can happen
 
+- When enabling webhook notifications, make sure to select json as the
+  content type of the event in the github settings
+
 ### Install cert-manager
 
 - Make sure to have a separate resource for namespace that's installed
