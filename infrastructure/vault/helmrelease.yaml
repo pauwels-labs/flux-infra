@@ -23,7 +23,7 @@ spec:
   values:
     global:
       enabled: true
-      tlsDisable: false
+      tlsDisable: true
     injector:
       enabled: false
       image:
@@ -37,8 +37,8 @@ spec:
         annotations:
           eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
       annotations:
-        traffic.sidecar.istio.io/excludeInboundPorts: "8201"
-        traffic.sidecar.istio.io/excludeOutboundPorts: "8201"
+        # traffic.sidecar.istio.io/excludeInboundPorts: "8201"
+        # traffic.sidecar.istio.io/excludeOutboundPorts: "8201"
         proxy.istio.io/config: |
           proxyMetadata:
             OUTPUT_CERTS: /etc/tls-server
@@ -71,6 +71,8 @@ spec:
       ha:
         enabled: true
         replicas: 3
+        apiAddr: "http://$(HOSTNAME).vault-internal.vault.svc.cluster.local:8200"
+        clusterAddr: "https://$(HOSTNAME).vault-internal.vault.svc.cluster.local:8201"
         raft:
           enabled: true
           setNodeId: true
@@ -78,8 +80,13 @@ spec:
             ui = true
 
             listener "tcp" {
-              address            = "[::]:8200"
-              cluster_address    = "[::]:8201"
+              address     = "[::]:8200"
+              tls_disable = "true"
+            }
+
+            listener "tcp" {
+              address            = "[::]:8201"
+              tls_disable        = false"
               tls_cert_file      = "/vault/userconfig/tls-server/cert-chain.pem"
               tls_key_file       = "/vault/userconfig/tls-server/key.pem"
               tls_client_ca_file = "/vault/userconfig/tls-server/root-cert.pem"
@@ -89,25 +96,22 @@ spec:
               path = "/vault/data"
 
               retry_join {
-                leader_api_addr         = "https://vault-0.vault-internal.vault.svc.cluster.local:8200"
-                leader_tls_servername   = "spiffe://cluster.local/ns/vault/sa/vault"
-                leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
-                leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
-                leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
+                leader_api_addr         = "http://vault-0.vault-internal.vault.svc.cluster.local:8200"
+                # leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
+                # leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
+                # leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
               }
               retry_join {
-                leader_api_addr         = "https://vault-1.vault-internal.vault.svc.cluster.local:8200"
-                leader_tls_servername   = "spiffe://cluster.local/ns/vault/sa/vault"
-                leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
-                leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
-                leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
+                leader_api_addr         = "http://vault-1.vault-internal.vault.svc.cluster.local:8200"
+                # leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
+                # leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
+                # leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
               }
               retry_join {
-                leader_api_addr         = "https://vault-2.vault-internal.vault.svc.cluster.local:8200"
-                leader_tls_servername   = "spiffe://cluster.local/ns/vault/sa/vault"
-                leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
-                leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
-                leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
+                leader_api_addr         = "http://vault-2.vault-internal.vault.svc.cluster.local:8200"
+                # leader_ca_cert_file     = "/vault/userconfig/tls-server/root-cert.pem"
+                # leader_client_cert_file = "/vault/userconfig/tls-server/cert-chain.pem"
+                # leader_client_key_file  = "/vault/userconfig/tls-server/key.pem"
               }
 
               autopilot {
