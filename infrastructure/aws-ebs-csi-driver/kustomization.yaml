@@ -3,10 +3,12 @@ kind: Kustomization
 resources:
 - helmrelease.yaml
 patches:
-- patch: |
+- patch: |-
     - op: replace
-      path: /metadata/annotations/storageclass.kubernetes.io~1is-default-class
+      path: /metadata/annotations/blah
       value: "false"
   target:
+    group: storage.k8s.io
+    version: v1
     kind: StorageClass
     name: "gp2"
