@@ -85,8 +85,8 @@ spec:
             }
 
             listener "tcp" {
-              address            = "[::]:8201"
-              cluster_address    = "[::]:9201"
+              address            = "[::]:9201"
+              cluster_address    = "[::]:8201"
               tls_disable        = "false"
               tls_cert_file      = "/vault/userconfig/tls-server/cert-chain.pem"
               tls_key_file       = "/vault/userconfig/tls-server/key.pem"
