@@ -42,7 +42,7 @@ spec:
         proxy.istio.io/config: |
           proxyMetadata:
             OUTPUT_CERTS: /etc/tls-server
-        sidecar.istio.io/userVolume: '[{"name": tls-server", "emptyDir": {"medium": "Memory"}}]'
+        sidecar.istio.io/userVolume: '[{"name": "tls-server", "emptyDir": {"medium": "Memory"}}]'
         sidecar.istio.io/userVolumeMount: '[{"name": "tls-server", "mountPath": "/etc/tls-server"}]'
       volumes:
       - name: tls-server
