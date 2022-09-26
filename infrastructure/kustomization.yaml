@@ -9,4 +9,3 @@ resources:
 - kiali
 - external-dns
 - aws-ebs-csi-driver
-- vault
