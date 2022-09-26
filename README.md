@@ -113,6 +113,30 @@ Notes:
   specify an alias in the "resource" field of an IAM policy; it MUST
   be specified as a kms:ResourceAliases condition
 
+### Install vault
+
+- This is a complicated one, a lot of things come into play to make
+  vault resilient and prod-ready
+  
+- Use integrated storage with RAFT to avoid a consul deployment
+
+- Standup a standard istio sidecar alongside each node, and deploy
+  vault with tls_disable/tlsDisable set to true
+  
+- Normally, this should allow vault to do everything while being
+  protected by istio's mutual TLS mesh functionality
+  
+- Use awskms seal to auto-unseal using a KMS key; this requires an IAM
+  role and a kms key built out using terraform
+  
+- Once vault is running, shell into it and call `vault operator init`
+  to kickstart everything
+  
+- You'll need to find a safe place to put the recovery keys and root
+  key
+  
+- Investigate use of PGP initialization
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,
