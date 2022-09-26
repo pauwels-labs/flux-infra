@@ -66,7 +66,7 @@ spec:
         enabled: true
         replicas: 3
         apiAddr: "http://$(HOSTNAME).vault-internal.vault.svc.cluster.local:8200"
-        clusterAddr: "https://$(HOSTNAME).vault-internal.vault.svc.cluster.local:8201"
+        clusterAddr: "http://$(HOSTNAME).vault-internal.vault.svc.cluster.local:8201"
         raft:
           enabled: true
           setNodeId: true
@@ -80,18 +80,18 @@ spec:
 
             listener "tcp" {
               address         = "[::]:8200"
-              cluster_address = "[::]:9200"
+              cluster_address = "[::]:8201"
               tls_disable     = "true"
             }
 
-            listener "tcp" {
-              address            = "[::]:9201"
-              cluster_address    = "[::]:8201"
-              tls_disable        = "false"
-              tls_cert_file      = "/vault/userconfig/tls-server/cert-chain.pem"
-              tls_key_file       = "/vault/userconfig/tls-server/key.pem"
-              tls_client_ca_file = "/vault/userconfig/tls-server/root-cert.pem"
-            }
+            # listener "tcp" {
+            #   address            = "[::]:9201"
+            #   cluster_address    = "[::]:8201"
+            #   tls_disable        = "false"
+            #   tls_cert_file      = "/vault/userconfig/tls-server/cert-chain.pem"
+            #   tls_key_file       = "/vault/userconfig/tls-server/key.pem"
+            #   tls_client_ca_file = "/vault/userconfig/tls-server/root-cert.pem"
+            # }
 
             storage "raft" {
               path = "/vault/data"
