@@ -12,3 +12,4 @@ resources:
 - helmrelease-istiod.yaml
 - helmrelease-gateway.yaml
 - gateway.yaml
+- peerauthentication.yaml
