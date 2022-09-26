@@ -37,8 +37,6 @@ spec:
         annotations:
           eks.amazonaws.com/role-arn: ${vaultiamrolearn}
       annotations:
-        traffic.sidecar.istio.io/excludeInboundPorts: "8201"
-        traffic.sidecar.istio.io/excludeOutboundPorts: "8201"
         proxy.istio.io/config: |
           proxyMetadata:
             OUTPUT_CERTS: /etc/tls-server
