@@ -35,3 +35,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-github-webhook-cd-pauwels-labs
+  - port:
+      number: 443
+      name: https-secrets
+      protocol: HTTPS
+    hosts:
+    - "vault/secrets.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-secrets-pauwels-labs
