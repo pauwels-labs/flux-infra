@@ -1,0 +1,32 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: notification-controller-trailing-host-dot
+  namespace: flux-system
+spec:
+  hosts:
+  - notification-controller.flux-system.svc.cluster.local.
+  http:
+  - name: "notification-controller"
+    route:
+    - destination:
+        port:
+          number: 80
+        host: notification-controller
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: source-controller-trailing-host-dot
+  namespace: flux-system
+spec:
+  hosts:
+  - source-controller.flux-system.svc.cluster.local.
+  http:
+  - name: "source-controller"
+    route:
+    - destination:
+        port:
+          number: 80
+        host: source-controller

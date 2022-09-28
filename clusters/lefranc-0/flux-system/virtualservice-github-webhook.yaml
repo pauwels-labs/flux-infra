@@ -1,3 +1,4 @@
+---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -9,9 +10,9 @@ spec:
   gateways:
   - istio-ingress/pauwels-labs
   http:
-  - name: "notification-controller"
+  - name: "webhook-receiver"
     route:
     - destination:
         port:
           number: 80
-        host: notification-controller
+        host: webhook-receiver

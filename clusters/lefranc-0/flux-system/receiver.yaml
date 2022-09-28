@@ -6,10 +6,10 @@ metadata:
 spec:
   type: github
   events:
-    - "ping"
-    - "push"
+  - "ping"
+  - "push"
   secretRef:
     name: github-webhook-hmac
   resources:
-    - kind: GitRepository
-      name: flux-system
+  - kind: GitRepository
+    name: flux-system

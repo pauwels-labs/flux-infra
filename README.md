@@ -30,11 +30,36 @@ Notes:
 
 - When enabling webhook notifications, make sure to select json as the
   content type of the event in the github settings
+  
+- When enabling webhook notifications, make sure to send the event to
+  the webhook-receiver service, not just the notification-controller
+  service
 
 - When making strategic merge patches or RFC6902 patches, the resource
   being patched MUST be defined inside of the resources section of the
   Kustomization file, even if the resource was already made outside of
   Flux
+
+- After installing istio sidecars, you'll find that processing will
+  begin to fail with 503 errors from the source controller and
+  notification controller; this is because istio fails to handle FQDNs
+  with trailing dots (e.g. pod.ns.svc.cluster.local./somepath),
+  without an explicit entry in a virtualservice adding that host
+  in. The options are:
+  
+  1. Redefine the controller URLs used by flux to not include trailing
+     dots
+     
+  2. Use a custom EnvoyFilter to enable the strip_trailing_host_dot
+     feature in Envoy:
+     https://github.com/istio/istio/issues/18904#issuecomment-955702260
+     
+  3. Use a VirtualService to add a redirect from the host with the dot
+     to the host without the dot:
+     https://github.com/fluxcd/flux2/issues/598#issuecomment-756999645
+     
+  Personally I'm a fan of solution #3, as it makes everything explicit
+  and visible so that it can be fixed when Istio/Envoy fix the issue.
 
 ### Install cert-manager
 
