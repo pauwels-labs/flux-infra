@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: keycloak-operator
+  namespace: flux-system
+spec:
+  releaseName: keycloak-operator
+  serviceAccountName: helm-controller
+  targetNamespace: keycloak
+  chart:
+    spec:
+      chart: keycloak/keycloak-operator
+      version: v19.0.2
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 2m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values: {}
