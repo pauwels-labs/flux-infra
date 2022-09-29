@@ -3,3 +3,13 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - helmrelease.yaml
+patches:
+- patch: |
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: KUBERNETES_SERVICE_HOST
+        value: kubernetes.default.svc.cluster.local.
+  target:
+    kind: Deployment
+    name: "keycloak-operator"
