@@ -45,3 +45,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-secrets-pauwels-labs
+  - port:
+      number: 443
+      name: https-identity
+      protocol: HTTPS
+    hosts:
+    - "vault/identity.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-identity-pauwels-labs
