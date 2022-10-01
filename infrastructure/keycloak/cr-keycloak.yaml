@@ -11,7 +11,7 @@ spec:
   - name: db-url-host
     value: "${keycloakdbhost}"
   - name: db-url-port
-    value: "\"${keycloakdbport}\""
+    value: "${keycloakdbport}"
   - name: db-url-database
     value: "${keycloakdbname}"
   - name: db-username
