@@ -1,0 +1,33 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  instances: 1
+  serverConfiguration:
+  - name: db
+    value: ${keycloakdbtype}
+  - name: db-url-host
+    value: ${keycloakdbhost}
+  - name: db-url-port
+    value: ${keycloakdbport}
+  - name: db-url-database
+    value: ${keycloakdbname}
+  - name: db-username
+    secret:
+      name: keycloak-db-credentials
+      key: username
+  - name: db-password
+    secret:
+      name: keycloak-db-credentials
+      key: password
+  hostname: INSECURE-DISABLE
+  tlsSecret: INSECURE-DISABLE
+  unsupported:
+    podTemplate:
+      spec:
+        containers:
+        - env:
+          - name: JAVA_OPTS_APPEND
+            value: "-Djava.net.preferIPv4Stack=false -Djava.net.preferIPv6Addresses=true"

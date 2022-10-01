@@ -14,6 +14,10 @@ data:
   awsebscsidriverkmskeyalias: "arn:aws:kms:eu-west-1:760517686064:alias/k8s-ebs-volume-encryption-lefranc-0"
   basednszonename: "pauwelslabs.com"
   basednszoneid: "Z038797119PMDLQ7MG4L9"
+  keycloakdbtype: "postgres"
+  keycloakdbhost: "prod.cluster-ccnsohn6v88v.eu-west-1.rds.amazonaws.com"
+  keycloakdbport: "5432"
+  keycloakdbname: "keycloak"
 kind: ConfigMap
 metadata:
   name: external-config-data

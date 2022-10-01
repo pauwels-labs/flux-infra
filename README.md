@@ -162,6 +162,30 @@ Notes:
   
 - Investigate use of PGP initialization
 
+### Install Keycloak
+
+- This one is difficult
+
+- Need to setup a postgres; opted for an aurora serverless cluster and
+  use vpc peering to connect to eks cluster
+  
+- GRANT ALL PRIVILEGES on the keycloak user to the keycloak db and
+  then let keycloak make the tables so it'll be owner and have full
+  permissions
+  
+- Set hostname and tlsSecret in the Keycloak CR to INSECURE-DISABLE to
+  let istio handle networking
+  
+- Add a JAVA_OPTS_APPEND env var to the
+  unsupported.podTemplate.spec.containers[0] section in the Keycloak
+  CR and give it the following value in order to support
+  IPv6/dualstack: "-Djava.net.preferIPv4Stack=false
+  -Djava.net.preferIPv6Addresses=true"
+
+- Need to figure out whether Vault will be setup first to provide DB
+  creds or whether Keycloak will be setup first to provide auth to
+  vault
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,
