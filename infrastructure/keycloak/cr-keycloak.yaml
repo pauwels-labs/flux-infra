@@ -7,13 +7,13 @@ spec:
   instances: 1
   serverConfiguration:
   - name: db
-    value: ${keycloakdbtype}
+    value: "${keycloakdbtype}"
   - name: db-url-host
-    value: ${keycloakdbhost}
+    value: "${keycloakdbhost}"
   - name: db-url-port
-    value: ${keycloakdbport}
+    value: "${keycloakdbport}"
   - name: db-url-database
-    value: ${keycloakdbname}
+    value: "${keycloakdbname}"
   - name: db-username
     secret:
       name: keycloak-db-credentials
