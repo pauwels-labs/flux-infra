@@ -8,13 +8,9 @@ spec:
   serverConfiguration:
   - name: hostname-path
     value: "/"
-  - name: hostname-port
-    value: "443"
   - name: hostname-strict
     value: "true"
   - name: hostname-strict-backchannel
-    value: "true"
-  - name: hostname-strict-https
     value: "true"
   - name: db
     value: "${keycloakdbtype}"
@@ -42,3 +38,5 @@ spec:
         - env:
           - name: JAVA_OPTS_APPEND
             value: "-Djava.net.preferIPv4Stack=false -Djava.net.preferIPv6Addresses=true"
+          - name: KC_HOSTNAME_STRICT_HTTPS
+            value: "true"
