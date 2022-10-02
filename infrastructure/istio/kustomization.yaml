@@ -14,3 +14,4 @@ resources:
 - helmrelease-gateway.yaml
 - gateway.yaml
 - peerauthentication.yaml
+- envoyfilter-proxy-protocol.yaml

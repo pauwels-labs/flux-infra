@@ -16,6 +16,7 @@ spec:
     - network.pauwelslabs.com
     - github-webhook.cd.pauwelslabs.com
     - secrets.pauwelslabs.com
+    - identity.pauwelslabs.com
     tls:
       httpsRedirect: true
   - port:

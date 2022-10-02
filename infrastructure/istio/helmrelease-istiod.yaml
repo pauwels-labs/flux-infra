@@ -26,7 +26,15 @@ spec:
     meshConfig:
       defaultConfig:
         gatewayTopology:
-          numTrustedProxies: 1
+          # The PROXY protocol is enabled on both the NLB and inside
+          # Istio, allowing the NLB to transfer source IP exclusively
+          # over L4 rather than L7. The Istio gateway then picks up
+          # the source IP and places it accessible over L7 via the
+          # X-Forwarded-For header. In this context, since the gateway
+          # is the first proxy to set the X-Forwarded-For header, it
+          # should be considered to have no proxies in front of it
+          # (even though the NLB is there).
+          numTrustedProxies: 0
     global:
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
       # proxy:
