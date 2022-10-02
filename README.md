@@ -185,6 +185,10 @@ Notes:
 - Need to figure out whether Vault will be setup first to provide DB
   creds or whether Keycloak will be setup first to provide auth to
   vault
+  
+- Set the proxy config to "edge" to indicate that TLS will be
+  terminated by a proxy at the edge; turns out this isn't necessary?
+  need to investigate
 
 ## Secrets to automate
 

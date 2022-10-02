@@ -50,7 +50,7 @@ spec:
       name: https-identity
       protocol: HTTPS
     hosts:
-    - "vault/identity.pauwelslabs.com"
+    - "keycloak/identity.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-identity-pauwels-labs
