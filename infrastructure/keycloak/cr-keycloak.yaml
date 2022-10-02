@@ -6,6 +6,16 @@ metadata:
 spec:
   instances: 1
   serverConfiguration:
+  - name: hostname-path
+    value: "/"
+  - name: hostname-port
+    value: "443"
+  - name: hostname-strict
+    value: true
+  - name: hostname-strict-backchannel
+    value: true
+  - name: hostname-strict-https
+    value: true
   - name: db
     value: "${keycloakdbtype}"
   - name: db-url-host
@@ -22,8 +32,9 @@ spec:
     secret:
       name: keycloak-db-credentials
       key: password
-  hostname: INSECURE-DISABLE
+  hostname: identity.pauwelslabs.com
   tlsSecret: INSECURE-DISABLE
+  disableDefaultIngress: true
   unsupported:
     podTemplate:
       spec:
