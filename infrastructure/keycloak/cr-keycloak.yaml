@@ -11,11 +11,11 @@ spec:
   - name: hostname-port
     value: "443"
   - name: hostname-strict
-    value: true
+    value: "true"
   - name: hostname-strict-backchannel
-    value: true
+    value: "true"
   - name: hostname-strict-https
-    value: true
+    value: "true"
   - name: db
     value: "${keycloakdbtype}"
   - name: db-url-host
