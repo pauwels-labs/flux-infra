@@ -29,3 +29,4 @@ spec:
         service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
         service.beta.kubernetes.io/aws-load-balancer-ip-address-type: "dualstack"
         service.beta.kubernetes.io/aws-load-balancer-manage-backend-security-group-rules: "true"
+        service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: "preserve_client_ip.enabled=true"
