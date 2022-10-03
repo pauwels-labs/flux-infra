@@ -31,4 +31,4 @@ spec:
         upstreams       = [ "file:///dev/null" ]
         provider        = "keycloak-oidc"
         redirect_url    = "https://auth.pauwelslabs.com/oauth2/callback"
-        oidc_issuer_url = "https://identity.pauwelslabs.com/realms/pauwelslabs"
+        oidc_issuer_url = "https://identity.pauwelslabs.com/realms/pauwels-labs"
