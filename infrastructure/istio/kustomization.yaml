@@ -9,6 +9,7 @@ resources:
 - certificate-secrets-pauwels-labs.yaml
 - certificate-identity-pauwels-labs.yaml
 - certificate-echo-pauwels-labs.yaml
+- certificate-auth-pauwels-labs.yaml
 - serviceaccount-helm-controller.yaml
 - helmrelease-base.yaml
 - helmrelease-istiod.yaml

@@ -18,6 +18,7 @@ spec:
     - secrets.pauwelslabs.com
     - identity.pauwelslabs.com
     - echo.pauwelslabs.com
+    - auth.pauwelslabs.com
     tls:
       httpsRedirect: true
   - port:
@@ -65,3 +66,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-echo-pauwels-labs
+  - port:
+      number: 443
+      name: https-auth
+      protocol: HTTPS
+    hosts:
+    - "oauth2-proxy/auth.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-auth-pauwels-labs
