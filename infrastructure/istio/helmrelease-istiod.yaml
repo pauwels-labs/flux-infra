@@ -25,9 +25,9 @@ spec:
     revisionTags: ["stable"]
     meshConfig:
       extensionProviders:
-      - name: keycloak-broker
+      - name: oauth2-proxy
         envoyExtAuthzHttp:
-          service: "https://identity.pauwelslabs.com/realms/pauwels-labs/broker/oidc/endpoint"
+          service: "https://auth.pauwelslabs.com/oauth2/sign_in"
           port: 443
           includeRequestHeadersInCheck: ["authorization", "cookie"]
           headersToUpstreamOnAllow: ["authorization", "path", "x-auth-request-user", "x-auth-request-email", "x-auth-request-access-token"]

@@ -210,6 +210,11 @@ Notes:
   externalTrafficPolicy on the Service resource to local, or to enable
   client IP preservation at the NLB level.
   
+### Install oauth2-proxy
+
+- Needs redis
+
+- Need to store client ID and secret in vault
 
 ## Secrets to automate
 

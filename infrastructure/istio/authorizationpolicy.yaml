@@ -1,15 +1,15 @@
 kind: AuthorizationPolicy
 apiVersion: security.istio.io/v1beta1
 metadata:
-  name: ext-authz-keycloak-broker
+  name: ext-authz-oauth2-proxy
   namespace: keycloak
 spec:
   selector:
     matchLabels:
-      istio: gateway
+      run: echo
   action: CUSTOM
   provider:
-    name: keycloak-broker
+    name: oauth2-proxy
   rules:
   - to:
     - operation:
