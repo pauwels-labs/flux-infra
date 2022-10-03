@@ -9,5 +9,6 @@ resources:
 - kiali
 - external-dns
 - aws-ebs-csi-driver
-- keycloak
 - vault
+- keycloak
+- oauth2-proxy
