@@ -22,3 +22,10 @@ spec:
     crds: CreateReplace
   values:
     kubeVersion: "1.23"
+    config:
+      clientID: "pauwels-labs-login"
+      clientSecret: "7IbUXWohfgc6UCmIJTMKGzc28Q0OAfO7"
+      cookieSecret: "jIdQw76vTn0Q6eUnz6D0rZpGXY3cphMT"
+      configFile: |-
+        redirect_url = "https://auth.pauwelslabs.com/oauth2/callback"
+        oidc_issuer_url = "https://identity.pauwelslabs.com/realms/pauwelslabs"
