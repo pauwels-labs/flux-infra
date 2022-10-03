@@ -9,10 +9,10 @@ spec:
   serverConfiguration:
   - name: hostname-path
     value: "/"
-  - name: hostname-strict
-    value: "true"
-  - name: hostname-strict-backchannel
-    value: "true"
+  # - name: hostname-strict
+  #   value: "true"
+  # - name: hostname-strict-backchannel
+  #   value: "true"
   - name: db
     value: "${keycloakdbtype}"
   - name: db-url-host
