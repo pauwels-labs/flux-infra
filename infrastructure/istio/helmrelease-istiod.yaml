@@ -27,10 +27,10 @@ spec:
       extensionProviders:
       - name: oauth2-proxy
         envoyExtAuthzHttp:
-          service: "https://auth.pauwelslabs.com/oauth2/sign_in"
+          service: "https://auth.pauwelslabs.com"
           port: 443
-          includeRequestHeadersInCheck: ["authorization", "cookie"]
-          headersToUpstreamOnAllow: ["authorization", "path", "x-auth-request-user", "x-auth-request-email", "x-auth-request-access-token"]
+          includeRequestHeadersInCheck: ["cookie", "x-forwarded-access-token"]
+          headersToUpstreamOnAllow: ["authorization", "cookie", "path", "x-auth-request-access-token", "x-forwarded-access-token"]
           headersToDownstreamOnDeny: ["content-type", "set-cookie"]
       defaultConfig:
         gatewayTopology:
