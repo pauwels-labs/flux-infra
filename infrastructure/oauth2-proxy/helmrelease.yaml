@@ -27,5 +27,7 @@ spec:
       clientSecret: "7IbUXWohfgc6UCmIJTMKGzc28Q0OAfO7"
       cookieSecret: "jIdQw76vTn0Q6eUnz6D0rZpGXY3cphMT"
       configFile: |-
+        email_domains = [ "*" ]
+        upstreams = [ "file:///dev/null" ]
         redirect_url = "https://auth.pauwelslabs.com/oauth2/callback"
         oidc_issuer_url = "https://identity.pauwelslabs.com/realms/pauwelslabs"
