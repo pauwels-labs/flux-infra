@@ -24,7 +24,7 @@ spec:
     revision: "1-15-0"
     revisionTags: ["stable"]
     meshConfig:
-      externalProviders:
+      extensionProviders:
       - name: keycloak-broker
         envoyExtAuthzHttp:
           service: "https://identity.pauwelslabs.com/realms/pauwels-labs/broker/oidc/endpoint"
