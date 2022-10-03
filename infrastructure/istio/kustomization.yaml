@@ -8,6 +8,7 @@ resources:
 - certificate-github-webhook-cd-pauwels-labs.yaml
 - certificate-secrets-pauwels-labs.yaml
 - certificate-identity-pauwels-labs.yaml
+- certificate-echo-pauwels-labs.yaml
 - serviceaccount-helm-controller.yaml
 - helmrelease-base.yaml
 - helmrelease-istiod.yaml
@@ -15,3 +16,4 @@ resources:
 - gateway.yaml
 - peerauthentication.yaml
 - envoyfilter-proxy-protocol.yaml
+- authorizationpolicy.yaml

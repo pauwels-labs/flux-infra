@@ -5,3 +5,5 @@ resources:
 - helmrelease.yaml
 - cr-keycloak.yaml
 - virtualservice.yaml
+- service-echo.yaml
+- virtualservice-echo.yaml

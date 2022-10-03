@@ -24,6 +24,14 @@ spec:
     revision: "1-15-0"
     revisionTags: ["stable"]
     meshConfig:
+      externalProviders:
+      - name: keycloak-broker
+        envoyExtAuthzHttp:
+          service: "https://identity.pauwelslabs.com/realms/pauwels-labs/broker/oidc/endpoint"
+          port: 443
+          includeRequestHeadersInCheck: ["authorization", "cookie"]
+          headersToUpstreamOnAllow: ["authorization", "path", "x-auth-request-user", "x-auth-request-email", "x-auth-request-access-token"]
+          headersToDownstreamOnDeny: ["content-type", "set-cookie"]
       defaultConfig:
         gatewayTopology:
           # The PROXY protocol is enabled on both the NLB and inside

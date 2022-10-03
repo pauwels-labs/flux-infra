@@ -173,8 +173,10 @@ Notes:
   then let keycloak make the tables so it'll be owner and have full
   permissions
   
-- Set hostname and tlsSecret in the Keycloak CR to INSECURE-DISABLE to
-  let istio handle networking
+- Set tlsSecret in the Keycloak CR to INSECURE-DISABLE to let istio
+  handle TLS termination; Keycloak operator automatically sets proxy
+  config to "edge" so that Keycloak knows its TLS is terminated
+  upstream
   
 - Add a JAVA_OPTS_APPEND env var to the
   unsupported.podTemplate.spec.containers[0] section in the Keycloak
@@ -185,10 +187,29 @@ Notes:
 - Need to figure out whether Vault will be setup first to provide DB
   creds or whether Keycloak will be setup first to provide auth to
   vault
+
+- The keycloak reverse proxy docs specify the use of certain
+  X-Forwarded-* headers:
   
-- Set the proxy config to "edge" to indicate that TLS will be
-  terminated by a proxy at the edge; turns out this isn't necessary?
-  need to investigate
+  https://www.keycloak.org/server/reverseproxy
+  
+  You need to carefully evaluate how you'll provide source IP to
+  keycloak. In this context, an NLB is deployed in AWS and an Istio
+  gateway handles the request. PROXY protocol is enabled on the NLB
+  via an annotation on the LB Service resource, and then PROXY
+  protocol is enabled in the Istio gateway via an EnvoyFilter defined
+  on the gateway workload. With this setup, Istio will read the source
+  IP via the NLB over PROXY protocol and add at L7 via an
+  X-Forwarded-For header. It seems to automatically handle setting
+  X-Forwarded-Proto to https (which is important since keycloak itself
+  is receiving non-HTTPS requests from the sidecar), and it sets the
+  Host/Authority headers to be the external domain, not the internal
+  one, so no need for X-Forwarded-Host.
+  
+  With the above setup, there's no need to set the
+  externalTrafficPolicy on the Service resource to local, or to enable
+  client IP preservation at the NLB level.
+  
 
 ## Secrets to automate
 

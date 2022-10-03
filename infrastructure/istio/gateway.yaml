@@ -17,6 +17,7 @@ spec:
     - github-webhook.cd.pauwelslabs.com
     - secrets.pauwelslabs.com
     - identity.pauwelslabs.com
+    - echo.pauwelslabs.com
     tls:
       httpsRedirect: true
   - port:
@@ -55,3 +56,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-identity-pauwels-labs
+  - port:
+      number: 443
+      name: https-echo
+      protocol: HTTPS
+    hosts:
+    - "keycloak/echo.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-echo-pauwels-labs
