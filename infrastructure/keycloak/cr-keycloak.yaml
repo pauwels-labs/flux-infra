@@ -5,7 +5,7 @@ metadata:
   namespace: keycloak
 spec:
   instances: 1
-  image: "${ecraccountid}.dkr.ecr.${ecrregion}.amazonaws.com/keycloak/keycloak:19.0.2"
+  #image: "${ecraccountid}.dkr.ecr.${ecrregion}.amazonaws.com/keycloak/keycloak:19.0.2"
   serverConfiguration:
   - name: hostname-path
     value: "/"
