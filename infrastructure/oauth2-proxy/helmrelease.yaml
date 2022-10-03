@@ -21,4 +21,4 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    kubeVersion: 1.23
+    kubeVersion: "1.23"
