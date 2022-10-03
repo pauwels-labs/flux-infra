@@ -2,11 +2,11 @@ kind: AuthorizationPolicy
 apiVersion: security.istio.io/v1beta1
 metadata:
   name: ext-authz-oauth2-proxy
-  namespace: keycloak
+  namespace: istio-ingress
 spec:
   selector:
     matchLabels:
-      run: echo
+      istio: gateway
   action: CUSTOM
   provider:
     name: oauth2-proxy
