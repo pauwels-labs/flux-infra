@@ -216,6 +216,21 @@ Notes:
 
 - Need to store client ID and secret in vault
 
+- When setting things up, add the following:
+
+  - Add envoyExtAuthzHttp filter in istiod helm chart under
+    meshConfig.extensionProviders
+
+  - URL of the external authz service should be the CLUSTER-LOCAL
+    oauth2-proxy url, i.e. oauth2-proxy.oauth2-proxy.svc.cluster.local
+    along with the service port, i.e. 80
+
+  - AuthorizationPolicy can be in the workload namespace selecting
+    just the workload, doesn't have to be in one of the istio
+    namespaces or selecting the istio gateway exclusively
+
+  - Use skip_provider_button = true to eliminate the oauth2-proxy UI
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,
