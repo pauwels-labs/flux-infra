@@ -28,7 +28,7 @@ spec:
       cookieSecret: "jIdQw76vTn0Q6eUnz6D0rZpGXY3cphMT"
       configFile: |-
         email_domains        = [ "*" ]
-        upstreams            = [ "file:///dev/null" ]
+        upstreams            = [ "static://200" ]
         provider             = "keycloak-oidc"
         redirect_url         = "https://auth.pauwelslabs.com/oauth2/callback"
         oidc_issuer_url      = "https://identity.pauwelslabs.com/realms/pauwels-labs"
