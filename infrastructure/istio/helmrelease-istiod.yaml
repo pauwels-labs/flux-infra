@@ -32,6 +32,8 @@ spec:
           includeRequestHeadersInCheck: ["cookie", "x-forwarded-access-token"]
           headersToUpstreamOnAllow: ["authorization", "cookie", "path", "x-auth-request-access-token", "x-forwarded-access-token"]
           headersToDownstreamOnDeny: ["content-type", "set-cookie"]
+          includeAdditionalHeadersInCheck:
+            X-Auth-Request-Redirect: "https://%REQ(:authority)%%REQ(:path)%"
       defaultConfig:
         gatewayTopology:
           # The PROXY protocol is enabled on both the NLB and inside
