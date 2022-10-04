@@ -38,5 +38,8 @@ spec:
         silence_ping_logging      = true
         cookie_samesite           = "strict"
         cookie_expire             = "12h"
-        set_xauthrequest          = true
+        pass_access_token         = true
         pass_authorization_header = true
+        set_authorization_header  = true
+        set_xauthrequest          = true
+        skip_jwt_bearer_tokens    = true
