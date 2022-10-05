@@ -23,6 +23,7 @@ spec:
   values:
     kubeVersion: "1.23"
     alphaConfig:
+      enabled: true
       injectRequestHeaders:
       - name: x-forwarded-user
         values:
