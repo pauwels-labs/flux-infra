@@ -231,6 +231,13 @@ Notes:
 
   - Use skip_provider_button = true to eliminate the oauth2-proxy UI
 
+- You'll need to be very specific about which headers envoy passes
+  around in order for everything to be up to spec
+  
+  - x-forwarded-for header MUST be in includeRequestHeadersInCheck in
+    order for the redirect back to the original domain to have the
+    proper IP
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,

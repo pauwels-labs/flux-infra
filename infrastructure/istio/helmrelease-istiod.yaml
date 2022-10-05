@@ -29,9 +29,23 @@ spec:
         envoyExtAuthzHttp:
           service: "oauth2-proxy.oauth2-proxy.svc.cluster.local"
           port: 80
-          includeRequestHeadersInCheck: ["cookie", "x-forwarded-access-token"]
-          headersToUpstreamOnAllow: ["authorization", "cookie", "path", "x-auth-request-access-token", "x-forwarded-access-token"]
-          headersToDownstreamOnDeny: ["content-type", "set-cookie"]
+          includeRequestHeadersInCheck:
+          - "cookie"
+          - "x-forwarded-for"
+          headersToUpstreamOnAllow:
+          - "authorization"
+          - "cookie"
+          - "path"
+          - "x-auth-request-access-token"
+          - "x-forwarded-access-token"
+          - "x-forwarded-for"
+          - "x-forwarded-user"
+          - "x-forwarded-groups"
+          - "x-forwarded-email"
+          - "x-forwarded-preferred-username"
+          headersToDownstreamOnDeny:
+          - "content-type"
+          - "set-cookie"
           includeAdditionalHeadersInCheck:
             X-Auth-Request-Redirect: "https://%REQ(:authority)%%REQ(:path)%"
       defaultConfig:
@@ -47,5 +61,5 @@ spec:
           numTrustedProxies: 0
     global:
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
-      # proxy:
-      #   logLevel: debug
+      proxy:
+        logLevel: debug
