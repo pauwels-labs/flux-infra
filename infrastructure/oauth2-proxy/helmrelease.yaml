@@ -22,6 +22,11 @@ spec:
     crds: CreateReplace
   values:
     kubeVersion: "1.23"
+    alphaConfig:
+      injectRequestHeaders:
+      - name: x-forwarded-user
+        values:
+          claim: user
     config:
       clientID: "pauwels-labs-login"
       clientSecret: "7IbUXWohfgc6UCmIJTMKGzc28Q0OAfO7"
