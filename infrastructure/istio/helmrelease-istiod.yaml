@@ -30,13 +30,13 @@ spec:
           service: "oauth2-proxy.oauth2-proxy.svc.cluster.local"
           port: 80
           includeRequestHeadersInCheck:
+          - "authorization"
           - "cookie"
           - "x-forwarded-for"
           headersToUpstreamOnAllow:
           - "authorization"
           - "cookie"
           - "path"
-          - "x-auth-request-access-token"
           - "x-forwarded-access-token"
           - "x-forwarded-for"
           - "x-forwarded-user"
@@ -46,8 +46,15 @@ spec:
           headersToDownstreamOnDeny:
           - "content-type"
           - "set-cookie"
+          headersToDownstreamOnAllow:
+          - "x-forwarded-access-token"
+          - "x-forwarded-for"
+          - "x-forwarded-user"
+          - "x-forwarded-groups"
+          - "x-forwarded-email"
+          - "x-forwarded-preferred-username"
           includeAdditionalHeadersInCheck:
-            X-Auth-Request-Redirect: "https://%REQ(:authority)%%REQ(:path)%"
+            x-auth-request-redirect: "https://%REQ(:authority)%%REQ(:path)%"
       defaultConfig:
         gatewayTopology:
           # The PROXY protocol is enabled on both the NLB and inside

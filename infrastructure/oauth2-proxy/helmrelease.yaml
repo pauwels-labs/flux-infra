@@ -22,6 +22,9 @@ spec:
     crds: CreateReplace
   values:
     kubeVersion: "1.23"
+    image:
+      repository: "274295908850.dkr.ecr.eu-west-1.amazonaws.com/oauth2-proxy/oauth2-proxy"
+      tag: "v7.3.0-headers"
     alphaConfig:
       enabled: false
       injectRequestHeaders:
@@ -47,7 +50,7 @@ spec:
         pass_access_token         = true
         pass_authorization_header = true
         set_authorization_header  = true
-        set_xauthrequest          = true
+        set_xauthrequest          = false
         skip_jwt_bearer_tokens    = true
         reverse_proxy             = true
         real_client_ip_header     = "x-forwarded-for"

@@ -238,6 +238,9 @@ Notes:
     order for the redirect back to the original domain to have the
     proper IP
 
+- oauth2-proxy has a bug that took me days to figure out where x-forwarded-*
+  headers are not sent in response, see issue #1818
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,
