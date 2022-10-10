@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: secrets-store-csi-driver
+  namespace: flux-system
+spec:
+  releaseName: secrets-store-csi-driver
+  serviceAccountName: helm-controller
+  targetNamespace: secrets-store-csi-driver
+  chart:
+    spec:
+      chart: kubernetes-sigs/secrets-store-csi-driver
+      version: 1.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 2m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    syncSecret:
+      enabled: true
+    enableSecretRotation: true
+    linux:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kubernetes-sigs/secrets-store-csi-driver
+        tag: v1.2.4
+      crds:
+        images:
+          repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kubernetes-sigs/secrets-store-csi-driver-crds
+          tag: v1.2.4
+      registrarImage:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-node-driver-registrar
+        tag: v2.5.1
+      livenessProbeImage:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/livenessprobe
+        tag: v2.7.0
