@@ -241,6 +241,18 @@ Notes:
 - oauth2-proxy has a bug that took me days to figure out where x-forwarded-*
   headers are not sent in response, see issue #1818
 
+### Install secrets-store-csi-driver
+
+- Begin considering if we should be splitting all the "infrastructure"
+  packages into separate kustomizations independently attached to the
+  cluster
+  
+  - Testing this with secrets-store-csi-driver which is why it isn't
+    part of infrastructure
+    
+  - The requirement for being bundled together for deployment should
+    probably be either timing or dependency based
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,
