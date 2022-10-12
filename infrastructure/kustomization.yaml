@@ -10,5 +10,4 @@ resources:
 - external-dns
 - aws-ebs-csi-driver
 - vault
-- keycloak
 - oauth2-proxy
