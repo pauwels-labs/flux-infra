@@ -12,4 +12,3 @@ resources:
 - vault
 - keycloak
 - oauth2-proxy
-- secrets-store-csi-driver
