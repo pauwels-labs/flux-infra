@@ -24,7 +24,8 @@ spec:
   - kustomize:
       patchesJson6902:
       - target:
-          version: batch/v1
+          group: batch
+          version: v1
           kind: Job
           name: secrets-store-csi-driver-upgrade-crds
         patch:
@@ -37,7 +38,8 @@ spec:
           - -c
           - "until wget -qO- -o /dev/null \"http://localhost:15021/healthz/ready\"; do echo \"WAITING FOR SIDECAR\"; sleep 3; done; echo \"SIDECAR AVAILABLE\"; /kubectl apply -f crds/; command_return_code=$(echo $?); echo \"QUITTING SIDECAR\"; wget -qO- -o /dev/null --post-data \"\" http://localhost:15020/quitquitquit > /dev/null; echo \"SIDECAR SHUTDOWN COMMAND ISSUED\"; exit $command_return_code;"
       - target:
-          version: batch/v1
+          group: batch
+          version: v1
           kind: Job
           name: secrets-store-csi-driver-keep-crds
         patch:
