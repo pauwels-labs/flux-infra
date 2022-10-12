@@ -27,6 +27,7 @@ spec:
         apiVersion: batch/v1
         metadata:
           name: secrets-store-csi-driver-upgrade-crds
+          namespace: secrets-store-csi-driver
         spec:
           template:
             spec:
@@ -40,6 +41,7 @@ spec:
         apiVersion: batch/v1
         metadata:
           name: secrets-store-csi-driver-keep-crds
+          namespace: secrets-store-csi-driver
         spec:
           template:
             spec:
