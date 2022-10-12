@@ -3,8 +3,3 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - helmrelease.yaml
-- cr-keycloak.yaml
-- virtualservice.yaml
-- service-echo.yaml
-- virtualservice-echo.yaml
-- authorizationpolicy.yaml
