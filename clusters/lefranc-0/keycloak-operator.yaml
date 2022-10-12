@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: keycloak
+  name: keycloak-operator
   namespace: flux-system
 spec:
   interval: 1m0s
@@ -9,13 +9,12 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/keycloak/cr
+  path: ./infrastructure/keycloak/operator
   prune: true
   wait: true
   timeout: 5m
   dependsOn:
   - name: external-config-data
-  - name: keycloak-operator
   postBuild:
     substituteFrom:
     - kind: ConfigMap
