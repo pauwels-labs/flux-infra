@@ -18,39 +18,45 @@ spec:
   interval: 2m
   install:
     crds: CreateReplace
+    disableHooks: true
+  uninstall:
+    disableHooks: true
   upgrade:
     crds: CreateReplace
-  postRenderers:
-  - kustomize:
-      patchesStrategicMerge:
-      - kind: Job
-        apiVersion: batch/v1
-        metadata:
-          name: secrets-store-csi-driver-upgrade-crds
-          namespace: secrets-store-csi-driver
-        spec:
-          template:
-            spec:
-              containers:
-              - command:
-                - /bin/sh
-                - -c
-                - "until wget -qO- -o /dev/null \"http://localhost:15021/healthz/ready\"; do echo \"WAITING FOR SIDECAR\"; sleep 3; done; echo \"SIDECAR AVAILABLE\"; /kubectl apply -f crds/; command_return_code=$(echo $?); echo \"QUITTING SIDECAR\"; wget -qO- -o /dev/null --post-data \"\" http://localhost:15020/quitquitquit > /dev/null; echo \"SIDECAR SHUTDOWN COMMAND ISSUED\"; exit $command_return_code;"
-                args: null
-      # - kind: Job
-      #   apiVersion: batch/v1
-      #   metadata:
-      #     name: secrets-store-csi-driver-keep-crds
-      #     namespace: secrets-store-csi-driver
-      #   spec:
-      #     template:
-      #       spec:
-      #         containers:
-      #         - command:
-      #           - /bin/sh
-      #           - -c
-      #           - "until wget -qO- -o /dev/null \"http://localhost:15021/healthz/ready\"; do echo \"WAITING FOR SIDECAR\"; sleep 3; done; echo \"SIDECAR AVAILABLE\"; /kubectl patch crd secretproviderclasses.secrets-store.csi.x-k8s.io secretproviderclasspodstatuses.secrets-store.csi.x-k8s.io -p '{\"metadata\":{\"annotations\": {\"helm.sh/resource-policy\": \"keep\"}}}'; command_return_code=$(echo $?); echo \"QUITTING SIDECAR\"; wget -qO- -o /dev/null --post-data \"\" http://localhost:15020/quitquitquit > /dev/null; echo \"SIDECAR SHUTDOWN COMMAND ISSUED\"; exit $command_return_code;"
-      #           args: null
+    disableHooks: true
+  rollback:
+    disableHooks: true
+  # postRenderers:
+  # - kustomize:
+  #     patchesStrategicMerge:
+  #     - kind: Job
+  #       apiVersion: batch/v1
+  #       metadata:
+  #         name: secrets-store-csi-driver-upgrade-crds
+  #         namespace: secrets-store-csi-driver
+  #       spec:
+  #         template:
+  #           spec:
+  #             containers:
+  #             - command:
+  #               - /bin/sh
+  #               - -c
+  #               - "until wget -qO- -o /dev/null \"http://localhost:15021/healthz/ready\"; do echo \"WAITING FOR SIDECAR\"; sleep 3; done; echo \"SIDECAR AVAILABLE\"; /kubectl apply -f crds/; command_return_code=$(echo $?); echo \"QUITTING SIDECAR\"; wget -qO- -o /dev/null --post-data \"\" http://localhost:15020/quitquitquit > /dev/null; echo \"SIDECAR SHUTDOWN COMMAND ISSUED\"; exit $command_return_code;"
+  #               args: null
+  #     - kind: Job
+  #       apiVersion: batch/v1
+  #       metadata:
+  #         name: secrets-store-csi-driver-keep-crds
+  #         namespace: secrets-store-csi-driver
+  #       spec:
+  #         template:
+  #           spec:
+  #             containers:
+  #             - command:
+  #               - /bin/sh
+  #               - -c
+  #               - "until wget -qO- -o /dev/null \"http://localhost:15021/healthz/ready\"; do echo \"WAITING FOR SIDECAR\"; sleep 3; done; echo \"SIDECAR AVAILABLE\"; /kubectl patch crd secretproviderclasses.secrets-store.csi.x-k8s.io secretproviderclasspodstatuses.secrets-store.csi.x-k8s.io -p '{\"metadata\":{\"annotations\": {\"helm.sh/resource-policy\": \"keep\"}}}'; command_return_code=$(echo $?); echo \"QUITTING SIDECAR\"; wget -qO- -o /dev/null --post-data \"\" http://localhost:15020/quitquitquit > /dev/null; echo \"SIDECAR SHUTDOWN COMMAND ISSUED\"; exit $command_return_code;"
+  #               args: null
   # - kustomize:
   #     patchesJson6902:
   #     - target:
