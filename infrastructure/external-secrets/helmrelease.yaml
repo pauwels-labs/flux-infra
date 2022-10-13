@@ -21,6 +21,12 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    certController:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/external-secrets/external-secrets
+    webhook:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/external-secrets/external-secrets
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/external-secrets/external-secrets
     crds:
