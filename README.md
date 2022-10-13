@@ -253,6 +253,15 @@ Notes:
   - The requirement for being bundled together for deployment should
     probably be either timing or dependency based
 
+- Use kustomization instead of helm when possible for better CRD
+  management
+  
+- When setting up a policy/role for service account access to vault
+  secrets, you can use metadata from the SA token to define the access
+  path, but you need to know the kubernetes auth accessor ID e.g.
+  secrets/data/{{identity.entity.aliases.auth_kubernetes_fe3d9e77.metadata.service_account_namespace}}/{{identity.entity.aliases.auth_kubernetes_fe3d9e77.metadata.service_account_name}}
+
+
 ## Secrets to automate
 
 Bootstraping the cluster is a bit of a tricky matter. Some components,
@@ -260,6 +269,14 @@ like istio and vault, are required to manage networking and secrets,
 respectively, but flux, which depends on those, needs a secret to be
 able to connect to the repository that then configures istio and vault
 in the cluster.
+
+- flux-system/ecr-credentials (not in vault, managed by cronjob)
+- flux-system/flux-system
+- flux-system/github-webhook-hmac
+- keycloak/keycloak-db-credentials
+- keycloak/keycloak-initial-admin
+- keycloak/keycloak-secrets-store
+- oauth2-proxy/oauth2-proxy
 
 ## Multi-tenant networking
 

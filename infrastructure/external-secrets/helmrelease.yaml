@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-secrets
+  namespace: flux-system
+spec:
+  releaseName: external-secrets
+  serviceAccountName: helm-controller
+  targetNamespace: external-secrets
+  chart:
+    spec:
+      chart: external-secrets/external-secrets
+      version: 0.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 2m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    image:
+      repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/external-secrets/external-secrets
+    crds:
+      createClusterExternalSecret: false
+      createClusterSecretStore: false

@@ -11,6 +11,7 @@ resources:
 - secrets-store-csi-driver.yaml
 - secrets-store.csi.x-k8s.io_secretproviderclasses.yaml
 - secrets-store.csi.x-k8s.io_secretproviderclasspodstatuses.yaml
+- vault-csi-provider.yaml
 images:
 - name: k8s.gcr.io/sig-storage/csi-node-driver-registrar
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-node-driver-registrar
