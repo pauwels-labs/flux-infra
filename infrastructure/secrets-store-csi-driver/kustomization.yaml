@@ -11,7 +11,9 @@ resources:
 - secrets-store.csi.x-k8s.io_secretproviderclasses.yaml
 - secrets-store.csi.x-k8s.io_secretproviderclasspodstatuses.yaml
 images:
-- name: k8s.gcr.io/sig-storage
-  newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage
+- name: k8s.gcr.io/sig-storage/csi-node-driver-registrar
+  newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/csi-node-driver-registrar
+- name: k8s.gcr.io/sig-storage/livenessprobe
+  newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage/livenessprobe
 - name: k8s.gcr.io/csi-secrets-store/driver
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kubernetes-sigs/secrets-store-csi-driver
