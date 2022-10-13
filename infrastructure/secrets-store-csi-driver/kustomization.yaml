@@ -2,4 +2,16 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - namespace.yaml
-- helmrelease.yaml
+- csidriver.yaml
+- rbac-secretproviderclass.yaml
+- rbac-secretproviderrotation.yaml
+- rbac-secretprovidersyncing.yaml
+- rbac-secretprovidertokenrequest.yaml
+- secrets-store-csi-driver.yaml
+- secrets-store.csi.x-k8s.io_secretproviderclasses.yaml
+- secrets-store.csi.x-k8s.io_secretproviderclasspodstatuses.yaml
+images:
+- name: k8s.gcr.io/sig-storage
+  newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/sig-storage
+- name: k8s.gcr.io/csi-secrets-store/driver
+  newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kubernetes-sigs/secrets-store-csi-driver
