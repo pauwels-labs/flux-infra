@@ -1,7 +1,0 @@
-apiVersion: v2
-appVersion: v0.9.5
-description: Weave Gitops is a set of tools and services to aid your interactions
-  with Flux
-name: weave-gitops
-type: application
-version: 4.0.2
