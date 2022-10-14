@@ -1,0 +1,34 @@
+{{- if .Values.rbac.create -}}
+{{- if semverCompare "<1.17-0" (include "common.capabilities.kubeVersion" .) -}}
+apiVersion: rbac.authorization.k8s.io/v1beta1
+{{- else }}
+apiVersion: rbac.authorization.k8s.io/v1
+{{- end }}
+kind: ClusterRole
+metadata:
+  name:  {{ include "chart.fullname" . }}
+rules:
+  # impersonation rules for ui calls
+  - apiGroups: [""]
+    resources: {{ .Values.rbac.impersonationResources | toJson }}
+    verbs: [ "impersonate" ]
+    {{- with .Values.rbac.impersonationResourceNames }}
+    resourceNames: {{ . | toJson }}
+    {{- end }}
+  # Access to enterprise entitlement
+  - apiGroups: [""]
+    resources: [ "secrets" ]
+    verbs: [ "get", "list" ]
+    {{- if and .Values.rbac.viewSecrets .Values.rbac.viewSecretsResourceNames }}
+    {{- fail "You've supplied both rbac.viewSecrets and rbac.viewSecretsResourceNames. Please only use rbac.viewSecretsResourceNames" }}
+    {{- end }}
+    # or should return the first non-falsy result
+    {{- with (or .Values.rbac.viewSecretsResourceNames .Values.rbac.viewSecrets) }}
+    resourceNames: {{ . | toJson }}
+    {{- end }}
+
+  # The service account needs to read namespaces to know where it can query
+  - apiGroups: [ "" ]
+    resources: [ "namespaces" ]
+    verbs: [ "get", "list" ]
+{{- end -}}
