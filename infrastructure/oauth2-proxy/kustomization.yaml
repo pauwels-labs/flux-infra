@@ -5,3 +5,5 @@ resources:
 - helmrelease.yaml
 - virtualservice.yaml
 - serviceaccount-helm-controller.yaml
+- secretstore-oauth2-proxy.yaml
+- externalsecret-oauth2-proxy.yaml
