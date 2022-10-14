@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: flux-system
 resources:
 - secretstore-notification-controller.yaml
+- secretstore-source-controller.yaml
 - externalsecret-hmac-pauwels-labs-flux-infra-github-webhook.yaml
 - externalsecret-ssh-pauwels-labs-flux-infra-github.yaml
