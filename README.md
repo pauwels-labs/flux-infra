@@ -272,7 +272,7 @@ in the cluster.
 
 - flux-system/ecr-credentials (not in vault, managed by cronjob)
 - flux-system/flux-system
-- flux-system/github-webhook-hmac
+- flux-system/github-webhook-hmac (done)
 - keycloak/keycloak-db-credentials
 - keycloak/keycloak-initial-admin
 - keycloak/keycloak-secrets-store

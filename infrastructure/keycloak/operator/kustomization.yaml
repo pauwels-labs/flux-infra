@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - helmrelease.yaml
+- secretstore-keycloak-operator.yaml
+- externalsecret-keycloak-db-credentials.yaml
