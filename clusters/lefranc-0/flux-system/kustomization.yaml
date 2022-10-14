@@ -13,3 +13,4 @@ patchesStrategicMerge:
 - patch-namespace.yaml
 - patch-notification.yaml
 - patch-kustomization.yaml
+- patch-gitrepository.yaml

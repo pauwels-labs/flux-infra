@@ -270,12 +270,9 @@ respectively, but flux, which depends on those, needs a secret to be
 able to connect to the repository that then configures istio and vault
 in the cluster.
 
-- flux-system/ecr-credentials (not in vault, managed by cronjob)
-- flux-system/flux-system
-- flux-system/github-webhook-hmac (done)
-- keycloak/keycloak-db-credentials
-- keycloak/keycloak-initial-admin
-- keycloak/keycloak-secrets-store
+- flux-system/flux-system          (done)
+- flux-system/github-webhook-hmac  (done)
+- keycloak/keycloak-db-credentials (done)
 - oauth2-proxy/oauth2-proxy
 
 ## Multi-tenant networking
