@@ -32,9 +32,7 @@ spec:
         values:
           claim: user
     config:
-      clientID: "pauwels-labs-login"
-      clientSecret: "7IbUXWohfgc6UCmIJTMKGzc28Q0OAfO7"
-      cookieSecret: "jIdQw76vTn0Q6eUnz6D0rZpGXY3cphMT"
+      existingSecret: oauth2-proxy
       configFile: |-
         cookie_domains            = ".pauwelslabs.com"
         whitelist_domains         = ".pauwelslabs.com"
