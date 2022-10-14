@@ -5,4 +5,3 @@ resources:
 - secretstore-notification-controller.yaml
 - externalsecret-hmac-pauwels-labs-flux-infra-github-webhook.yaml
 - externalsecret-ssh-pauwels-labs-flux-infra-github.yaml
-- secretstore-source-controller.yaml
