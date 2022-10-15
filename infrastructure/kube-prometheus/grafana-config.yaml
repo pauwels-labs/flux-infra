@@ -18,7 +18,7 @@ stringData:
     enabled = true
     expect_claims = {"iss": "https://identity.pauwelslabs.com/realms/pauwels-labs"}
     header_name = Authorization
-    jwks_set_url = https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
+    jwk_set_url = https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
     username_claim = preferred_username
     [auth.proxy]
     auto_sign_up = true
