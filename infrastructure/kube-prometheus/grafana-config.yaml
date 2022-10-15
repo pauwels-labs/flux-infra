@@ -10,6 +10,14 @@ metadata:
   namespace: monitoring
 stringData:
   grafana.ini: |
+    [auth.proxy]
+    auto_sign_up = true
+    enabled = true
+    header_name = x-forwarded-preferred-username
+    header_property = username
+    sync_ttl = 60
     [date_formats]
     default_timezone = UTC
+    [server]
+    root_url = https://dashboards.pauwelslabs.com
 type: Opaque
