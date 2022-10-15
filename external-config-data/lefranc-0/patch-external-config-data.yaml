@@ -7,6 +7,7 @@ data:
   clustername: "lefranc-0"
   externaldnsiamrolearn: "arn:aws:iam::114374921412:role/lefranc-external-dns"
   certmanageriamrolearn: "arn:aws:iam::114374921412:role/lefranc-cert-manager"
+  clusterautoscaleriamrolearn: "arn:aws:iam::140327370353:role/lefranc-cluster-autoscaler"
   vaultiamrolearn: "arn:aws:iam::140327370353:role/lefranc-vault"
   vaultunsealkeyregion: "eu-west-1"
   vaultunsealkeyalias: "arn:aws:kms:eu-west-1:760517686064:alias/k8s-vault-auto-unseal-lefranc-0"
