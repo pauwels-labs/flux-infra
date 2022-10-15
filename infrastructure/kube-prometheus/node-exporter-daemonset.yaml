@@ -35,7 +35,7 @@ spec:
         - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|run/k3s/containerd/.+|var/lib/docker/.+|var/lib/kubelet/pods/.+)($|/)
         - --collector.netclass.ignored-devices=^(veth.*|[a-f0-9]{15})$
         - --collector.netdev.device-exclude=^(veth.*|[a-f0-9]{15})$
-        image: quay.io/prometheus/node-exporter:v1.4.0
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/prometheus/node-exporter:v1.4.0
         name: node-exporter
         resources:
           limits:
@@ -71,7 +71,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        image: quay.io/brancz/kube-rbac-proxy:v0.13.1
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/brancz/kube-rbac-proxy:v0.13.1
         name: kube-rbac-proxy
         ports:
         - containerPort: 9100

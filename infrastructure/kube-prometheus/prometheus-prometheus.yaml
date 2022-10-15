@@ -19,7 +19,7 @@ spec:
   enableFeatures: []
   externalLabels: {}
   externalUrl: https://metrics.pauwelslabs.com
-  image: quay.io/prometheus/prometheus:v2.39.1
+  image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/prometheus/prometheus:v2.39.1
   nodeSelector:
     kubernetes.io/os: linux
   podMetadata:
