@@ -9,7 +9,7 @@ spec:
   hosts:
   - dashboards.pauwelslabs.com
   http:
-    name: grafana
+  - name: grafana
     route:
     - destination:
         host: grafana

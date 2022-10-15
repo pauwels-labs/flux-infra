@@ -9,7 +9,7 @@ spec:
   hosts:
   - alerts.pauwelslabs.com
   http:
-    name: alertmanager-main
+  - name: alertmanager-main
     route:
     - destination:
         host: alertmanager-main

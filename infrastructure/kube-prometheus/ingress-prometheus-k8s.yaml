@@ -9,7 +9,7 @@ spec:
   hosts:
   - metrics.pauwelslabs.com
   http:
-    name: prometheus-k8s
+  - name: prometheus-k8s
     route:
     - destination:
         host: prometheus-k8s
