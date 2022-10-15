@@ -24,6 +24,7 @@ resources:
 - alertmanager-serviceAccount.yaml
 - alertmanager-serviceMonitor.yaml
 - alertmanager-service.yaml
+- authorizationpolicy-grafana.yaml
 - blackbox-exporter-clusterRoleBinding.yaml
 - blackbox-exporter-clusterRole.yaml
 - blackbox-exporter-configuration.yaml
