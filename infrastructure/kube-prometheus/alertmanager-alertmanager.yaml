@@ -10,6 +10,7 @@ metadata:
   name: main
   namespace: monitoring
 spec:
+  externalUrl: https://alerts.pauwelslabs.com
   image: quay.io/prometheus/alertmanager:v0.24.0
   nodeSelector:
     kubernetes.io/os: linux

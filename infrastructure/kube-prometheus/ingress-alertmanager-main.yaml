@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: alertmanager-main
+  namespace: monitoring
+spec:
+  gateways:
+  - istio-ingress/pauwels-labs
+  hosts:
+  - alerts.pauwelslabs.com
+  http:
+    name: alertmanager-main
+    route:
+    - destination:
+        host: alertmanager-main
+        port:
+          number: 9093

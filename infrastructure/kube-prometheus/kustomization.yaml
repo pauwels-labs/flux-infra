@@ -42,6 +42,9 @@ resources:
 - grafana-serviceAccount.yaml
 - grafana-serviceMonitor.yaml
 - grafana-service.yaml
+- ingress-alertmanager-main.yaml
+- ingress-grafana.yaml
+- ingress-prometheus-k8s.yaml
 - kube-prometheus-prometheusRule.yaml
 - kubernetes-prometheusRule.yaml
 - kubernetes-serviceMonitorApiserver.yaml
