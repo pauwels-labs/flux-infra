@@ -19,6 +19,9 @@ spec:
     - identity.pauwelslabs.com
     - echo.pauwelslabs.com
     - auth.pauwelslabs.com
+    - dashboards.pauwelslabs.com
+    - alerts.pauwelslabs.com
+    - metrics.pauwelslabs.com
     tls:
       httpsRedirect: true
   - port:
@@ -75,3 +78,30 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-auth-pauwels-labs
+  - port:
+      number: 443
+      name: https-dashboards
+      protocol: HTTPS
+    hosts:
+    - "monitoring/dashboards.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-dashboards-pauwels-labs
+  - port:
+      number: 443
+      name: https-alerts
+      protocol: HTTPS
+    hosts:
+    - "monitoring/alerts.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-alerts-pauwels-labs
+  - port:
+      number: 443
+      name: https-metrics
+      protocol: HTTPS
+    hosts:
+    - "monitoring/metrics.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-metrics-pauwels-labs
