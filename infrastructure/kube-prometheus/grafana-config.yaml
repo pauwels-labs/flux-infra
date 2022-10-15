@@ -12,9 +12,17 @@ stringData:
   grafana.ini: |
     [auth.basic]
     enabled = false
+    [auth.jwt]
+    auto_sign_up = true
+    email_claim = email
+    enabled = true
+    expect_claims = {"iss": "https://identity.pauwelslabs.com/realms/pauwels-labs"}
+    header_name = Authorization
+    jwks_set_url = https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
+    username_claim = preferred_username
     [auth.proxy]
     auto_sign_up = true
-    enabled = true
+    enabled = false
     header_name = x-forwarded-preferred-username
     header_property = username
     sync_ttl = 60
