@@ -10,6 +10,8 @@ metadata:
   namespace: monitoring
 stringData:
   grafana.ini: |
+    [auth.basic]
+    enabled = false
     [auth.proxy]
     auto_sign_up = true
     enabled = true
