@@ -10,4 +10,4 @@ resources:
 - external-dns
 - aws-ebs-csi-driver
 - vault
-- oauth2-proxy
+#- oauth2-proxy
