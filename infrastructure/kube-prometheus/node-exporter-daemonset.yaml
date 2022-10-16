@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: node-exporter
     app.kubernetes.io/part-of: kube-prometheus
     app.kubernetes.io/version: 1.4.0
+    traffic.sidecar.istio.io/excludeInboundPorts: 6443
   name: node-exporter
   namespace: monitoring
 spec:
