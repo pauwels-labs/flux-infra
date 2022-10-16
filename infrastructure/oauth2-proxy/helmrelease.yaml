@@ -24,31 +24,113 @@ spec:
     kubeVersion: "1.23"
     image:
       repository: "274295908850.dkr.ecr.eu-west-1.amazonaws.com/oauth2-proxy/oauth2-proxy"
-      tag: "v7.3.0-headers"
+      tag: "v7.3.0"
+    # This previously mounted the client ID/secret and cookie secret
+    # as envs from a k8s secret, but with alpha config, we've mounted
+    # the client secret as a volume and set the client ID statically,
+    # so the cookie secret has been added manually as an extraEnv and
+    # this is set to false
+    proxyVarsAsSecrets: false
+    extraEnv:
+    - name: OAUTH2_PROXY_COOKIE_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: oauth2-proxy
+          key: cookie-secret
+    extraVolumes:
+    - name: client-secrets
+      secret:
+        secretName: oauth2-proxy
+    extraVolumeMounts:
+    - mountPath: /etc/oauth2_proxy/client_secrets
+      name: client-secrets
     alphaConfig:
-      enabled: false
+      enabled: true
       injectRequestHeaders:
-      - name: x-forwarded-user
+      - name: X-Forwarded-Groups
         values:
-          claim: user
+        - claim: groups
+      - name: X-Forwarded-User
+        values:
+        - claim: user
+      - name: X-Forwarded-Email
+        values:
+        - claim: email
+      - name: X-Forwarded-Preferred-Username
+        values:
+        - claim: preferred_username
+      - name: X-Forwarded-Access-Token
+        values:
+        - claim: access_token
+      - name: Authorization
+        values:
+        - claim: id_token
+          prefix: 'Bearer '
+      injectResponseHeaders:
+      - name: X-Forwarded-Groups
+        values:
+        - claim: groups
+      - name: X-Forwarded-User
+        values:
+        - claim: user
+      - name: X-Forwarded-Email
+        values:
+        - claim: email
+      - name: X-Forwarded-Preferred-Username
+        values:
+        - claim: preferred_username
+      - name: X-Forwarded-Access-Token
+        values:
+        - claim: access_token
+      metricsServer:
+        BindAddress: ""
+        SecureBindAddress: ""
+        TLS: null
+      providers:
+      - clientID: pauwels-labs-login
+        clientSecretFile: /etc/oauth2_proxy/client_secrets/client-secret
+        id: oidc=pauwels-labs-login
+        loginURLParameters:
+        - default:
+          - force
+          name: approval_prompt
+        oidcConfig:
+          userIDClaim: email
+          emailClaim: email
+          groupsClaim: groups
+          audienceClaims:
+          - aud
+          insecureSkipNonce: true # TODO: try setting to false?
+          issuerURL: https://identity.pauwelslabs.com/realms/pauwels-labs
+        provider: oidc
+      server:
+        BindAddress: 127.0.0.1:4180
+        SecureBindAddress: ""
+        TLS: null
+      upstreamConfig:
+        upstreams:
+        - id: static://200
+          path: /
+          static: true
+          staticCode: 200
     config:
-      existingSecret: oauth2-proxy
+      #existingSecret: oauth2-proxy
       configFile: |-
         cookie_domains            = ".pauwelslabs.com"
         whitelist_domains         = ".pauwelslabs.com"
         email_domains             = [ "*" ]
-        upstreams                 = [ "static://200" ]
-        provider                  = "keycloak-oidc"
+        #upstreams                 = [ "static://200" ]
+        #provider                  = "keycloak-oidc"
         redirect_url              = "https://auth.pauwelslabs.com/oauth2/callback"
-        oidc_issuer_url           = "https://identity.pauwelslabs.com/realms/pauwels-labs"
+        #oidc_issuer_url           = "https://identity.pauwelslabs.com/realms/pauwels-labs"
         skip_provider_button      = true
         silence_ping_logging      = true
         cookie_samesite           = "strict"
         cookie_expire             = "12h"
-        pass_access_token         = true
-        pass_authorization_header = true
-        set_authorization_header  = false
-        set_xauthrequest          = false
+        #pass_access_token         = true
+        #pass_authorization_header = true
+        #set_authorization_header  = false
+        #set_xauthrequest          = false
         skip_jwt_bearer_tokens    = true
         reverse_proxy             = true
         real_client_ip_header     = "x-forwarded-for"
