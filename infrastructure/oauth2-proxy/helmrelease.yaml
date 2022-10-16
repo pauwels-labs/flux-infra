@@ -46,73 +46,74 @@ spec:
       name: client-secrets
     alphaConfig:
       enabled: true
-      injectRequestHeaders:
-      - name: X-Forwarded-Groups
-        values:
-        - claim: groups
-      - name: X-Forwarded-User
-        values:
-        - claim: user
-      - name: X-Forwarded-Email
-        values:
-        - claim: email
-      - name: X-Forwarded-Preferred-Username
-        values:
-        - claim: preferred_username
-      - name: X-Forwarded-Access-Token
-        values:
-        - claim: access_token
-      - name: Authorization
-        values:
-        - claim: id_token
-          prefix: 'Bearer '
-      injectResponseHeaders:
-      - name: X-Forwarded-Groups
-        values:
-        - claim: groups
-      - name: X-Forwarded-User
-        values:
-        - claim: user
-      - name: X-Forwarded-Email
-        values:
-        - claim: email
-      - name: X-Forwarded-Preferred-Username
-        values:
-        - claim: preferred_username
-      - name: X-Forwarded-Access-Token
-        values:
-        - claim: access_token
-      metricsServer:
-        BindAddress: ""
-        SecureBindAddress: ""
-        TLS: null
-      providers:
-      - clientID: pauwels-labs-login
-        clientSecretFile: /etc/oauth2_proxy/client_secrets/client-secret
-        id: oidc=pauwels-labs-login
-        loginURLParameters:
-        - default:
-          - force
-          name: approval_prompt
-        oidcConfig:
-          userIDClaim: email
-          emailClaim: email
-          groupsClaim: groups
-          audienceClaims:
-          - aud
-          insecureSkipNonce: true # TODO: try setting to false?
-          issuerURL: https://identity.pauwelslabs.com/realms/pauwels-labs
-        provider: oidc
-      server:
-        BindAddress: 127.0.0.1:4180
-        SecureBindAddress: ""
-        TLS: null
-      upstreamConfig:
-        upstreams:
-        - id: static://200
-          path: /
-          static: true
-          staticCode: 200
+      configData:
+        injectRequestHeaders:
+        - name: X-Forwarded-Groups
+          values:
+          - claim: groups
+        - name: X-Forwarded-User
+          values:
+          - claim: user
+        - name: X-Forwarded-Email
+          values:
+          - claim: email
+        - name: X-Forwarded-Preferred-Username
+          values:
+          - claim: preferred_username
+        - name: X-Forwarded-Access-Token
+          values:
+          - claim: access_token
+        - name: Authorization
+          values:
+          - claim: id_token
+            prefix: 'Bearer '
+        injectResponseHeaders:
+        - name: X-Forwarded-Groups
+          values:
+          - claim: groups
+        - name: X-Forwarded-User
+          values:
+          - claim: user
+        - name: X-Forwarded-Email
+          values:
+          - claim: email
+        - name: X-Forwarded-Preferred-Username
+          values:
+          - claim: preferred_username
+        - name: X-Forwarded-Access-Token
+          values:
+          - claim: access_token
+        # metricsServer:
+        #   BindAddress: ""
+        #   SecureBindAddress: ""
+        #   TLS: null
+        providers:
+        - clientID: pauwels-labs-login
+          clientSecretFile: /etc/oauth2_proxy/client_secrets/client-secret
+          id: oidc=pauwels-labs-login
+          loginURLParameters:
+          - default:
+            - force
+            name: approval_prompt
+          oidcConfig:
+            userIDClaim: email
+            emailClaim: email
+            groupsClaim: groups
+            audienceClaims:
+            - aud
+            insecureSkipNonce: true # TODO: try setting to false?
+            issuerURL: https://identity.pauwelslabs.com/realms/pauwels-labs
+          provider: oidc
+        # server:
+        #   BindAddress: 127.0.0.1:4180
+        #   SecureBindAddress: ""
+        #   TLS: null
+        upstreamConfig:
+          upstreams:
+          - id: static://200
+            path: /
+            static: true
+            staticCode: 200
     config:
       #existingSecret: oauth2-proxy
       configFile: |-
