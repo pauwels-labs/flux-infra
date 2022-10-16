@@ -47,7 +47,7 @@ spec:
         cookie_expire             = "12h"
         pass_access_token         = true
         pass_authorization_header = true
-        set_authorization_header  = true
+        set_authorization_header  = false
         set_xauthrequest          = false
         skip_jwt_bearer_tokens    = true
         reverse_proxy             = true
