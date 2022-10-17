@@ -15,14 +15,15 @@ stringData:
     [auth.jwt]
     auto_sign_up = true
     email_claim = email
-    enabled = false
+    enabled = true
     expect_claims = {"iss": "https://identity.pauwelslabs.com/realms/pauwels-labs"}
     header_name = x-forwarded-access-token
     jwk_set_url = https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
+    role_attribute_path = contains(resource_access.pauwels-labs-login.roles[*], 'dashboards-admin') && 'Admin' || contains(resource_access.pauwels-labs-login.roles[*], 'dashboards-editor') && 'Editor' || 'Viewer'
     username_claim = preferred_username
     [auth.proxy]
     auto_sign_up = true
-    enabled = true
+    enabled = false
     header_name = x-forwarded-preferred-username
     header_property = username
     headers = id:x-forwarded-user groups:x-forwarded-groups
