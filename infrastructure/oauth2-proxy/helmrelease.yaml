@@ -87,6 +87,9 @@ spec:
         - name: X-Forwarded-Access-Token
           values:
           - claim: access_token
+        - name: X-Forwarded-ID-Token
+          values:
+          - claim: id_token
         providers:
         - clientID: pauwels-labs-login
           clientSecretFile: /etc/oauth2_proxy/client_secrets/client-secret

@@ -65,7 +65,7 @@ spec:
       name: https-echo
       protocol: HTTPS
     hosts:
-    - "keycloak/echo.pauwelslabs.com"
+    - "oauth2-proxy/echo.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-echo-pauwels-labs

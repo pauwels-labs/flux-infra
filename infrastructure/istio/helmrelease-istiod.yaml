@@ -37,6 +37,7 @@ spec:
           - "authorization"
           - "cookie"
           - "path"
+          - "x-forwarded-id-token"
           - "x-forwarded-access-token"
           - "x-forwarded-for"
           - "x-forwarded-user"
@@ -47,6 +48,7 @@ spec:
           - "content-type"
           - "set-cookie"
           headersToDownstreamOnAllow:
+          - "x-forwarded-id-token"
           - "x-forwarded-access-token"
           - "x-forwarded-for"
           - "x-forwarded-user"
