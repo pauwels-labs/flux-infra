@@ -99,7 +99,7 @@ spec:
             - force
             name: approval_prompt
           oidcConfig:
-            userIDClaim: email
+            userIDClaim: sub
             emailClaim: email
             groupsClaim: groups
             audienceClaims:
