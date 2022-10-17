@@ -57,7 +57,7 @@ spec:
           - claim: groups
         - name: X-Forwarded-User
           values:
-          - claim: user
+          - claim: sub
         - name: X-Forwarded-Email
           values:
           - claim: email
@@ -77,7 +77,7 @@ spec:
           - claim: groups
         - name: X-Forwarded-User
           values:
-          - claim: user
+          - claim: sub
         - name: X-Forwarded-Email
           values:
           - claim: email
