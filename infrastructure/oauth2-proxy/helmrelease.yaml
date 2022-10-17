@@ -55,7 +55,7 @@ spec:
         - name: X-Forwarded-Groups
           values:
           - claim: groups
-        - name: X-Forwarded-User
+        - name: X-Forwarded-UserID
           values:
           - claim: sub
         - name: X-Forwarded-Email
@@ -75,7 +75,7 @@ spec:
         - name: X-Forwarded-Groups
           values:
           - claim: groups
-        - name: X-Forwarded-User
+        - name: X-Forwarded-UserID
           values:
           - claim: sub
         - name: X-Forwarded-Email
