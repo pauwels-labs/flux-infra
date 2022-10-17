@@ -55,10 +55,7 @@ spec:
         - name: X-Forwarded-Groups
           values:
           - claim: groups
-        - name: X-Forwarded-UserID
-          values:
-          - claim: sub
-        - name: X-Forwarded-Email
+        - name: X-Forwarded-User
           values:
           - claim: email
         - name: X-Forwarded-Preferred-Username
@@ -75,10 +72,7 @@ spec:
         - name: X-Forwarded-Groups
           values:
           - claim: groups
-        - name: X-Forwarded-UserID
-          values:
-          - claim: sub
-        - name: X-Forwarded-Email
+        - name: X-Forwarded-User
           values:
           - claim: email
         - name: X-Forwarded-Preferred-Username
@@ -99,8 +93,13 @@ spec:
             - force
             name: approval_prompt
           oidcConfig:
-            userIDClaim: sub
-            emailClaim: email
+            # userIDClaim is deprecated and oauth2-proxy doesn't seem
+            # to support custom claims. Instead, the user UUID is
+            # passed to the remaining email claim, and this is
+            # forwarded as the X-Forwarded-User header. User metadata
+            # such as email can be extracted by the upstream from the
+            # id token or access token.
+            emailClaim: sub
             groupsClaim: groups
             audienceClaims:
             - aud
