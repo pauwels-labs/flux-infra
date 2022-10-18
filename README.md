@@ -261,6 +261,38 @@ Notes:
   path, but you need to know the kubernetes auth accessor ID e.g.
   secrets/data/{{identity.entity.aliases.auth_kubernetes_fe3d9e77.metadata.service_account_namespace}}/{{identity.entity.aliases.auth_kubernetes_fe3d9e77.metadata.service_account_name}}
 
+### Install kube-prometheus
+
+- Mandatory to setup jsonnet and compile manifests using a custom
+  jsonnet file
+  
+  - This is the best way to get repeatable builds and is quite
+    ergonomic, allowing for full customization of the deployed
+    resources
+    
+- Some modifications to the base jsonnet:
+
+  - Add values.common.platform: 'aws' or whatever platform is being
+    used for important platform-specific optimizations
+    
+  - Use values.comon.images to replace all image bases in a single
+    convenient place
+    
+  - Use values.common.grafana.config to add arbitrary grafana config
+  
+  - Use auth.jwt to authenticate from SSO, and use role_attribute_path
+    to map keycloak roles/claims to grafana roles
+    
+  - Add externalUrls (root_url for Grafana) to indicate the hostname
+    where a particular resource will be accessed externally
+    
+  - You can add an arbitrary authorizationpolicy+:: field to add
+    authorization policies and leverage generic auth on top of the
+    various components (works very well with grafana jwt auth)
+    
+- You need to open port 6443 inbound from the cluster security group
+  in order for the cluster apiservice to be able to hit the prometheus
+  adapter and leverage the prometheus metrics
 
 ## Secrets to automate
 
@@ -273,7 +305,7 @@ in the cluster.
 - flux-system/flux-system          (done)
 - flux-system/github-webhook-hmac  (done)
 - keycloak/keycloak-db-credentials (done)
-- oauth2-proxy/oauth2-proxy
+- oauth2-proxy/oauth2-proxy        (done)
 
 ## Multi-tenant networking
 
