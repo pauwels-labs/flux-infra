@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: tekton-pipellines
+  name: tekton-pipelines
   labels:
     istio.io/rev: stable
     name: tekton-pipelines
