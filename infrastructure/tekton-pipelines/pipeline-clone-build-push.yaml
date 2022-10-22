@@ -12,6 +12,8 @@ spec:
     type: string
   - name: image-reference
     type: string
+  - name: image-tag
+    type: string
   workspaces:
   - name: shared-data
     description: "Contains the cloned git repo"
@@ -34,7 +36,7 @@ spec:
       workspace: shared-data
     params:
     - name: IMAGE
-      value: $(params.image-reference):tmp
+      value: $(params.image-reference):$(params.image-tag)
     - name: EXTRA_ARGS
       value: [
         '--cache=true',

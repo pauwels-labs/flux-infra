@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: github
+  name: github-pauwels-labs
 spec:
   triggers:
   - name: github
