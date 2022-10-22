@@ -9,9 +9,12 @@ spec:
   gateways:
   - istio-ingress/pauwels-labs
   http:
-  - name: "webhook-receiver"
+  - name: "pauwels-labs"
+    match:
+    - uri:
+        exact: "/pauwels-labs"
     route:
     - destination:
         port:
-          number: 443
-        host: tekton-triggers-webhook
+          number: 8080
+        host: el-github
