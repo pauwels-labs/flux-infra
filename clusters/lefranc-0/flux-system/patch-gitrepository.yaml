@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   secretRef:
-    name: ssh-pauwels-labs-flux-infra-github
+    name: ssh-github-pauwels-labs-flux-infra

@@ -5,10 +5,17 @@ resources:
 - namespace.yaml
 - tekton.yaml
 - triggers.yaml
+- triggers-rbac.yaml
 - interceptors.yaml
-- pipeline.yaml
 - task-git-clone.yaml
 - task-kaniko.yaml
+- virtualservice-webhook.yaml
+- secretstore-repositories-webhook.yaml
+- externalsecret-webhook-hmac-github-pauwels-labs.yaml
+- pipeline.yaml
+- triggertemplate.yaml
+- triggerbinding.yaml
+- eventlistener.yaml
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller

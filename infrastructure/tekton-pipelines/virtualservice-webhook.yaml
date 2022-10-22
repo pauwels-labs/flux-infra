@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: webhook
+  namespace: tekton-pipelines
+spec:
+  hosts:
+  - webhook.ci.pauwelslabs.com
+  gateways:
+  - istio-ingress/pauwels-labs
+  http:
+  - name: "webhook-receiver"
+    route:
+    - destination:
+        port:
+          number: 443
+        host: tekton-triggers-webhook

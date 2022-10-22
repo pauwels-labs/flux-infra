@@ -22,6 +22,7 @@ spec:
     - dashboards.pauwelslabs.com
     - alerts.pauwelslabs.com
     - metrics.pauwelslabs.com
+    - webhook.ci.pauwelslabs.com
     tls:
       httpsRedirect: true
   - port:
@@ -102,6 +103,15 @@ spec:
       protocol: HTTPS
     hosts:
     - "monitoring/metrics.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-metrics-pauwels-labs
+  - port:
+      number: 443
+      name: https-webhook-ci
+      protocol: HTTPS
+    hosts:
+    - "tekton-pipelines/webhook.ci.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-metrics-pauwels-labs

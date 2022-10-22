@@ -1,0 +1,42 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: github
+spec:
+  triggers:
+  - name: github
+    interceptors:
+    - name: "push"
+      ref:
+        name: "github"
+      params:
+      - name: "secretRef"
+        value:
+          secretName: webhook-hmac-github-pauwels-labs
+          secretKey: token
+      - name: "eventTypes"
+        value: ["push"]
+    - name: "only when pushed to main branch"
+      ref:
+        name: "cel"
+      params:
+      - name: "filter"
+        value: "body.ref == 'refs/heads/main' && body.repository.owner.name == 'pauwels-labs'"
+    bindings:
+    - ref: github-push
+    template:
+      ref: github
+  resources:
+    kubernetesResource:
+      spec:
+        template:
+          spec:
+            serviceAccountName: tekton-robot
+            containers:
+            - resources:
+                requests:
+                  memory: "64Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "128Mi"
+                  cpu: "500m"

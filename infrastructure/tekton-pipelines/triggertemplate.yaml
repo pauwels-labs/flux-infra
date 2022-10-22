@@ -1,0 +1,33 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github
+spec:
+  params:
+  - name: gitrevision
+  - name: gitrepositoryurl
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: clone-build-push-run-
+    spec:
+      pipelineRef:
+        name: clone-build-push
+      podTemplate:
+        securityContext:
+          fsGroup: 65532
+      workspaces:
+      - name: shared-data
+        volumeClaimTemplate:
+          spec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+      params:
+      - name: repo-url
+        value: https://github.com/pauwels-labs/homepage.git
+      - name: image-reference
+        value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/pauwels-labs/homepage
