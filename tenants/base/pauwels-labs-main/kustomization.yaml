@@ -4,7 +4,7 @@ resources:
 - eventlistener.yaml
 - externalsecret.yaml
 - gitrepository.yaml
-- kustomization-tenant-main.yaml
+- kustomization-pauwels-labs-main.yaml
 - namespace.yaml
 - resourcequota.yaml
 - rolebinding.yaml
