@@ -5,12 +5,10 @@ metadata:
   namespace: pauwels-labs
 spec:
   hard:
-    limits:
-      cpu: "4000m"
-      memory: "16Gi"
-    requests:
-      cpu: "4000m"
-      memory: "16Gi"
+    limits.cpu: "4000m"
+    limits.memory: "16Gi"
+    requests.cpu: "4000m"
+    requests.memory: "16Gi"
     pods: "20"
   scopeSelector:
     matchExpressions:
