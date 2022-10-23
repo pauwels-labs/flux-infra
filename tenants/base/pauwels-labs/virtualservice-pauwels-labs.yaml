@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: pauwels-labs
+  namespace: istio-system
+spec:
+  hosts:
+  - pauwelslabs.com
+  gateways:
+  - istio-ingress/pauwels-labs
+  http:
+  - name: "root"
+    match:
+    - uri:
+        prefix: /pauwels-labs
+    rewrite:
+      uri: /
+    delegate:
+      name: pauwels-labs
+      namespace: pauwels-labs

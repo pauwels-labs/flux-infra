@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- eventlistener.yaml
+- externalsecret.yaml
+- gitrepository.yaml
+- kustomization-tenant-main.yaml
+- namespace.yaml
+- resourcequota.yaml
+- rolebinding.yaml
+- serviceaccount.yaml
+- virtualservice-pauwels-labs.yaml

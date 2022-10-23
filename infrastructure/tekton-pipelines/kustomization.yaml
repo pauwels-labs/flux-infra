@@ -11,11 +11,9 @@ resources:
 - task-kaniko.yaml
 - virtualservice-webhook.yaml
 - secretstore-repositories-webhook.yaml
-- externalsecret-webhook-hmac-github-pauwels-labs.yaml
 - pipeline-clone-build-push.yaml
 - triggertemplate-clone-build-push.yaml
 - triggerbinding-github-push.yaml
-- eventlistener-github-pauwels-labs.yaml
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller

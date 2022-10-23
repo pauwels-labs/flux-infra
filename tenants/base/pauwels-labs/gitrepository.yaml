@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: team-main
+  namespace: pauwels-labs-main
+spec:
+  interval: 1m
+  url: https://github.com/pauwels-labs/team-main
+  ref:
+    branch: main
