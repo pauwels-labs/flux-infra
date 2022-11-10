@@ -7,6 +7,7 @@ resources:
 patchesStrategicMerge:
 - patch-helm.yaml
 - patch-kustomize.yaml
+- patch-gitrepository.yaml
 - patch-source.yaml
 - patch-namespace.yaml
 - patch-notification.yaml
