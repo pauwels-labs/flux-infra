@@ -1,0 +1,25 @@
+apiVersion: v1
+data:
+  awslbcontrolleriamrolearn: "arn:aws:iam::601743579976:role/AmazonEKSLoadBalancerControllerRole-bill"
+  ecrregion: "eu-west-1"
+  ecraccountid: "274295908850"
+  ecriamrolearn: "arn:aws:iam::601743579976:role/bill-flux-ecr"
+  clustername: "bill-0"
+  externaldnsiamrolearn: "arn:aws:iam::114374921412:role/bill-external-dns"
+  certmanageriamrolearn: "arn:aws:iam::114374921412:role/bill-cert-manager"
+  clusterautoscaleriamrolearn: "arn:aws:iam::601743579976:role/lefranc-cluster-autoscaler"
+  vaultiamrolearn: "arn:aws:iam::601743579976:role/bill-vault"
+  vaultunsealkeyregion: "eu-west-1"
+  vaultunsealkeyalias: "arn:aws:kms:eu-west-1:760517686064:alias/k8s-vault-auto-unseal-bill-0"
+  awsebscsidriveriamrolearn: "arn:aws:iam::601743579976:role/bill-ebs-csi-driver"
+  awsebscsidriverkmskeyalias: "arn:aws:kms:eu-west-1:760517686064:alias/k8s-ebs-volume-encryption-bill-0"
+  basednszonename: "dev.pauwelslabs.com"
+  basednszoneid: "Z0482893161VOG76FGMVG"
+  keycloakdbtype: ""
+  keycloakdbhost: ""
+  keycloakdbport: "'0'"
+  keycloakdbname: ""
+  vaulturl: "https://secrets.pauwelslabs.com:443"
+kind: ConfigMap
+metadata:
+  name: external-config-data

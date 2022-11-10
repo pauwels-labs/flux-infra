@@ -10,7 +10,7 @@ resources:
 - task-git-clone.yaml
 - task-kaniko.yaml
 - virtualservice-webhook.yaml
-- secretstore-repositories-webhook.yaml
+- secretstore-all-webhooks-hmac.yaml
 - pipeline-clone-build-push.yaml
 - triggertemplate-clone-build-push.yaml
 - triggerbinding-github-push.yaml

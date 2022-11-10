@@ -114,4 +114,4 @@ spec:
     - "tekton-pipelines/webhook.ci.pauwelslabs.com"
     tls:
       mode: SIMPLE
-      credentialName: tls-metrics-pauwels-labs
+      credentialName: tls-webhook-ci-pauwels-labs

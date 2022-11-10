@@ -19,6 +19,7 @@ data:
   keycloakdbhost: "prod.cluster-ccnsohn6v88v.eu-west-1.rds.amazonaws.com"
   keycloakdbport: "'5432'"
   keycloakdbname: "keycloak"
+  vaulturl: "http://vault.vault:8200"
 kind: ConfigMap
 metadata:
   name: external-config-data

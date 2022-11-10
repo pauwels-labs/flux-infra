@@ -3,6 +3,8 @@ kind: EventListener
 metadata:
   name: github-pauwels-labs
   namespace: tekton-pipelines
+  labels:
+    toolkit.fluxcd.io/tenant: pauwels-labs-main
 spec:
   triggers:
   - name: github

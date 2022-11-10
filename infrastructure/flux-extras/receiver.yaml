@@ -9,7 +9,7 @@ spec:
   - "ping"
   - "push"
   secretRef:
-    name: webhook-hmac-github-pauwels-labs
+    name: webhook-hmac-pauwels-labs-main-primary
   resources:
   - kind: GitRepository
     name: flux-system
