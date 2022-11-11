@@ -5,6 +5,7 @@ data:
   ecraccountid: "274295908850"
   ecriamrolearn: "arn:aws:iam::601743579976:role/bill-flux-ecr"
   clustername: "bill-0"
+  environment: "dev"
   externaldnsiamrolearn: "arn:aws:iam::114374921412:role/bill-external-dns"
   certmanageriamrolearn: "arn:aws:iam::114374921412:role/bill-cert-manager"
   clusterautoscaleriamrolearn: "arn:aws:iam::601743579976:role/lefranc-cluster-autoscaler"
