@@ -6,4 +6,3 @@ resources:
 - helmrelease-base.yaml
 - helmrelease-istiod.yaml
 - helmrelease-gateway.yaml
-- peerauthentication.yaml

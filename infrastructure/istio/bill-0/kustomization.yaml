@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - gateway.yaml
 - envoyfilter-proxy-protocol.yaml
+- peerauthentication.yaml
