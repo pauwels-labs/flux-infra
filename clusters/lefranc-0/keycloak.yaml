@@ -17,7 +17,8 @@ spec:
   - name: external-config-data
   - name: ecr-credentials-sync
   - name: sources
-  - name: istio
+  - name: istio-base
+  - name: istio-customizations
   - name: keycloak-operator
   postBuild:
     substituteFrom:

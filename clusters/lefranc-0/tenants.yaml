@@ -8,7 +8,8 @@ spec:
   - name: external-config-data
   - name: ecr-credentials-sync
   - name: sources
-  - name: istio
+  - name: istio-base
+  - name: istio-customizations
   - name: external-secrets
   interval: 5m
   serviceAccountName: kustomize-controller

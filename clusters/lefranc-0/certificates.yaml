@@ -16,7 +16,8 @@ spec:
   dependsOn:
   - name: external-config-data
   - name: ecr-credentials-sync
-  - name: istio
+  - name: istio-base
+  - name: istio-customizations
   - name: cert-manager
   postBuild:
     substituteFrom:
