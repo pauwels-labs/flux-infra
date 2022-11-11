@@ -18,6 +18,7 @@ spec:
   - name: ecr-credentials-sync
   - name: sources
   - name: istio-base
+  - name: aws-load-balancer-controller
   postBuild:
     substituteFrom:
     - kind: ConfigMap
