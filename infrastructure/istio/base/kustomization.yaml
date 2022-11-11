@@ -7,4 +7,3 @@ resources:
 - helmrelease-istiod.yaml
 - helmrelease-gateway.yaml
 - peerauthentication.yaml
-- envoyfilter-proxy-protocol.yaml
