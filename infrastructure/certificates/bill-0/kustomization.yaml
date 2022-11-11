@@ -5,3 +5,4 @@ resources:
 - issuer-letsencrypt-staging.yaml
 - issuer-letsencrypt-prod.yaml
 - certificate-dev-pauwels-labs.yaml
+- certificate-github-webhook-cd-environment-pauwels-labs.yaml

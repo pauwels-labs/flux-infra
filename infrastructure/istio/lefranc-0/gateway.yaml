@@ -42,7 +42,7 @@ spec:
     - "flux-system/github-webhook.cd.${environment}.pauwelslabs.com"
     tls:
       mode: SIMPLE
-      credentialName: tls-github-webhook-cd-pauwels-labs
+      credentialName: tls-github-webhook-cd-${environment}-pauwels-labs
   - port:
       number: 443
       name: https-secrets
