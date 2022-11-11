@@ -18,7 +18,7 @@ spec:
   - server auth
   - client auth
   dnsNames:
-  - "github-webhook-cd-${environment}.pauwelslabs.com"
+  - "github-webhook-cd.${environment}.pauwelslabs.com"
   issuerRef:
     group: cert-manager.io
     kind: Issuer
