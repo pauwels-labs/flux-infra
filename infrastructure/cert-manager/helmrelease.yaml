@@ -43,6 +43,7 @@ spec:
         registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
         repository: jetstack/cert-manager-cainjector
     startupapicheck:
+      enabled: false
       image:
         registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
         repository: jetstack/cert-manager-ctl
