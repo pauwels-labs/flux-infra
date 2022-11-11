@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ${ecraccountid}.dkr.ecr.${ecrregion}.amazonaws.com/amazon/aws-load-balancer-controller
-    enableCertManager: true
+    enableCertManager: false
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${awslbcontrolleriamrolearn}

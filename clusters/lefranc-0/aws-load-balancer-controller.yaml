@@ -17,7 +17,6 @@ spec:
   - name: external-config-data
   - name: ecr-credentials-sync
   - name: sources
-  - name: cert-manager
   postBuild:
     substituteFrom:
     - kind: ConfigMap
