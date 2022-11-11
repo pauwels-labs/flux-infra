@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   hosts:
-  - github-webhook.cd.pauwelslabs.com
+  - github-webhook.cd.${environment}.pauwelslabs.com
   gateways:
   - istio-ingress/pauwels-labs
   http:
