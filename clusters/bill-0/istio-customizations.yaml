@@ -18,7 +18,6 @@ spec:
   - name: ecr-credentials-sync
   - name: sources
   - name: istio-base
-  - name: istio-customizations
   postBuild:
     substituteFrom:
     - kind: ConfigMap
