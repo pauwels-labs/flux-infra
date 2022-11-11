@@ -18,7 +18,7 @@ spec:
     name: flux-system
   path: ./tenants/lefranc-0
   prune: true
-  timeout: 5m
+  timeout: 30s
   postBuild:
     substituteFrom:
     - kind: ConfigMap

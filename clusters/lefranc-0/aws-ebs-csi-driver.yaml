@@ -12,7 +12,7 @@ spec:
   path: ./infrastructure/aws-ebs-csi-driver
   prune: true
   wait: true
-  timeout: 5m
+  timeout: 30s
   dependsOn:
   - name: external-config-data
   - name: ecr-credentials-sync
