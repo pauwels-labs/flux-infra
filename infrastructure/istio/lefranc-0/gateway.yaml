@@ -13,16 +13,16 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - network.pauwelslabs.com
-    - github-webhook.cd.pauwelslabs.com
-    - secrets.pauwelslabs.com
-    - identity.pauwelslabs.com
-    - echo.pauwelslabs.com
-    - auth.pauwelslabs.com
-    - dashboards.pauwelslabs.com
-    - alerts.pauwelslabs.com
-    - metrics.pauwelslabs.com
-    - webhook.ci.pauwelslabs.com
+    - "network.pauwelslabs.com"
+    - "github-webhook.cd.pauwelslabs.com"
+    - "secrets.pauwelslabs.com"
+    - "identity.pauwelslabs.com"
+    - "echo.pauwelslabs.com"
+    - "auth.pauwelslabs.com"
+    - "dashboards.pauwelslabs.com"
+    - "alerts.pauwelslabs.com"
+    - "metrics.pauwelslabs.com"
+    - "webhook.ci.pauwelslabs.com"
     tls:
       httpsRedirect: true
   - port:

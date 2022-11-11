@@ -24,6 +24,7 @@ spec:
     revision: "1-15-0"
     revisionTags: ["stable"]
     meshConfig:
+      meshId: ${environment}
       extensionProviders:
       - name: oauth2-proxy
         envoyExtAuthzHttp:

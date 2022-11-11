@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: pauwels-labs
+  namespace: istio-ingress
+spec:
+  selector:
+    app: istio-gateway
+    istio: gateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "dev.pauwelslabs.com"
+    tls:
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: https-dev
+      protocol: HTTPS
+    hosts:
+    - "dev.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-dev-pauwels-labs

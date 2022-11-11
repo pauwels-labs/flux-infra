@@ -15,7 +15,10 @@ spec:
   timeout: 5m
   dependsOn:
   - name: external-config-data
-  - name: infrastructure
+  - name: ecr-credentials-sync
+  - name: sources
+  - name: istio
+  - name: external-secrets
   postBuild:
     substituteFrom:
     - kind: ConfigMap

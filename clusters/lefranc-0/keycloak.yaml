@@ -15,6 +15,9 @@ spec:
   timeout: 5m
   dependsOn:
   - name: external-config-data
+  - name: ecr-credentials-sync
+  - name: sources
+  - name: istio
   - name: keycloak-operator
   postBuild:
     substituteFrom:

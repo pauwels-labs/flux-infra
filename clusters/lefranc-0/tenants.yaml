@@ -6,7 +6,10 @@ metadata:
 spec:
   dependsOn:
   - name: external-config-data
-  - name: infrastructure
+  - name: ecr-credentials-sync
+  - name: sources
+  - name: istio
+  - name: external-secrets
   interval: 5m
   serviceAccountName: kustomize-controller
   sourceRef:

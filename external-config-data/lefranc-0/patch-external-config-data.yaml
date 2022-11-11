@@ -5,6 +5,7 @@ data:
   ecraccountid: "274295908850"
   ecriamrolearn: "arn:aws:iam::140327370353:role/lefranc-flux-ecr"
   clustername: "lefranc-0"
+  environment: "infrastructure"
   externaldnsiamrolearn: "arn:aws:iam::114374921412:role/lefranc-external-dns"
   certmanageriamrolearn: "arn:aws:iam::114374921412:role/lefranc-cert-manager"
   clusterautoscaleriamrolearn: "arn:aws:iam::140327370353:role/lefranc-cluster-autoscaler"
