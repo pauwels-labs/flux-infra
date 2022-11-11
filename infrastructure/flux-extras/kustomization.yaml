@@ -4,7 +4,7 @@ namespace: flux-system
 resources:
 - secretstore-all-repositories-ssh.yaml
 - secretstore-all-webhooks-hmac.yaml
-- externalsecret-ssh-pauwels-labs-main-github-pauwels-labs-flux-infra.yaml
+#- externalsecret-ssh-pauwels-labs-main-github-pauwels-labs-flux-infra.yaml
 - externalsecret-webhook-hmac-pauwels-labs-main-primary.yaml
 - receiver.yaml
 - virtualservice-github-webhook.yaml
