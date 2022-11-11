@@ -5,4 +5,3 @@ resources:
 - serviceaccount-helm-controller.yaml
 - helmrelease-base.yaml
 - helmrelease-istiod.yaml
-- helmrelease-gateway.yaml
