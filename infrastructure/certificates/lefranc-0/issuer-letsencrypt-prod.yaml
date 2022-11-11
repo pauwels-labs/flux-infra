@@ -13,6 +13,7 @@ spec:
     - selector:
         dnsZones:
         - ${basednszonename}
+        - github-webhook.cd.${basednszonename}
       dns01:
         route53:
           region: us-east-1
