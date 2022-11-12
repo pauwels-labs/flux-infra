@@ -4,9 +4,6 @@ metadata:
   name: pauwels-labs
   namespace: istio-ingress
 spec:
-  selector:
-    app: istio-gateway
-    istio: gateway
   servers:
   - port:
       number: 80
