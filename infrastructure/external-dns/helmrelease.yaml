@@ -26,6 +26,7 @@ spec:
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${externaldnsiamrolearn}
+    policy: sync
     sources:
     - service
     - ingress
