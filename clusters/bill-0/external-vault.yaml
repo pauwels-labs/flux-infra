@@ -1,0 +1,23 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: external-vault
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  serviceAccountName: kustomize-controller
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/external-vault
+  prune: true
+  wait: true
+  timeout: 30s
+  dependsOn:
+  - name: external-config-data
+  - name: ecr-credentials-sync
+  - name: sources
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: external-config-data
