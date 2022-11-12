@@ -18,7 +18,7 @@ spec:
   - name: ecr-credentials-sync
   - name: sources
   - name: istio-base
-  - name: istio-customizations
+  - name: istio-extras
   - name: external-secrets
   postBuild:
     substituteFrom:
