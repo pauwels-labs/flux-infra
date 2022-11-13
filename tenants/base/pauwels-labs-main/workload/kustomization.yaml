@@ -7,6 +7,6 @@ resources:
 - namespace.yaml
 - resourcequota.yaml
 - rolebinding.yaml
-- secretstore-tenant-repositories.ssh.yaml
+- secretstore-tenant-repositories-ssh.yaml
 - serviceaccount.yaml
 - virtualservice-pauwels-labs.yaml
