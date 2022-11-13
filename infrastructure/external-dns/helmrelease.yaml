@@ -36,3 +36,4 @@ spec:
     - "--zone-id-filter=${basednszoneid}"
     - "--domain-filter=${basednszonename}"
     - "--aws-zone-type=public"
+    - "--txt-owner-id=${clustername}"
