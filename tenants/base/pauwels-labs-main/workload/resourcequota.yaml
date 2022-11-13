@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: cpu-and-mem
-  namespace: pauwels-labs
+  namespace: pauwels-labs-main
 spec:
   hard:
     limits.cpu: "6000m"
