@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: external-config-data
+  namespace: pauwels-labs-main
+data:
+  clustername: "bill-0"
+  environment: "dev"
