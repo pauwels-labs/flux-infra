@@ -8,5 +8,5 @@ spec:
   interval: 5m
   sourceRef:
     kind: GitRepository
-    name: team-main
+    name: github-pauwels-labs-team-main
   prune: true
