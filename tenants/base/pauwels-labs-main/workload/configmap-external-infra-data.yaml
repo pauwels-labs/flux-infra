@@ -6,3 +6,4 @@ metadata:
 data:
   clustername: ${clustername}
   environment: ${environment}
+  vaulturl: ${vaulturl}
