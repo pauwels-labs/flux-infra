@@ -4,5 +4,5 @@ metadata:
   name: external-config-data
   namespace: pauwels-labs-main
 data:
-  clustername: "bill-0"
-  environment: "dev"
+  clustername: ${clustername}
+  environment: ${environment}
