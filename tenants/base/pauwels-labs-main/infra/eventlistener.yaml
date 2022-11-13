@@ -12,10 +12,12 @@ spec:
     - name: "push"
       ref:
         name: "github"
+        kind: ClusterInterceptor
+        apiVersion: triggers.tekton.dev
       params:
       - name: "secretRef"
         value:
-          secretName: webhook-hmac-github-pauwels-labs
+          secretName: webhook-hmac-pauwels-labs-main-primary
           secretKey: token
       - name: "eventTypes"
         value: ["push"]

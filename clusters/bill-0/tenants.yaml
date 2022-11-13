@@ -1,0 +1,29 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: tenants
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  serviceAccountName: kustomize-controller
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./tenants/bill-0
+  prune: true
+  wait: true
+  timeout: 30s
+  dependsOn:
+  - name: external-config-data
+  - name: ecr-credentials-sync
+  - name: sources
+  - name: istio-base
+  - name: istio-extras
+  - name: certificates
+  - name: external-vault
+  - name: external-secrets
+  - name: external-dns
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: external-config-data

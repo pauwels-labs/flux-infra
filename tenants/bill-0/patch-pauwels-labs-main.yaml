@@ -4,4 +4,4 @@ metadata:
   name: pauwels-labs-main
   namespace: pauwels-labs-main
 spec:
-  path: ./production
+  path: ./dev

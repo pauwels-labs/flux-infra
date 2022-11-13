@@ -7,9 +7,8 @@ metadata:
     toolkit.fluxcd.io/tenant: pauwels-labs-main
 spec:
   interval: 1m
-  url: https://github.com/pauwels-labs/team-main
   ref:
     branch: main
   secretRef:
-    name: ssh-github-pauwels-labs-team-main
+    name: ssh-pauwels-labs-main-github-pauwels-labs-team-main
   url: ssh://git@github.com/pauwels-labs/team-main

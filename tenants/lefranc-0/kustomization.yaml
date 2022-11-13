@@ -1,6 +1,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../base/pauwels-labs-main
-patchesStrategicMerge:
-- patch-pauwels-labs-main.yaml
+- ../base/pauwels-labs-main/infra

@@ -13,5 +13,5 @@ subjects:
 - kind: User
   name: gotk:apps:reconciler
 - kind: ServiceAccount
-  name: pauwels-labs
-  namespace: pauwels-labs
+  name: pauwels-labs-main
+  namespace: pauwels-labs-main
