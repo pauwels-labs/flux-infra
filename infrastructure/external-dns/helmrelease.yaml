@@ -32,3 +32,7 @@ spec:
     - ingress
     - istio-gateway
     - istio-virtualservice
+    extraArgs:
+    - "--zone-id-filter=${basednszoneid}"
+    - "--domain-filter=${basednszonename}"
+    - "--aws-zone-type=public"
