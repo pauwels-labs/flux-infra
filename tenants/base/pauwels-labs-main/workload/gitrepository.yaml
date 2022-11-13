@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: github-pauwels-labs-team-main
-  namespace: github-pauwels-labs-team-main
+  namespace: pauwels-labs-main
   labels:
     toolkit.fluxcd.io/tenant: pauwels-labs-main
 spec:
