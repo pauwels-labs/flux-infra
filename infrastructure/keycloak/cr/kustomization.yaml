@@ -4,6 +4,6 @@ resources:
 - namespace.yaml
 - cr-keycloak.yaml
 - virtualservice.yaml
-- authorizationpolicy.yaml
+- authorizationpolicy-echo.yaml
 - virtualservice-echo.yaml
 - service-echo.yaml
