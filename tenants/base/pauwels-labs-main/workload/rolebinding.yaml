@@ -13,7 +13,7 @@ subjects:
 - kind: User
   name: gotk:apps:reconciler
 - kind: Group
-  name: oidc:/tenant-pauwels-labs-main/admin
+  name: oidc:/tenant-pauwels-labs-main/admins
 - kind: ServiceAccount
   name: pauwels-labs-main
   namespace: pauwels-labs-main
