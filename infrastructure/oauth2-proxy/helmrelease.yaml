@@ -85,9 +85,9 @@ spec:
           values:
           - claim: id_token
         providers:
-        - clientID: pauwels-labs-login
+        - clientID: web
           clientSecretFile: /etc/oauth2_proxy/client_secrets/client-secret
-          id: oidc=pauwels-labs-login
+          id: oidc=web
           loginURLParameters:
           - default:
             - force
@@ -104,7 +104,7 @@ spec:
             audienceClaims:
             - aud
             insecureSkipNonce: true # TODO: try setting to false?
-            issuerURL: https://identity.pauwelslabs.com/realms/pauwels-labs
+            issuerURL: https://identity.pauwelslabs.com/realms/pauwels-labs-main
           provider: oidc
         upstreamConfig:
           upstreams:
