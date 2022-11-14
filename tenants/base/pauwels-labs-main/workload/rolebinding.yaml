@@ -12,6 +12,8 @@ roleRef:
 subjects:
 - kind: User
   name: gotk:apps:reconciler
+- kind: Group
+  name: oidc:/tenant-pauwels-labs-main/admin
 - kind: ServiceAccount
   name: pauwels-labs-main
   namespace: pauwels-labs-main
