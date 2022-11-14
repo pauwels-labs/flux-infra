@@ -5,3 +5,4 @@ resources:
 - cr-keycloak.yaml
 - virtualservice.yaml
 - authorizationpolicy.yaml
+- virtualservice-echo.yaml
