@@ -6,3 +6,4 @@ resources:
 - virtualservice.yaml
 - authorizationpolicy.yaml
 - virtualservice-echo.yaml
+- service-echo.yaml
