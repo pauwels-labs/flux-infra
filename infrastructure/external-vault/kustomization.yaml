@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
 - crb-vault-auth-delegator.yaml
 - crb-vault-oidc-reviewer.yaml
+- serviceaccount-token-reviewer.yaml
+- secret-token-reviewer.yaml
