@@ -27,17 +27,16 @@ spec:
           '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
           inlineCode: |
             function envoy_on_response(response_handle)
-              response_handle:logInfo("saving response with referer header running")
               local location = response_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.lua")["redirect_location"]
               local status = response_handle:headers():get(":status")
               if location ~= nil and status == "404" then
+                response_handle:logInfo("switching 404 response to 301 using referer header")
                 response_handle:headers():replace(":status", "301")
                 response_handle:headers():add("location", location)
               end
             end
 
             function envoy_on_request(request_handle)
-              request_handle:logInfo("saving referer data for response redirection")
               local referer = request_handle:headers():get("referer")
               local workload_path = request_handle:headers():get(":path")
               local workload_pattern = string.match(workload_path, "/t/([a-z0-9-]+)/([a-z0-9-]+).*$")
@@ -50,6 +49,7 @@ spec:
                   else
                     location = location .. "/"
                   end
+                  request_handle:logInfo("this route will be routed via referer header")
                   request_handle:streamInfo():dynamicMetadata():set("envoy.filters.http.lua", "redirect_location", location)
                 end
               end
