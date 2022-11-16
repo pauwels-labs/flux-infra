@@ -3282,6 +3282,7 @@ spec:
         control-plane: controller-manager
         gatekeeper.sh/operation: webhook
         gatekeeper.sh/system: "yes"
+        sidecar.istio.io/inject: "false"
     spec:
       affinity:
         podAntiAffinity:
