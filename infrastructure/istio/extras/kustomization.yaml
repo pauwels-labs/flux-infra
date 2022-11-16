@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
 - helmrelease-gateway.yaml
 - envoyfilter-proxy-protocol.yaml
+- envoyfilter-referer-routing.yaml
 - peerauthentication.yaml
 - gateway.yaml

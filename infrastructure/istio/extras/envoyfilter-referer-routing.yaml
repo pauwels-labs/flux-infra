@@ -1,0 +1,56 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: referer-routing
+  namespace: istio-ingress
+spec:
+  workloadSelector:
+    labels:
+      app: istio-gateway
+      istio: gateway
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: 'envoy.filters.http.router'
+        portNumber: 443
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.lua
+        typed_config:
+          '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
+          inlineCode: |
+            function envoy_on_response(response_handle)
+              response_handle:logInfo("saving response with referer header running")
+              local location = response_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.lua")["redirect_location"]
+              local status = response_handle:headers():get(":status")
+              if location ~= nil and status == "404" then
+                response_handle:headers():replace(":status", "301")
+                response_handle:headers():add("location", location)
+              end
+            end
+
+            function envoy_on_request(request_handle)
+              request_handle:logInfo("saving referer data for response redirection")
+              local referer = request_handle:headers():get("referer")
+              local workload_path = request_handle:headers():get(":path")
+              local workload_pattern = string.match(workload_path, "/t/([a-z0-9-]+)/([a-z0-9-]+).*$")
+              if referer ~= nil and workload_pattern == nil then
+                local host, tenant_name, workload_name = string.match(referer, "https://([^/]+)/t/([a-z0-9-]+)/([a-z0-9-]+).*$")
+                if host ~= nil and tenant_name ~= nil and workload_name ~= nil then
+                  local location = "https://" .. host .. "/t/" .. tenant_name .. "/" .. workload_name
+                  if workload_path ~= nil then
+                    location = location .. workload_path
+                  else
+                    location = location .. "/"
+                  end
+                  request_handle:streamInfo():dynamicMetadata():set("envoy.filters.http.lua", "redirect_location", location)
+                end
+              end
+            end
