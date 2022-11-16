@@ -9,5 +9,4 @@ resources:
 - rolebinding.yaml
 - secretstore-tenant-repositories-ssh.yaml
 - serviceaccount.yaml
-- virtualservice-pauwels-labs.yaml
 - configmap-external-infra-data.yaml
