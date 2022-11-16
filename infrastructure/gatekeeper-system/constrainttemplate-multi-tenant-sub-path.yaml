@@ -1,0 +1,30 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: multi-tenant-sub-path
+  namespace: gatekeeper-system
+spec:
+  crd:
+    spec:
+      names:
+        kind: MultiTenantSubPath
+      validation:
+        # Schema for the `parameters` field
+        openAPIV3Schema:
+          type: object
+          properties:
+            tenantName:
+              type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequiredlabels
+        violation[{"msg": msg}] {
+          hosts := {host | hosts := input.review.object.spec.hosts[_]}
+          matches_without_uri := [match | match := input.review.object.spec.http[_].match[_]
+                                          not regex.match(concat(concat("^/t/", tenantName), "/$"), match.uri.prefix)
+                                          not regex.match(concat(concat("^\^/t/", tenantName), "/.*$"), match.uri.regex]
+                                          not regex.match(concat(concat("^/t/", tenantName), "/.*$"), match.uri.exact]
+          count(match_without_uri) > 0
+          msg := "your virtualservice matches must include a uri prefix, regex, or exact component the specifies your tenant prefix"
+        }

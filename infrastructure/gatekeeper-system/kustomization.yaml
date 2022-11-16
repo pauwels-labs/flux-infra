@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - gatekeeper.yaml
+- constrainttemplate-multi-tenant-sub-path.yaml
