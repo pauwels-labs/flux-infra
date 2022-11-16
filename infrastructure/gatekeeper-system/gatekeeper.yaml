@@ -3483,7 +3483,7 @@ webhooks:
       name: gatekeeper-webhook-service
       namespace: gatekeeper-system
       path: /v1/admitlabel
-  failurePolicy: Fail
+  failurePolicy: Ignore
   matchPolicy: Exact
   name: check-ignore-label.gatekeeper.sh
   rules:
