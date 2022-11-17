@@ -5,6 +5,8 @@ metadata:
   namespace: gatekeeper-system
 spec:
   match:
+    namespaces:
+    - pauwels-labs-main
     kinds:
     - apiGroups: ["networking.istio.io"]
       kinds: ["VirtualService"]
