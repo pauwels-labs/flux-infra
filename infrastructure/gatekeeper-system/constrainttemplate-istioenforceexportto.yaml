@@ -22,9 +22,25 @@ spec:
       rego: |
         package k8srequiredlabels
 
+        exports_match(submitted, expected) = true {
+          submitted
+          submitted == expected
+        }
+
         violation[{"msg": msg, "details": {"kind": kind}}] {
-          submitted_export_to := input.review.object.spec.exportTo
+          submitted := {s | s := input.review.object.spec.exportTo[_]}
+          required  := {r | r := input.parameters.exportTo[_]}
+          not exports_match(submitted, required)
           kind := input.review.object.kind
-          submitted_export_to != input.parameters.exportTo
-          msg := sprintf("all tenant %v objects must have a defined exportTo field with a single entry of value '.'", [kind])
+          name := input.review.object.metadata.name
+          namespace := input.review.object.metadata.namespace
+          msg := sprintf("tenant %v object %v/%v must have a defined exportTo field with a single entry of value '.'", [kind, namespace, name])
+        }
+
+        violation[{"msg": msg, "details": {"kind": kind}}] {
+          count(input.review.object.spec.exportTo) != 1
+          kind := input.review.object.kind
+          name := input.review.object.metadata.name
+          namespace := input.review.object.metadata.namespace
+          msg := sprintf("tenant %v object %v/%v must have a defined exportTo field with a single entry of value '.'", [kind, namespace, name])
         }
