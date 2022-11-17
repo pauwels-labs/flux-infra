@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: github-webhook-ci-${environment}-pauwels-labs
+  name: github-webhook-ci-pauwels-labs
   namespace: istio-ingress
 spec:
-  secretName: tls-github-webhook-ci-${environment}-pauwels-labs
+  secretName: tls-github-webhook-ci-pauwels-labs
   duration: 2160h   # 90d
   renewBefore: 360h # 15d
   subject:
@@ -18,7 +18,7 @@ spec:
   - server auth
   - client auth
   dnsNames:
-  - "github-webhook.ci.${environment}.pauwelslabs.com"
+  - "github-webhook.ci.pauwelslabs.com"
   issuerRef:
     group: cert-manager.io
     kind: Issuer
