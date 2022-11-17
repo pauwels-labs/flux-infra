@@ -23,7 +23,7 @@ spec:
         package k8srequiredlabels
 
         violation[{"msg": msg, "details": {"given_type": type}}] {
-          type := lower(input.review.object.type)
+          type := lower(input.review.object.spec.type)
           matched_type := [type | accepted_type := lower(input.parameters.types[_])
                                     accepted_type == type]
           count(matched_type) < 1

@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - gatekeeper.yaml
-- constrainttemplate-istioenforceexportto.yaml
-- constrainttemplate-istioenforcesubpath.yaml
-- constrainttemplate-enforceonlyclusteripservices.yaml
+- constrainttemplate-enforceistioexportto.yaml
+- constrainttemplate-enforceistiosubpath.yaml
+- constrainttemplate-enforceservicetypes.yaml

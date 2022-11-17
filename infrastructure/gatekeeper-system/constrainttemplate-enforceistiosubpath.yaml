@@ -1,13 +1,13 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: istioenforcesubpath
+  name: enforceistiosubpath
   namespace: gatekeeper-system
 spec:
   crd:
     spec:
       names:
-        kind: IstioEnforceSubPath
+        kind: EnforceIstioSubPath
       validation:
         # Schema for the `parameters` field
         openAPIV3Schema:

@@ -1,8 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: IstioEnforceExportTo
+kind: EnforceIstioExportTo
 metadata:
   name: tenant
-  namespace: gatekeeper-system
 spec:
   match:
     namespaces:
@@ -10,7 +9,6 @@ spec:
     kinds:
     - apiGroups: ["networking.istio.io"]
       kinds:
-      - "VirtualService"
       - "ServiceEntry"
       - "DestinationRule"
   parameters:

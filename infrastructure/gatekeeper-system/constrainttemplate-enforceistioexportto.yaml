@@ -1,13 +1,13 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: istioenforceexportto
+  name: enforceistioexportto
   namespace: gatekeeper-system
 spec:
   crd:
     spec:
       names:
-        kind: IstioEnforceExportTo
+        kind: EnforceIstioExportTo
       validation:
         # Schema for the `parameters` field
         openAPIV3Schema:
@@ -28,9 +28,7 @@ spec:
         }
 
         violation[{"msg": msg, "details": {"kind": kind}}] {
-          submitted := {s | s := input.review.object.spec.exportTo[_]}
-          required  := {r | r := input.parameters.exportTo[_]}
-          not exports_match(submitted, required)
+          count(input.review.object.spec.exportTo) != 1
           kind := input.review.object.kind
           name := input.review.object.metadata.name
           namespace := input.review.object.metadata.namespace
@@ -38,7 +36,9 @@ spec:
         }
 
         violation[{"msg": msg, "details": {"kind": kind}}] {
-          count(input.review.object.spec.exportTo) != 1
+          submitted := {s | s := input.review.object.spec.exportTo[_]}
+          required  := {r | r := input.parameters.exportTo[_]}
+          not exports_match(submitted, required)
           kind := input.review.object.kind
           name := input.review.object.metadata.name
           namespace := input.review.object.metadata.namespace
