@@ -58,7 +58,7 @@ spec:
           match := input.review.object.spec.http[_].match[_]
           non_compliant_matches := [match | match := input.review.object.spec.http[_].match[_]
                                             not has_prefix(match, sprintf("^/t/%v/.*$", [input.parameters.tenantName]))
-                                            not has_regex(match, sprintf("^\\^/t/%v/.*\\$$", [input.parameters.tenantName]))
+                                            not has_regex(match, sprintf("^\\\\^/t/%v/.*\\\\$$", [input.parameters.tenantName]))
                                             not has_exact(match, sprintf("^/t/%v/.*$", [input.parameters.tenantName]))]
           count(non_compliant_matches) > 0
           msg := sprintf("all match objects in a tenant virtualservice must include a uri.<prefix|exact|regex> field that begins with '/t/%v/' for prefix and exact and '^/t/%v/' for regex (a dollar sign '$' is also REQUIRED at the end of the regex pattern string), match objects that need to be fixed are: %v", [input.parameters.tenantName, input.parameters.tenantName, non_compliant_matches])
