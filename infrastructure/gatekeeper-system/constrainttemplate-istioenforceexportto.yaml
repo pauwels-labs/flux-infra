@@ -25,6 +25,6 @@ spec:
         violation[{"msg": msg, "details": {"kind": kind}}] {
           submitted_export_to := input.review.object.spec.exportTo
           kind := input.review.object.kind
-          submitted_export_to == input.parameters.exportTo
+          submitted_export_to != input.parameters.exportTo
           msg := sprintf("all tenant %v objects must have a defined exportTo field with a single entry of value '.'", [kind])
         }
