@@ -1,7 +1,7 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: multi-tenant-sub-path
+  name: multitenantsubpath
   namespace: gatekeeper-system
 spec:
   crd:
