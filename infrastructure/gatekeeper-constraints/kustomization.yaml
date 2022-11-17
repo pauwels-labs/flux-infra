@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - enforceistiosubpath-pauwels-labs-main.yaml
 - enforceistioexportto-tenant.yaml
-- enforceonlyclusteripservices-tenant.yaml
+- enforceservicetypes-tenant.yaml
