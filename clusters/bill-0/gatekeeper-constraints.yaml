@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: gatekeeper-system
+  name: gatekeeper-constraints
   namespace: flux-system
 spec:
   interval: 1m0s
@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/gatekeeper-system
+  path: ./infrastructure/gatekeeper-constraints
   prune: true
   wait: true
   timeout: 30s
@@ -17,6 +17,7 @@ spec:
   - name: external-config-data
   - name: ecr-credentials-sync
   - name: sources
+  - name: gatekeeper-system
   postBuild:
     substituteFrom:
     - kind: ConfigMap
