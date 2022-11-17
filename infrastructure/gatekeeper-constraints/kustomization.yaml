@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - istioenforcesubpath-pauwels-labs-main.yaml
 - istioenforceexportto-tenant.yaml
+- enforceonlyclusteripservices-tenant.yaml

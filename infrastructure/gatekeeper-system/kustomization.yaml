@@ -5,3 +5,4 @@ resources:
 - gatekeeper.yaml
 - constrainttemplate-istioenforceexportto.yaml
 - constrainttemplate-istioenforcesubpath.yaml
+- constrainttemplate-enforceonlyclusteripservices.yaml
