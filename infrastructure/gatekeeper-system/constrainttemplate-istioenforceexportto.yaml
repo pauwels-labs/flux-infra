@@ -1,7 +1,7 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: IstioEnforceExportTo
+  name: istioenforceexportto
   namespace: gatekeeper-system
 spec:
   crd:
@@ -22,7 +22,7 @@ spec:
       rego: |
         package k8srequiredlabels
 
-        violation[{"msg": msg, "details": {"non_compliant_matches": non_compliant_matches}}] {
+        violation[{"msg": msg, "details": {"kind": kind}}] {
           submitted_export_to := input.review.object.spec.exportTo
           kind := input.review.object.kind
           submitted_export_to == input.parameters.exportTo
