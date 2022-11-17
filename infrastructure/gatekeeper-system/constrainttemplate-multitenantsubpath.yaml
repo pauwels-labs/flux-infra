@@ -35,6 +35,25 @@ spec:
           regex.match(pattern, match.uri.regex)
         }
 
+        violation[{"msg": msg, "details": {"non_compliant_routes": non_compliant_routes}}] {
+          match := input.review.object.spec.http[_]
+          non_compliant_routes := [route.name | route := input.review.object.spec.http[_]
+                                                not route.match
+                                                route.name]
+          count(non_compliant_routes) > 0
+          msg := sprintf("all tenant virtual service http routes must include a match field, routes that need to be fixed are: %v", [non_compliant_routes])
+        }
+
+        violation[{"msg": msg, "details": {"non_compliant_routes": non_compliant_routes}}] {
+          match := input.review.object.spec.http[_]
+          non_compliant_routes := [route.name | route := input.review.object.spec.http[_]
+                                                route.match
+                                                count(route.match) == 0
+                                                route.name]
+          count(non_compliant_routes) > 0
+          msg := sprintf("the match field of all tenant virtual service http routes must include at least one match object, routes that need to be fixed are: %v", [non_compliant_routes])
+        }
+
         violation[{"msg": msg, "details": {"non_compliant_matches": non_compliant_matches}}] {
           match := input.review.object.spec.http[_].match[_]
           non_compliant_matches := [match | match := input.review.object.spec.http[_].match[_]
