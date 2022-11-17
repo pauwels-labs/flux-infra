@@ -1,5 +1,5 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sRequiredLabels
+kind: MultiTenantSubPath
 metadata:
   name: multi-tenant-subpath-pauwels-labs-main
   namespace: gatekeeper-system
