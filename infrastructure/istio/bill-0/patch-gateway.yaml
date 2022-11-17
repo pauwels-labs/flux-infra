@@ -25,7 +25,7 @@ spec:
       credentialName: tls-dev-pauwels-labs
   - port:
       number: 443
-      name: https-github-webhook
+      name: https-github-webhook-cd-${environment}
       protocol: HTTPS
     hosts:
     - "flux-system/github-webhook.cd.${environment}.pauwelslabs.com"
