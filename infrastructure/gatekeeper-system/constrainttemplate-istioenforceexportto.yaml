@@ -1,0 +1,30 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: IstioEnforceExportTo
+  namespace: gatekeeper-system
+spec:
+  crd:
+    spec:
+      names:
+        kind: IstioEnforceExportTo
+      validation:
+        # Schema for the `parameters` field
+        openAPIV3Schema:
+          type: object
+          properties:
+            exportTo:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequiredlabels
+
+        violation[{"msg": msg, "details": {"non_compliant_matches": non_compliant_matches}}] {
+          submitted_export_to := input.review.object.spec.exportTo
+          kind := input.review.object.kind
+          submitted_export_to == input.parameters.exportTo
+          msg := sprintf("all tenant %v objects must have a defined exportTo field with a single entry of value '.'", [kind])
+        }

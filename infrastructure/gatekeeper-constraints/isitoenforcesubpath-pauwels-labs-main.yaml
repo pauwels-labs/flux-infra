@@ -1,5 +1,5 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: MultiTenantSubPath
+kind: IstioEnforceSubPath
 metadata:
   name: pauwels-labs-main
   namespace: gatekeeper-system
@@ -9,4 +9,4 @@ spec:
     - apiGroups: ["networking.istio.io"]
       kinds: ["VirtualService"]
   parameters:
-    tenantName: pauwels-labs-main
+    subPath: "/t/pauwels-labs-main/"
