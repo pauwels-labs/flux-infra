@@ -20,11 +20,11 @@ spec:
       rego: |
         package k8srequiredlabels
         violation[{"msg": msg}] {
-          hosts := {host | hosts := input.review.object.spec.hosts[_]}
+          hosts := {host | host := input.review.object.spec.hosts[_]}
           matches_without_uri := [match | match := input.review.object.spec.http[_].match[_]
-                                          not regex.match(sprintf("^/t/%v/$", [tenaneName]), match.uri.prefix)
-                                          not regex.match(sprintf("^\^/t/%v/.*$", [tenaneName]), match.uri.regex]
-                                          not regex.match(sprintf("^/t/%v/.*$", [tenaneName]), match.uri.exact]
-          count(match_without_uri) > 0
+                                          not regex.match(sprintf("^/t/%v/$", [input.parameters.tenantName]), match.uri.prefix)
+                                          not regex.match(sprintf("^\\^/t/%v/.*$", [input.parameters.tenantName]), match.uri.regex)
+                                          not regex.match(sprintf("^/t/%v/.*$", [input.parameters.tenantName]), match.uri.exact)]
+          count(matches_without_uri) > 0
           msg := "your virtualservice matches must include a uri prefix, regex, or exact component the specifies your tenant prefix"
         }
