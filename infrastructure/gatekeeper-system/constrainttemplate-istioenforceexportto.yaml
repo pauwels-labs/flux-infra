@@ -34,7 +34,7 @@ spec:
           kind := input.review.object.kind
           name := input.review.object.metadata.name
           namespace := input.review.object.metadata.namespace
-          msg := sprintf("tenant %v object %v/%v must have a defined exportTo field with a single entry of value '.'", [kind, namespace, name])
+          msg := sprintf("%v object %v/%v must have a defined exportTo field with a single entry of value '.'", [kind, namespace, name])
         }
 
         violation[{"msg": msg, "details": {"kind": kind}}] {
@@ -42,5 +42,5 @@ spec:
           kind := input.review.object.kind
           name := input.review.object.metadata.name
           namespace := input.review.object.metadata.namespace
-          msg := sprintf("tenant %v object %v/%v must have a defined exportTo field with a single entry of value '.'", [kind, namespace, name])
+          msg := sprintf("%v object %v/%v must have a defined exportTo field with a single entry of value '.'", [kind, namespace, name])
         }
