@@ -108,7 +108,7 @@ spec:
       name: https-webhook-ci
       protocol: HTTPS
     hosts:
-    - "tekton-pipelines/webhook.ci.pauwelslabs.com"
+    - "webhook.ci.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-webhook-ci-pauwels-labs
