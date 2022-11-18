@@ -31,8 +31,6 @@ spec:
   - name: build-push
     runAfter: ["fetch-source"]
     taskRef:
-      resolver: cluster
-      params:
       name: kaniko
       kind: Task
     workspaces:
