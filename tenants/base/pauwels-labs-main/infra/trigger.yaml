@@ -32,4 +32,4 @@ spec:
   - ref: github-push
     kind: ClusterTriggerBinding
   template:
-    ref: github
+    ref: clone-build-push

@@ -9,7 +9,6 @@ resources:
 - task-git-clone.yaml
 - task-kaniko.yaml
 - secretstore-all-webhooks-hmac.yaml
-- pipeline-clone-build-push.yaml
 - clustertriggerbinding-github-push.yaml
 - clusterrole-tenant-tekton-robot.yaml
 images:

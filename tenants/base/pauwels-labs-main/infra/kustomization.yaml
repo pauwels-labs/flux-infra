@@ -5,6 +5,7 @@ resources:
 - eventlistener.yaml
 - externalsecret-webhook-hmac-github-pauwels-labs.yaml
 - namespace.yaml
+- pipeline-clone-build-push.yaml
 - rolebinding-tekton-robot.yaml
 - secretstore-tenant-webhooks-hmac.yaml
 - serviceaccount.yaml
