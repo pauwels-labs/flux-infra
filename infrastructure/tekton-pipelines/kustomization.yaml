@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - namespace.yaml
-- namespace-tekton-pipelines-resolvers.yaml
 - tekton.yaml
 - triggers.yaml
 - interceptors.yaml
@@ -10,9 +9,9 @@ resources:
 - clusterrole-tenant-tekton-robot.yaml
 - task-git-clone.yaml
 - task-kaniko.yaml
-- configmap-resolvers-feature-flags.yaml
+#- configmap-resolvers-feature-flags.yaml
 - pipeline-clone-build-push.yaml
-- role-tenant-tekton-robot.yaml
+#- role-tenant-tekton-robot.yaml
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller
