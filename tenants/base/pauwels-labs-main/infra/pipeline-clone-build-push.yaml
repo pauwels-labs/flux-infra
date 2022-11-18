@@ -21,6 +21,7 @@ spec:
   - name: fetch-source
     taskRef:
       name: git-clone
+      kind: ClusterTask
     workspaces:
     - name: output
       workspace: shared-data
@@ -31,6 +32,7 @@ spec:
     runAfter: ["fetch-source"]
     taskRef:
       name: kaniko
+      kind: ClusterTask
     workspaces:
     - name: source
       workspace: shared-data
