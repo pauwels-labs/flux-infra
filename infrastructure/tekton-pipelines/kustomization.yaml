@@ -8,7 +8,6 @@ resources:
 - interceptors.yaml
 - task-git-clone.yaml
 - task-kaniko.yaml
-- secretstore-all-webhooks-hmac.yaml
 - clustertriggerbinding-github-push.yaml
 - clusterrole-tenant-tekton-robot.yaml
 images:
