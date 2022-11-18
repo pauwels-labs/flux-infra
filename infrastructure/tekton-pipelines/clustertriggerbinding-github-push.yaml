@@ -7,7 +7,7 @@ spec:
   - name: registry
     value: github
   - name: repositoryownername
-    value: $(body.owner.name)
+    value: $(body.repository.owner.name)
   - name: repositoryurl
     value: $(body.repository.clone_url)
   - name: repositoryname
