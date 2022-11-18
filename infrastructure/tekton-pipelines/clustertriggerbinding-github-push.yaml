@@ -1,0 +1,16 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: ClusterTriggerBinding
+metadata:
+  name: github-push
+spec:
+  params:
+  - name: gitrevision
+    value: $(body.pull_request.head.sha)
+  - name: registry
+    value: github
+  - name: repositoryownername
+    value: $(body.owner.name)
+  - name: repositoryurl
+    value: $(body.repository.clone_url)
+  - name: repositoryname
+    value: $(body.repository.name)

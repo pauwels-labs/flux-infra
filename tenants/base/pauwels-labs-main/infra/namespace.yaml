@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    istio.io/rev: stable
+    toolkit.fluxcd.io/tenant: pauwels-labs-main
+  name: pauwels-labs-main

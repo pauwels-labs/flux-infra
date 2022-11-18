@@ -2,10 +2,14 @@ apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
   name: clone-build-push
+  namespace: pauwels-labs-main
 spec:
   params:
   - name: gitrevision
-  - name: gitrepositoryurl
+  - name: repositoryurl
+  - name: repositoryname
+  - name: repositoryownername
+  - name: registry
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
@@ -27,9 +31,9 @@ spec:
               requests:
                 storage: 1Gi
       params:
-      - name: repo-url
-        value: $(params.gitrepositoryurl)
-      - name: image-reference
-        value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/pauwels-labs/homepage
-      - name: image-tag
+      - name: repositoryurl
+        value: $(params.repositoryurl)
+      - name: imageurl
+        value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/pauwels-labs-main/$(params.registry)/$(params.repositoryownername)/$(params.repositoryname)
+      - name: imagetag
         value: tmp

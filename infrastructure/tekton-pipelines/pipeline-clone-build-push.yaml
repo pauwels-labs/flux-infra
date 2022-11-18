@@ -8,11 +8,11 @@ spec:
     This pipeline clones a git repo, builds a Docker image with Kaniko and
     pushes it to a registry
   params:
-  - name: repo-url
+  - name: repositoryurl
     type: string
-  - name: image-reference
+  - name: imageurl
     type: string
-  - name: image-tag
+  - name: imagetag
     type: string
   workspaces:
   - name: shared-data
@@ -26,7 +26,7 @@ spec:
       workspace: shared-data
     params:
     - name: url
-      value: $(params.repo-url)
+      value: $(params.repositoryurl)
   - name: build-push
     runAfter: ["fetch-source"]
     taskRef:
@@ -36,10 +36,10 @@ spec:
       workspace: shared-data
     params:
     - name: IMAGE
-      value: $(params.image-reference):$(params.image-tag)
+      value: $(params.imageurl):$(params.imagetag)
     - name: EXTRA_ARGS
       value: [
         '--cache=true',
         '--cache-dir=/kaniko/cache',
-        '--cache-repo=$(params.image-reference)/cache'
+        '--cache-repo=$(params.imageurl)/cache'
       ]

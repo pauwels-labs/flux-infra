@@ -3,4 +3,9 @@ kind: Kustomization
 resources:
 - eventlistener.yaml
 - externalsecret-webhook-hmac-github-pauwels-labs.yaml
+- namespace.yaml
+- secretstore-tenant-webhooks-hmac.yaml
+- serviceaccount.yaml
+- triggertemplate.yaml
 - trigger.yaml
+- virtualservice-webhook-ci.yaml

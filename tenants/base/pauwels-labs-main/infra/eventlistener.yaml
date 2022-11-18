@@ -1,8 +1,8 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: pauwels-labs-main-github
-  namespace: tekton-pipelines
+  name: github
+  namespace: pauwels-labs-main
   labels:
     toolkit.fluxcd.io/tenant: pauwels-labs-main
 spec:

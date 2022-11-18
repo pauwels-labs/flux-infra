@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: webhook
-  namespace: tekton-pipelines
+  name: webhook-ci
+  namespace: pauwels-labs-main
 spec:
   hosts:
   - webhook.ci.pauwelslabs.com
@@ -13,6 +13,8 @@ spec:
     match:
     - uri:
         exact: "/pauwels-labs"
+    rewrite:
+      uri: "/"
     route:
     - destination:
         port:
