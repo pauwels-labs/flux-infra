@@ -27,7 +27,7 @@ spec:
       workspace: shared-data
     params:
     - name: url
-      value: $(params.repositoryurl)
+      value: "$(params.repositoryurl)"
   - name: build-push
     runAfter: ["fetch-source"]
     taskRef:
@@ -38,7 +38,7 @@ spec:
       workspace: shared-data
     params:
     - name: IMAGE
-      value: $(params.imageurl):$(params.imagetag)
+      value: "$(params.imageurl):$(params.imagetag)"
     - name: EXTRA_ARGS
       value: [
         '--cache=true',
