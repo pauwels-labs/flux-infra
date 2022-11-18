@@ -9,7 +9,9 @@ rules:
 - apiGroups:
   - "tekton.dev"
   resources:
+  - pipeline
   - pipelines
+  - task
   - tasks
   verbs:
   - get
