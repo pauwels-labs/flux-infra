@@ -5,6 +5,7 @@ metadata:
   namespace: pauwels-labs-main
 spec:
   params:
+  - name: revision
   - name: repositoryurl
   - name: repositoryname
   - name: repositoryownername
@@ -38,6 +39,8 @@ spec:
               requests:
                 storage: 1Gi
       params:
+      - name: revision
+        value: $(tt.params.revision)
       - name: repositoryurl
         value: $(tt.params.repositoryurl)
       - name: imageurl

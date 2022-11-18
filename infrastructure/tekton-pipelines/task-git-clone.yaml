@@ -97,7 +97,7 @@ spec:
       type: string
       default: ""
     - name: verbose
-      description: Log the commands that are executed during `git-clone`'s operation.
+      description: Log the commands that are executed during `git-clone`\'s operation.
       type: string
       default: "true"
     - name: gitInitImage
@@ -105,8 +105,7 @@ spec:
       type: string
       default: "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.29.0"
     - name: userHome
-      description: |
-        Absolute path to the user's home directory.
+      description: Absolute path to the user\'s home directory.
       type: string
       default: "/tekton/home"
   results:
