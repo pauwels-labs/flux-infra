@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - eventlistener.yaml
 - externalsecret-webhook-hmac-github-pauwels-labs.yaml
+- trigger.yaml

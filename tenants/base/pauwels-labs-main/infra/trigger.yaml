@@ -1,0 +1,29 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Trigger
+metadata:
+  name: tenant-pauwels-labs-main-github
+spec:
+- name: "push"
+  ref:
+    name: "github"
+    kind: ClusterInterceptor
+    apiVersion: triggers.tekton.dev
+  params:
+  - name: "secretRef"
+    value:
+      secretName: webhook-hmac-pauwels-labs-main-primary
+      secretKey: token
+  - name: "eventTypes"
+    value: ["push"]
+- name: "only when pushed to main branch"
+  ref:
+    name: "cel"
+    kind: ClusterInterceptor
+    apiVersion: triggers.tekton.dev
+  params:
+  - name: "filter"
+    value: "body.ref == 'refs/heads/main' && body.repository.owner.name == 'pauwels-labs'"
+bindings:
+- ref: github-push
+template:
+  ref: github
