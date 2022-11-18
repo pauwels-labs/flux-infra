@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: kaniko
+  namespace: tekton-pipelines
   labels:
     app.kubernetes.io/version: "0.6"
   annotations:
