@@ -20,7 +20,7 @@ spec:
         resolver: cluster
         params:
         - name: kind
-          value: Pipeline
+          value: pipeline
         - name: name
           value: clone-build-push
         - name: namespace
