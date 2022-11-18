@@ -16,10 +16,10 @@ resources:
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller
-  newTag: v0.40.2
+  newTag: v0.41.0
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/webhook
-  newTag: v0.40.2
+  newTag: v0.41.0
 patches:
 - patch: |
     - op: replace
