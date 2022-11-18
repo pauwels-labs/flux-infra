@@ -5,7 +5,6 @@ metadata:
   namespace: pauwels-labs-main
 spec:
   params:
-  - name: gitrevision
   - name: repositoryurl
   - name: repositoryname
   - name: repositoryownername

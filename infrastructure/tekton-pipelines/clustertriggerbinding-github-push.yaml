@@ -4,8 +4,6 @@ metadata:
   name: github-push
 spec:
   params:
-  - name: gitrevision
-    value: $(body.pull_request.head.sha)
   - name: registry
     value: github
   - name: repositoryownername
