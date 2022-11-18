@@ -12,7 +12,7 @@ spec:
   - name: "pauwels-labs"
     match:
     - uri:
-        exact: "/pauwels-labs"
+        prefix: "/pauwels-labs"
     rewrite:
       uri: "/"
     route:
