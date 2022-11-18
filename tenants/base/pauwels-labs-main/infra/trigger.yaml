@@ -26,8 +26,5 @@ spec:
   params:
   - name: "filter"
     value: "body.ref == 'refs/heads/main' && body.repository.owner.name == 'pauwels-labs'"
-bindings:
-- ref: github-push
-  kind: ClusterTriggerBinding
 template:
   ref: github

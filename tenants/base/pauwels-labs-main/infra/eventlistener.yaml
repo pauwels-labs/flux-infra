@@ -9,6 +9,9 @@ spec:
   serviceAccountName: "tekton-robot"
   triggers:
   - triggerRef: tenant-pauwels-labs-main-github
+  bindings:
+  - ref: github-push
+    kind: ClusterTriggerBinding
   resources:
     kubernetesResource:
       spec:
