@@ -1,0 +1,17 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: pauwels-labs-main
+  name: tenant-tekton-robot
+  namespace: tekton-pipelines
+rules:
+- apiGroups:
+  - "tekton.dev"
+  resources:
+  - pipeline
+  - task
+  verbs:
+  - get
+  - list
+  - watch

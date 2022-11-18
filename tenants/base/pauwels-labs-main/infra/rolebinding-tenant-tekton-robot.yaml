@@ -3,12 +3,12 @@ kind: RoleBinding
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: pauwels-labs-main
-  name: tekton-robot
-  namespace: pauwels-labs-main
+  name: tenant-tekton-robot
+  namespace: tekton-pipelines
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: tekton-triggers-eventlistener-roles
+  kind: Role
+  name: tenant-tekton-robot
 subjects:
 - kind: ServiceAccount
   name: tekton-robot
