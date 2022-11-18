@@ -6,7 +6,6 @@ resources:
 - externalsecret-webhook-hmac-github-pauwels-labs.yaml
 - namespace.yaml
 - rolebinding-tekton-robot.yaml
-#- rolebinding-tenant-tekton-robot.yaml
 - secretstore-tenant-webhooks-hmac.yaml
 - serviceaccount.yaml
 - triggertemplate.yaml

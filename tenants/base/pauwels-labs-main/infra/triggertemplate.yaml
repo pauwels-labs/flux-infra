@@ -39,8 +39,8 @@ spec:
                 storage: 1Gi
       params:
       - name: repositoryurl
-        value: $(params.repositoryurl)
+        value: $(tt.params.repositoryurl)
       - name: imageurl
-        value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/pauwels-labs-main/$(params.registry)/$(params.repositoryownername)/$(params.repositoryname)
+        value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/pauwels-labs-main/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
       - name: imagetag
         value: tmp
