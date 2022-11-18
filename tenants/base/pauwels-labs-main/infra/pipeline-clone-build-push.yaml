@@ -20,8 +20,16 @@ spec:
   tasks:
   - name: fetch-source
     taskRef:
-      name: git-clone
-      kind: ClusterTask
+      resolver: cluster
+      params:
+      - name: kind
+        value: Task
+      - name: name
+        value: git-clone
+      - name: namespace
+        value: tekton-pipelines
+      # name: git-clone
+      # kind: ClusterTask
     workspaces:
     - name: output
       workspace: shared-data
@@ -31,8 +39,16 @@ spec:
   - name: build-push
     runAfter: ["fetch-source"]
     taskRef:
-      name: kaniko
-      kind: ClusterTask
+      resolver: cluster
+      params:
+      - name: kind
+        value: Task
+      - name: name
+        value: kaniko
+      - name: namespace
+        value: tekton-pipelines
+      # name: kaniko
+      # kind: ClusterTask
     workspaces:
     - name: source
       workspace: shared-data

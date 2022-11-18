@@ -3,13 +3,15 @@ kind: Kustomization
 namespace: tekton-pipelines
 resources:
 - namespace.yaml
+- namespace-tekton-pipelines-resolvers.yaml
 - tekton.yaml
 - triggers.yaml
 - interceptors.yaml
 - clustertriggerbinding-github-push.yaml
 - clusterrole-tenant-tekton-robot.yaml
-- clustertask-git-clone.yaml
-- clustertask-kaniko.yaml
+- task-git-clone.yaml
+- task-kaniko.yaml
+- configmap-resolvers-feature-flags.yaml
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller
