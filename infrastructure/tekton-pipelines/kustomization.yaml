@@ -11,6 +11,7 @@ resources:
 - task-git-clone.yaml
 - task-kaniko.yaml
 - configmap-resolvers-feature-flags.yaml
+- pipeline-clone-build-push.yaml
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller

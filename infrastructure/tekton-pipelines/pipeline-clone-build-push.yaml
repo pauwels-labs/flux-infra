@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: clone-build-push
-  namespace: pauwels-labs-main
+  namespace: tekton-pipelines
 spec:
   description: | 
     This pipeline clones a git repo, builds a Docker image with Kaniko and
@@ -20,16 +20,8 @@ spec:
   tasks:
   - name: fetch-source
     taskRef:
-      resolver: cluster
-      params:
-      - name: kind
-        value: Task
-      - name: name
-        value: git-clone
-      - name: namespace
-        value: tekton-pipelines
-      # name: git-clone
-      # kind: ClusterTask
+      name: git-clone
+      kind: Task
     workspaces:
     - name: output
       workspace: shared-data
@@ -41,14 +33,8 @@ spec:
     taskRef:
       resolver: cluster
       params:
-      - name: kind
-        value: Task
-      - name: name
-        value: kaniko
-      - name: namespace
-        value: tekton-pipelines
-      # name: kaniko
-      # kind: ClusterTask
+      name: kaniko
+      kind: Task
     workspaces:
     - name: source
       workspace: shared-data

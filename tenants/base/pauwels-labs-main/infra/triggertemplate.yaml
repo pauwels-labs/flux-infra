@@ -16,7 +16,14 @@ spec:
       generateName: clone-build-push-run-
     spec:
       pipelineRef:
-        name: clone-build-push
+        resolver: cluster
+        params:
+        - name: kind
+          value: Pipeline
+        - name: name
+          value: clone-build-push
+        - name: namespace
+          value: tekton-pipelines
       podTemplate:
         securityContext:
           fsGroup: 65532
