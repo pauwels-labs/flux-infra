@@ -19,3 +19,12 @@ images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/webhook
   newTag: v0.40.2
+patches:
+- patch: |
+    - op: replace
+      path: /data/enable-api-fields
+      value: "alpha"
+  target:
+    version: v1
+    kind: ConfigMap
+    name: "feature-flags"
