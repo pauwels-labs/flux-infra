@@ -170,6 +170,22 @@ spec:
         #!/usr/bin/env sh
         set -eu
 
+        i=0
+        echo "WAITING FOR SIDECAR"
+        until wget -qO- -o /dev/null "http://localhost:15021/healthz/ready"; do
+          i=$((i+1))
+          if [[ $i -eq 5 ]]; then
+            break
+          fi
+          echo "WAITING FOR SIDECAR"
+          sleep 3
+        done
+        if [[ $i -eq 5 ]]; then
+          echo "SIDECAR UNAVAILABLE, RUNNING WITHOUT"
+        else
+          echo "SIDECAR AVAILABLE"
+        fi
+
         if [ "${PARAM_VERBOSE}" = "true" ] ; then
           set -x
         fi
@@ -231,8 +247,15 @@ spec:
         cd "${CHECKOUT_DIR}"
         RESULT_SHA="$(git rev-parse HEAD)"
         EXIT_CODE="$?"
-        if [ "${EXIT_CODE}" != 0 ] ; then
-          exit "${EXIT_CODE}"
+        if [ "${EXIT_CODE}" == 0 ] ; then
+          printf "%s" "${RESULT_SHA}" > "$(results.commit.path)"
+          printf "%s" "${PARAM_URL}" > "$(results.url.path)"
         fi
-        printf "%s" "${RESULT_SHA}" > "$(results.commit.path)"
-        printf "%s" "${PARAM_URL}" > "$(results.url.path)"
+
+        if [[ $i -lt 5 ]]; then
+          echo "QUITTING SIDECAR"
+          wget -qO- -o /dev/null --post-data "" http://localhost:15020/quitquitquit > /dev/null
+          echo "SIDECAR SHUTDOWN COMMAND ISSUED"
+        fi
+
+        exit "${EXIT_CODE}"
