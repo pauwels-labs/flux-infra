@@ -41,6 +41,7 @@ spec:
           - "path"
           - "x-forwarded-id-token"
           - "x-forwarded-access-token"
+          - "x-forwarded-refresh-token"
           - "x-forwarded-for"
           - "x-forwarded-user"
           - "x-forwarded-groups"
@@ -52,6 +53,7 @@ spec:
           headersToDownstreamOnAllow:
           - "x-forwarded-id-token"
           - "x-forwarded-access-token"
+          - "x-forwarded-refresh-token"
           - "x-forwarded-for"
           - "x-forwarded-user"
           - "x-forwarded-groups"
