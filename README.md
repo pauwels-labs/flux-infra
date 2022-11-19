@@ -322,3 +322,194 @@ the istio-ingress namespace, and the ops-controlled Gateway resource
 will need to be updated to include the custom domain. It will also
 need to explicitly authorize the tenant and only the tenant namespace
 as capable of binding to it.
+
+## On identity
+
+Keycloak has so far proven to be a good and versatile IdP with some
+caveats. Its mappers for turning various values into token claims are
+sparse and can't achieve the full breadth of things I'd want to
+do. Additionally, roles vs groups is a bit wonky and for now I'm
+sticking to just using groups.
+
+There's also the topic of AWS identification. Adding the keycloak OIDC
+endpoint as an OIDC provider in AWS allows users to authenticate, but
+capabilities and documentation of mapping token claims into usable IAM
+policy values is sparse and spread about haphazardly.
+
+This issue came up when devising a multi-tenant solution for ECR
+authentication. Each tenant namespace needs its own token scoped to
+only its ECR namespace (along with infra namespaces) in order for it
+to only pull the images it's authorized to pull. I really wanted to
+avoid having to make a separate role for each tenant as this adds
+infrastructure modifications for tenant onboarding and is a very heavy
+additional load for tenant management. Achieving this has proved
+incredibly difficult.
+
+There are two policies that need to be written for a singular tenant
+role: the ECR policy that allows the role to access some ECR
+namespace, and the trust policy that allows a token issued by keycloak
+to assume that AWS role. As mentioned earlier, the trust policy can
+use the Federated principal to authorize keycloak-signed JWTs to
+assume an AWS role. The question then is dynamically authorizing that
+JWT to access some namespace in ECR based on values in that JWT.
+
+I'll start with the solution I settled on. Each tenant has a
+root-level group in the Keycloak realm and that root-level group has an
+attribute that indicates the tenant\_name. This attribute is assigned
+to all members of the group, and can therefore be retrieved by a scope
+with the User Attribute mapper. By turning on multi-value and
+attribute aggregation on that mapper, a user member of multiple tenant
+groups will receive all of those tenant_name values as an array-type
+claim in its id and access tokens.
+
+The issue becomes where to put this array of tenant names in the
+token. AWS has no support for using custom claim values in the IAM
+trust relationship policy, but it does have minimal support for some
+standard claims. A trust relationship policy federating OIDC users
+with AssumeRoleWithWebIdentity can directly retrieve and match against
+the azp, aud, amr, and sub claims in the OIDC token used in the
+call. Example:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::274295908850:oidc-provider/identity.pauwelslabs.com/realms/pauwels-labs-main"
+            },
+            "Action": [
+                "sts:AssumeRoleWithWebIdentity"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "identity.pauwelslabs.com/realms/pauwels-labs-main:oaud": "aws",
+                    "identity.pauwelslabs.com/realms/pauwels-labs-main:aud": "aws"
+                },
+                "StringLike": {
+                    "identity.pauwelslabs.com/realms/pauwels-labs-main:sub": "*${sts:RoleSessionName}*"
+                },
+                "ForAnyValue:StringLike": {
+                    "identity.pauwelslabs.com/realms/pauwels-labs-main:amr": [
+                        "/tenant-${sts:RoleSessionName}/root/admins",
+                        "/tenant-${sts:RoleSessionName}/root/writers",
+                        "/tenant-${sts:RoleSessionName}/ecr/admins",
+                        "/tenant-${sts:RoleSessionName}/ecr/writers"
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
+
+In this scenario, our token uses the `azp` claim, so the `:oaud`
+suffix maps to `aud` in the token, the `:aud` suffix maps to `azp`,
+and the rest are equal to each other. The `amr` claim is the only
+claim allowed to be multi-value. Keycloak will break if you try to map
+the `azp` claim, the `sub` claim has to be stringified, and the `aud`
+claim will break the IAM OIDC provider auth if it's multi-value and
+the first value in the array isn't an audience listed in the IAM OIDC
+provider. Additionally, specifying a User Attribute mapper that maps
+into the `aud` claim breaks keycloak.
+
+Since I wanted to be able to assign ECR permissions based on tenant
+name but also authorize RW vs RO users using group membership, I
+needed two claims to map data into. I decided to map the user's group
+names into the multi-value `amr` claim. This allows me to match in the
+trust policy whether or not the user is a member of an admin group or
+a read-only group etc. However, `amr` also has one more important
+property.
+
+It can't be read outside of a trust relationship policy specifying
+some sort of sts:AssumeRole* action. This means it can't be used at
+all in the policy outlining ECR permissions, and is therefore useless
+for determining whether or not the user has access to a specific ECR
+registry. It is only relevant for determining whether a user can
+assume a particular RW or RO role.
+
+The only claim accessible outside of the trust relationship policy is
+the sub claim (for generic OIDC providers; specific OIDC providers
+like facebook have some specific claims they have access to). This is
+where a dirty but clever hack comes in. I take advantage of the fact
+that keycloak stringifies the sub field even if it's multi-valued,
+resulting in a claim that looks a bit like this:
+
+```json
+{
+    ...
+    "sub": "['tenant-1', 'tenant-2']"
+    ...
+}
+```
+
+In the IAM trust policy, I can do a `StringLike` match against this
+token, comparing it against the `*${sts:RoleSessionName}*`. The
+asterisks on each side allow the session name to match anywhere in the
+"array" string value of the sub claim. The role session name is an
+arbitrary value provided by the client when performing the
+sts:AssumeRoleWithWebIdentity request. It can be a random value or, in
+this case, the name of the tenant. What keeps users from getting
+tokens for any tenant by simply specifying any value in the role
+session name is that the policy matches that requested tenant against
+the claim in the JWT token. That claim will only exist if the user is
+in the appropriate tenant group and therefore has the appropriate
+permissions.
+
+We then wrap up this epic by applying this field to the ECR policy
+side of things. Since the `sub` claim is the only one available, we
+can again match this, but this time against an attribute attached to
+the repository itself. In this case, each repository is tagged with a
+TenantName tag that contains the name of the owning tenant. The IAM
+policy statement looks like this:
+
+```json
+{
+    "Action": [
+        "ecr:UploadLayerPart",
+        "ecr:PutImage",
+        "ecr:InitiateLayerUpload",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:CompleteLayerUpload",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability"
+    ],
+    "Effect": "Allow",
+    "Resource": "arn:aws:ecr:eu-west-1:274295908850:repository/*",
+    "Condition": {
+        "StringLike": {
+            "identity.pauwelslabs.com/realms/pauwels-labs-main:sub": "*${ecr:ResourceTag/TenantName}*"
+        }
+    },
+    "Sid": "AllowTenantRWAccessToECRNamespace"
+}
+```
+
+Here, the `Resource` field is unlimited and allows access to the
+entire registry unhindered. The `Condition` field is where the
+tenant-specific magic happens. Here, we do another identical
+`StringLike` comparison against the `sub` claim, but we use the
+`ecr:ResourceTag` policy variable to fetch the `TenantName` tag from
+the target repository. If the repository has been tagged with a tenant
+name that is in the user's list of tenant names, then the user is
+authorized.
+
+Together, the trust relationship policy and ECR access policy achieve
+the following:
+
+1. Only allow users of our Keycloak OIDC realm that are members of
+   specific groups to assume our ECR role in AWS using
+   sts:AssumeRoleWithWebIdentity
+   
+2. Authorize those users that have assumed that role to access the ECR
+   tenant namespaces that they have access to (i.e. by being members
+   of those tenant groups).
+   
+IAM policy and condition variables were leveraged as much as possible
+to make a lightweight set of IAM resources that scale with users
+without requiring more roles. The key policy variable was
+`identity.pauwelslabs.com/realms/pauwels-labs-main:sub` as it can be
+used across both trust relationship policies and normal IAM policies,
+and links the OIDC attributes to real locations in the ECR registry.
