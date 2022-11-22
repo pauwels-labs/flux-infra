@@ -5,3 +5,4 @@ resources:
 - ecr-credentials-sync.yaml
 - namespace.yaml
 - resourcequota.yaml
+- gitrepository.yaml
