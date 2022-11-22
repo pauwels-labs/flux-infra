@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: external-infra-data
+data:
+  tenantname: ${tenantname}
+  clustername: ${clustername}
+  environment: ${environment}
+  vaulturl: ${vaulturl}

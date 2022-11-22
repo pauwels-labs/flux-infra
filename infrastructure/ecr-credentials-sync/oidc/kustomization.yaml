@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../base
+- externalsecret-env-ecr-credentials-sync.yaml
+- secretstore-config-ecr-credentials-sync.yaml
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/jobTemplate/spec/template/spec/containers/0/env
+      value:
+      - name: APP_MODE
+        value: oidc
+    - op: add
+      path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
+      value:
+      - secretRef:
+          name: env-ecr-credentials-sync
+          optional: false
+    - op: remove
+      path: /spec/jobTemplate/spec/template/spec/containers/1/env/1/value
+    - op: add
+      path: /spec/jobTemplate/spec/template/spec/containers/1/env/1/valueFrom
+      value:
+        secretKeyRef:
+          name: env-ecr-credentials-sync
+          key: APP_AWS_ACCOUNT_ID
+          optional: false

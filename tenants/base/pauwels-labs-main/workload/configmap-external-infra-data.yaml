@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: external-infra-data
-  namespace: pauwels-labs-main
-data:
-  clustername: ${clustername}
-  environment: ${environment}
-  vaulturl: ${vaulturl}

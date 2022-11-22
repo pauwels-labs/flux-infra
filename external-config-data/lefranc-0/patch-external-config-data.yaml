@@ -21,6 +21,10 @@ data:
   keycloakdbport: "'5432'"
   keycloakdbname: "keycloak"
   vaulturl: "http://vault.vault:8200"
+  oidctokenurl: "https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/token"
+  ecrcredentialsyncclientid: "aws"
+  ecrcredentialsyncusername: "ecr-credentials-syncer-pauwels-labs-main"
+  ecrcredentialsynciamrolename: "tenant-ecr-rw"
 kind: ConfigMap
 metadata:
   name: external-config-data

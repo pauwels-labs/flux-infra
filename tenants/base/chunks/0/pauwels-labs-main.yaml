@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: tenants
+  name: pauwels-labs-main
   namespace: flux-system
 spec:
   interval: 1m0s
@@ -9,20 +9,18 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./tenants/infra/chunks/0
+  path: ./tenant/base
   prune: true
   wait: true
   timeout: 30s
-  dependsOn:
-  - name: external-config-data
-  - name: ecr-credentials-sync
-  - name: sources
-  - name: istio-base
-  - name: istio-extras
-  - name: certificates
-  - name: external-secrets
-  - name: external-dns
   postBuild:
+    substitute:
+      tenantname: pauwels-labs-main
+      tenantrepohost: github
+      tenantrepoorg: pauwels-labs
+      tenantreponame: team-main
+      tenantrepourl: ssh://git@github.com:pauwels-labs/team-main.git
+      tenantrepopath: ""
     substituteFrom:
     - kind: ConfigMap
       name: external-config-data

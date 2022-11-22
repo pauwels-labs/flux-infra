@@ -1,0 +1,34 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Trigger
+metadata:
+  name: tenant-${tenantname}-${tenantrepohost}-${tenantrepoorg}
+  labels:
+    toolkit.fluxcd.io/tenant: ${tenantname}
+spec:
+  serviceAccountName: tekton-robot
+  interceptors:
+  - name: "push"
+    ref:
+      name: "github"
+      kind: ClusterInterceptor
+      apiVersion: triggers.tekton.dev
+    params:
+    - name: "secretRef"
+      value:
+        secretName: webhook-hmac-${tenantname}-primary
+        secretKey: token
+    - name: "eventTypes"
+      value: ["push"]
+  - name: "only when pushed to main branch"
+    ref:
+      name: "cel"
+      kind: ClusterInterceptor
+      apiVersion: triggers.tekton.dev
+    params:
+    - name: "filter"
+      value: "body.ref == 'refs/heads/main' && body.repository.owner.name == 'pauwels-labs'"
+  bindings:
+  - ref: github-push
+    kind: ClusterTriggerBinding
+  template:
+    ref: clone-build-push

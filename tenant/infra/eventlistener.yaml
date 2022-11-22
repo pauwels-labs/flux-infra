@@ -1,0 +1,23 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: github
+  labels:
+    toolkit.fluxcd.io/tenant: ${tenantname}
+spec:
+  serviceAccountName: "tekton-robot"
+  triggers:
+  - triggerRef: tenant-${tenantname}-github
+  resources:
+    kubernetesResource:
+      spec:
+        template:
+          spec:
+            containers:
+            - resources:
+                requests:
+                  memory: "64Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "128Mi"
+                  cpu: "500m"
