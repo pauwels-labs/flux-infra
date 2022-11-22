@@ -6,3 +6,5 @@ resources:
 - namespace.yaml
 - resourcequota.yaml
 - gitrepository.yaml
+- externalsecret-ssh.yaml
+- secretstore-tenant-repositories-ssh.yaml
