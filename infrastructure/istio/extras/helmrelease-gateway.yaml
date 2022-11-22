@@ -30,22 +30,22 @@ spec:
         service.beta.kubernetes.io/aws-load-balancer-ip-address-type: "dualstack"
         service.beta.kubernetes.io/aws-load-balancer-manage-backend-security-group-rules: "true"
         service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
-  autoscaling:
-    enabled: true
-    minReplicas: 3
-    maxReplicas: 5
-    targetCPUUtilizationPercentage: 80
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - istio-gateway
-          - key: istio
-            operator: In
-            values:
-            - gateway
-        topologyKey: failure-domain.beta.kubernetes.io/zone
+    autoscaling:
+      enabled: true
+      minReplicas: 3
+      maxReplicas: 5
+      targetCPUUtilizationPercentage: 80
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - istio-gateway
+            - key: istio
+              operator: In
+              values:
+              - gateway
+          topologyKey: failure-domain.beta.kubernetes.io/zone
