@@ -20,7 +20,7 @@ spec:
       tenantrepohost: github
       tenantrepoorg: pauwels-labs
       tenantreponame: team-main
-      tenantrepourl: ssh://git@github.com:pauwels-labs/team-main.git
+      tenantrepourl: ssh://git@github.com/pauwels-labs/team-main.git
       tenantrepopath: ""
     substituteFrom:
     - kind: ConfigMap
