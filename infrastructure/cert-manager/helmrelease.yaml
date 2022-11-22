@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: cert-manager
   serviceAccountName: helm-controller
-  targetNamespace: cert-manager
+  targetNamespace: "${infranamespaceprefix}cert-manager"
   chart:
     spec:
       chart: jetstack/cert-manager

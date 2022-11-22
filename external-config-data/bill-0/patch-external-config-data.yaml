@@ -22,6 +22,8 @@ data:
   keycloakdbname: ""
   vaulturl: "https://secrets.pauwelslabs.com:443"
   oidctokenurl: "https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/token"
+  infranamespaceprefix: "i-"
+  tenantnamespaceprefix: "t-"
 kind: ConfigMap
 metadata:
   name: external-config-data

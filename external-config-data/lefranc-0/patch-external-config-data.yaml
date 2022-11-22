@@ -25,6 +25,8 @@ data:
   ecrcredentialsyncclientid: "aws"
   ecrcredentialsyncusername: "ecr-credentials-syncer-pauwels-labs-main"
   ecrcredentialsynciamrolename: "tenant-ecr-rw"
+  infranamespaceprefix: "i-"
+  tenantnamespaceprefix: "t-"
 kind: ConfigMap
 metadata:
   name: external-config-data
