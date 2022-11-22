@@ -18,7 +18,10 @@ patches:
         value: ${ecrregion}
     - op: replace
       path: /spec/jobTemplate/spec/template/spec/containers/1/env/1/value
-      value: "'${ecraccountid}'"
+      value: "id-${ecraccountid}"
+    - op: replace
+      path: /spec/jobTemplate/spec/template/spec/containers/1/env/2/value
+      value: "${ecrregion}"
   target:
     kind: CronJob
     name: ecr-credentials-sync
