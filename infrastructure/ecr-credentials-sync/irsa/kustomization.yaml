@@ -17,10 +17,8 @@ patches:
       - name: APP_AWS_REGION
         value: ${ecrregion}
     - op: replace
-      path: /spec/jobTemplate/spec/template/spec/containers/1/env/1
-      value:
-        name: APP_AWS_ACCOUNT_ID
-        value: ${ecraccountid}
+      path: /spec/jobTemplate/spec/template/spec/containers/1/env/1/value
+      value: ${ecraccountid}
   target:
     kind: CronJob
     name: ecr-credentials-sync
