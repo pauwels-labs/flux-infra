@@ -8,3 +8,4 @@ resources:
 - gitrepository.yaml
 - externalsecret-ssh.yaml
 - secretstore-tenant-repositories-ssh.yaml
+- serviceaccount.yaml
