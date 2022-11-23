@@ -17,7 +17,7 @@ spec:
   - name: external-config-data
   - name: ecr-credentials-sync
   - name: sources
-  - name: istio-base
+  - name: istio-system
   - name: aws-load-balancer-controller
   postBuild:
     substituteFrom:
