@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: vault
   serviceAccountName: helm-controller
-  targetNamespace: vault
+  targetNamespace: i-vault
   chart:
     spec:
       chart: hashicorp/vault
@@ -49,8 +49,8 @@ spec:
       ha:
         enabled: true
         replicas: 3
-        apiAddr: "http://$(HOSTNAME).vault-internal.vault.svc.cluster.local:8200"
-        clusterAddr: "http://$(HOSTNAME).vault-internal.vault.svc.cluster.local:8201"
+        apiAddr: "http://$(HOSTNAME).$(HOSTNAME)-internal.i-vault.svc.cluster.local:8200"
+        clusterAddr: "http://$(HOSTNAME).$(HOSTNAME)-internal.i-vault.svc.cluster.local:8201"
         raft:
           enabled: true
           setNodeId: true
@@ -71,15 +71,23 @@ spec:
             storage "raft" {
               path = "/vault/data"
 
+              retry_join {
+                leader_api_addr         = "http://vault-0.vault-internal.i-vault.svc.cluster.local:8200"
               }
               retry_join {
-                leader_api_addr         = "http://vault2-0.vault2-inernal.i-vault.svc.cluster.local:8200"
+                leader_api_addr         = "http://vault-1.vault-internal.i-vault.svc.cluster.local:8200"
               }
               retry_join {
-                leader_api_addr         = "http://vault2-1.vault2-inernal.i-vault.svc.cluster.local:8200"
+                leader_api_addr         = "http://vault-2.vault-internal.i-vault.svc.cluster.local:8200"
               }
               retry_join {
-                leader_api_addr         = "http://vault2-2.vault2-inernal.i-vault.svc.cluster.local:8200"
+                leader_api_addr         = "http://vault2-0.vault2-internal.i-vault.svc.cluster.local:8200"
+              }
+              retry_join {
+                leader_api_addr         = "http://vault2-1.vault2-internal.i-vault.svc.cluster.local:8200"
+              }
+              retry_join {
+                leader_api_addr         = "http://vault2-2.vault2-internal.i-vault.svc.cluster.local:8200"
               }
 
               autopilot {
