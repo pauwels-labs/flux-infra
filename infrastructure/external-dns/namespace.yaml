@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: external-dns
+  name: "${infranamespaceprefix}external-dns"
   labels:
     istio.io/rev: stable
-    name: external-dns
+    name: "${infranamespaceprefix}external-dns"

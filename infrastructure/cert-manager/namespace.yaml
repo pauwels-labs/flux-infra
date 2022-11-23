@@ -4,4 +4,4 @@ metadata:
   name: "${infranamespaceprefix}cert-manager"
   labels:
     istio.io/rev: stable
-    name: cert-manager
+    name: "${infranamespaceprefix}cert-manager"

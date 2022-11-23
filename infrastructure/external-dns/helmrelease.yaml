@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: external-dns
   serviceAccountName: helm-controller
-  targetNamespace: external-dns
+  targetNamespace: "${infranamespaceprefix}external-dns"
   chart:
     spec:
       chart: external-dns/external-dns
