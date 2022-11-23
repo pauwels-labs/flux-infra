@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/vault/extend-raft
+  path: ./infrastructure/vault-extend-raft
   prune: true
   wait: true
   timeout: 30s
