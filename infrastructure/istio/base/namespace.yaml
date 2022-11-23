@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: istio-system
+  name: "${infranamespaceprefix}istio-system"
   labels:
-    name: istio-system
+    name: "${infranamespaceprefix}istio-system"
 ---
 apiVersion: v1
 kind: Namespace

@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: istio-base
   serviceAccountName: helm-controller
-  targetNamespace: istio-system
+  targetNamespace: "${infranamespaceprefix}istio-system"
   chart:
     spec:
       chart: istio/base

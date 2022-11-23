@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: istio-istiod
   serviceAccountName: helm-controller
-  targetNamespace: istio-system
+  targetNamespace: "${infranamespaceprefix}istio-system"
   chart:
     spec:
       chart: istio/istiod
@@ -24,6 +24,7 @@ spec:
     revision: "1-15-0"
     revisionTags: ["stable"]
     meshConfig:
+      rootNamespace: "${infranamespaceprefix}istio-system"
       accessLogFile: /dev/stdout
       meshId: ${environment}
       extensionProviders:
