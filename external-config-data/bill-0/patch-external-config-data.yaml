@@ -3,7 +3,7 @@ data:
   awslbcontrolleriamrolearn: "arn:aws:iam::601743579976:role/AmazonEKSLoadBalancerControllerRole-bill"
   ecrregion: "eu-west-1"
   ecraccountid: "id-274295908850"
-  ecriamrolearn: "arn:aws:iam::601743579976:role/bill-flux-ecr"
+  ecriamrolearn: "arn:aws:iam::601743579976:role/bill-infra-ecr"
   artifactregistryhost: "274295908850.dkr.ecr.eu-west-1.amazonaws.com"
   clustername: "bill-0"
   environment: "dev"
