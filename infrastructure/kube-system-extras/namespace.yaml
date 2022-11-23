@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "${infranamespaceprefix}kube-system-ecr-credentials-sync"
+  labels:
+    istio.io/rev: stable
+    name: "${infranamespaceprefix}kube-system-ecr-credentials-sync"
