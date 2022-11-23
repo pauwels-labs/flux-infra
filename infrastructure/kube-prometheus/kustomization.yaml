@@ -96,3 +96,6 @@ resources:
 - prometheus-serviceAccount.yaml
 - prometheus-serviceMonitor.yaml
 - prometheus-service.yaml
+- ecr-credentials-sync.yaml
+- gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomize-controller.yaml
