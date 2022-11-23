@@ -18,7 +18,6 @@ patches:
       value: vault2
   target:
     kind: HelmRelease
-    name: vault
     namespace: flux-system
 - patch: |-
     - op: replace
@@ -29,7 +28,6 @@ patches:
       value: i-vault
   target:
     kind: Namespace
-    name: vault
 - patch: |-
     - op: replace
       path: /metadata/namespace
