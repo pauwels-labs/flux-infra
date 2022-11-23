@@ -10,3 +10,7 @@ spec:
     name: ${tenantrepohost}-${tenantrepoorg}-${tenantreponame}
   prune: true
   path: ${tenantrepopath}
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: external-infra-data
