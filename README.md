@@ -513,4 +513,3 @@ without requiring more roles. The key policy variable was
 `identity.pauwelslabs.com/realms/pauwels-labs-main:sub` as it can be
 used across both trust relationship policies and normal IAM policies,
 and links the OIDC attributes to real locations in the ECR registry.
-
