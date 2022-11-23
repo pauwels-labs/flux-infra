@@ -5,3 +5,6 @@ resources:
 - helmrelease.yaml
 - secretstore-keycloak-operator.yaml
 - externalsecret-keycloak-db-credentials.yaml
+- ecr-credentials-sync.yaml
+- gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomize-controller.yaml

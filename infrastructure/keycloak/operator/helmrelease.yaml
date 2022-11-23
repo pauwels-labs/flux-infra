@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: keycloak/keycloak-operator
-      version: 1.0.1
+      version: 1.0.2
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -22,3 +22,5 @@ spec:
     crds: CreateReplace
   values:
     ipv6BugFix: true
+    imagePullSecrets:
+    - ecr-credentials
