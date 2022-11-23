@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: token-reviewer
-  namespace: vault
+  namespace: "${infranamespaceprefix}vault"
 roleRef:
   kind: ClusterRole
   name: system:auth-delegator
