@@ -23,7 +23,7 @@ spec:
   values:
     global:
       imagePullSecrets:
-      - ecr-credentials
+      - name: ecr-credentials
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${certmanageriamrolearn}

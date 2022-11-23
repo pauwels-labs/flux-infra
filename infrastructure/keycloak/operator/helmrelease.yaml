@@ -23,4 +23,4 @@ spec:
   values:
     ipv6BugFix: true
     imagePullSecrets:
-    - ecr-credentials
+    - name: ecr-credentials

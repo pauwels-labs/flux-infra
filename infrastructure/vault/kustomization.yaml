@@ -5,3 +5,6 @@ resources:
 - helmrelease.yaml
 - peerauthentication.yaml
 - virtualservice.yaml
+- ecr-credentials-sync.yaml
+- gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomize-controller.yaml

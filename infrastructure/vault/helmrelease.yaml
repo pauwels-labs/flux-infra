@@ -22,6 +22,8 @@ spec:
     crds: CreateReplace
   values:
     global:
+      imagePullSecrets:
+      - name: ecr-credentials
       enabled: true
       tlsDisable: true
     injector:

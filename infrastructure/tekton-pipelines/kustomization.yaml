@@ -11,6 +11,9 @@ resources:
 - task-git-clone.yaml
 - task-kaniko.yaml
 - pipeline-clone-build-push.yaml
+- ecr-credentials-sync.yaml
+- gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomize-controller.yaml
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller
@@ -27,3 +30,10 @@ patches:
     version: v1
     kind: ConfigMap
     name: "feature-flags"
+- patch: |-
+    - op: add
+      path: /imagePullSecrets
+      value:
+      - name: ecr-credentials
+  target:
+    kind: ServiceAccount

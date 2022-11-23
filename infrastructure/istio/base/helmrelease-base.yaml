@@ -24,5 +24,5 @@ spec:
     global:
       istioNamespace: "${infranamespaceprefix}istio-system"
       imagePullSecrets:
-      - ecr-credentials
+      - name: ecr-credentials
     defaultRevision: "stable"
