@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: istio-gateway
   serviceAccountName: helm-controller
-  targetNamespace: istio-ingress
+  targetNamespace: "${infranamespaceprefix}istio-ingress"
   chart:
     spec:
       chart: istio/gateway

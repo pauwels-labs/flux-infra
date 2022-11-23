@@ -8,7 +8,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: istio-ingress
+  name: "${infranamespaceprefix}istio-ingress"
   labels:
     istio.io/rev: stable
-    name: istio-ingress
+    name: "${infranamespaceprefix}istio-ingress"
