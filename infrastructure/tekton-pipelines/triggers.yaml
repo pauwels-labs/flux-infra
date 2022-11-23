@@ -198,7 +198,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: tekton-triggers-admin
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -212,7 +212,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: tekton-triggers-admin-webhook
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -229,7 +229,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: tekton-triggers-core-interceptors
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -246,7 +246,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: tekton-triggers-info
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -279,7 +279,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: tekton-triggers-controller
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -288,7 +288,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: tekton-triggers-webhook
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -297,7 +297,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: tekton-triggers-core-interceptors
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -327,7 +327,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: tekton-triggers-controller
-    namespace: tekton-pipelines
+    namespace: "${infranamespaceprefix}tekton-pipelines"
 roleRef:
   kind: ClusterRole
   name: tekton-triggers-admin
@@ -343,7 +343,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: tekton-triggers-webhook
-    namespace: tekton-pipelines
+    namespace: "${infranamespaceprefix}tekton-pipelines"
 roleRef:
   kind: ClusterRole
   name: tekton-triggers-admin
@@ -359,7 +359,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: tekton-triggers-core-interceptors
-    namespace: tekton-pipelines
+    namespace: "${infranamespaceprefix}tekton-pipelines"
 roleRef:
   kind: ClusterRole
   name: tekton-triggers-core-interceptors
@@ -375,7 +375,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: tekton-triggers-core-interceptors
-    namespace: tekton-pipelines
+    namespace: "${infranamespaceprefix}tekton-pipelines"
 roleRef:
   kind: ClusterRole
   name: tekton-triggers-core-interceptors-secrets
@@ -400,14 +400,14 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: tekton-triggers-controller-admin
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
 subjects:
   - kind: ServiceAccount
     name: tekton-triggers-controller
-    namespace: tekton-pipelines
+    namespace: "${infranamespaceprefix}tekton-pipelines"
 roleRef:
   kind: Role
   name: tekton-triggers-admin
@@ -417,14 +417,14 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: tekton-triggers-webhook-admin
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
 subjects:
   - kind: ServiceAccount
     name: tekton-triggers-webhook
-    namespace: tekton-pipelines
+    namespace: "${infranamespaceprefix}tekton-pipelines"
 roleRef:
   kind: Role
   name: tekton-triggers-admin-webhook
@@ -434,14 +434,14 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: tekton-triggers-core-interceptors
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
 subjects:
   - kind: ServiceAccount
     name: tekton-triggers-core-interceptors
-    namespace: tekton-pipelines
+    namespace: "${infranamespaceprefix}tekton-pipelines"
 roleRef:
   kind: Role
   name: tekton-triggers-core-interceptors
@@ -451,7 +451,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: tekton-triggers-info
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -937,7 +937,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: triggers-webhook-certs
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: default
@@ -960,7 +960,7 @@ webhooks:
     clientConfig:
       service:
         name: tekton-triggers-webhook
-        namespace: tekton-pipelines
+        namespace: "${infranamespaceprefix}tekton-pipelines"
     failurePolicy: Fail
     sideEffects: None
     name: validation.webhook.triggers.tekton.dev
@@ -980,7 +980,7 @@ webhooks:
     clientConfig:
       service:
         name: tekton-triggers-webhook
-        namespace: tekton-pipelines
+        namespace: "${infranamespaceprefix}tekton-pipelines"
     failurePolicy: Fail
     sideEffects: None
     name: webhook.triggers.tekton.dev
@@ -1000,7 +1000,7 @@ webhooks:
     clientConfig:
       service:
         name: tekton-triggers-webhook
-        namespace: tekton-pipelines
+        namespace: "${infranamespaceprefix}tekton-pipelines"
     failurePolicy: Fail
     sideEffects: None
     name: config.webhook.triggers.tekton.dev
@@ -1110,7 +1110,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-defaults-triggers
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -1154,7 +1154,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: feature-flags-triggers
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-pipelines
@@ -1185,7 +1185,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: triggers-info
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -1216,7 +1216,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-logging-triggers
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -1272,7 +1272,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-observability-triggers
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/instance: default
     app.kubernetes.io/part-of: tekton-triggers
@@ -1338,7 +1338,7 @@ metadata:
     app: tekton-triggers-controller
     version: "v0.21.0"
   name: tekton-triggers-controller
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
 spec:
   ports:
     - name: http-metrics
@@ -1370,7 +1370,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tekton-triggers-controller
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/name: controller
     app.kubernetes.io/component: controller
@@ -1444,7 +1444,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tekton-triggers-webhook
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/name: webhook
     app.kubernetes.io/component: webhook
@@ -1484,7 +1484,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tekton-triggers-webhook
-  namespace: tekton-pipelines
+  namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/name: webhook
     app.kubernetes.io/component: webhook
