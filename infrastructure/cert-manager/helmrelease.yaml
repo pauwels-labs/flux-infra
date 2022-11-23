@@ -21,6 +21,9 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    global:
+      imagePullSecrets:
+      - ecr-credentials
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${certmanageriamrolearn}
