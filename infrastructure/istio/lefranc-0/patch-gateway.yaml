@@ -54,7 +54,7 @@ spec:
       name: https-identity
       protocol: HTTPS
     hosts:
-    - "keycloak/identity.pauwelslabs.com"
+    - "i-keycloak/identity.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-identity-pauwels-labs
@@ -63,7 +63,7 @@ spec:
       name: https-echo
       protocol: HTTPS
     hosts:
-    - "keycloak/echo.pauwelslabs.com"
+    - "i-keycloak/echo.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-echo-pauwels-labs
