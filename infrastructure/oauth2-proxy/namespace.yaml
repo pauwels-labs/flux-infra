@@ -1,8 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: oauth2-proxy
-
+  name: "${infranamespaceprefix}oauth2-proxy"
   labels:
     istio.io/rev: stable
-    name: oauth2-proxy
+    name: "${infranamespaceprefix}oauth2-proxy"

@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: oauth2-proxy
   serviceAccountName: helm-controller
-  targetNamespace: oauth2-proxy
+  targetNamespace: "${infranamespaceprefix}oauth2-proxy"
   chart:
     spec:
       chart: oauth2-proxy/oauth2-proxy

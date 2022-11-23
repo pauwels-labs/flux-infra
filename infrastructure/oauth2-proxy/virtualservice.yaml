@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: oauth2-proxy
-  namespace: oauth2-proxy
+  namespace: "${infranamespaceprefix}oauth2-proxy"
 spec:
   hosts:
   - auth.pauwelslabs.com

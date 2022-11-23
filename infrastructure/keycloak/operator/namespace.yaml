@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: keycloak
+  name: "${infranamespaceprefix}keycloak"
   labels:
     istio.io/rev: stable
-    name: keycloak
+    name: "${infranamespaceprefix}keycloak"

@@ -2,7 +2,7 @@ apiVersion: k8s.keycloak.org/v2alpha1
 kind: Keycloak
 metadata:
   name: keycloak
-  namespace: keycloak
+  namespace: "${infranamespaceprefix}keycloak"
 spec:
   instances: 1
   #image: "${ecraccountid}.dkr.ecr.${ecrregion}.amazonaws.com/keycloak/keycloak:19.0.2"
