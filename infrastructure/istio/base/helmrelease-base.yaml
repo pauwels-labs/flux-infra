@@ -21,4 +21,5 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    istioNamespace: "${infranamespaceprefix}istio-system"
     defaultRevision: "stable"

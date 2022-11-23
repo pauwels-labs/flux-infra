@@ -74,6 +74,7 @@ spec:
           # (even though the NLB is there).
           numTrustedProxies: 0
     global:
+      istioNamespace: "${infranamespaceprefix}istio-system"
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
       logging:
         level: "default:debug"
