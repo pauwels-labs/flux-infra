@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: vault-ui
-  namespace: vault
+  namespace: "vault"
 spec:
   hosts:
   - secrets.pauwelslabs.com
