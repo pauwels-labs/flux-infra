@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - helmrelease.yaml
+- ecr-credentials-sync.yaml
+- gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomize-controller.yaml
