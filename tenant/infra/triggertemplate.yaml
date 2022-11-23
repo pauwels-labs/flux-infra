@@ -24,7 +24,7 @@ spec:
         - name: name
           value: clone-build-push
         - name: namespace
-          value: tekton-pipelines
+          value: "${infranamespaceprefix}tekton-pipelines"
       podTemplate:
         securityContext:
           fsGroup: 65532

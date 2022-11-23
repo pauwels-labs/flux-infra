@@ -10,7 +10,7 @@ spec:
     kind: GitRepository
     name: flux-system
   path: ./tenant/base
-  targetNamespace: pauwels-labs-main
+  targetNamespace: "${tenantnamespaceprefix}pauwels-labs-main"
   prune: true
   wait: true
   timeout: 30s

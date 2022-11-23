@@ -15,4 +15,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kustomize-controller
-  namespace: ${tenantname}
+  namespace: "${tenantnamespaceprefix}${tenantname}"
