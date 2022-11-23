@@ -45,7 +45,7 @@ spec:
       name: https-secrets
       protocol: HTTPS
     hosts:
-    - "vault2/secrets.pauwelslabs.com"
+    - "i-vault/secrets.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-secrets-pauwels-labs
