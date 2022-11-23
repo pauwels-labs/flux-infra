@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/part-of: kube-prometheus
     app.kubernetes.io/version: 9.2.0
   name: grafana
-  namespace: monitoring
+  namespace: ${infranamespaceprefix}monitoring
 spec:
   replicas: 1
   selector:
@@ -18,9 +18,9 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/grafana-config: d95b5e785b762675c4d95cb3dcced320
-        checksum/grafana-dashboardproviders: 68d850dbd77bcb0f1e59a0b6e76b7786
-        checksum/grafana-datasources: 36974d4aa6a2dd61510d11b8c21ed115
+        checksum/grafana-config: f639a19e5ccf562640b9ba4fca49f8cb
+        checksum/grafana-dashboardproviders: 8b693f9bf64cb05032ff846855827c2a
+        checksum/grafana-datasources: c2acff3d0d14f3b3174521be50469fa0
       labels:
         app.kubernetes.io/component: grafana
         app.kubernetes.io/name: grafana

@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: kiali
-  namespace: kiali
+  namespace: "${infranamespaceprefix}kiali"
 spec:
   hosts:
   - network.pauwelslabs.com

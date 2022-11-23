@@ -24,4 +24,4 @@ metadata:
     app.kubernetes.io/part-of: kube-prometheus
     app.kubernetes.io/version: 9.2.0
   name: grafana-dashboards
-  namespace: monitoring
+  namespace: ${infranamespaceprefix}monitoring

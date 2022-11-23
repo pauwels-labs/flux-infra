@@ -7,11 +7,9 @@ metadata:
     app.kubernetes.io/part-of: kube-prometheus
     app.kubernetes.io/version: 9.2.0
   name: grafana-config
-  namespace: monitoring
+  namespace: ${infranamespaceprefix}monitoring
 stringData:
   grafana.ini: |
-    [auth.basic]
-    enabled = false
     [auth.jwt]
     allow_assign_grafana_admin = true
     auto_sign_up = true
@@ -22,13 +20,6 @@ stringData:
     jwk_set_url = https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
     role_attribute_path = contains(roles[*], 'dashboards-admin') && 'GrafanaAdmin' || contains(roles[*], 'dashboards-editor') && 'Editor' || 'Viewer'
     username_claim = preferred_username
-    [auth.proxy]
-    auto_sign_up = true
-    enabled = false
-    header_name = x-forwarded-preferred-username
-    header_property = username
-    headers = id:x-forwarded-user groups:x-forwarded-groups
-    sync_ttl = 60
     [date_formats]
     default_timezone = UTC
     [server]

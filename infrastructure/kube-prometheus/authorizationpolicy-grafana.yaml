@@ -2,7 +2,7 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: grafana
-  namespace: monitoring
+  namespace: ${infranamespaceprefix}monitoring
 spec:
   action: CUSTOM
   provider:

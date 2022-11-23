@@ -3,5 +3,5 @@ kind: Namespace
 metadata:
   labels:
     istio.io/rev: stable
-    name: monitoring
-  name: monitoring
+    name: ${infranamespaceprefix}monitoring
+  name: ${infranamespaceprefix}monitoring

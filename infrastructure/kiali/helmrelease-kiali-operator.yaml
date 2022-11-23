@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: kiali-operator
   serviceAccountName: helm-controller
-  targetNamespace: kiali
+  targetNamespace: "${infranamespaceprefix}kiali"
   chart:
     spec:
       chart: kiali/kiali-operator

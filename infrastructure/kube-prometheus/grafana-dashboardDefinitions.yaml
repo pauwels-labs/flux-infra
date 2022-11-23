@@ -602,7 +602,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-alertmanager-overview
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     apiserver.json: |-
@@ -2363,7 +2363,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-apiserver
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     cluster-total.json: |-
@@ -4234,7 +4234,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-cluster-total
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     controller-manager.json: |-
@@ -5413,7 +5413,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-controller-manager
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     grafana-overview.json: |-
@@ -6038,7 +6038,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-grafana-overview
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     k8s-resources-cluster.json: |-
@@ -9115,7 +9115,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-k8s-resources-cluster
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     k8s-resources-namespace.json: |-
@@ -11901,7 +11901,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-k8s-resources-namespace
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     k8s-resources-node.json: |-
@@ -12916,7 +12916,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-k8s-resources-node
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     k8s-resources-pod.json: |-
@@ -15374,7 +15374,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-k8s-resources-pod
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     k8s-resources-workload.json: |-
@@ -17387,7 +17387,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-k8s-resources-workload
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     k8s-resources-workloads-namespace.json: |-
@@ -19565,7 +19565,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-k8s-resources-workloads-namespace
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     kubelet.json: |-
@@ -21808,7 +21808,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-kubelet
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     namespace-by-pod.json: |-
@@ -23261,7 +23261,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-namespace-by-pod
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     namespace-by-workload.json: |-
@@ -24986,7 +24986,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-namespace-by-workload
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     node-cluster-rsrc-use.json: |-
@@ -26038,7 +26038,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-node-cluster-rsrc-use
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     node-rsrc-use.json: |-
@@ -27116,7 +27116,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-node-rsrc-use
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     nodes-darwin.json: |-
@@ -28178,7 +28178,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-nodes-darwin
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     nodes.json: |-
@@ -29233,7 +29233,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-nodes
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     persistentvolumesusage.json: |-
@@ -29809,7 +29809,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-persistentvolumesusage
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     pod-total.json: |-
@@ -31026,7 +31026,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-pod-total
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     prometheus-remote-write.json: |-
@@ -32685,7 +32685,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-prometheus-remote-write
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     prometheus.json: |-
@@ -33825,7 +33825,7 @@ items:
                       "options": [
 
                       ],
-                      "query": "label_values(prometheus_build_info{job=\"prometheus-k8s\",namespace=\"monitoring\"}, job)",
+                      "query": "label_values(prometheus_build_info{job=\"prometheus-k8s\",namespace=\"${infranamespaceprefix}monitoring\"}, job)",
                       "refresh": 1,
                       "regex": "",
                       "sort": 2,
@@ -33909,7 +33909,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-prometheus
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     proxy.json: |-
@@ -35169,7 +35169,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-proxy
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     scheduler.json: |-
@@ -36270,7 +36270,7 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-scheduler
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 - apiVersion: v1
   data:
     workload-total.json: |-
@@ -37697,5 +37697,5 @@ items:
       app.kubernetes.io/part-of: kube-prometheus
       app.kubernetes.io/version: 9.2.0
     name: grafana-dashboard-workload-total
-    namespace: monitoring
+    namespace: ${infranamespaceprefix}monitoring
 kind: ConfigMapList
