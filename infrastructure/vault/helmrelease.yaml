@@ -49,8 +49,8 @@ spec:
       ha:
         enabled: true
         replicas: 3
-        apiAddr: "http://$(HOSTNAME).$(HOSTNAME)-internal.i-vault.svc.cluster.local:8200"
-        clusterAddr: "http://$(HOSTNAME).$(HOSTNAME)-internal.i-vault.svc.cluster.local:8201"
+        apiAddr: "http://$(HOSTNAME).vault-internal.i-vault.svc.cluster.local:8200"
+        clusterAddr: "http://$(HOSTNAME).vault-internal.i-vault.svc.cluster.local:8201"
         raft:
           enabled: true
           setNodeId: true
