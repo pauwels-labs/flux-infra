@@ -6,3 +6,16 @@ resources:
 - constrainttemplate-enforceistioexportto.yaml
 - constrainttemplate-enforceistiosubpath.yaml
 - constrainttemplate-enforceservicetypes.yaml
+- ecr-credentials-sync.yaml
+- gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomize-controller.yaml
+patch:
+- patches: |-
+    - op: add
+      path: /imagePullSecrets
+      value:
+      - ecr-credentials
+  target:
+    kind: ServiceAccount
+    name: gatekeeper-admin
+    
