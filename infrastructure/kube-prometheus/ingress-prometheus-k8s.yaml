@@ -5,7 +5,7 @@ metadata:
   namespace: ${infranamespaceprefix}monitoring
 spec:
   gateways:
-  - istio-ingress/pauwels-labs
+  - i-istio-ingress/pauwels-labs
   hosts:
   - metrics.pauwelslabs.com
   http:

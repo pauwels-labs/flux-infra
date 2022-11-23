@@ -7,7 +7,7 @@ spec:
   hosts:
   - echo.pauwelslabs.com
   gateways:
-  - istio-ingress/pauwels-labs
+  - i-istio-ingress/pauwels-labs
   http:
   - name: "echo"
     route:
