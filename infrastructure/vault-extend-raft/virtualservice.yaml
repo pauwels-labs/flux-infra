@@ -14,4 +14,4 @@ spec:
     - destination:
         port:
           number: 8200
-        host: vault-ui
+        host: vault2-ui
