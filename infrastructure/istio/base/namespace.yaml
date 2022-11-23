@@ -3,6 +3,7 @@ kind: Namespace
 metadata:
   name: "${infranamespaceprefix}istio-system"
   labels:
+    istio.io/rev: stable
     name: "${infranamespaceprefix}istio-system"
 ---
 apiVersion: v1
