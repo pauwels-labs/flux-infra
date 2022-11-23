@@ -71,14 +71,6 @@ spec:
             storage "raft" {
               path = "/vault/data"
 
-              retry_join {
-                leader_api_addr         = "http://vault-0.vault-internal.vault.svc.cluster.local:8200"
-              }
-              retry_join {
-                leader_api_addr         = "http://vault-1.vault-internal.vault.svc.cluster.local:8200"
-              }
-              retry_join {
-                leader_api_addr         = "http://vault-2.vault-internal.vault.svc.cluster.local:8200"
               }
               retry_join {
                 leader_api_addr         = "http://vault2-0.vault2-inernal.i-vault.svc.cluster.local:8200"
