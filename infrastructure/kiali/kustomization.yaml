@@ -4,3 +4,6 @@ resources:
 - namespace.yaml
 - virtualservice.yaml
 - helmrelease-kiali-operator.yaml
+- ecr-credentials-sync.yaml
+- gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomize-controller.yaml
