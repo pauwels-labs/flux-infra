@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: github-webhook-cd-${environment}-pauwels-labs
-  namespace: istio-ingress
+  namespace: "${infranamespaceprefix}istio-ingress"
 spec:
   secretName: tls-github-webhook-cd-${environment}-pauwels-labs
   duration: 2160h   # 90d

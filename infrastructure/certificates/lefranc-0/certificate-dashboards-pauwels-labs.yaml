@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: dashboards-pauwels-labs
-  namespace: istio-ingress
+  namespace: "${infranamespaceprefix}istio-ingress"
 spec:
   secretName: tls-dashboards-pauwels-labs
   duration: 2160h   # 90d
