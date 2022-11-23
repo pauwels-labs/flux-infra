@@ -23,6 +23,8 @@ spec:
   values:
     image:
       repository: ${artifactregistryhost}/amazon/aws-load-balancer-controller
+    imagePullSecrets:
+    - name: ecr-credentials
     enableCertManager: false
     serviceAccount:
       annotations:
