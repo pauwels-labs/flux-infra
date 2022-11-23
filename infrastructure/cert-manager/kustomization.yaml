@@ -5,3 +5,4 @@ resources:
 - helmrelease.yaml
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
+- rbac-kustomization-controller.yaml
