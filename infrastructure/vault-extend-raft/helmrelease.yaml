@@ -4,7 +4,7 @@ metadata:
   name: vault2
   namespace: flux-system
 spec:
-  releaseName: vault
+  releaseName: vault2
   serviceAccountName: helm-controller
   targetNamespace: i-vault
   chart:
