@@ -80,15 +80,6 @@ spec:
               retry_join {
                 leader_api_addr         = "http://vault-2.vault-internal.i-vault.svc.cluster.local:8200"
               }
-              retry_join {
-                leader_api_addr         = "http://vault2-0.vault2-internal.i-vault.svc.cluster.local:8200"
-              }
-              retry_join {
-                leader_api_addr         = "http://vault2-1.vault2-internal.i-vault.svc.cluster.local:8200"
-              }
-              retry_join {
-                leader_api_addr         = "http://vault2-2.vault2-internal.i-vault.svc.cluster.local:8200"
-              }
 
               autopilot {
                 cleanup_dead_servers           = "true"
