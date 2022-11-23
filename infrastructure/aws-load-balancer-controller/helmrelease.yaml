@@ -22,7 +22,7 @@ spec:
     crds: CreateReplace
   values:
     image:
-      repository: ${ecraccountid}.dkr.ecr.${ecrregion}.amazonaws.com/amazon/aws-load-balancer-controller
+      repository: ${artifactregistryhost}/amazon/aws-load-balancer-controller
     enableCertManager: false
     serviceAccount:
       annotations:

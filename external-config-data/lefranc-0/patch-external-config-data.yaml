@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   awslbcontrolleriamrolearn: "arn:aws:iam::140327370353:role/AmazonEKSLoadBalancerControllerRole-lefranc"
   ecrregion: "eu-west-1"
-  ecraccountid: "274295908850"
+  ecraccountid: "id-274295908850"
   ecriamrolearn: "arn:aws:iam::140327370353:role/lefranc-infra-ecr"
   clustername: "lefranc-0"
   environment: "infra"
