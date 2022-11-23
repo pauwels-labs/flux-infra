@@ -27,12 +27,15 @@ spec:
           '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
           inlineCode: |
             function envoy_on_response(response_handle)
-              local location = response_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.lua")["redirect_location"]
-              local status = response_handle:headers():get(":status")
-              if location ~= nil and status == "404" then
-                response_handle:logInfo("switching 404 response to 301 using referer header")
-                response_handle:headers():replace(":status", "301")
-                response_handle:headers():add("location", location)
+              local metadata = response_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.lua")
+              if metadata ~= nil then
+                local location = metadata["redirect_location"]
+                local status = response_handle:headers():get(":status")
+                if location ~= nil and status == "404" then
+                  response_handle:logInfo("switching 404 response to 301 using referer header")
+                  response_handle:headers():replace(":status", "301")
+                  response_handle:headers():add("location", location)
+                end
               end
             end
 
