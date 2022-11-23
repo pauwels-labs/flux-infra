@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vault-ui
+  namespace: "i-vault"
+spec:
+  hosts:
+  - secrets.pauwelslabs.com
+  gateways:
+  - istio-ingress/pauwels-labs
+  http:
+  - name: "vault-ui"
+    route:
+    - destination:
+        port:
+          number: 8200
+        host: vault-ui
