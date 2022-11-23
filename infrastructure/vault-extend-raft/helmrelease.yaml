@@ -1,0 +1,108 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vault2
+  namespace: flux-system
+spec:
+  releaseName: vault
+  serviceAccountName: helm-controller
+  targetNamespace: i-vault
+  chart:
+    spec:
+      chart: hashicorp/vault
+      version: 0.22.0
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 2m
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    global:
+      enabled: true
+      tlsDisable: true
+    injector:
+      enabled: false
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault-k8s
+      agentImage:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault
+    server:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault
+      serviceAccount:
+        annotations:
+          eks.amazonaws.com/role-arn: ${vaultiamrolearn}
+      standalone:
+        enabled: false
+      dataStorage:
+        enabled: true
+        storageClass: "gp3"
+        size: "10Gi"
+      auditStorage:
+        enabled: true
+        storageClass: "gp3"
+        size: "10Gi"
+      ha:
+        enabled: true
+        replicas: 3
+        apiAddr: "http://$(HOSTNAME).vault-internal.i-vault.svc.cluster.local:8200"
+        clusterAddr: "http://$(HOSTNAME).vault-internal.i-vault.svc.cluster.local:8201"
+        raft:
+          enabled: true
+          setNodeId: true
+          config: |
+            ui = true
+
+            seal "awskms" {
+              region     = "${vaultunsealkeyregion}"
+              kms_key_id = "${vaultunsealkeyalias}"
+            }
+
+            listener "tcp" {
+              address         = "[::]:8200"
+              cluster_address = "[::]:8201"
+              tls_disable     = "true"
+            }
+
+            storage "raft" {
+              path = "/vault/data"
+
+              retry_join {
+                leader_api_addr         = "http://vault-0.vault-internal.vault.svc.cluster.local:8200"
+              }
+              retry_join {
+                leader_api_addr         = "http://vault-1.vault-internal.vault.svc.cluster.local:8200"
+              }
+              retry_join {
+                leader_api_addr         = "http://vault-2.vault-internal.vault.svc.cluster.local:8200"
+              }
+              retry_join {
+                leader_api_addr         = "http://vault-0.vault-internal.i-vault.svc.cluster.local:8200"
+              }
+              retry_join {
+                leader_api_addr         = "http://vault-1.vault-internal.i-vault.svc.cluster.local:8200"
+              }
+              retry_join {
+                leader_api_addr         = "http://vault-2.vault-internal.i-vault.svc.cluster.local:8200"
+              }
+
+              autopilot {
+                cleanup_dead_servers           = "true"
+                last_contact_threshold         = "200ms"
+                last_contact_failure_threshold = "10m"
+                max_trailing_logs              = 250000
+                min_quorum                     = 3
+                server_stabilization_time      = "10s"
+              }
+            }
+
+            service_registration "kubernetes" {}
+    csi:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/hashicorp/vault-csi-provider
+    ui:
+      enabled: true
