@@ -72,7 +72,7 @@ spec:
       name: https-auth
       protocol: HTTPS
     hosts:
-    - "oauth2-proxy/auth.pauwelslabs.com"
+    - "i-oauth2-proxy/auth.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-auth-pauwels-labs
