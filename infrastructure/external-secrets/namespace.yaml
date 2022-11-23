@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: external-secrets
+  name: "${infranamespaceprefix}external-secrets"
   labels:
     istio.io/rev: stable
-    name: external-secrets
+    name: "${infranamespaceprefix}external-secrets"

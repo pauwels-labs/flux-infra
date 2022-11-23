@@ -6,7 +6,7 @@ metadata:
 spec:
   releaseName: external-secrets
   serviceAccountName: helm-controller
-  targetNamespace: external-secrets
+  targetNamespace: "${infranamespaceprefix}external-secrets"
   chart:
     spec:
       chart: external-secrets/external-secrets

@@ -4,7 +4,7 @@ metadata:
   labels:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-critical-pods
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 spec:
   hard:
     pods: "100"
@@ -2908,7 +2908,7 @@ metadata:
   labels:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-admin
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -2917,7 +2917,7 @@ metadata:
   labels:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-manager-role
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 rules:
 - apiGroups:
   - ""
@@ -3105,7 +3105,7 @@ metadata:
   labels:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-manager-rolebinding
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -3113,7 +3113,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: gatekeeper-admin
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -3128,7 +3128,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: gatekeeper-admin
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 ---
 apiVersion: v1
 kind: Secret
@@ -3136,7 +3136,7 @@ metadata:
   labels:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-webhook-server-cert
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 ---
 apiVersion: v1
 kind: Service
@@ -3144,7 +3144,7 @@ metadata:
   labels:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-webhook-service
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 spec:
   ports:
   - name: https-webhook-server
@@ -3163,7 +3163,7 @@ metadata:
     gatekeeper.sh/operation: audit
     gatekeeper.sh/system: "yes"
   name: gatekeeper-audit
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 spec:
   replicas: 1
   selector:
@@ -3268,7 +3268,7 @@ metadata:
     gatekeeper.sh/operation: webhook
     gatekeeper.sh/system: "yes"
   name: gatekeeper-controller-manager
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 spec:
   replicas: 3
   selector:
@@ -3383,7 +3383,7 @@ metadata:
   labels:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-controller-manager
-  namespace: gatekeeper-system
+  namespace: "${infranamespaceprefix}gatekeeper-system"
 spec:
   minAvailable: 1
   selector:
@@ -3405,7 +3405,7 @@ webhooks:
   clientConfig:
     service:
       name: gatekeeper-webhook-service
-      namespace: gatekeeper-system
+      namespace: "${infranamespaceprefix}gatekeeper-system"
       path: /v1/mutate
   failurePolicy: Ignore
   matchPolicy: Exact
@@ -3440,7 +3440,7 @@ webhooks:
   clientConfig:
     service:
       name: gatekeeper-webhook-service
-      namespace: gatekeeper-system
+      namespace: "${infranamespaceprefix}gatekeeper-system"
       path: /v1/admit
   failurePolicy: Ignore
   matchPolicy: Exact
@@ -3482,7 +3482,7 @@ webhooks:
   clientConfig:
     service:
       name: gatekeeper-webhook-service
-      namespace: gatekeeper-system
+      namespace: "${infranamespaceprefix}gatekeeper-system"
       path: /v1/admitlabel
   failurePolicy: Fail
   matchPolicy: Exact
