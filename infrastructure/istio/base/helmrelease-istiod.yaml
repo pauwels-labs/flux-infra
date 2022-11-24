@@ -411,8 +411,8 @@ spec:
                 httpGet:
                   path: /healthz/ready
                   port: 15021
-                initialDelaySeconds: {{ annotation .ObjectMeta `readiness.status.sidecar.istio.io/initialDelaySeconds` .Values.global.proxy.readinessInitialDelaySeconds }}
-                periodSeconds: {{ annotation .ObjectMeta `readiness.status.sidecar.istio.io/periodSeconds` .Values.global.proxy.readinessPeriodSeconds }}
+                initialDelaySeconds: 1
+                periodSeconds: 2
                 timeoutSeconds: 3
                 failureThreshold: 30
               {{ end -}}
