@@ -7,7 +7,7 @@ spec:
   hosts:
   - network.pauwelslabs.com
   gateways:
-  - i-istio-ingress/pauwels-labs
+  - ${infranamespaceprefix}istio-ingress/pauwels-labs
   http:
   - name: "kiali"
     route:

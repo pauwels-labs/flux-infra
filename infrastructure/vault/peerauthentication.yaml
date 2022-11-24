@@ -2,7 +2,7 @@ apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
   name: "strict"
-  namespace: "i-vault"
+  namespace: "${infranamespaceprefix}vault"
 spec:
   mtls:
     mode: "STRICT"

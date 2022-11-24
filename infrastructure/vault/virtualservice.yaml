@@ -2,12 +2,12 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: vault-ui
-  namespace: "i-vault"
+  namespace: "${infranamespaceprefix}vault"
 spec:
   hosts:
   - secrets.pauwelslabs.com
   gateways:
-  - i-istio-ingress/pauwels-labs
+  - ${infranamespaceprefix}istio-ingress/pauwels-labs
   http:
   - name: "vault-ui"
     route:
