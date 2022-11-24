@@ -27,7 +27,7 @@ spec:
       name: https-kiali
       protocol: HTTPS
     hosts:
-    - "kiali/network.pauwelslabs.com"
+    - "${infranamespaceprefix}kiali/network.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-network-pauwels-labs
@@ -81,7 +81,7 @@ spec:
       name: https-dashboards
       protocol: HTTPS
     hosts:
-    - "monitoring/dashboards.pauwelslabs.com"
+    - "${infranamespaceprefix}monitoring/dashboards.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-dashboards-pauwels-labs
@@ -90,7 +90,7 @@ spec:
       name: https-alerts
       protocol: HTTPS
     hosts:
-    - "monitoring/alerts.pauwelslabs.com"
+    - "${infranamespaceprefix}monitoring/alerts.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-alerts-pauwels-labs
@@ -99,7 +99,7 @@ spec:
       name: https-metrics
       protocol: HTTPS
     hosts:
-    - "monitoring/metrics.pauwelslabs.com"
+    - "${infranamespaceprefix}monitoring/metrics.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-metrics-pauwels-labs
