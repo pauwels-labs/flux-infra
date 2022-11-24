@@ -76,9 +76,16 @@ spec:
     global:
       istioNamespace: "${infranamespaceprefix}istio-system"
       imagePullSecrets:
-      - name: ecr-credentials
+      - ecr-credentials
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
       logging:
         level: "default:debug"
       proxy:
         logLevel: "debug"
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 128Mi
