@@ -40,8 +40,6 @@ spec:
       value: "$(params.revision)"
     - name: depth
       value: "1"
-    - name: sslVerify
-      value: "true"
   - name: build-push
     runAfter: ["fetch-source"]
     taskRef:
