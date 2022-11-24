@@ -83,5 +83,10 @@ spec:
       proxy:
         logLevel: "debug"
         resources:
-          limits: 1000m
-          memory: 1024Mi
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+            
