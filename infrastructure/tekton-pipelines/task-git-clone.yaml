@@ -187,70 +187,70 @@ spec:
           echo "SIDECAR AVAILABLE"
         fi
 
-        if [ "${PARAM_VERBOSE}" = "true" ] ; then
+        if [ "$${PARAM_VERBOSE}" = "true" ] ; then
           set -x
         fi
 
-        if [ "${WORKSPACE_BASIC_AUTH_DIRECTORY_BOUND}" = "true" ] ; then
-          cp "${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.git-credentials" "${PARAM_USER_HOME}/.git-credentials"
-          cp "${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.gitconfig" "${PARAM_USER_HOME}/.gitconfig"
-          chmod 400 "${PARAM_USER_HOME}/.git-credentials"
-          chmod 400 "${PARAM_USER_HOME}/.gitconfig"
+        if [ "$${WORKSPACE_BASIC_AUTH_DIRECTORY_BOUND}" = "true" ] ; then
+          cp "$${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.git-credentials" "$${PARAM_USER_HOME}/.git-credentials"
+          cp "$${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.gitconfig" "$${PARAM_USER_HOME}/.gitconfig"
+          chmod 400 "$${PARAM_USER_HOME}/.git-credentials"
+          chmod 400 "$${PARAM_USER_HOME}/.gitconfig"
         fi
 
-        if [ "${WORKSPACE_SSH_DIRECTORY_BOUND}" = "true" ] ; then
-          cp -R "${WORKSPACE_SSH_DIRECTORY_PATH}" "${PARAM_USER_HOME}"/.ssh
-          chmod 700 "${PARAM_USER_HOME}"/.ssh
-          chmod -R 400 "${PARAM_USER_HOME}"/.ssh/*
+        if [ "$${WORKSPACE_SSH_DIRECTORY_BOUND}" = "true" ] ; then
+          cp -R "$${WORKSPACE_SSH_DIRECTORY_PATH}" "$${PARAM_USER_HOME}"/.ssh
+          chmod 700 "$${PARAM_USER_HOME}"/.ssh
+          chmod -R 400 "$${PARAM_USER_HOME}"/.ssh/*
         fi
 
-        if [ "${WORKSPACE_SSL_CA_DIRECTORY_BOUND}" = "true" ] ; then
-           export GIT_SSL_CAPATH="${WORKSPACE_SSL_CA_DIRECTORY_PATH}"
-           if [ "${PARAM_CRT_FILENAME}" != "" ] ; then
-              export GIT_SSL_CAINFO="${WORKSPACE_SSL_CA_DIRECTORY_PATH}/${PARAM_CRT_FILENAME}"
+        if [ "$${WORKSPACE_SSL_CA_DIRECTORY_BOUND}" = "true" ] ; then
+           export GIT_SSL_CAPATH="$${WORKSPACE_SSL_CA_DIRECTORY_PATH}"
+           if [ "$${PARAM_CRT_FILENAME}" != "" ] ; then
+              export GIT_SSL_CAINFO="$${WORKSPACE_SSL_CA_DIRECTORY_PATH}/$${PARAM_CRT_FILENAME}"
            fi
         fi
-        CHECKOUT_DIR="${WORKSPACE_OUTPUT_PATH}/${PARAM_SUBDIRECTORY}"
+        CHECKOUT_DIR="$${WORKSPACE_OUTPUT_PATH}/$${PARAM_SUBDIRECTORY}"
 
         cleandir() {
           # Delete any existing contents of the repo directory if it exists.
           #
-          # We don't just "rm -rf ${CHECKOUT_DIR}" because ${CHECKOUT_DIR} might be "/"
+          # We don't just "rm -rf $${CHECKOUT_DIR}" because $${CHECKOUT_DIR} might be "/"
           # or the root of a mounted volume.
-          if [ -d "${CHECKOUT_DIR}" ] ; then
+          if [ -d "$${CHECKOUT_DIR}" ] ; then
             # Delete non-hidden files and directories
-            rm -rf "${CHECKOUT_DIR:?}"/*
+            rm -rf "$${CHECKOUT_DIR:?}"/*
             # Delete files and directories starting with . but excluding ..
-            rm -rf "${CHECKOUT_DIR}"/.[!.]*
+            rm -rf "$${CHECKOUT_DIR}"/.[!.]*
             # Delete files and directories starting with .. plus any other character
-            rm -rf "${CHECKOUT_DIR}"/..?*
+            rm -rf "$${CHECKOUT_DIR}"/..?*
           fi
         }
 
-        if [ "${PARAM_DELETE_EXISTING}" = "true" ] ; then
+        if [ "$${PARAM_DELETE_EXISTING}" = "true" ] ; then
           cleandir
         fi
 
-        test -z "${PARAM_HTTP_PROXY}" || export HTTP_PROXY="${PARAM_HTTP_PROXY}"
-        test -z "${PARAM_HTTPS_PROXY}" || export HTTPS_PROXY="${PARAM_HTTPS_PROXY}"
-        test -z "${PARAM_NO_PROXY}" || export NO_PROXY="${PARAM_NO_PROXY}"
+        test -z "$${PARAM_HTTP_PROXY}" || export HTTP_PROXY="$${PARAM_HTTP_PROXY}"
+        test -z "$${PARAM_HTTPS_PROXY}" || export HTTPS_PROXY="$${PARAM_HTTPS_PROXY}"
+        test -z "$${PARAM_NO_PROXY}" || export NO_PROXY="$${PARAM_NO_PROXY}"
 
-        git config --global --add safe.directory "${WORKSPACE_OUTPUT_PATH}"
+        git config --global --add safe.directory "$${WORKSPACE_OUTPUT_PATH}"
         /ko-app/git-init \
-          -url="${PARAM_URL}" \
-          -revision="${PARAM_REVISION}" \
-          -refspec="${PARAM_REFSPEC}" \
-          -path="${CHECKOUT_DIR}" \
-          -sslVerify="${PARAM_SSL_VERIFY}" \
-          -submodules="${PARAM_SUBMODULES}" \
-          -depth="${PARAM_DEPTH}" \
-          -sparseCheckoutDirectories="${PARAM_SPARSE_CHECKOUT_DIRECTORIES}"
-        cd "${CHECKOUT_DIR}"
+          -url="$${PARAM_URL}" \
+          -revision="$${PARAM_REVISION}" \
+          -refspec="$${PARAM_REFSPEC}" \
+          -path="$${CHECKOUT_DIR}" \
+          -sslVerify="$${PARAM_SSL_VERIFY}" \
+          -submodules="$${PARAM_SUBMODULES}" \
+          -depth="$${PARAM_DEPTH}" \
+          -sparseCheckoutDirectories="$${PARAM_SPARSE_CHECKOUT_DIRECTORIES}"
+        cd "$${CHECKOUT_DIR}"
         RESULT_SHA="$(git rev-parse HEAD)"
         EXIT_CODE="$?"
-        if [ "${EXIT_CODE}" == 0 ] ; then
-          printf "%s" "${RESULT_SHA}" > "$(results.commit.path)"
-          printf "%s" "${PARAM_URL}" > "$(results.url.path)"
+        if [ "$${EXIT_CODE}" == 0 ] ; then
+          printf "%s" "$${RESULT_SHA}" > "$(results.commit.path)"
+          printf "%s" "$${PARAM_URL}" > "$(results.url.path)"
         fi
 
         if [[ $i -lt 5 ]]; then
@@ -259,4 +259,4 @@ spec:
           echo "SIDECAR SHUTDOWN COMMAND ISSUED"
         fi
 
-        exit "${EXIT_CODE}"
+        exit "$${EXIT_CODE}"
