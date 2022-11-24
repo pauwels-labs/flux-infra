@@ -82,4 +82,3 @@ spec:
         level: "default:debug"
       proxy:
         logLevel: "debug"
-        readinessFailureThreshold: 5
