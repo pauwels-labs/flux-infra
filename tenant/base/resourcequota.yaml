@@ -6,8 +6,8 @@ spec:
   hard:
     limits.cpu: "6000m"
     limits.memory: "18Gi"
-    requests.cpu: "1000m"
-    requests.memory: "3Gi"
+    requests.cpu: "6000m"
+    requests.memory: "18Gi"
     pods: "30"
   scopeSelector:
     matchExpressions:
