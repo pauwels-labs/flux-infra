@@ -21,7 +21,7 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    revision: "1-15-0"
+    revision: "1-16-0"
     revisionTags: ["stable"]
     meshConfig:
       rootNamespace: "${infranamespaceprefix}istio-system"
