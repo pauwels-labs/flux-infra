@@ -15,10 +15,10 @@ stringData:
     auto_sign_up = true
     email_claim = email
     enabled = true
-    expect_claims = {"iss": "https://identity.pauwelslabs.com/realms/pauwels-labs"}
+    expect_claims = {"iss": "https://identity.pauwelslabs.com/realms/pauwels-labs-main"}
     header_name = x-forwarded-access-token
-    jwk_set_url = https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
-    role_attribute_path = contains(roles[*], 'dashboards-admin') && 'GrafanaAdmin' || contains(roles[*], 'dashboards-editor') && 'Editor' || 'Viewer'
+    jwk_set_url = https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs
+    role_attribute_path = groups[?contains(@, '/root/admins') || contains(@, '/grafana/admins')] && 'GrafanaAdmin' || groups[?contains(@, '/root/writers') || contains(@, '/grafana/writers')] && 'Editor' || 'Viewer'
     username_claim = preferred_username
     [date_formats]
     default_timezone = UTC
