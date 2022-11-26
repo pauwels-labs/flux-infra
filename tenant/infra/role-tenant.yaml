@@ -5,11 +5,7 @@ metadata:
 rules:
 - apiGroups: ["external-secrets.io"]
   resources: ["externalsecrets"]
-  verbs: ["create"]
-- apiGroups: ["external-secrets.io"]
-  resources: ["externalsecrets"]
-  verbs: ["get", "apply", "update", "patch", "delete"]
-  resourceNames: ["ssh-${tenantname}*"]
+  verbs: ["create", "get", "apply", "update", "patch", "delete"]
 - apiGroups: [""]
   resources: ["configmaps"]
   verbs: ["get", "update", "patch"]
