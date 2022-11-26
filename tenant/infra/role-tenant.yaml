@@ -10,7 +10,7 @@ rules:
   resources: ["externalsecrets"]
   verbs: ["get", "apply", "update", "patch", "delete"]
   resourceNames: ["ssh-${tenantname}*"]
-- apiGroups: [""
+- apiGroups: [""]
   resources: ["configmaps"]
   verbs: ["get", "update", "patch"]
   resourceNames: ["external-tenant-data"]
