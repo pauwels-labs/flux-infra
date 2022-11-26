@@ -33,6 +33,8 @@ spec:
     workspaces:
     - name: output
       workspace: shared-data
+    - name: ssh-directory
+      workspace: github-credentials
     params:
     - name: url
       value: "$(params.repositoryurl)"
@@ -54,6 +56,8 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
+    - name: dockerconfig
+      workspace: docker-credentials
     params:
     - name: IMAGE
       value: "$(params.imageurl):$(params.imagetag)"

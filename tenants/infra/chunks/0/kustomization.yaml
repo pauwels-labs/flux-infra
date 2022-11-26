@@ -7,6 +7,9 @@ patches:
     - op: replace
       path: /spec/path
       value: ./tenant/infra
+    - op: replace
+      path: /spec/postBuild/substitute/tenantrepopath
+      value: infra
   target:
     kind: Kustomization
     group: kustomize.toolkit.fluxcd.io

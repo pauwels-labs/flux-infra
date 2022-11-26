@@ -21,7 +21,7 @@ spec:
       tenantrepoorg: pauwels-labs
       tenantreponame: team-main
       tenantrepourl: ssh://git@github.com/pauwels-labs/team-main
-      tenantrepopath: ""
+      tenantrepopath: "base"
     substituteFrom:
     - kind: ConfigMap
       name: external-config-data

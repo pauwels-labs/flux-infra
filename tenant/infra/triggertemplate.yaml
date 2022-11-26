@@ -37,6 +37,12 @@ spec:
             resources:
               requests:
                 storage: 1Gi
+      - name: docker-credentials
+        secret:
+          secretName: ecr-credentials
+      - name: github-credentials
+        secret:
+          secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
       params:
       - name: revision
         value: $(tt.params.revision)

@@ -1,0 +1,8 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: ${tenantname}
+rules:
+- apiGroups: ["external-secrets.io"]
+  resources: ["externalsecrets"]
+  verbs: ["*"]
