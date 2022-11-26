@@ -12,5 +12,5 @@ resources:
 - trigger.yaml
 - virtualservice-webhook-ci.yaml
 - kustomization-flux.yaml
-- role.yaml
-- rolebinding.yaml
+- role-tenant.yaml
+- rolebinding-tenant.yaml
