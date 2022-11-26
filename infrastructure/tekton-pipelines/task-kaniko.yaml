@@ -47,7 +47,7 @@ spec:
     - name: wait-for-sidecar
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
-        #!/usr/bin/env sh
+        #!/bin/sh
         set -eu
 
         i=0
@@ -93,11 +93,8 @@ spec:
     - name: shutdown-sidecar
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
-        set -e
-        ls -al /kaniko
-        cat /kaniko/.docker
-        image="$(params.IMAGE)"
-        echo -n "$${image}" | tee "$(results.IMAGE_URL.path)"
+        #!/bin/sh
+        set -eu
 
         i=$(cat "/workspace/source/sidecar-check-counter")
         if [[ $i -lt 5 ]]; then
