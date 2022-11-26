@@ -40,6 +40,9 @@ spec:
       - name: docker-credentials
         secret:
           secretName: ecr-credentials
+          items:
+          - key: ".dockerconfigjson"
+            path: "config.json"
       - name: github-credentials
         secret:
           secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
