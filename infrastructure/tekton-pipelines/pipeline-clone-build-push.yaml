@@ -44,6 +44,8 @@ spec:
       value: "$(params.revision)"
     - name: depth
       value: "1"
+    - name: userHome
+      value: "/home/nonroot"
   - name: build-push
     runAfter: ["fetch-source"]
     taskRef:
