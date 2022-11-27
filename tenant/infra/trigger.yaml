@@ -5,7 +5,7 @@ metadata:
   labels:
     toolkit.fluxcd.io/tenant: ${tenantname}
 spec:
-  serviceAccountName: pipeline-runner
+  serviceAccountName: event-listener
   interceptors:
   - name: "push"
     ref:
