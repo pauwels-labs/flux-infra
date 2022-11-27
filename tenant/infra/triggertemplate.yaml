@@ -50,6 +50,9 @@ spec:
           items:
           - key: "identity"
             path: "id_rsa"
+            mode: 256
+          - key: "known_hosts"
+            path: "known_hosts"
       params:
       - name: revision
         value: $(tt.params.revision)
