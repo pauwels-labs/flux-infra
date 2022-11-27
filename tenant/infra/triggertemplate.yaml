@@ -47,6 +47,7 @@ spec:
       - name: github-credentials
         secret:
           secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
+          defaultMode: 256
           items:
           - key: "identity"
             path: "id_rsa"
