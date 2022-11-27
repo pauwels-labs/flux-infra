@@ -6,6 +6,7 @@ spec:
   params:
   - name: revision
   - name: repositoryurl
+  - name: sshurl
   - name: repositoryname
   - name: repositoryownername
   - name: registry
@@ -46,11 +47,16 @@ spec:
       - name: github-credentials
         secret:
           secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
+          items:
+          - key: "identity"
+            path: "id_rsa"
       params:
       - name: revision
         value: $(tt.params.revision)
       - name: repositoryurl
         value: $(tt.params.repositoryurl)
+      - name: sshurl
+        value: $(tt.params.sshurl)
       - name: imageurl
         value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
       - name: imagetag

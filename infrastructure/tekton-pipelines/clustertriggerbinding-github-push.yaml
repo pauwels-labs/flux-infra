@@ -12,5 +12,7 @@ spec:
     value: $(body.repository.owner.name)
   - name: repositoryurl
     value: $(body.repository.clone_url)
+  - name: sshurl
+    value: $(body.repository.ssh_url)
   - name: repositoryname
     value: $(body.repository.name)
