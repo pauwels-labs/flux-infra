@@ -7,7 +7,8 @@ resources:
 - externalsecret-webhook-hmac.yaml
 - rolebinding-event-listener.yaml
 - secretstore-tenant-webhooks-hmac.yaml
-- serviceaccount.yaml
+- serviceaccount-event-listener.yaml
+- serviceaccount-pipeline-runner.yaml
 - triggertemplate.yaml
 - trigger.yaml
 - virtualservice-webhook-ci.yaml
