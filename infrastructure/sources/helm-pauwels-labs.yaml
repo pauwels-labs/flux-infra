@@ -6,7 +6,7 @@ metadata:
 spec:
   provider: "aws"
   type: "oci"
-  interval: 5m
+  interval: 5m0s
   url: oci://274295908850.dkr.ecr.eu-west-1.amazonaws.com/helm
   secretRef:
     name: ecr-credentials

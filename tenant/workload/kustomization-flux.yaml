@@ -5,7 +5,7 @@ metadata:
 spec:
   serviceAccountName: ${tenantname}
   targetNamespace: "${tenantnamespaceprefix}${tenantname}"
-  interval: 5m
+  interval: 5m0s
   sourceRef:
     kind: GitRepository
     name: ${tenantrepohost}-${tenantrepoorg}-${tenantreponame}

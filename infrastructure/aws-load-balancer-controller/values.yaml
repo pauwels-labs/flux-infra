@@ -312,7 +312,7 @@ serviceMonitor:
   # Labels to add to the service account
   additionalLabels: {}
   # Prometheus scrape interval
-  interval: 1m
+  interval: 5m0s
   # Namespace to create the service monitor in
   namespace:
 
