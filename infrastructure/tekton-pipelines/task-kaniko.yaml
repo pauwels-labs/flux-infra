@@ -66,9 +66,9 @@ spec:
           echo "SIDECAR AVAILABLE"
         fi
 
-        echo "$i" > /workspace/source/sidecar-check-counter
+        echo "$i" > sidecar-check-counter
         exit 0
-    - name: build-and-push
+    - name: build
       workingDir: $(workspaces.source.path)
       image: $(params.BUILDER_IMAGE)
       args:
@@ -77,11 +77,25 @@ spec:
         - --context=$(workspaces.source.path)/$(params.CONTEXT) # The user does not need to care the workspace and the source.
         - --destination=$(params.IMAGE)
         - --digest-file=$(results.IMAGE_DIGEST.path)
+        - --no-push
       # kaniko assumes it is running as root, which means this example fails on platforms
       # that default to run containers as random uid (like OpenShift). Adding this securityContext
       # makes it explicit that it needs to run as root.
       securityContext:
         runAsUser: 0
+    - name: version
+      image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/node/node:19.1.0
+      script: |
+        npx semantic-release@19
+    - name: push
+      workingDir: $(workspaces.source.path)
+      image: $(params.BUILDER_IMAGE)
+      args:
+        - $(params.EXTRA_ARGS)
+        - --dockerfile=$(params.DOCKERFILE)
+        - --context=$(workspaces.source.path)/$(params.CONTEXT) # The user does not need to care the workspace and the source.
+        - --destination=$(params.IMAGE)
+        - --digest-file=$(results.IMAGE_DIGEST.path)
     - name: write-url
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
@@ -94,7 +108,7 @@ spec:
         #!/bin/sh
         set -eu
 
-        i=$(cat "/workspace/source/sidecar-check-counter")
+        i=$(cat "sidecar-check-counter")
         if [[ $i -lt 5 ]]; then
           echo "QUITTING SIDECAR"
           wget -qO- -o /dev/null --post-data "" http://localhost:15020/quitquitquit > /dev/null
