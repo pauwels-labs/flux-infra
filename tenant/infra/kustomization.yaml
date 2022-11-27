@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - ../base
-- clusterrolebinding-tekton-robot.yaml
+- clusterrolebinding-tenant-event-listener.yaml
 - eventlistener.yaml
 - externalsecret-webhook-hmac.yaml
-- rolebinding-tekton-robot.yaml
+- rolebinding-event-listener.yaml
 - secretstore-tenant-webhooks-hmac.yaml
 - serviceaccount.yaml
 - triggertemplate.yaml

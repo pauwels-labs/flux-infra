@@ -5,7 +5,7 @@ metadata:
   labels:
     toolkit.fluxcd.io/tenant: ${tenantname}
 spec:
-  serviceAccountName: tekton-robot
+  serviceAccountName: pipeline-runner
   interceptors:
   - name: "push"
     ref:

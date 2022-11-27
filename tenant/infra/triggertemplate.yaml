@@ -15,7 +15,7 @@ spec:
     metadata:
       generateName: clone-build-push-run-
     spec:
-      serviceAccountName: tekton-robot
+      serviceAccountName: pipeline-runner
       pipelineRef:
         resolver: cluster
         params:

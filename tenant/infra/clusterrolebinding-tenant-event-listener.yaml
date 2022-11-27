@@ -3,12 +3,12 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: ${tenantname}
-  name: tenant-tekton-robot-${tenantname}
+  name: tenant-event-listener-${tenantname}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: tenant-tekton-robot
+  name: tenant-event-listener
 subjects:
 - kind: ServiceAccount
-  name: tekton-robot
+  name: event-listener
   namespace: "${tenantnamespaceprefix}${tenantname}"

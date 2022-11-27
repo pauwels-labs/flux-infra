@@ -7,7 +7,7 @@ resources:
 - triggers.yaml
 - interceptors.yaml
 - clustertriggerbinding-github-push.yaml
-- clusterrole-tenant-tekton-robot.yaml
+- clusterrole-tenant-event-listener.yaml
 - task-git-clone.yaml
 - task-kaniko.yaml
 - pipeline-clone-build-push.yaml
