@@ -41,7 +41,7 @@ spec:
     - name: git-ssh
       description: Includes id_rsa and known_hosts
       optional: true
-      mountPath: /git/.ssh
+      mountPath: /notroot/.ssh
   results:
     - name: IMAGE_DIGEST
       description: Digest of the image just built.
@@ -89,7 +89,7 @@ spec:
         runAsUser: 0
     - name: version
       workingDir: $(workspaces.source.path)
-      image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/semantic-release/semantic-release:dev
+      image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/semantic-release/semantic-release:dev2
       env:
       - name: PARAM_WORKSPACE_SOURCE_PATH
         value: $(workspaces.source.path)
