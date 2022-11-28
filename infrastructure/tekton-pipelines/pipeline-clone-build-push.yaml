@@ -16,8 +16,6 @@ spec:
     type: string
   - name: imageurl
     type: string
-  - name: imagetag
-    type: string
   workspaces:
   - name: shared-data
     description: "Contains the cloned git repo"
@@ -68,7 +66,7 @@ spec:
     - name: GH_TOKEN_SECRET_NAME
       value: "$(params.ghtokensecretname)"
     - name: IMAGE
-      value: "$(params.imageurl):$(params.imagetag)"
+      value: "$(params.imageurl):tmp"
     - name: EXTRA_ARGS
       value: [
         '--cache=true',
