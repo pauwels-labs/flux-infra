@@ -14,8 +14,6 @@ spec:
   prune: true
   wait: true
   timeout: 30s
-  dependsOn:
-  - name: tenants
   postBuild:
     substitute:
       tenantname: "pauwels-labs-main"
