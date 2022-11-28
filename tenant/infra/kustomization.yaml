@@ -5,8 +5,10 @@ resources:
 - clusterrolebinding-tenant-event-listener.yaml
 - eventlistener.yaml
 - externalsecret-webhook-hmac.yaml
+- externalsecret-token-repobot.yaml
 - rolebinding-event-listener.yaml
 - secretstore-tenant-webhooks-hmac.yaml
+- secretstore-tenant-tokens.yaml
 - serviceaccount-event-listener.yaml
 - serviceaccount-pipeline-runner.yaml
 - triggertemplate.yaml

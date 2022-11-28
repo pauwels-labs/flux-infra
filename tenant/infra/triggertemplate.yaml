@@ -63,5 +63,5 @@ spec:
         value: $(tt.params.sshurl)
       - name: imageurl
         value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
-      - name: imagetag
-        value: tmp
+      - name: ghtokensecretname
+        value: token-${tenantrepohost}-${tenantrepobot}
