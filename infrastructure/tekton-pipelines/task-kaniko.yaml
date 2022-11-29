@@ -123,7 +123,7 @@ spec:
         - $(params.EXTRA_ARGS)
         - --dockerfile=$(params.DOCKERFILE)
         - --context=$(workspaces.source.path)/$(params.CONTEXT) # The user does not need to care the workspace and the source.
-        - --destination=$(params.IMAGE):\$(cat $(params.RELEASED_VERSION.path))
+        - --destination=$(params.IMAGE):\$(cat $(results.RELEASED_VERSION.path))
         - --digest-file=$(results.IMAGE_DIGEST.path)
     - name: write-url
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
