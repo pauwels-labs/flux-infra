@@ -1,0 +1,90 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: kaniko
+  namespace: "${infranamespaceprefix}tekton-pipelines"
+  labels:
+    app.kubernetes.io/version: "0.1.0"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.41.0"
+    tekton.dev/categories: Semantic Versioning
+    tekton.dev/tags: semantic-versioning
+    tekton.dev/displayName: "Semantically version the release based on tags, past releases, and the conventional commits standard"
+    tekton.dev/platforms: "linux/amd64,linux/arm64,linux/ppc64le"
+spec:
+  description: >-
+    This Task uses a small script called change to generate a CHANGELOG.md and appropriately
+    tag the commit being released with a semantic version. It also handles pushing this tag
+    to the remote repository and generating a release in GitHub. The CHANGELOG.md is not pushed
+    to the remote.
+  params: []
+  workspaces:
+  - name: source
+    description: Holds the context and Dockerfile
+  - name: git-ssh
+    description: Includes id_rsa and known_hosts
+    optional: true
+    mountPath: /notroot/.ssh
+  results:
+  - name: RELEASE_VERSION
+    description: Semantic version of this release
+  steps:
+    - name: wait-for-sidecar
+      image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+      script: |
+        #!/bin/sh
+        set -eu
+
+        i=0
+        echo "WAITING FOR SIDECAR"
+        until wget -qO- -o /dev/null "http://localhost:15021/healthz/ready"; do
+          i=$((i+1))
+          if [[ $i -eq 5 ]]; then
+            break
+          fi
+          echo "WAITING FOR SIDECAR"
+          sleep 3
+        done
+        if [[ $i -eq 5 ]]; then
+          echo "SIDECAR UNAVAILABLE, RUNNING WITHOUT"
+        else
+          echo "SIDECAR AVAILABLE"
+        fi
+
+        echo "$i" > sidecar-check-counter
+        exit 0
+    - name: release
+      workingDir: $(workspaces.source.path)
+      image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/change/change:0.14.4-alpine3.16.3
+      env:
+      - name: PARAM_WORKSPACE_SOURCE_PATH
+        value: $(workspaces.source.path)
+      - name: GH_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: $(params.GH_TOKEN_SECRET_NAME)
+            key: token
+      - name: HOME
+        value: /notroot
+      script: |
+        #!/bin/sh
+        git config --global --add safe.directory "$PARAM_WORKSPACE_SOURCE_PATH"
+        change auth --token "$GH_TOKEN"
+        change tag -p
+        change post
+      securityContext:
+        runAsUser: 10000
+    - name: shutdown-sidecar
+      image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+      script: |
+        #!/bin/sh
+        set -eu
+
+        i=$(cat "sidecar-check-counter")
+        if [[ $i -lt 5 ]]; then
+          echo "QUITTING SIDECAR"
+          wget -qO- -o /dev/null --post-data "" http://localhost:15020/quitquitquit > /dev/null
+          echo "SIDECAR SHUTDOWN COMMAND ISSUED"
+        fi
+
+        exit 0

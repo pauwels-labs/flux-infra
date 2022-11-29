@@ -44,8 +44,24 @@ spec:
       value: "1"
     - name: userHome
       value: "/home/git"
-  - name: build-push
+  - name: version
     runAfter: ["fetch-source"]
+    taskRef:
+      resolver: cluster
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: version
+      - name: namespace
+        value: "${infranamespaceprefix}tekton-pipelines"
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: git-ssh
+      workspace: github-credentials
+  - name: build-push
+    runAfter: ["version"]
     taskRef:
       resolver: cluster
       params:
@@ -66,7 +82,7 @@ spec:
     - name: GH_TOKEN_SECRET_NAME
       value: "$(params.ghtokensecretname)"
     - name: IMAGE
-      value: "$(params.imageurl)"
+      value: "$(params.imageurl):$(tasks.version.results.RELEASE_VERSION)"
     - name: EXTRA_ARGS
       value: [
         '--cache=true',
@@ -74,3 +90,22 @@ spec:
         '--cache-repo=$(params.imageurl)/cache',
         '--no-push=true'
       ]
+  - name: release
+    runAfter: ["build-push"]
+    taskRef:
+      resolver: cluster
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: release
+      - name: namespace
+        value: "${infranamespaceprefix}tekton-pipelines"
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: git-ssh
+      workspace: github-credentials
+    params:
+    - name: GH_TOKEN_SECRET_NAME
+      value: "$(params.ghtokensecretname)"

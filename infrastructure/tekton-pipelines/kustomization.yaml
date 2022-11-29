@@ -10,6 +10,8 @@ resources:
 - clusterrole-tenant-event-listener.yaml
 - task-git-clone.yaml
 - task-kaniko.yaml
+- task-version.yaml
+- task-release.yaml
 - pipeline-clone-build-push.yaml
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
