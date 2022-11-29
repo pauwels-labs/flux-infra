@@ -47,6 +47,8 @@ spec:
       description: Digest of the image just built.
     - name: IMAGE_URL
       description: URL of the image just built.
+    - name: RELEASED_VERSION
+      description: Semantic version of this release (only available after initial build)
   steps:
     - name: wait-for-sidecar
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
@@ -75,8 +77,13 @@ spec:
     - name: build
       workingDir: $(workspaces.source.path)
       image: $(params.BUILDER_IMAGE)
-      script: |
-        /kaniko/executor --cache=true --cache-dir=/kaniko/cache --cache-repo="$(params.imageurl)/cache" --dockerfile=$(params.DOCKERFILE) --context=$(workspaces.source.path)/$(params.CONTEXT) --destination="$(params.IMAGE):tmp" --digest-file=$(results.IMAGE_DIGEST.path) --no-push=true
+      args:
+        - $(params.EXTRA_ARGS)
+        - --dockerfile=$(params.DOCKERFILE)
+        - --context=$(workspaces.source.path)/$(params.CONTEXT) # The user does not need to care the workspace and the source.
+        - --destination=$(params.IMAGE)
+        - --digest-file=$(results.IMAGE_DIGEST.path)
+        - --no-push
       # kaniko assumes it is running as root, which means this example fails on platforms
       # that default to run containers as random uid (like OpenShift). Adding this securityContext
       # makes it explicit that it needs to run as root.
@@ -106,15 +113,18 @@ spec:
         change
         change tag -p
         change post
-        sed -n "s|^\[Unreleased\]:.*/\(.*\)\.\.\.HEAD$|\1|p" CHANGELOG.md > VERSION
+        sed -n "s|^\[Unreleased\]:.*/\(.*\)\.\.\.HEAD$|\1|p" CHANGELOG.md > $(results.RELEASED_VERSION.path)
       securityContext:
         runAsUser: 10000
     - name: push
       workingDir: $(workspaces.source.path)
       image: $(params.BUILDER_IMAGE)
-      script: |
-        VERSION=\$(cat version)
-        /kaniko/executor --cache=true --cache-dir=/kaniko/cache --cache-repo="$(params.imageurl)/cache" --dockerfile=$(params.DOCKERFILE) --context=$(workspaces.source.path)/$(params.CONTEXT) --destination="$(params.IMAGE):$VERSION" --digest-file=$(results.IMAGE_DIGEST.path)
+      args:
+        - $(params.EXTRA_ARGS)
+        - --dockerfile=$(params.DOCKERFILE)
+        - --context=$(workspaces.source.path)/$(params.CONTEXT) # The user does not need to care the workspace and the source.
+        - --destination=$(params.IMAGE):\$(cat $(params.RELEASED_VERSION.path))
+        - --digest-file=$(results.IMAGE_DIGEST.path)
     - name: write-url
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
