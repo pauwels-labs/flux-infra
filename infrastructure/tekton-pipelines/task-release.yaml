@@ -22,11 +22,9 @@ spec:
     description: Includes id_rsa and known_hosts
     optional: true
     mountPath: /notroot/.ssh
-  results:
-  - name: RELEASE_VERSION
-    description: Semantic version of this release
   steps:
     - name: wait-for-sidecar
+      workingDir: $(workspaces.source.path)
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
         #!/bin/sh
@@ -72,6 +70,7 @@ spec:
       securityContext:
         runAsUser: 10000
     - name: shutdown-sidecar
+      workingDir: $(workspaces.source.path)
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
         #!/bin/sh
