@@ -68,7 +68,7 @@ spec:
           change init
         fi
         change
-        sed -n "s|^\[Unreleased\]:.*/\(.*\)\.\.\.HEAD$|\1|p" CHANGELOG.md > $(results.RELEASED_VERSION.path)
+        sed -n "s|^\[Unreleased\]:.*/\(.*\)\.\.\.HEAD$|\1|p" CHANGELOG.md > $(results.RELEASE_VERSION.path)
       securityContext:
         runAsUser: 10000
     - name: shutdown-sidecar
