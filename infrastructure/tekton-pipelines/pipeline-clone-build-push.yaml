@@ -67,10 +67,3 @@ spec:
       value: "$(params.ghtokensecretname)"
     - name: IMAGE
       value: "$(params.imageurl)"
-    - name: EXTRA_ARGS
-      value: [
-        '--cache=true',
-        '--cache-dir=/kaniko/cache',
-        '--cache-repo=$(params.imageurl)/cache',
-        '--no-push=true'
-      ]
