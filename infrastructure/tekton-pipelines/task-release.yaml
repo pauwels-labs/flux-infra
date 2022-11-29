@@ -1,22 +1,19 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: kaniko
+  name: release
   namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/version: "0.1.0"
   annotations:
     tekton.dev/pipelines.minVersion: "0.41.0"
     tekton.dev/categories: Semantic Versioning
-    tekton.dev/tags: semantic-versioning
-    tekton.dev/displayName: "Semantically version the release based on tags, past releases, and the conventional commits standard"
+    tekton.dev/tags: release
+    tekton.dev/displayName: "Push the semantic version as a tag and release to the repo host"
     tekton.dev/platforms: "linux/amd64,linux/arm64,linux/ppc64le"
 spec:
   description: >-
-    This Task uses a small script called change to generate a CHANGELOG.md and appropriately
-    tag the commit being released with a semantic version. It also handles pushing this tag
-    to the remote repository and generating a release in GitHub. The CHANGELOG.md is not pushed
-    to the remote.
+    This Task uses the CHANGELOD.md to push an appropriate tag and release to the repo host.
   params: []
   workspaces:
   - name: source
