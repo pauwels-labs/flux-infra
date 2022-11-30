@@ -87,8 +87,7 @@ spec:
       value: [
         '--cache=true',
         '--cache-dir=/kaniko/cache',
-        '--cache-repo=$(params.imageurl)/cache',
-        '--no-push=true'
+        '--cache-repo=$(params.imageurl)/cache'
       ]
   - name: release
     runAfter: ["build-push"]
