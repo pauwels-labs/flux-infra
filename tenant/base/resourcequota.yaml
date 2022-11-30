@@ -4,7 +4,6 @@ metadata:
   name: cpu-and-mem
 spec:
   hard:
-    limits.cpu: "6000m"
     limits.memory: "18Gi"
     requests.cpu: "6000m"
     requests.memory: "18Gi"
