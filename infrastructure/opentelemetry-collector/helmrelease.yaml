@@ -21,6 +21,7 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    mode: daemonset
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/otel/open-telemetry-collector
       tag: 0.66.0
