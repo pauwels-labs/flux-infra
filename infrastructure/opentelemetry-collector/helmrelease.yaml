@@ -9,7 +9,7 @@ spec:
   targetNamespace: "${infranamespaceprefix}opentelemetry-collector"
   chart:
     spec:
-      chart: open-telemetry/opentelemetry-collecto
+      chart: open-telemetry/opentelemetry-collector
       version: 0.40.2
       sourceRef:
         kind: HelmRepository
