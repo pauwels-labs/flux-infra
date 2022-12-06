@@ -38,14 +38,14 @@ spec:
               endpoint: "s3.eu-west-1.amazonaws.com"
               region: "eu-west-1"
         alertmanager_storage:
-          storage_prefix: alerts_
+          storage_prefix: alerts
           s3:
             bucket_name: "${mimirrulerbucketname}"
         blocks_storage:
-          storage_prefix: blocks_
+          storage_prefix: blocks
           s3:
             bucket_name: "${mimirblocksbucketname}"
         ruler_storage:
-          storage_prefix: ruler_
+          storage_prefix: ruler
           s3:
             bucket_name: "${mimirrulerbucketname}"
