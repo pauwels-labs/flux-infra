@@ -31,15 +31,21 @@ spec:
         eks.amazonaws.com/role-arn: ${mimiriamrolearn}
     mimir:
       structuredConfig:
+        common:
+          storage:
+            backend: s3
+            s3:
+              endpoint: "s3.eu-west-1.amazonaws.com"
+              region: "eu-west-1"
         alertmanager_storage:
           s3:
             bucket_name: "${mimirrulerbucketname}"
-            endpoint: "s3.amazonaws.com"
+            storage_prefix: alerts_
         blocks_storage:
           s3:
             bucket_name: "${mimirblocksbucketname}"
-            endpoint: "s3.amazonaws.com"
+            storage_prefix: blocks_
         ruler_storage:
           s3:
             bucket_name: "${mimirrulerbucketname}"
-            endpoint: "s3.amazonaws.com"
+            storage_prefix: ruler_
