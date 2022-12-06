@@ -26,3 +26,20 @@ spec:
       tag: 2.4.0
     minio:
       enabled: false
+    serviceAccount:
+      annotations:
+        eks.amazonaws.com/role-arn: ${mimiriamrolearn}
+    mimir:
+      structuredConfig:
+        alertmanager_storage:
+          s3:
+            bucket_name: "${mimirrulerbucketname}"
+            endpoint: "s3.amazonaws.com"
+        blocks_storage:
+          s3:
+            bucket_name: "${mimirblocksbucketname}"
+            endpoint: "s3.amazonaws.com"
+        ruler_storage:
+          s3:
+            bucket_name: "${mimirrulerbucketname}"
+            endpoint: "s3.amazonaws.com"

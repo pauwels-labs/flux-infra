@@ -28,6 +28,9 @@ data:
   ecrcredentialsynciamrolename: "tenant-ecr-rw"
   infranamespaceprefix: "i-"
   tenantnamespaceprefix: "t-"
+  mimiriamrolearn: "arn:aws:iam::114374921412:role/lefranc-mimir"
+  mimirrulerbucketname: "mimir-ruler-20221205163421444300000002"
+  mimirblocksbucketname: "mimir-blocks-20221205163421090200000001"
 kind: ConfigMap
 metadata:
   name: external-config-data
