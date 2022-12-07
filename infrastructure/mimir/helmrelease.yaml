@@ -29,6 +29,12 @@ spec:
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${mimiriamrolearn}
+    ingester:
+      env:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
     mimir:
       structuredConfig:
         common:
@@ -37,6 +43,9 @@ spec:
             s3:
               endpoint: "s3.eu-west-1.amazonaws.com"
               region: "eu-west-1"
+        memberlist:
+          bind_addr:
+          - "${POD_IP}"
         alertmanager_storage:
           storage_prefix: alerts
           s3:
