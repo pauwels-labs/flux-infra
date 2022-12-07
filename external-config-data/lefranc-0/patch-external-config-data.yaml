@@ -29,8 +29,8 @@ data:
   infranamespaceprefix: "i-"
   tenantnamespaceprefix: "t-"
   mimiriamrolearn: "arn:aws:iam::114374921412:role/lefranc-mimir"
-  mimirrulerbucketname: "mimir-ruler-20221205163421444300000002"
-  mimirblocksbucketname: "mimir-blocks-20221205163421090200000001"
+  mimirrulerbucketname: "mimir-ruler-20221206125509500600000001"
+  mimirblocksbucketname: "mimir-blocks-20221206125509500600000002"
 kind: ConfigMap
 metadata:
   name: external-config-data
