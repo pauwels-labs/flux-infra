@@ -47,33 +47,6 @@ spec:
           sharding_ring:
             instance_interface_names:
             - v4if0
-        compactor:
-          sharding_ring:
-            instance_interface_names:
-            - v4if0
-        distributor:
-          ring:
-            instance_interface_names:
-            - v4if0
-        ingester:
-          ring:
-            instance_interface_names:
-            - v4if0
-        frontend:
-          instance_interface_names:
-          - v4if0
-        query_scheduler:
-          ring:
-            instance_interface_names:
-            - v4if0
-        ruler:
-          ring:
-            instance_interface_names:
-            - v4if0
-        store_gateway:
-          sharding_ring:
-            instance_interface_names:
-            - v4if0
         alertmanager_storage:
           storage_prefix: alerts
           s3:
@@ -82,7 +55,37 @@ spec:
           storage_prefix: blocks
           s3:
             bucket_name: "${mimirblocksbucketname}"
+        compactor:
+          sharding_ring:
+            instance_interface_names:
+            - v4if0
+        distributor:
+          ring:
+            instance_interface_names:
+            - v4if0
+        frontend:
+          instance_interface_names:
+          - v4if0
+        ingester:
+          ring:
+            instance_interface_names:
+            - v4if0
+        memberlist:
+          bind_addr:
+          - $${POD_IP}
+        query_scheduler:
+          ring:
+            instance_interface_names:
+            - v4if0
+        ruler:
+          ring:
+            instance_interface_names:
+            - v4if0
         ruler_storage:
           storage_prefix: ruler
           s3:
             bucket_name: "${mimirrulerbucketname}"
+        store_gateway:
+          sharding_ring:
+            instance_interface_names:
+            - v4if0
