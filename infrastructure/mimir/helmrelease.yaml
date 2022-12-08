@@ -74,7 +74,7 @@ spec:
           sharding_ring:
             instance_interface_names:
             - v4if0
-            alertmanager_storage:
+        alertmanager_storage:
           storage_prefix: alerts
           s3:
             bucket_name: "${mimirrulerbucketname}"
