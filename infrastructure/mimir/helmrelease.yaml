@@ -29,8 +29,8 @@ spec:
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${mimiriamrolearn}
-    ingester:
-      env:
+    global:
+      extraEnv:
       - name: POD_IP
         valueFrom:
           fieldRef:
@@ -43,9 +43,37 @@ spec:
             s3:
               endpoint: "s3.eu-west-1.amazonaws.com"
               region: "eu-west-1"
-        memberlist:
-          bind_addr:
-          - "$${POD_IP}"
+        alertmanager:
+          sharding_ring:
+            instance_interface_names:
+            - v4if0
+        compactor:
+          ring:
+            instance_interface_names:
+            - v4if0
+        distributor:
+          ring:
+            instance_interface_names:
+            - v4if0
+        ingester:
+          ring:
+            instance_interface_names:
+            - v4if0
+        query_frontend:
+          instance_interface_names:
+          - v4if0
+        query_scheduler:
+          ring:
+            instance_interface_names:
+            - v4if0
+        ruler:
+          ring:
+            instance_interface_names:
+            - v4if0
+        store_gateway:
+          sharding_ring:
+            instance_interface_names:
+            - v4if0
         alertmanager_storage:
           storage_prefix: alerts
           s3:
