@@ -48,7 +48,7 @@ spec:
             instance_interface_names:
             - v4if0
         compactor:
-          ring:
+          sharding_ring:
             instance_interface_names:
             - v4if0
         distributor:
@@ -59,7 +59,7 @@ spec:
           ring:
             instance_interface_names:
             - v4if0
-        query_frontend:
+        frontend:
           instance_interface_names:
           - v4if0
         query_scheduler:
@@ -74,7 +74,7 @@ spec:
           sharding_ring:
             instance_interface_names:
             - v4if0
-        alertmanager_storage:
+            alertmanager_storage:
           storage_prefix: alerts
           s3:
             bucket_name: "${mimirrulerbucketname}"
