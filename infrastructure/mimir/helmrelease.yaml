@@ -24,6 +24,8 @@ spec:
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/mimir
       tag: 2.4.0
+    nginx:
+      enabled: false
     minio:
       enabled: false
     serviceAccount:
