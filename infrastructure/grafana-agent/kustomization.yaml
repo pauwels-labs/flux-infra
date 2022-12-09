@@ -12,6 +12,7 @@ resources:
 - crds/monitoring.grafana.com_podlogs.yaml
 - namespace.yaml
 - agent.yaml
+- agent-operator.yaml
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml

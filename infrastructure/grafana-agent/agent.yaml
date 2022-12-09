@@ -1,80 +1,76 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: GrafanaAgent
 metadata:
-  name: grafana-agent-operator
+  name: grafana-agent
   labels:
-    app: grafana-agent-operator
+    app: grafana-agent
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: grafana-agent-operator
-  template:
-    metadata:
-      labels:
-        app: grafana-agent-operator
-    spec:
-      serviceAccountName: grafana-agent-operator
-      containers:
-      - name: operator
-        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent-operator:v0.29.0
-        args:
-        - --kubelet-service=default/kubelet
+  image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.29.0
+  logLevel: info
+  serviceAccountName: grafana-agent
+  metrics:
+    instanceSelector:
+      matchLabels:
+        agent: grafana-agent-metrics
+    externalLabels:
+      cluster: "${clustername}"
+      region: "${ecrregion}"
+      environment: "${environment}"
+  logs:
+    instanceSelector:
+      matchLabels:
+        agent: grafana-agent-logs
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: grafana-agent-operator
+  name: grafana-agent
+  namespace: default
 imagePullSecrets:
 - name: ecr-credentials
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: grafana-agent-operator
+  name: grafana-agent
 rules:
-- apiGroups: [monitoring.grafana.com]
+- apiGroups:
+  - ""
   resources:
-  - grafanaagentsn
-  - metricsinstances
-  - logsinstances
-  - podlogs
-  - integrations
-  verbs: [get, list, watch]
-- apiGroups: [monitoring.coreos.com]
-  resources:
-  - podmonitors
-  - probes
-  - servicemonitors
-  verbs: [get, list, watch]
-- apiGroups: [""]
-  resources:
-  - namespaces
   - nodes
-  verbs: [get, list, watch]
-- apiGroups: [""]
-  resources:
-  - secrets
+  - nodes/proxy
+  - nodes/metrics
   - services
-  - configmaps
   - endpoints
-  verbs: [get, list, watch, create, update, patch, delete]
-- apiGroups: ["apps"]
+  - pods
+  - events
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io
   resources:
-  - statefulsets
-  - daemonsets
-  - deployments
-  verbs: [get, list, watch, create, update, patch, delete]
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch
+- nonResourceURLs:
+  - /metrics
+  - /metrics/cadvisor
+  verbs:
+  - get
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: grafana-agent-operator
+  name: grafana-agent
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: grafana-agent-operator
+  name: grafana-agent
 subjects:
 - kind: ServiceAccount
-  name: grafana-agent-operator
-  namespace: default
+  name: grafana-agent
+  namespace: "${infranamespaceprefix}grafana-agent"
