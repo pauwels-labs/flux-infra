@@ -35,7 +35,7 @@ metadata:
 rules:
 - apiGroups: [monitoring.grafana.com]
   resources:
-  - grafanaagentsn
+  - grafanaagents
   - metricsinstances
   - logsinstances
   - podlogs
