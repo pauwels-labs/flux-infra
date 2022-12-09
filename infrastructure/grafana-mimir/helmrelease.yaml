@@ -1,12 +1,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: mimir
+  name: grafana-mimir
   namespace: flux-system
 spec:
-  releaseName: mimir
+  releaseName: grafana-mimir
   serviceAccountName: helm-controller
-  targetNamespace: "${infranamespaceprefix}mimir"
+  targetNamespace: "${infranamespaceprefix}grafana-mimir"
   chart:
     spec:
       chart: grafana/mimir-distributed
@@ -30,7 +30,7 @@ spec:
       enabled: false
     serviceAccount:
       annotations:
-        eks.amazonaws.com/role-arn: ${mimiriamrolearn}
+        eks.amazonaws.com/role-arn: ${grafanamimiriamrolearn}
     global:
       extraEnv:
       - name: POD_IP
@@ -52,11 +52,11 @@ spec:
         alertmanager_storage:
           storage_prefix: alerts
           s3:
-            bucket_name: "${mimirrulerbucketname}"
+            bucket_name: "${grafanamimirrulerbucketname}"
         blocks_storage:
           storage_prefix: blocks
           s3:
-            bucket_name: "${mimirblocksbucketname}"
+            bucket_name: "${grafanamimirblocksbucketname}"
         compactor:
           sharding_ring:
             instance_interface_names:
@@ -86,7 +86,7 @@ spec:
         ruler_storage:
           storage_prefix: ruler
           s3:
-            bucket_name: "${mimirrulerbucketname}"
+            bucket_name: "${grafanamimirrulerbucketname}"
         store_gateway:
           sharding_ring:
             instance_interface_names:
