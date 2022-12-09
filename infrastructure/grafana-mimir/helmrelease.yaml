@@ -37,6 +37,17 @@ spec:
         valueFrom:
           fieldRef:
             fieldPath: status.podIP
+    metaMonitoring:
+      serviceMonitor:
+        enabled: true
+        clusterLabel: "${clustername}"
+        labels:
+          region: "${ecrregion}"
+          environment: "${environment}"
+        interval: "30s"
+      grafanaAgent:
+        enabled: true
+        installOperator: true
     mimir:
       structuredConfig:
         common:
