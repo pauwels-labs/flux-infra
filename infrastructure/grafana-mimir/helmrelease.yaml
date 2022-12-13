@@ -46,8 +46,8 @@ spec:
           environment: "${environment}"
         interval: "30s"
       grafanaAgent:
-        enabled: true
-        installOperator: true
+        enabled: false
+        installOperator: false
         metrics:
           remote:
             url: http://grafana-mimir-distributor-headless.i-grafana-mimir.svc.cluster.local:8080/api/v1/push
