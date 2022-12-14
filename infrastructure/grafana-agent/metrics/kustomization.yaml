@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: "${infranamespaceprefix}grafana-agent"
+resources:
+- ../base
+- statefulset-agent.yaml
+- configmap-agent.yaml
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/selector/name
+      value: grafana-agent-metrics
+  target:
+    kind: Service
+    name: grafana-agent
+- patch: |
+    - op: replace
+      path: /roleRef/name
+      value: grafana-agent-metrics
+    - op: replace
+      path: /subjects/0/name
+      value: grafana-agent-metrics
+  target:
+    kind: ClusterRoleBinding
+    name: grafana-agent
+- patch: |-
+    - op: replace
+      path: /metadata/name
+      value: grafana-agent-metrics
+  target:
+    name: grafana-agent

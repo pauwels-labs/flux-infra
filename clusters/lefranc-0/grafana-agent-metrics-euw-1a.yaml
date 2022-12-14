@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: grafana-agent-euw-1a
+  name: grafana-agent-metrics-euw-1a
   namespace: flux-system
 spec:
   interval: 5m0s
@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/grafana-agent
+  path: ./infrastructure/grafana-agent/metrics
   prune: true
   wait: true
   timeout: 30s

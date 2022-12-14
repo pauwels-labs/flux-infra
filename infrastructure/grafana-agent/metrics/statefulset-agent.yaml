@@ -1,74 +1,33 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: grafana-agent
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: grafana-agent
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - nodes
-  - nodes/proxy
-  - services
-  - endpoints
-  - pods
-  - events
-  verbs:
-  - get
-  - list
-  - watch
-- nonResourceURLs:
-  - /metrics
-  verbs:
-  - get
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: grafana-agent
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: grafana-agent
-subjects:
-- kind: ServiceAccount
-  name: grafana-agent
-  namespace: "${infranamespaceprefix}grafana-agent"
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: grafana-agent
-  name: grafana-agent
-spec:
-  clusterIP: None
-  ports:
-  - name: grafana-agent-http-metrics
-    port: 80
-    targetPort: 80
-  selector:
-    name: grafana-agent
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: grafana-agent
+  name: grafana-agent-metrics
 spec:
-  replicas: 1
+  replicas: 6
   selector:
     matchLabels:
-      name: grafana-agent
-  serviceName: grafana-agent
+      name: grafana-agent-metrics
+  serviceName: grafana-agent-metrics
   template:
     metadata:
       labels:
-        name: grafana-agent
+        name: grafana-agent-metrics
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        whenUnsatisfiable: DoNotSchedule
+        minDomains: 3
+        topologyKey: "topology.kubernetes.io/zone"
+        labelSelector:
+          matchLabels:
+            name: grafana-agent-metrics
+      - maxSkew: 1
+        whenUnsatisfiable: DoNotSchedule
+        minDomains: 1
+        topologyKey: "kubernetes.io/hostname"
+        labelSelector:
+          matchLabels:
+            name: grafana-agent-metrics
       containers:
       - args:
         - -config.file=/etc/agent/agent.yaml
@@ -92,10 +51,10 @@ spec:
           name: agent-wal
         - mountPath: /etc/agent
           name: grafana-agent
-      serviceAccountName: grafana-agent
+      serviceAccountName: grafana-agent-metrics
       volumes:
       - configMap:
-          name: grafana-agent
+          name: grafana-agent-metrics
         name: grafana-agent
   updateStrategy:
     type: RollingUpdate

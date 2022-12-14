@@ -1,6 +1,6 @@
 kind: ConfigMap
 metadata:
-  name: grafana-agent
+  name: grafana-agent-metrics
 apiVersion: v1
 data:
   agent.yaml: |
