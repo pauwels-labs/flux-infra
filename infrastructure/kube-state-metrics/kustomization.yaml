@@ -6,9 +6,7 @@ resources:
 - kube-state-metrics-clusterRole.yaml
 - kube-state-metrics-deployment.yaml
 - kube-state-metrics-networkPolicy.yaml
-- kube-state-metrics-prometheusRule.yaml
 - kube-state-metrics-serviceAccount.yaml
-- kube-state-metrics-serviceMonitor.yaml
 - kube-state-metrics-service.yaml
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
