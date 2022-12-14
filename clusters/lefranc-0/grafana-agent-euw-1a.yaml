@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: grafana-agent
+  name: grafana-agent-euw-1a
   namespace: flux-system
 spec:
   interval: 5m0s
@@ -20,6 +20,8 @@ spec:
   - name: istio-system
   - name: istio-extras
   postBuild:
+    substitute:
+      az: eu-west-1a
     substituteFrom:
     - kind: ConfigMap
       name: external-config-data

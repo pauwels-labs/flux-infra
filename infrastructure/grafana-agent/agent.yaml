@@ -1,33 +1,7 @@
-apiVersion: monitoring.grafana.com/v1alpha1
-kind: GrafanaAgent
-metadata:
-  name: grafana-agent
-  labels:
-    app: grafana-agent
-spec:
-  image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.29.0
-  logLevel: info
-  serviceAccountName: grafana-agent
-  metrics:
-    instanceSelector:
-      matchLabels:
-        agent: grafana-agent-metrics
-    externalLabels:
-      cluster: "${clustername}"
-      region: "${ecrregion}"
-      environment: "${environment}"
-  logs:
-    instanceSelector:
-      matchLabels:
-        agent: grafana-agent-logs
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: grafana-agent
-  namespace: default
-imagePullSecrets:
-- name: ecr-credentials
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -39,7 +13,6 @@ rules:
   resources:
   - nodes
   - nodes/proxy
-  - nodes/metrics
   - services
   - endpoints
   - pods
@@ -48,17 +21,8 @@ rules:
   - get
   - list
   - watch
-- apiGroups:
-  - networking.k8s.io
-  resources:
-  - ingresses
-  verbs:
-  - get
-  - list
-  - watch
 - nonResourceURLs:
   - /metrics
-  - /metrics/cadvisor
   verbs:
   - get
 ---
@@ -74,3 +38,76 @@ subjects:
 - kind: ServiceAccount
   name: grafana-agent
   namespace: "${infranamespaceprefix}grafana-agent"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: grafana-agent
+  name: grafana-agent
+spec:
+  clusterIP: None
+  ports:
+  - name: grafana-agent-http-metrics
+    port: 80
+    targetPort: 80
+  selector:
+    name: grafana-agent
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: grafana-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: grafana-agent
+  serviceName: grafana-agent
+  template:
+    metadata:
+      labels:
+        name: grafana-agent
+    spec:
+      containers:
+      - args:
+        - -config.file=/etc/agent/agent.yaml
+        - -enable-features=integrations-next
+        - -server.http.address=0.0.0.0:80
+        command:
+        - /bin/agent
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.29.0
+        imagePullPolicy: IfNotPresent
+        name: grafana-agent
+        ports:
+        - containerPort: 80
+          name: http-metrics
+        volumeMounts:
+        - mountPath: /var/lib/agent
+          name: agent-wal
+        - mountPath: /etc/agent
+          name: grafana-agent
+      serviceAccountName: grafana-agent
+      volumes:
+      - configMap:
+          name: grafana-agent
+        name: grafana-agent
+  updateStrategy:
+    type: RollingUpdate
+  volumeClaimTemplates:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: agent-wal
+      namespace: "${infranamespaceprefix}grafana-agent"
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
