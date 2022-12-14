@@ -16,14 +16,12 @@ spec:
       topologySpreadConstraints:
       - maxSkew: 1
         whenUnsatisfiable: DoNotSchedule
-        minDomains: 3
         topologyKey: "topology.kubernetes.io/zone"
         labelSelector:
           matchLabels:
             name: grafana-agent-metrics
       - maxSkew: 1
         whenUnsatisfiable: DoNotSchedule
-        minDomains: 1
         topologyKey: "kubernetes.io/hostname"
         labelSelector:
           matchLabels:
