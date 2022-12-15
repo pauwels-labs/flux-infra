@@ -27,7 +27,7 @@ spec:
           matchLabels:
             name: grafana-agent-metrics
       containers:
-      - image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/cortex/tenant:1.7.2-ipv6
+      - image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/cortex/tenant:1.7.2-ipv62
         imagePullPolicy: IfNotPresent
         name: cortex-tenant
         ports:
