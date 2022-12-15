@@ -29,11 +29,13 @@ data:
               source_labels:
                 - __meta_kubernetes_node_name
               target_label: __metrics_path__
-          scheme: https
-          tls_config:
-              ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-              insecure_skip_verify: false
-              server_name: kubernetes
+            - replacement: pauwels-labs-main
+              target_label: tenant
+          scheme: http
+          # tls_config:
+          #     ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          #     insecure_skip_verify: false
+          #     server_name: kubernetes
         - job_name: integrations/kubernetes/kubelet
           bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
           kubernetes_sd_configs:
@@ -46,8 +48,33 @@ data:
               source_labels:
                 - __meta_kubernetes_node_name
               target_label: __metrics_path__
-          scheme: https
-          tls_config:
-              ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-              insecure_skip_verify: false
-              server_name: kubernetes
+            - replacement: pauwels-labs-main
+              target_label: tenant
+          scheme: http
+          # tls_config:
+          #     ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          #     insecure_skip_verify: false
+          #     server_name: kubernetes
+        - job_name: "tenant/workloads"
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_pod_annotation_pauwelslabs_com_scrape_metrics]
+                action: keep
+                regex: ^t-.+;true
+              - source_labels: [__meta_kubernetes_namespace]
+                action: replace
+                regex: ^t-(.+)
+                replacement: $1
+                target_label: tenant
+        - job_name: "infrastructure/workloads"
+            kubernetes_sd_configs:
+              - role: pod
+            relabel_configs:
+              - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_pod_annotation_pauwelslabs_com_scrape_metrics]
+                action: keep
+                regex: ^i-.+;true
+              - action: replace
+                replacement: pauwels-labs-main
+                target_label: tenant
+          scheme: http
