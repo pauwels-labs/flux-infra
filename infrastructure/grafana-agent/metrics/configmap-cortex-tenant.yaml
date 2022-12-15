@@ -9,9 +9,9 @@ data:
     # Profiling API, remove to disable
     #listen_pprof: 0.0.0.0:7008
     # Where to send the modified requests (Cortex)
-    target: http://grafana-mimir-distributor.i-grafana-mimir.svc.cluster.local:8080/api/v1/push
+    target: http://grafana-mimir-distributor-headless.i-grafana-mimir.svc.cluster.local:8080/api/v1/push
     # Log level
-    log_level: info
+    log_level: debug
     # HTTP request timeout
     timeout: 10s
     # Timeout to wait on shutdown to allow load balancers detect that we're going away.
