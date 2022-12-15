@@ -5,6 +5,7 @@ resources:
 - ../base
 - statefulset-agent.yaml
 - configmap-agent.yaml
+- configmap-cortex-tenant.yaml
 patches:
 - patch: |-
     - op: replace

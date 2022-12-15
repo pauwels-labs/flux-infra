@@ -15,7 +15,7 @@ data:
       configs:
       - name: integrations
         remote_write:
-        - url: http://grafana-mimir-distributor.i-grafana-mimir.svc.cluster.local:8080/api/v1/push
+        - url: http://127.0.0.1:20202/push
         scrape_configs:
         - job_name: integrations/kubernetes/cadvisor
           bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
@@ -61,10 +61,10 @@ data:
             relabel_configs:
               - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_pod_annotation_pauwelslabs_com_scrape_metrics]
                 action: keep
-                regex: ^t-.+;true
+                regex: t-.+;true
               - source_labels: [__meta_kubernetes_namespace]
                 action: replace
-                regex: ^t-(.+)
+                regex: t-(.+)
                 replacement: $1
                 target_label: tenant
         - job_name: "infrastructure/workloads"
@@ -73,7 +73,7 @@ data:
             relabel_configs:
               - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_pod_annotation_pauwelslabs_com_scrape_metrics]
                 action: keep
-                regex: ^i-.+;true
+                regex: (i-.+|.*system);true
               - action: replace
                 replacement: pauwels-labs-main
                 target_label: tenant
