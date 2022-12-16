@@ -37,11 +37,7 @@ spec:
         volumeMounts:
         - mountPath: /data/
           name: cortex-tenant-config
-      - args:
-        - -config.file=/etc/agent/agent.yaml
-        - -enable-features=integrations-next
-        - -server.http.address=0.0.0.0:80
-        command:
+      - command:
         - /bin/sh
         - -c
         - HASH_MOD_ID="$${POD_NAME##*-}" /bin/agent -config.file=/etc/agent/agent.yaml -enable-features=integrations-next -server.http.address=0.0.0.0:80
