@@ -42,7 +42,9 @@ spec:
         - -enable-features=integrations-next
         - -server.http.address=0.0.0.0:80
         command:
-        - /bin/agent
+        - /bin/sh
+        - -c
+        - HASH_MOD_ID="$${POD_NAME##*-}" /bin/agent -config.file=/etc/agent/agent.yaml -enable-features=integrations-next -server.http.address=0.0.0.0:80
         env:
         - name: HOSTNAME
           valueFrom:

@@ -39,7 +39,7 @@ data:
               action: hashmod
             - source_labels:
                 - __tmp_hash
-              regex: ^$${POD_NAME##*-}$
+              regex: ^$${HASH_MOD_ID}$
               action: keep
           scheme: http
         - job_name: integrations/kubernetes/kubelet
@@ -64,7 +64,7 @@ data:
               action: hashmod
             - source_labels:
                 - __tmp_hash
-              regex: ^$${POD_NAME##*-}$
+              regex: ^$${HASH_MOD_ID}$
               action: keep
           scheme: http
         - job_name: "tenant/workloads"
@@ -92,7 +92,7 @@ data:
               action: hashmod
             - source_labels:
                 - __tmp_hash
-              regex: ^$${POD_NAME##*-}$
+              regex: ^$${HASH_MOD_ID}$
               action: keep
         - job_name: "infrastructure/workloads"
           scheme: http
@@ -115,5 +115,5 @@ data:
               action: hashmod
             - source_labels:
                 - __tmp_hash
-              regex: ^$${POD_NAME##*-}$
+              regex: ^$${HASH_MOD_ID}$
               action: keep
