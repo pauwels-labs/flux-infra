@@ -83,7 +83,7 @@ spec:
             enable_inet6: true
         memberlist:
           bind_addr:
-          - $${POD_IP}
+          - [$${POD_IP}]
         query_scheduler:
           ring:
             enable_inet6: true
