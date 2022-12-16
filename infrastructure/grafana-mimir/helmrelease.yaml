@@ -81,6 +81,9 @@ spec:
         ingester:
           ring:
             enable_inet6: true
+        memberlist:
+          bind_addr:
+          - $${POD_IP}
         query_scheduler:
           ring:
             enable_inet6: true
