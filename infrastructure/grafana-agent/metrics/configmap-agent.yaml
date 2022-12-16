@@ -31,6 +31,16 @@ data:
               target_label: __metrics_path__
             - replacement: pauwels-labs-main
               target_label: tenant
+            - source_labels:
+                - __address__
+              modulus: 6
+              target_label:
+                - __tmp_hash
+              action: hashmod
+            - source_labels:
+                - __tmp_hash
+              regex: ^$${POD_NAME##*-}$
+              action: keep
           scheme: http
         - job_name: integrations/kubernetes/kubelet
           bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
@@ -46,6 +56,16 @@ data:
               target_label: __metrics_path__
             - replacement: pauwels-labs-main
               target_label: tenant
+            - source_labels:
+                - __address__
+              modulus: 6
+              target_label:
+                - __tmp_hash
+              action: hashmod
+            - source_labels:
+                - __tmp_hash
+              regex: ^$${POD_NAME##*-}$
+              action: keep
           scheme: http
         - job_name: "tenant/workloads"
           scheme: http
@@ -64,6 +84,16 @@ data:
               regex: t-(.+)
               replacement: $1
               target_label: tenant
+            - source_labels:
+                - __address__
+              modulus: 6
+              target_label:
+                - __tmp_hash
+              action: hashmod
+            - source_labels:
+                - __tmp_hash
+              regex: ^$${POD_NAME##*-}$
+              action: keep
         - job_name: "infrastructure/workloads"
           scheme: http
           kubernetes_sd_configs:
@@ -77,3 +107,13 @@ data:
             - action: replace
               replacement: pauwels-labs-main
               target_label: tenant
+            - source_labels:
+                - __address__
+              modulus: 6
+              target_label:
+                - __tmp_hash
+              action: hashmod
+            - source_labels:
+                - __tmp_hash
+              regex: ^$${POD_NAME##*-}$
+              action: keep

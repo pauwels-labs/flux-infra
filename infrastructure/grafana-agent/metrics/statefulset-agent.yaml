@@ -48,6 +48,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.29.0
         imagePullPolicy: IfNotPresent
         name: grafana-agent

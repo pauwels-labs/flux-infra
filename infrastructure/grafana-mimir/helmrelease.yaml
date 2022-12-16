@@ -62,7 +62,7 @@ spec:
         alertmanager:
           sharding_ring:
             enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
+            instance_addr: "$${POD_IP}"
         alertmanager_storage:
           storage_prefix: alerts
           s3:
@@ -78,7 +78,7 @@ spec:
         distributor:
           ring:
             enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
+            instance_addr: "$${POD_IP}"
         frontend:
           enable_inet6: true
         ingester:
@@ -96,7 +96,7 @@ spec:
         ruler:
           ring:
             enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
+            instance_addr: "$${POD_IP}"
         ruler_storage:
           storage_prefix: ruler
           s3:
@@ -104,4 +104,4 @@ spec:
         store_gateway:
           sharding_ring:
             enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
+            instance_addr: "$${POD_IP}"
