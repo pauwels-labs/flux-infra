@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/mimir
-      tag: 2.5.0-inet6.1
+      tag: 2.5.0-inet6.2
     nginx:
       enabled: false
     minio:
@@ -62,8 +62,6 @@ spec:
         alertmanager:
           sharding_ring:
             enable_inet6: true
-            instance_interface_names:
-            - v4if0
         alertmanager_storage:
           storage_prefix: alerts
           s3:
@@ -74,34 +72,21 @@ spec:
             bucket_name: "${grafanamimirblocksbucketname}"
         compactor:
           sharding_ring:
-            instance_interface_names:
-            - v4if0
+            enable_inet6: true
         distributor:
           ring:
             enable_inet6: true
-            instance_interface_names:
-            - v4if0
         frontend:
           enable_inet6: true
-          instance_interface_names:
-          - v4if0
         ingester:
           ring:
-            instance_interface_names:
-            - v4if0
-        memberlist:
-          bind_addr:
-          - $${POD_IP}
+            enable_inet6: true
         query_scheduler:
           ring:
             enable_inet6: true
-            instance_interface_names:
-            - v4if0
         ruler:
           ring:
             enable_inet6: true
-            instance_interface_names:
-            - v4if0
         ruler_storage:
           storage_prefix: ruler
           s3:
@@ -109,5 +94,3 @@ spec:
         store_gateway:
           sharding_ring:
             enable_inet6: true
-            instance_interface_names:
-            - v4if0
