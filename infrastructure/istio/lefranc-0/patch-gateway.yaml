@@ -81,7 +81,7 @@ spec:
       name: https-dashboards
       protocol: HTTPS
     hosts:
-    - "${infranamespaceprefix}monitoring/dashboards.pauwelslabs.com"
+    - "${infranamespaceprefix}grafana/dashboards.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-dashboards-pauwels-labs
