@@ -94,6 +94,7 @@ spec:
             enable_inet6: true
             instance_addr: "$${POD_IP}"
         alertmanager_storage:
+          backend: s3
           storage_prefix: alerts
           s3:
             bucket_name: "${grafanamimirrulerbucketname}"
