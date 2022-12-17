@@ -37,7 +37,7 @@ spec:
         enabled: true
         expect_claims: "{\"iss\": \"https://identity.pauwelslabs.com/realms/pauwels-labs\"}"
         header_name: x-forwarded-access-token
-        jwk_set_url: https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
+        jwk_set_url: https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs
         role_attribute_path: contains(roles[*], 'dashboards-admin') && 'GrafanaAdmin' || contains(roles[*], 'dashboards-editor') && 'Editor' || 'Viewer'
         username_claim: preferred_username
       auth.proxy:
