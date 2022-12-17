@@ -32,8 +32,7 @@ spec:
         auto_sign_up: true
         email_claim: email
         enabled: true
-        expect_claims:
-          "iss": "https://identity.pauwelslabs.com/realms/pauwels-labs"
+        expect_claims: "{\"iss\": \"https://identity.pauwelslabs.com/realms/pauwels-labs\"}"
         header_name: x-forwarded-access-token
         jwk_set_url: https://identity.pauwelslabs.com/realms/pauwels-labs/protocol/openid-connect/certs
         role_attribute_path: contains(roles[*], 'dashboards-admin') && 'GrafanaAdmin' || contains(roles[*], 'dashboards-editor') && 'Editor' || 'Viewer'
