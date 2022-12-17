@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/name: grafana
+  name: grafana-datasources
+  namespace: ${infranamespaceprefix}monitoring
+stringData:
+  datasources.yaml: |-
+    {
+        "apiVersion": 1,
+        "datasources": [
+            {
+                "access": "proxy",
+                "editable": false,
+                "name": "prometheus",
+                "orgId": 1,
+                "type": "prometheus",
+                "url": "http://prometheus-k8s.${infranamespaceprefix}monitoring.svc:9090",
+                "version": 1
+            }
+        ]
+    }
+type: Opaque

@@ -8,3 +8,4 @@ resources:
 - rbac-kustomize-controller.yaml
 - virtualservice-grafana.yaml
 - authorizationpolicy-grafana.yaml
+- configmap-grafana-dashboard-definitions.yaml
