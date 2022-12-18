@@ -3,5 +3,4 @@ kind: Namespace
 metadata:
   name: "${infranamespaceprefix}grafana"
   labels:
-    istio.io/rev: stable
     name: "${infranamespaceprefix}grafana"
