@@ -92,6 +92,10 @@ spec:
         - name: X-Forwarded-ID-Token
           values:
           - claim: id_token
+        - name: Authorization
+          values:
+          - claim: id_token
+            prefix: 'Bearer '
         providers:
         - clientID: web
           clientSecretFile: /etc/oauth2_proxy/client_secrets/client-secret
