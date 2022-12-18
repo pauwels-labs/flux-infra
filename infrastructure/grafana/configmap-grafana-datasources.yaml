@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: grafana
     pauwelslabs.com/datasources: "true"
   name: grafana-datasources
-  namespace: ${infranamespaceprefix}monitoring
+  namespace: ${infranamespaceprefix}grafana
 stringData:
   datasources.yaml: |-
     {
