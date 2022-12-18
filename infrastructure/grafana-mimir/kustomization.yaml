@@ -9,3 +9,4 @@ resources:
 - virtualservice-alertmanager.yaml
 - authorizationpolicy-alertmanager.yaml
 - requestauthentication-alertmanager.yaml
+- envoyfilter-add-x-scope-orgid-header.yaml
