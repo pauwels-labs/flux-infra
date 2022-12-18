@@ -7,3 +7,4 @@ resources:
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
 - virtualservice-alertmanager.yaml
+- authorizationpolicy-alertmanager.yaml

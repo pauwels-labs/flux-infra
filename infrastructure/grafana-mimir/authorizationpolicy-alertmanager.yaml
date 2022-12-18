@@ -1,0 +1,19 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: alertmanager
+  namespace: ${infranamespaceprefix}grafana-mimir
+spec:
+  action: CUSTOM
+  provider:
+    name: oauth2-proxy
+  rules:
+  - to:
+    - operation:
+        hosts:
+        - alertmanager.pauwelslabs.com
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana-mimir
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/component: alertmanager
