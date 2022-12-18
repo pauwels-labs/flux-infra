@@ -17,6 +17,7 @@ spec:
     - "echo.pauwelslabs.com"
     - "auth.pauwelslabs.com"
     - "dashboards.pauwelslabs.com"
+    - "alertmanager.pauwelslabs.com"
     - "alerts.pauwelslabs.com"
     - "metrics.pauwelslabs.com"
     - "webhook.ci.pauwelslabs.com"
@@ -85,6 +86,15 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-dashboards-pauwels-labs
+  - port:
+      number: 443
+      name: https-alertmanager
+      protocol: HTTPS
+    hosts:
+    - "${infranamespaceprefix}grafana-mimir/alertmanager.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-alertmanager-pauwels-labs
   - port:
       number: 443
       name: https-alerts

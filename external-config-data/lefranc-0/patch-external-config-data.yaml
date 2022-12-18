@@ -23,6 +23,7 @@ data:
   keycloakdbport: "'5432'"
   keycloakdbname: "keycloak"
   vaulturl: "http://vault.i-vault:8200"
+  oidcurl: "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
   oidctokenurl: "https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/token"
   ecrcredentialsyncclientid: "aws"
   ecrcredentialsyncusername: "ecr-credentials-syncer-pauwels-labs-main"

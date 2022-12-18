@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vault-ui
+  namespace: "${infranamespaceprefix}grafana-mimir"
+spec:
+  hosts:
+  - alertmanager.pauwelslabs.com
+  gateways:
+  - ${infranamespaceprefix}istio-ingress/pauwels-labs
+  http:
+  - name: "http-metrics"
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: grafana-mimir-alertmanager
