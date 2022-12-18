@@ -1,0 +1,43 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: add-x-scope-orgid-header
+  namespace: "${infranamespaceprefix}istio-ingress"
+spec:
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: 'envoy.filters.http.router'
+        portNumber: 443
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.lua
+        typed_config:
+          '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              local meta = request_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.jwt_authn")
+              if meta ~= nil then
+                  local claims = meta["${oidcurl}"]
+                  if claims ~= nil then
+                    local header_contents = ""
+                    for i, t in pairs(claims.tenants) do
+                        if i == 1 then
+                            header_contents = t
+                        else
+                            header_contents = header_contents .. "|" .. t
+                        end
+                    end
+                    if string.len(header_contents) ~= 0 then
+                      request_handle:headers():add("x-scope-orgid", header_contents)
+                    end
+                  end
+              end
+            end
