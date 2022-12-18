@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: alertmanager
+  namespace: ${infranamespaceprefix}grafana-mimir
+spec:
+  jwtRules:
+  - issuer: "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
+    jwksUri: https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana-mimir
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/component: alertmanager

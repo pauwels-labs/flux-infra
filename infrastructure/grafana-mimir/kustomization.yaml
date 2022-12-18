@@ -8,3 +8,4 @@ resources:
 - rbac-kustomize-controller.yaml
 - virtualservice-alertmanager.yaml
 - authorizationpolicy-alertmanager.yaml
+- requestauthentication-alertmanager.yaml
