@@ -142,6 +142,8 @@ data:
               source_labels:
                 - __meta_kubernetes_pod_node_name
               target_label: instance
+            - replacement: pauwels-labs-main
+              target_label: tenant
         # - job_name: "tenant/workloads"
         #   scheme: http
         #   bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
