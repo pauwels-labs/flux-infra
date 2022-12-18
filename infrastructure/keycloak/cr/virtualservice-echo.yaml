@@ -15,3 +15,7 @@ spec:
         port:
           number: 8080
         host: echo
+      # headers:
+      #   request:
+      #     set:
+      #       authorization: 'Bearer %REQ(x-forwarded-id-token)%'
