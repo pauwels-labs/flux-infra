@@ -112,6 +112,7 @@ spec:
             instance_addr: "$${POD_IP}"
         frontend:
           enable_inet6: true
+          address: "[$${POD_IP}]"
         ingester:
           ring:
             enable_inet6: true
