@@ -36,7 +36,7 @@ data:
       # Which tenant ID to use if the label is missing in any of the timeseries
       # If this is not set or empty then the write request with missing tenant label
       # will be rejected with HTTP code 400
-      default: cortex-tenant-unknown
+      default: ""
       # Enable if you want all metrics from Prometheus to be accepted with a 204 HTTP code
       # regardless of the response from Cortex. This can lose metrics if Cortex is
       # throwing rejections.
