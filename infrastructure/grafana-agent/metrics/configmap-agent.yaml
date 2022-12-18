@@ -144,6 +144,15 @@ data:
               target_label: instance
             - replacement: pauwels-labs-main
               target_label: tenant
+            - source_labels:
+                - __address__
+              modulus: 6
+              target_label: __tmp_hash
+              action: hashmod
+            - source_labels:
+                - __tmp_hash
+              regex: ^$${HASH_MOD_ID}$
+              action: keep
         # - job_name: "tenant/workloads"
         #   scheme: http
         #   bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token

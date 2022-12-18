@@ -126,6 +126,8 @@ spec:
             enable_inet6: true
             instance_addr: "[$${POD_IP}]"
         ruler:
+          query_frontend:
+            address: dns://grafana-mimir-query-frontend-headless.${infranamespaceprefix}grafana-mimir.svc:9095
           ring:
             enable_inet6: true
             instance_addr: "$${POD_IP}"
