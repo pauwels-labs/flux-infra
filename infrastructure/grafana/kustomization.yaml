@@ -7,7 +7,6 @@ resources:
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
 - virtualservice-grafana.yaml
-- authorizationpolicy-grafana.yaml
 - configmap-grafana-datasources.yaml
 - envoyfilter-add-org-id-headers.yaml
 - authorizationpolicy-grafana.yaml
