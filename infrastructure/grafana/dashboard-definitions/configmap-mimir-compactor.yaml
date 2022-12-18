@@ -2407,4 +2407,4 @@ metadata:
   name: mimir-compactor
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: "true"
+    pauwelslabs.com/dashboards: "true"

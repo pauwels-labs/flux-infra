@@ -4763,4 +4763,4 @@ metadata:
   name: mimir-reads
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: "true"
+    pauwelslabs.com/dashboards: "true"

@@ -3287,4 +3287,4 @@ metadata:
   name: mimir-queries
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: "true"
+    pauwelslabs.com/dashboards: "true"

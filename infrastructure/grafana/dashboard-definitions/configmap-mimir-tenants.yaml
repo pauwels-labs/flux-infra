@@ -2670,4 +2670,4 @@ metadata:
   name: mimir-tenants
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: "true"
+    pauwelslabs.com/dashboards: "true"

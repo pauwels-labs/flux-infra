@@ -1403,4 +1403,4 @@ metadata:
   name: mimir-writes-resources
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: "true"
+    pauwelslabs.com/dashboards: "true"

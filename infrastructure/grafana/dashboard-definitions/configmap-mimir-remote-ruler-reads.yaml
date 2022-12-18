@@ -1194,4 +1194,4 @@ metadata:
   name: mimir-remote-ruler-reads
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: "true"
+    pauwelslabs.com/dashboards: "true"

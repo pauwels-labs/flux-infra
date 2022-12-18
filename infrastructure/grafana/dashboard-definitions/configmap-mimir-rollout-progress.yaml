@@ -1425,4 +1425,4 @@ metadata:
   name: mimir-rollout-progress
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: "true"
+    pauwelslabs.com/dashboards: "true"
