@@ -1,0 +1,47 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: add-org-id-headers
+  namespace: "${infranamespaceprefix}grafana"
+spec:
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: SIDECAR_INBOUND
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: 'envoy.filters.http.router'
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.lua
+        typed_config:
+          '@type': 'type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua'
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              local meta = request_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.jwt_authn")
+              if meta ~= nil then
+                  local claims = meta["${oidcurl}"]
+                  if claims ~= nil then
+                    local scope_orgid_contents = ""
+                    for i, t in pairs(claims.tenants) do
+                        if i == 1 then
+                            scope_orgid_contents = t
+                        else
+                            scope_orgid_contents = scope_orgid_contents .. "|" .. t
+                        end
+                    end
+                    if string.len(scope_orgid_contents) ~= 0 then
+                      request_handle:headers():add("x-scope-orgid", scope_orgid_contents)
+                    end
+
+                    local grafana_org_id = claims.grafana_org_ids[1]
+                    if grafana_org_id ~= nil and type(grafana_org_id) == "number" then
+                      request_handle:headers():add("x-grafana-org-id", grafana_org_id)
+                    end
+                  end
+              end
+            end

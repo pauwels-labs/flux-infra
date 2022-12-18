@@ -9,6 +9,9 @@ resources:
 - virtualservice-grafana.yaml
 - authorizationpolicy-grafana.yaml
 - configmap-grafana-datasources.yaml
+- envoyfilter-add-org-id-headers.yaml
+- authorizationpolicy-grafana.yaml
+- requestauthentication-grafana.yaml
 - dashboard-definitions/configmap-mimir-alertmanager-resources.yaml
 - dashboard-definitions/configmap-mimir-alertmanager.yaml
 - dashboard-definitions/configmap-mimir-compactor-resources.yaml

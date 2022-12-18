@@ -1,0 +1,16 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: grafana
+  namespace: ${infranamespaceprefix}grafana
+
+spec:
+  jwtRules:
+  - issuer: "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
+    jwksUri: https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs
+    fromHeaders:
+    - name: "x-forwarded-id-token"
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana
+      app.kubernetes.io/name: grafana
