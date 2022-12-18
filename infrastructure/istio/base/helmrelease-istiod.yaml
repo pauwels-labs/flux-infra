@@ -52,9 +52,6 @@ spec:
           - "content-type"
           - "set-cookie"
           headersToDownstreamOnAllow:
-          - "authorization"
-          - "cookie"
-          - "path"
           - "x-forwarded-id-token"
           - "x-forwarded-access-token"
           - "x-forwarded-refresh-token"
