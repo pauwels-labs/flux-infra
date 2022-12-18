@@ -113,15 +113,15 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
-        datasources:
-        - name: mimir
-          orgId: 1
-          editable: false
-          type: prometheus
-          url: http://grafana-mimir-query-frontend.${infranamespaceprefix}grafana-mimir.svc:9095
-          access: proxy
-          isDefault: true
-          version: 1
+        # datasources:
+        # - name: mimir
+        #   orgId: 1
+        #   editable: false
+        #   type: prometheus
+        #   url: http://grafana-mimir-query-frontend-headless.${infranamespaceprefix}grafana-mimir.svc:9095
+        #   access: proxy
+        #   isDefault: true
+        #   version: 1
     grafana.ini:
       auth.basic:
         enabled: false
