@@ -27,6 +27,10 @@ spec:
     service:
       port: 3000
       targetPort: 3000
+    useStatefulSet: true
+    persistence:
+      type: pvc
+      enabled: true
     sidecar:
       image:
         repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/kiwigrid/k8s-sidecar
