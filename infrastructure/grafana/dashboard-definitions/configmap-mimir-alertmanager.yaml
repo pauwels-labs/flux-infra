@@ -2711,4 +2711,4 @@ metadata:
   name: mimir-alertmanager
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: true
+    grafana.io/dashboards: "true"

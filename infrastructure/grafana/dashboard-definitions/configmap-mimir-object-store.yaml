@@ -1048,4 +1048,4 @@ metadata:
   name: mimir-object-store
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: true
+    grafana.io/dashboards: "true"

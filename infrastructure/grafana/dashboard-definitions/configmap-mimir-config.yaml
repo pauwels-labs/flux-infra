@@ -320,4 +320,4 @@ metadata:
   name: mimir-config
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: true
+    grafana.io/dashboards: "true"

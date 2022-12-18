@@ -1484,4 +1484,4 @@ metadata:
   name: mimir-top-tenants
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: true
+    grafana.io/dashboards: "true"

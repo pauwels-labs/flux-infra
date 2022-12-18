@@ -1336,4 +1336,4 @@ metadata:
   name: mimir-overview-resources
   namespace: i-grafana
   labels:
-    grafana.io/dashboards: true
+    grafana.io/dashboards: "true"
