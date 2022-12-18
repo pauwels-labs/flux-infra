@@ -23,12 +23,9 @@ spec:
           inlineCode: |
             function envoy_on_request(request_handle)
               local meta = request_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.jwt_authn")
-              request_handle:logInfo("pre meta")
               if meta ~= nil then
-                  request_handle:logInfo("past meta")
                   local claims = meta["${oidcurl}"]
                   if claims ~= nil then
-                    request_handle:logInfo("past claims")
                     local header_contents = ""
                     for i, t in pairs(claims.tenants) do
                         if i == 1 then
@@ -37,7 +34,6 @@ spec:
                             header_contents = header_contents .. "|" .. t
                         end
                     end
-                    request_handle:logInfo(header_contents)
                     if string.len(header_contents) ~= 0 then
                       request_handle:headers():add("x-scope-orgid", header_contents)
                     end
