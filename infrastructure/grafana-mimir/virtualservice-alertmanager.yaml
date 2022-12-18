@@ -15,7 +15,3 @@ spec:
         port:
           number: 8080
         host: grafana-mimir-alertmanager
-      headers:
-        request:
-          set:
-            Authorization: 'Bearer %REQ(x-forward-id-token)%'
