@@ -42,7 +42,7 @@ spec:
                   if grafana_org_id ~= nil then
                     local n = tonumber(grafana_org_id)
                     if n ~= nil then
-                      -- request_handle:headers():add("x-grafana-org-id", grafana_org_id)
+                      request_handle:headers():add("x-grafana-org-id", grafana_org_id)
                     end
                   end
                 end
