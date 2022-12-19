@@ -24,24 +24,24 @@ spec:
             function envoy_on_request(request_handle)
               local meta = request_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.jwt_authn")
               if meta ~= nil then
-                  local claims = meta["${oidcurl}"]
-                  if claims ~= nil then
-                    local scope_orgid_contents = ""
-                    for i, t in pairs(claims.tenants) do
-                        if i == 1 then
-                            scope_orgid_contents = t
-                        else
-                            scope_orgid_contents = scope_orgid_contents .. "|" .. t
-                        end
-                    end
-                    if string.len(scope_orgid_contents) ~= 0 then
-                      request_handle:headers():add("x-scope-orgid", scope_orgid_contents)
-                    end
-
-                    local grafana_org_id = claims.grafana_org_ids[1]
-                    if grafana_org_id ~= nil and type(grafana_org_id) == "number" then
-                      request_handle:headers():add("x-grafana-org-id", grafana_org_id)
-                    end
+                local claims = meta["${oidcurl}"]
+                if claims ~= nil then
+                  local scope_orgid_contents = ""
+                  for i, t in pairs(claims.tenants) do
+                      if i == 1 then
+                          scope_orgid_contents = t
+                      else
+                          scope_orgid_contents = scope_orgid_contents .. "|" .. t
+                      end
                   end
+                  if string.len(scope_orgid_contents) ~= 0 then
+                    request_handle:headers():add("x-scope-orgid", scope_orgid_contents)
+                  end
+
+                  local grafana_org_id = claims.grafana_org_ids[1]
+                  if grafana_org_id ~= nil and type(grafana_org_id) == "number" then
+                    request_handle:headers():add("x-grafana-org-id", grafana_org_id)
+                  end
+                end
               end
             end
