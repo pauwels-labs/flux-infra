@@ -59,7 +59,7 @@ spec:
         expect_claims: "{\"iss\": \"https://identity.pauwelslabs.com/realms/pauwels-labs-main\"}"
         header_name: x-forwarded-access-token
         jwk_set_url: https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs
-        role_attribute_path: contains(groups[*], '/root/admins') && 'GrafanaAdmin' || contains(roles[*], '/grafana/admins') && 'Admin' || contains(roles[*], '/root/writers') && 'Editor' || contains(roles[*], '/grafana/writers') && 'Editor' || 'Viewer'
+        role_attribute_path: groups[?contains(@, '/root/admins')] && 'GrafanaAdmin' || groups[?contains(@, '/grafana/admins')] && 'Admin' || groups[?contains(@, '/root/writers')] && 'Editor' || groups[?contains(@, '/grafana/writers')] && 'Editor' || 'Viewer'
         username_claim: preferred_username
       date_formats:
         default_timezone: UTC
