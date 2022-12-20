@@ -21,6 +21,17 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    env:
+      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
+    envValueFrom:
+      GF_DATABASE_USERNAME:
+        secretKeyRef:
+          key: dbusername
+          name: grafana-db-credentials
+      GF_DATABASE_PASSWORD:
+        secretKeyRef:
+          key: dbpassword
+          name: grafana-db-credentials
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/grafana
       tag: 9.3.1
@@ -70,3 +81,8 @@ spec:
       server:
         root_url: https://dashboards.pauwelslabs.com
         domain: ""
+      database:
+        type: "${grafanadbtype}"
+        host: "${grafanadbhost}"
+        port: "${grafanadbport}"
+        name: "${grafanadbname}"
