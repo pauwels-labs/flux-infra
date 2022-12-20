@@ -32,6 +32,9 @@ spec:
         secretKeyRef:
           key: password
           name: grafana-db-credentials
+    podAnnotations:
+      traffic.sidecar.istio.io/excludeInboundPorts: "9095"
+      traffic.sidecar.istio.io/excludeOutboundPorts: "9095"
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/grafana
       tag: 9.3.1
