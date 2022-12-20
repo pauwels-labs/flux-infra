@@ -26,11 +26,11 @@ spec:
     envValueFrom:
       GF_DATABASE_USERNAME:
         secretKeyRef:
-          key: dbusername
+          key: username
           name: grafana-db-credentials
       GF_DATABASE_PASSWORD:
         secretKeyRef:
-          key: dbpassword
+          key: password
           name: grafana-db-credentials
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/grafana
