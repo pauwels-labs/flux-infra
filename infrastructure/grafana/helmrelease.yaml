@@ -22,7 +22,7 @@ spec:
     crds: CreateReplace
   values:
     env:
-      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
+      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: false
     envValueFrom:
       GF_DATABASE_USER:
         secretKeyRef:
