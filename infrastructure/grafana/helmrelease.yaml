@@ -88,3 +88,5 @@ spec:
         host: "${grafanadbhost}"
         port: "${grafanadbport}"
         name: "${grafanadbname}"
+      log:
+        level: debug
