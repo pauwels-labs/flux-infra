@@ -24,7 +24,7 @@ spec:
     env:
       GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
     envValueFrom:
-      GF_DATABASE_USERNAME:
+      GF_DATABASE_USER:
         secretKeyRef:
           key: username
           name: grafana-db-credentials
