@@ -139,8 +139,6 @@ spec:
           storage_prefix: ruler
           s3:
             bucket_name: "${grafanamimirrulerbucketname}"
-        server:
-          log_level: debug
         store_gateway:
           sharding_ring:
             enable_inet6: true
