@@ -129,6 +129,7 @@ spec:
             enable_inet6: true
             instance_addr: "[$${POD_IP}]"
         ruler:
+          alertmanager_url: dnssrvnoa+_http-metrics._tcp.{{ template "mimir.fullname" . }}-alertmanager-headless.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}/alertmanager
           query_frontend:
             address: dns+grafana-mimir-query-frontend-headless.${infranamespaceprefix}grafana-mimir.svc:9095
           ring:
