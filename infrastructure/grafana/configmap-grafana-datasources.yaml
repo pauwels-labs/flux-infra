@@ -18,7 +18,7 @@ stringData:
                 "name": "mimir",
                 "orgId": 1,
                 "type": "prometheus",
-                "url": "http://grafana-mimir-query-frontend-headless.i-grafana-mimir.svc:9095",
+                "url": "http://grafana-mimir-query-frontend.i-grafana-mimir.svc:8080/prometheus",
                 "isDefault": true,
                 "version": 1,
                 "jsonData": {
