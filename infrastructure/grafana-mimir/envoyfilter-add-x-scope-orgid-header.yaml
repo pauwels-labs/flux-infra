@@ -24,19 +24,19 @@ spec:
             function envoy_on_request(request_handle)
               local meta = request_handle:streamInfo():dynamicMetadata():get("envoy.filters.http.jwt_authn")
               if meta ~= nil then
-                  local claims = meta["${oidcurl}"]
-                  if claims ~= nil then
-                    local header_contents = ""
-                    for i, t in pairs(claims.tenants) do
-                        if i == 1 then
-                            header_contents = t
-                        else
-                            header_contents = header_contents .. "|" .. t
-                        end
-                    end
-                    if string.len(header_contents) ~= 0 then
-                      request_handle:headers():add("x-scope-orgid", header_contents)
+                local claims = meta["${oidcurl}"]
+                if claims ~= nil then
+                  local header_contents = ""
+                  for i, t in pairs(claims.tenants) do
+                    if i == 1 then
+                      header_contents = t
+                    else
+                      header_contents = header_contents .. "|" .. t
                     end
                   end
+                  if string.len(header_contents) ~= 0 then
+                    request_handle:headers():add("x-scope-orgid", header_contents)
+                  end
+                end
               end
             end
