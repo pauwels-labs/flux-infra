@@ -36,15 +36,15 @@ data:
               target_label: __metrics_path__
             - replacement: pauwels-labs-main
               target_label: tenant
-            - source_labels:
-                - __address__
-              modulus: 6
-              target_label: __tmp_hash
-              action: hashmod
-            - source_labels:
-                - __tmp_hash
-              regex: ^$${HASH_MOD_ID}$
-              action: keep
+            # - source_labels:
+            #     - __address__
+            #   modulus: 6
+            #   target_label: __tmp_hash
+            #   action: hashmod
+            # - source_labels:
+            #     - __tmp_hash
+            #   regex: ^$${HASH_MOD_ID}$
+            #   action: keep
           scheme: http
         - job_name: integrations/grafana-mimir/kube-state-metrics
           kubernetes_sd_configs:
@@ -64,15 +64,15 @@ data:
                 - __meta_kubernetes_pod_label_app_kubernetes_io_name
             - replacement: pauwels-labs-main
               target_label: tenant
-            - source_labels:
-                - __address__
-              modulus: 6
-              target_label: __tmp_hash
-              action: hashmod
-            - source_labels:
-                - __tmp_hash
-              regex: ^$${HASH_MOD_ID}$
-              action: keep
+            # - source_labels:
+            #     - __address__
+            #   modulus: 6
+            #   target_label: __tmp_hash
+            #   action: hashmod
+            # - source_labels:
+            #     - __tmp_hash
+            #   regex: ^$${HASH_MOD_ID}$
+            #   action: keep
         - job_name: integrations/grafana-mimir/kubelet
           bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
           kubernetes_sd_configs:
@@ -92,15 +92,15 @@ data:
               target_label: __metrics_path__
             - replacement: pauwels-labs-main
               target_label: tenant
-            - source_labels:
-                - __address__
-              modulus: 6
-              target_label: __tmp_hash
-              action: hashmod
-            - source_labels:
-                - __tmp_hash
-              regex: ^$${HASH_MOD_ID}$
-              action: keep
+            # - source_labels:
+            #     - __address__
+            #   modulus: 6
+            #   target_label: __tmp_hash
+            #   action: hashmod
+            # - source_labels:
+            #     - __tmp_hash
+            #   regex: ^$${HASH_MOD_ID}$
+            #   action: keep
           scheme: http
         - job_name: integrations/grafana-mimir/metrics
           kubernetes_sd_configs:
@@ -144,15 +144,15 @@ data:
               target_label: instance
             - replacement: pauwels-labs-main
               target_label: tenant
-            - source_labels:
-                - __address__
-              modulus: 6
-              target_label: __tmp_hash
-              action: hashmod
-            - source_labels:
-                - __tmp_hash
-              regex: ^$${HASH_MOD_ID}$
-              action: keep
+            # - source_labels:
+            #     - __address__
+            #   modulus: 6
+            #   target_label: __tmp_hash
+            #   action: hashmod
+            # - source_labels:
+            #     - __tmp_hash
+            #   regex: ^$${HASH_MOD_ID}$
+            #   action: keep
         # - job_name: "tenant/workloads"
         #   scheme: http
         #   bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
