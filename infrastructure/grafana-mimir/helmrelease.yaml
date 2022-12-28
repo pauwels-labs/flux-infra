@@ -143,3 +143,5 @@ spec:
           sharding_ring:
             enable_inet6: true
             instance_addr: "$${POD_IP}"
+        server:
+          log_level: "debug"
