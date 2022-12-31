@@ -6,7 +6,7 @@ resources:
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
-- virtualservice-alertmanager.yaml
-- authorizationpolicy-alertmanager.yaml
-- requestauthentication-alertmanager.yaml
-- envoyfilter-add-x-scope-orgid-header.yaml
+#- virtualservice-alertmanager.yaml
+#- authorizationpolicy-alertmanager.yaml
+#- requestauthentication-alertmanager.yaml
+#- envoyfilter-add-x-scope-orgid-header.yaml

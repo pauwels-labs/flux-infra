@@ -108,18 +108,18 @@ spec:
         compactor:
           sharding_ring:
             enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
+            instance_addr: "$${POD_IP}"
         distributor:
           ring:
             enable_inet6: true
             instance_addr: "$${POD_IP}"
         frontend:
           enable_inet6: true
-          address: "[$${POD_IP}]"
+          address: "$${POD_IP}"
         ingester:
           ring:
             enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
+            instance_addr: "$${POD_IP}"
         memberlist:
           bind_addr:
           - "[::0]"
@@ -127,7 +127,7 @@ spec:
         query_scheduler:
           ring:
             enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
+            instance_addr: "$${POD_IP}"
         ruler:
           alertmanager_url: dnssrvnoa+http://_http-metrics._tcp.{{ template "mimir.fullname" . }}-alertmanager-headless.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:8080/alertmanager
           query_frontend:
