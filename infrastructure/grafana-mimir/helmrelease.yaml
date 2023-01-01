@@ -144,4 +144,4 @@ spec:
             enable_inet6: true
             instance_addr: "$${POD_IP}"
         server:
-          log_level: "debug"
+          log_level: "info"
