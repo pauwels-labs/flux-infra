@@ -1,7 +1,7 @@
 apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
 metadata:
-  name: echo
+  name: query-frontend
   namespace: ${infranamespaceprefix}grafana-mimir
 spec:
   jwtRules:
@@ -11,4 +11,5 @@ spec:
     - name: "x-forwarded-id-token"
   selector:
     matchLabels:
-      run: echo
+      app.kubernetes.io/instance: grafana-mimir
+      app.kubernetes.io/component: query-frontend

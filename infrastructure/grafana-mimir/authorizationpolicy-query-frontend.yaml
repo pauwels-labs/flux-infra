@@ -1,0 +1,20 @@
+kind: AuthorizationPolicy
+apiVersion: security.istio.io/v1beta1
+metadata:
+  name: query-frontend
+  namespace: "${infranamespaceprefix}grafana-mimir"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana-mimir
+      app.kubernetes.io/component: query-frontend
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        paths:
+        - "/prometheus"
+    when:
+    - key: "request.auth.principal"
+      values:
+      - "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
