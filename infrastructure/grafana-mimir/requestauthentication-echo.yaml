@@ -2,7 +2,7 @@ apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
 metadata:
   name: grafana
-  namespace: ${infranamespaceprefix}keycloak
+  namespace: ${infranamespaceprefix}grafana-mimir
 spec:
   jwtRules:
   - issuer: "https://identity.pauwelslabs.com/realms/pauwels-labs-main"

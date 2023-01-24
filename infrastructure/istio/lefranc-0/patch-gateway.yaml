@@ -64,7 +64,7 @@ spec:
       name: https-echo
       protocol: HTTPS
     hosts:
-    - "${infranamespaceprefix}keycloak/echo.pauwelslabs.com"
+    - "${infranamespaceprefix}grafana-mimir/echo.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-echo-pauwels-labs

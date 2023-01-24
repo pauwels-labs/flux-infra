@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: echo
-  namespace: "${infranamespaceprefix}keycloak"
+  namespace: "${infranamespaceprefix}grafana-mimir"
 spec:
   hosts:
   - echo.pauwelslabs.com
@@ -15,7 +15,3 @@ spec:
         port:
           number: 8080
         host: echo
-      # headers:
-      #   request:
-      #     set:
-      #       authorization: 'Bearer %REQ(x-forwarded-id-token)%'

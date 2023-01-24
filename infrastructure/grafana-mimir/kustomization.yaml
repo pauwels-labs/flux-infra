@@ -10,3 +10,7 @@ resources:
 #- authorizationpolicy-alertmanager.yaml
 #- requestauthentication-alertmanager.yaml
 #- envoyfilter-add-x-scope-orgid-header.yaml
+- authorizationpolicy-echo.yaml
+- requestauthentication-echo.yaml
+- service-echo.yaml
+- virtualservice-echo.yaml
