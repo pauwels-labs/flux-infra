@@ -4,8 +4,4 @@ resources:
 - namespace.yaml
 - cr-keycloak.yaml
 - virtualservice.yaml
-- authorizationpolicy-echo.yaml
-- virtualservice-echo.yaml
-- service-echo.yaml
-- requestauthentication-echo.yaml
 - envoyfilter-add-org-id-headers.yaml
