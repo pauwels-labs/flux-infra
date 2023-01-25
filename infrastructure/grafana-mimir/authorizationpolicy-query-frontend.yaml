@@ -10,11 +10,11 @@ spec:
       app.kubernetes.io/component: query-frontend
   action: ALLOW
   rules:
-  - to:
+  - from:
+    - source:
+        requestPrincipals:
+        - "https://identity.pauwelslabs.com/realms/pauwels-labs-main/*"
+    to:
     - operation:
         paths:
         - "/prometheus"
-    when:
-    - key: "request.auth.principal"
-      values:
-      - "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
