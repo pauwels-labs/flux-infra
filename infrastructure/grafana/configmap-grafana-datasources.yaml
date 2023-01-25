@@ -17,7 +17,7 @@ stringData:
                 "editable": true,
                 "name": "mimir",
                 "orgId": 1,
-                "type": "mimir",
+                "type": "prometheus",
                 "url": "http://grafana-mimir-query-frontend.i-grafana-mimir.svc:8080/prometheus",
                 "isDefault": true,
                 "version": 1,
