@@ -17,4 +17,4 @@ spec:
     to:
     - operation:
         paths:
-        - "/prometheus"
+        - "/prometheus*"
