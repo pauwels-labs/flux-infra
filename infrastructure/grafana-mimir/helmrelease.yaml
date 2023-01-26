@@ -119,7 +119,7 @@ spec:
         ingester:
           ring:
             enable_inet6: true
-            instance_addr: "$${POD_IP}"
+            instance_addr: "[$${POD_IP}]"
         memberlist:
           bind_addr:
           - "[::0]"
