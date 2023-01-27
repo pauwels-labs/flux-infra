@@ -547,3 +547,11 @@ brackets, sometimes it doesn't. So far, the following need to be wrapped in squa
 Reference this PR for some others that I haven't determined are
 necessary. In this PR, I removed the square brackets, to disastrous
 effect.
+
+
+
+TRY THIS NEXT:
+
+Use the same AuthorizationPolicy as is used for the echo pod for the
+query-frontend pod. It's possible that Grafana is forwarding the
+oauth2-proxy cookie and we can leverage that.

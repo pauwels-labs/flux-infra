@@ -16,4 +16,4 @@ resources:
 - requestauthentication-echo.yaml
 - requestauthentication-query-frontend.yaml
 - authorizationpolicy-query-frontend.yaml
-- authorizationpolicy-query-frontend-allow-nothing.yaml
+#- authorizationpolicy-query-frontend-allow-nothing.yaml
