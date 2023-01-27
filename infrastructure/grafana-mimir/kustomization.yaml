@@ -12,8 +12,8 @@ resources:
 - envoyfilter-add-x-scope-orgid-header.yaml
 - service-echo.yaml
 - virtualservice-echo.yaml
-- authorizationpolicy-echo.yaml
-- requestauthentication-echo.yaml
+#- authorizationpolicy-echo.yaml
+#- requestauthentication-echo.yaml
 - requestauthentication-query-frontend.yaml
 - authorizationpolicy-query-frontend.yaml
-#- authorizationpolicy-query-frontend-allow-nothing.yaml
+- authorizationpolicy-query-frontend-allow-nothing.yaml
