@@ -514,3 +514,36 @@ without requiring more roles. The key policy variable was
 used across both trust relationship policies and normal IAM policies,
 and links the OIDC attributes to real locations in the ECR registry.
 
+## On Mimir
+
+This software is a goddamn nightmare. If I can actually get it running
+it'll solve a lot of issues, but getting it running is difficult. This
+is compounded by:
+
+1. Need to get it running in a multi-tenant way, integrated with
+   Grafana, so that orgs/teams can't see across each other and I don't
+   have to replicate Grafana instances across multiple people. This is
+   with Keycloak-assigned JWTs that are authenticated/authorized by
+   the Istio mesh.
+   
+2. Needs to be cost effective without excessive cross-AZ costs
+
+3. Needs to be scalabale
+
+### IPv6
+
+Mimir is the first piece of software I've had to use with shoddy IPv6
+support. I'm waiting on changes to the dskit repo (PR#185) for IPv6
+support. I've integrated those changes to Mimir myself and have a
+bespoke image for now, it works in IPv6.
+
+The listen addresses are proving problematic. Sometimes the
+instance_addr field in the config needs to be wrapped in square
+brackets, sometimes it doesn't. So far, the following need to be wrapped in square brackets:
+
+1. frontend
+2. ingester
+
+Reference this PR for some others that I haven't determined are
+necessary. In this PR, I removed the square brackets, to disastrous
+effect.
