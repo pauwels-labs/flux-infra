@@ -22,7 +22,11 @@ stringData:
                 "isDefault": true,
                 "version": 1,
                 "jsonData": {
-                  "prometheusType": "mimir"
+                  "prometheusType": "Mimir",
+                  "prometheusVersion": "> 2.3.x",
+                  "keepCookies": [
+                    "_oauth2_proxy"
+                  ]
                 }
             }
         ]
