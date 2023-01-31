@@ -8,7 +8,9 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: grafana-mimir
       app.kubernetes.io/component: query-frontend
-  action: ALLOW
+  action: CUSTOM
+  provider:
+    name: oauth2-proxy
   rules:
   - from:
     - source:
@@ -16,5 +18,5 @@ spec:
         - "https://identity.pauwelslabs.com/realms/pauwels-labs-main/*"
     to:
     - operation:
-        paths:
-        - "/prometheus*"
+        hosts:
+        - "*"
