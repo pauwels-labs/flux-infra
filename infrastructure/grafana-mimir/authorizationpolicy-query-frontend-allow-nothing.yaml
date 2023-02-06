@@ -3,8 +3,9 @@ kind: AuthorizationPolicy
 metadata:
   name: allow-nothing
   namespace: ${infranamespaceprefix}grafana-mimir
-# spec: null
-  # selector:
-  #   matchLabels:
-  #     app.kubernetes.io/instance: grafana-mimir
-  #     app.kubernetes.io/component: query-frontend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana-mimir
+      # app.kubernetes.io/component: query-frontend
+      app.kubernetes.io/component: compactor
