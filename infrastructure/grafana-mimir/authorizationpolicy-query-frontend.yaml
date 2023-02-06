@@ -18,5 +18,7 @@ spec:
         - "https://identity.pauwelslabs.com/realms/pauwels-labs-main/*"
     to:
     - operation:
-        hosts:
-        - "*"
+        paths:
+        - "/prometheus"
+        - "/prometheus/"
+        - "/prometheus/*"
