@@ -14,4 +14,4 @@ resources:
 - certificate-dashboards-pauwels-labs.yaml
 - certificate-alertmanager-pauwels-labs.yaml
 - certificate-alerts-pauwels-labs.yaml
-- certificate-metrics-pauwels-labs.yaml
+- certificate-telemetry-pauwels-labs.yaml

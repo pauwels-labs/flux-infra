@@ -1,0 +1,71 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana-mimir
+  namespace: "${infranamespaceprefix}grafana-mimir"
+spec:
+  hosts:
+  - telemetry.pauwelslabs.com
+  gateways:
+  - ${infranamespaceprefix}istio-ingress/pauwels-labs
+  http:
+  - match:
+    - uri:
+        prefix: "/distributor"
+    - uri:
+        exact: "/api/v1/push"
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: grafana-mimir-distributor-headless
+  - match:
+    - uri:
+        prefix: "/alertmanager"
+    - uri:
+        exact: "/multitenant_alertmanager/status"
+    - uri:
+        exact: "/api/v1/alerts"
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: grafana-mimir-alertmanager-headless
+  - match:
+    - uri:
+        prefix: "/prometheus/config/v1/rules"
+    - uri:
+        prefix: "/prometheus/api/v1/rules"
+    - uri:
+        prefix: "/prometheus/api/v1/alerts"
+    - uri:
+        exact: "/ruler/ring"
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: grafana-mimir-ruler
+  - match:
+    - uri:
+        prefix: "/prometheus"
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: grafana-mimir-query-frontend
+  - match:
+    - uri:
+        exact: "/api/v1/status/buildinfo"
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: grafana-mimir-query-frontend
+  - match:
+    - uri:
+        prefix: "/api/v1/upload/block"
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: grafana-mimir-compactor

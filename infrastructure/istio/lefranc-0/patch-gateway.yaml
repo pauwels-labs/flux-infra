@@ -19,8 +19,8 @@ spec:
     - "dashboards.pauwelslabs.com"
     - "alertmanager.pauwelslabs.com"
     - "alerts.pauwelslabs.com"
-    - "metrics.pauwelslabs.com"
     - "webhook.ci.pauwelslabs.com"
+    - "telemetry.pauwelslabs.com"
     tls:
       httpsRedirect: true
   - port:
@@ -106,15 +106,6 @@ spec:
       credentialName: tls-alerts-pauwels-labs
   - port:
       number: 443
-      name: https-metrics
-      protocol: HTTPS
-    hosts:
-    - "${infranamespaceprefix}monitoring/metrics.pauwelslabs.com"
-    tls:
-      mode: SIMPLE
-      credentialName: tls-metrics-pauwels-labs
-  - port:
-      number: 443
       name: https-webhook-ci
       protocol: HTTPS
     hosts:
@@ -122,3 +113,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-webhook-ci-pauwels-labs
+  - port:
+      number: 443
+      name: https-telemetry
+      protocol: HTTPS
+    hosts:
+    - "${infranamespaceprefix}grafana-mimir/telemetry.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-telemetry-pauwels-labs
