@@ -1,0 +1,24 @@
+kind: AuthorizationPolicy
+apiVersion: security.istio.io/v1beta1
+metadata:
+  name: telemetry
+  namespace: "${infranamespaceprefix}grafana-mimir"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana-mimir
+      app.kubernetes.io/component: query-frontend
+  action: CUSTOM
+  provider:
+    name: oauth2-proxy
+  rules:
+  - from:
+    - source:
+        requestPrincipals:
+        - "https://identity.pauwelslabs.com/realms/pauwels-labs-main/*"
+    to:
+    - operation:
+        paths:
+        - "/prometheus"
+        - "/prometheus/"
+        - "/prometheus/*"

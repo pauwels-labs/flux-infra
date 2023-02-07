@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: telemetry
+  namespace: "${infranamespaceprefix}grafana-mimir"
+spec:
+  jwtRules:
+  - issuer: "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
+    jwksUri: https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs
+    fromHeaders:
+    - name: "x-forwarded-id-token"
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana-mimir
+      app.kubernetes.io/component: query-frontend
