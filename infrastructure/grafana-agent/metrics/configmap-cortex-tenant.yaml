@@ -9,7 +9,7 @@ data:
     # Profiling API, remove to disable
     #listen_pprof: 0.0.0.0:7008
     # Where to send the modified requests (Cortex)
-    target: https://telemetry.pauwelslabs.com/api/v1/push
+    target: "${cortextenanttargeturl}"
     enable_ipv6: true
     # Log level
     log_level: debug
