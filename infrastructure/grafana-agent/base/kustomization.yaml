@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: "${infranamespaceprefix}grafana-agent"
 resources:
 - ecr-credentials-sync.yaml
+- telemetry-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
 - agent.yaml

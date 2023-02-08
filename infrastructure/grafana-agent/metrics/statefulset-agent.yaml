@@ -27,7 +27,7 @@ spec:
           matchLabels:
             name: grafana-agent-metrics
       containers:
-      - image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/cortex/tenant:1.7.3
+      - image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/cortex/tenant:1.7.4-jwt
         imagePullPolicy: IfNotPresent
         name: cortex-tenant
         ports:
@@ -37,6 +37,8 @@ spec:
         volumeMounts:
         - mountPath: /data/
           name: cortex-tenant-config
+        - mountPath: /token
+          name: telemetry-credentials
       - command:
         - /bin/sh
         - -c
@@ -69,6 +71,9 @@ spec:
       - configMap:
           name: grafana-agent-metrics
         name: grafana-agent
+      - secret:
+          secretName: telemetry-credentials
+        name: telemetry-credentials
   updateStrategy:
     type: RollingUpdate
   volumeClaimTemplates:
