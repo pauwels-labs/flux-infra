@@ -16,5 +16,6 @@ resources:
 - authorizationpolicy-query-frontend-allow-nothing.yaml
 - authorizationpolicy-echo.yaml
 - authorizationpolicy-telemetry.yaml
+- virtualservice-grafana-mimir.yaml
 - virtualservice-echo.yaml
 - service-echo.yaml
