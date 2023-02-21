@@ -18,7 +18,7 @@ spec:
     - destination:
         port:
           number: 8080
-        host: grafana-mimir-distributor-headless
+        host: grafana-mimir-distributor
   - match:
     - uri:
         prefix: "/alertmanager"
