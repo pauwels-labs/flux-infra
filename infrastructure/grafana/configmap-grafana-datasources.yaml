@@ -23,7 +23,6 @@ stringData:
                 "version": 1,
                 "jsonData": {
                   "prometheusType": "Mimir",
-                  "prometheusVersion": "> 2.3.x",
                   "keepCookies": [
                     "_oauth2_proxy"
                   ]
