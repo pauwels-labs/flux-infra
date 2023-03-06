@@ -25,6 +25,8 @@ spec:
   - name: external-dns
   - name: tenants-base
   postBuild:
+    substitute:
+      envname: dev
     substituteFrom:
     - kind: ConfigMap
       name: external-config-data

@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: pauwels-labs-main
+  name: "tenant-${envname}-pauwels-labs-main"
   namespace: flux-system
 spec:
   interval: 5m0s
@@ -22,7 +22,7 @@ spec:
       tenantrepourl: "ssh://git@github.com/pauwels-labs/team-main"
       tenantrepopath: "base"
       tenantrepobot: "capt-haddock"
-      envname: "base"
+      envname: "${envname}"
     substituteFrom:
     - kind: ConfigMap
       name: external-config-data
