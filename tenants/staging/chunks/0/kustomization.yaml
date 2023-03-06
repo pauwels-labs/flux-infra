@@ -9,7 +9,7 @@ patches:
       value: ./tenant/workload
     - op: replace
       path: /spec/postBuild/substitute/tenantrepopath
-      value: dev
+      value: staging
   target:
     kind: Kustomization
     group: kustomize.toolkit.fluxcd.io
