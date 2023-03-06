@@ -15,4 +15,4 @@ subjects:
   name: oidc:/tenant-${tenantname}/root/admins
 - kind: ServiceAccount
   name: ${tenantname}
-  namespace: "${tenantnamespaceprefix}${tenantname}"
+  namespace: "${tenantnamespaceprefix}${envname}-${tenantname}"

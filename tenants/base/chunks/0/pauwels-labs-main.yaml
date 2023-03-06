@@ -10,7 +10,6 @@ spec:
     kind: GitRepository
     name: flux-system
   path: ./tenant/base
-  targetNamespace: "${tenantnamespaceprefix}pauwels-labs-main"
   prune: true
   wait: true
   timeout: 30s
@@ -23,6 +22,7 @@ spec:
       tenantrepourl: "ssh://git@github.com/pauwels-labs/team-main"
       tenantrepopath: "base"
       tenantrepobot: "capt-haddock"
+      envname: "base"
     substituteFrom:
     - kind: ConfigMap
       name: external-config-data
