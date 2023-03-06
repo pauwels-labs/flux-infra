@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: "${envname}-${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
+  labels:
+    toolkit.fluxcd.io/tenant: "${tenantname}"
+spec:
+  interval: 5m0s
+  ref:
+    branch: main
+  secretRef:
+    name: "${envname}-ssh-${tenantname}-${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
+  url: "${tenantrepourl}"

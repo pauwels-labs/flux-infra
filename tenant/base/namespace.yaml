@@ -3,5 +3,5 @@ kind: Namespace
 metadata:
   labels:
     istio.io/rev: stable
-    toolkit.fluxcd.io/tenant: ${tenantname}
+    toolkit.fluxcd.io/tenant: "${tenantname}"
   name: "${tenantnamespaceprefix}${tenantname}"
