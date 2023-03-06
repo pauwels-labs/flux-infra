@@ -9,4 +9,3 @@ data:
   vaulturl: "${vaulturl}"
   tenantnamespaceprefix: "${tenantnamespaceprefix}"
   infranamespaceprefix: "${infranamespaceprefix}"
-  tenantnamespace: "${tenantnamespaceprefix}${envname}-${tenantname}"
