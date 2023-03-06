@@ -4,4 +4,4 @@ metadata:
   labels:
     istio.io/rev: stable
     toolkit.fluxcd.io/tenant: ${tenantname}
-  name: "${tenantnamespaceprefix}${envname}-${tenantname}"
+  name: "${tenantnamespaceprefix}${tenantname}"

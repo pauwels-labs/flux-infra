@@ -11,4 +11,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: ${tenantname}
-  namespace: "${tenantnamespaceprefix}${envname}-${tenantname}"
+  namespace: "${tenantnamespaceprefix}${tenantname}"
