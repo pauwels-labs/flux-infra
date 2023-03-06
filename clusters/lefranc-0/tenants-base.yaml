@@ -20,7 +20,6 @@ spec:
   - name: istio-system
   - name: istio-extras
   - name: certificates
-  - name: external-vault
   - name: external-secrets
   - name: external-dns
   postBuild:
