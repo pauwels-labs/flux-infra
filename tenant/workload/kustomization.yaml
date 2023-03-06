@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: "${tenantnamespaceprefix}${envname}-${tenantname}"
 resources:
 - ../base
-- kustomization-flux.yaml
 - rolebinding.yaml
