@@ -1,17 +1,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: "${envname}-${tenantname}"
+  name: "${tenantname}"
 spec:
-  serviceAccountName: "${envname}-${tenantname}"
+  serviceAccountName: "${tenantname}"
   targetNamespace: "${tenantnamespaceprefix}${tenantname}"
   interval: 5m0s
   sourceRef:
     kind: GitRepository
-    name: "${envname}-${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
+    name: "${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
   prune: true
   path: "${tenantrepopath}"
   postBuild:
     substituteFrom:
     - kind: ConfigMap
-      name: "${envname}-external-infra-data"
+      name: external-infra-data

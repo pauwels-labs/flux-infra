@@ -10,9 +10,6 @@ patches:
     - op: replace
       path: /spec/postBuild/substitute/tenantrepopath
       value: staging
-    - op: replace
-      path: /spec/postBuild/substitute/envname
-      value: staging
   target:
     kind: Kustomization
     group: kustomize.toolkit.fluxcd.io

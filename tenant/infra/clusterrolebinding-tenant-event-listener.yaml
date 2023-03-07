@@ -2,13 +2,13 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   labels:
-    toolkit.fluxcd.io/tenant: "${tenantname}"
-  name: "tenant-event-listener-${tenantname}"
+    toolkit.fluxcd.io/tenant: ${tenantname}
+  name: tenant-event-listener-${tenantname}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: "tenant-event-listener"
+  name: tenant-event-listener
 subjects:
 - kind: ServiceAccount
-  name: "event-listener"
+  name: event-listener
   namespace: "${tenantnamespaceprefix}${tenantname}"

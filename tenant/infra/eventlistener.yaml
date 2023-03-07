@@ -1,13 +1,13 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: "github"
+  name: github
   labels:
-    toolkit.fluxcd.io/tenant: "${tenantname}"
+    toolkit.fluxcd.io/tenant: ${tenantname}
 spec:
   serviceAccountName: "event-listener"
   triggers:
-  - triggerRef: "tenant-${tenantname}-${tenantrepohost}-${tenantrepoorg}"
+  - triggerRef: tenant-${tenantname}-${tenantrepohost}-${tenantrepoorg}
   resources:
     kubernetesResource:
       spec:
