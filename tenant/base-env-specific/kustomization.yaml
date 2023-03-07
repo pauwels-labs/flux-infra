@@ -6,4 +6,4 @@ resources:
 - externalsecret-ssh.yaml
 - secretstore-tenant-repositories-ssh.yaml
 - serviceaccount.yaml
-- kustomization-flux.yaml
+- rbac-kustomize-controller.yaml
