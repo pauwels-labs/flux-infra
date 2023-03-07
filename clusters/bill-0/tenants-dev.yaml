@@ -23,7 +23,6 @@ spec:
   - name: external-vault
   - name: external-secrets
   - name: external-dns
-  - name: tenants-base
   postBuild:
     substituteFrom:
     - kind: ConfigMap
