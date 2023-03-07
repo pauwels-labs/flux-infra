@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: "${tenantnamespaceprefix}${tenantname}"
 resources:
+- configmap-external-infra-data.yaml
 - gitrepository.yaml
 - externalsecret-ssh.yaml
 - secretstore-tenant-repositories-ssh.yaml
