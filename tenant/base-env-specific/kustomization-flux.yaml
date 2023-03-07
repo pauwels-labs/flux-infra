@@ -12,8 +12,6 @@ spec:
   prune: true
   path: "${tenantrepopath}"
   postBuild:
-    substitute:
-      envname: "${envname}"
     substituteFrom:
     - kind: ConfigMap
       name: "external-infra-data"
