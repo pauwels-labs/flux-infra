@@ -3,10 +3,9 @@ kind: ConfigMap
 metadata:
   name: external-infra-data
 data:
-  tenantname: "${tenantname}"
-  clustername: "${clustername}"
-  environment: "${environment}"
-  vaulturl: "${vaulturl}"
-  tenantnamespaceprefix: "${tenantnamespaceprefix}"
-  infranamespaceprefix: "${infranamespaceprefix}"
-  tenantnamespace: "${tenantnamespaceprefix}${envname}-${tenantname}"
+  tenantname: ${tenantname}
+  clustername: ${clustername}
+  environment: ${environment}
+  vaulturl: ${vaulturl}
+  tenantnamespaceprefix: ${tenantnamespaceprefix}
+  infranamespaceprefix: ${infranamespaceprefix}
