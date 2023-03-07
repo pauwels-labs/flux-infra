@@ -23,8 +23,6 @@ spec:
   - name: external-secrets
   - name: external-dns
   postBuild:
-    substitute:
-      envname: base
     substituteFrom:
     - kind: ConfigMap
       name: external-config-data
