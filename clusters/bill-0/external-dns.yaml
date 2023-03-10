@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/external-dns
+  path: ./infrastructure/external-dns/bill-0
   prune: true
   wait: true
   timeout: 30s
