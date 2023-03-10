@@ -4,6 +4,7 @@ metadata:
   name: external-dns
   namespace: flux-system
 spec:
+  values:
     extraArgs:
     - "--zone-id-filter=${basednszoneid}"
     - "--zone-id-filter=Z08607503E8H1PFNW849P"
