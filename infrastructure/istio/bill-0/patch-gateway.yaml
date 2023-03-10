@@ -11,6 +11,7 @@ spec:
       protocol: HTTP
     hosts:
     - "dev.pauwelslabs.com"
+    - "staging.pauwelslabs.com"
     - "github-webhook.cd.${environment}.pauwelslabs.com"
     tls:
       httpsRedirect: true
@@ -23,6 +24,15 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-dev-pauwels-labs
+  - port:
+      number: 443
+      name: https-staging
+      protocol: HTTPS
+    hosts:
+    - "staging.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-staging-pauwels-labs
   - port:
       number: 443
       name: https-github-webhook-cd-${environment}
