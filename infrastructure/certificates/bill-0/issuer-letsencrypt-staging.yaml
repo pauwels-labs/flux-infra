@@ -23,4 +23,18 @@ spec:
       dns01:
         route53:
           region: us-east-1
-          hostedZoneID: Z08607503E8H1PFNW849P
+          hostedZoneID: Z08607503E8H1PFNW849
+    - selector:
+        dnsZones:
+        - prod.pauwelslabs.com
+      dns01:
+        route53:
+          region: us-east-1
+          hostedZoneID: Z06489862VPS372BS7WFW
+    - selector:
+        dnsZones:
+        - pauwelslabs.com
+      dns01:
+        route53:
+          region: us-east-1
+          hostedZoneID: Z038797119PMDLQ7MG4L9
