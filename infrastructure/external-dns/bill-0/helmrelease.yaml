@@ -8,7 +8,9 @@ spec:
     extraArgs:
     - "--zone-id-filter=${basednszoneid}"
     - "--zone-id-filter=Z08607503E8H1PFNW849P"
+    - "--zone-id-filter=Z06489862VPS372BS7WFW"
     - "--domain-filter=${basednszonename}"
     - "--domain-filter=staging.pauwelslabs.com"
+    - "--domain-filter=prod.pauwelslabs.com"
     - "--aws-zone-type=public"
     - "--txt-owner-id=${clustername}"

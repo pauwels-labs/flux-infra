@@ -10,8 +10,10 @@ spec:
       name: http
       protocol: HTTP
     hosts:
+    - "pauwelslabs.com"
     - "dev.pauwelslabs.com"
     - "staging.pauwelslabs.com"
+    - "prod.pauwelslabs.com"
     - "github-webhook.cd.${environment}.pauwelslabs.com"
     tls:
       httpsRedirect: true
@@ -33,6 +35,24 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-staging-pauwels-labs
+  - port:
+      number: 443
+      name: https-prod-subdomain
+      protocol: HTTPS
+    hosts:
+    - "prod.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-prod-pauwels-labs
+  - port:
+      number: 443
+      name: https-prod-root
+      protocol: HTTPS
+    hosts:
+    - "t-pauwels-labs-main/pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-prod-pauwels-labs
   - port:
       number: 443
       name: https-github-webhook-cd-${environment}
