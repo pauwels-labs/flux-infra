@@ -24,9 +24,6 @@ patches:
       path: /spec/data/0/remoteRef/key
       value: tenants/${tenantnamespaceprefix}${tenantname}/repositories/${tenantrepohost}/${tenantrepoorg}/${tenantreponame}/ssh/ci    
     - op: replace
-      path: /spec/data/1/remoteRef/key
-      value: tenants/${tenantnamespaceprefix}${tenantname}/repositories/${tenantrepohost}/${tenantrepoorg}/${tenantreponame}/ssh/ci
-    - op: replace
       path: /spec/data/2/remoteRef/key
       value: tenants/${tenantnamespaceprefix}${tenantname}/repositories/${tenantrepohost}/${tenantrepoorg}/${tenantreponame}/ssh/ci
   target:
