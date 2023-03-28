@@ -44,7 +44,7 @@ spec:
           items:
           - key: ".dockerconfigjson"
             path: "config.json"
-      - name: github-credentials
+      - name: git-credentials
         secret:
           secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
           defaultMode: 256

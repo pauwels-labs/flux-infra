@@ -19,6 +19,8 @@ spec:
   workspaces:
   - name: shared-data
     description: "Contains the cloned git repo"
+  - name: git-credentials
+    description: "Contains SSH credentials for authenticating to private Git repos"
   tasks:
   - name: fetch-source
     taskRef:
@@ -34,7 +36,7 @@ spec:
     - name: output
       workspace: shared-data
     - name: ssh-directory
-      workspace: github-credentials
+      workspace: git-credentials
     params:
     - name: url
       value: "$(params.sshurl)"
@@ -59,7 +61,7 @@ spec:
     - name: source
       workspace: shared-data
     - name: git-ssh
-      workspace: github-credentials
+      workspace: git-credentials
   - name: build-push
     runAfter: ["version"]
     taskRef:
@@ -77,7 +79,7 @@ spec:
     - name: dockerconfig
       workspace: docker-credentials
     - name: git-ssh
-      workspace: github-credentials
+      workspace: git-credentials
     params:
     - name: GH_TOKEN_SECRET_NAME
       value: "$(params.ghtokensecretname)"
@@ -104,7 +106,7 @@ spec:
     - name: source
       workspace: shared-data
     - name: git-ssh
-      workspace: github-credentials
+      workspace: git-credentials
     params:
     - name: GH_TOKEN_SECRET_NAME
       value: "$(params.ghtokensecretname)"
