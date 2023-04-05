@@ -4,3 +4,4 @@ resources:
 - ../base
 - kustomization-flux.yaml
 - rolebinding.yaml
+- externalsecret-ssh.yaml

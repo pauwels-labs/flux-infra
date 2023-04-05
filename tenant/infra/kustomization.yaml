@@ -6,6 +6,7 @@ resources:
 - eventlistener.yaml
 - externalsecret-webhook-hmac.yaml
 - externalsecret-token-repobot.yaml
+- externalsecret-ssh.yaml
 - rolebinding-event-listener.yaml
 - secretstore-tenant-webhooks-hmac.yaml
 - secretstore-tenant-tokens.yaml
