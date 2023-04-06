@@ -7,4 +7,7 @@ resources:
 - certificate-dev-pauwels-labs.yaml
 - certificate-staging-pauwels-labs.yaml
 - certificate-prod-pauwels-labs.yaml
+- certificate-dev-redact-ws.yaml
+- certificate-staging-redact-ws.yaml
+- certificate-prod-redact-ws.yaml
 - certificate-github-webhook-cd-environment-pauwels-labs.yaml

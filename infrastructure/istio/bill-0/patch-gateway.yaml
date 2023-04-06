@@ -13,13 +13,15 @@ spec:
     - "pauwelslabs.com"
     - "dev.pauwelslabs.com"
     - "staging.pauwelslabs.com"
-    - "prod.pauwelslabs.com"
     - "github-webhook.cd.${environment}.pauwelslabs.com"
+    - "redact.ws"
+    - "dev.redact.ws"
+    - "staging.redact.ws"
     tls:
       httpsRedirect: true
   - port:
       number: 443
-      name: https-dev
+      name: https-dev-pauwelslabs-com
       protocol: HTTPS
     hosts:
     - "dev.pauwelslabs.com"
@@ -28,7 +30,7 @@ spec:
       credentialName: tls-dev-pauwels-labs
   - port:
       number: 443
-      name: https-staging
+      name: https-staging-pauwelslabs-com
       protocol: HTTPS
     hosts:
     - "staging.pauwelslabs.com"
@@ -37,16 +39,7 @@ spec:
       credentialName: tls-staging-pauwels-labs
   - port:
       number: 443
-      name: https-prod-subdomain
-      protocol: HTTPS
-    hosts:
-    - "prod.pauwelslabs.com"
-    tls:
-      mode: SIMPLE
-      credentialName: tls-prod-pauwels-labs
-  - port:
-      number: 443
-      name: https-prod-root
+      name: https-prod-pauwelslabs-com
       protocol: HTTPS
     hosts:
     - "t-pauwels-labs-main/pauwelslabs.com"
@@ -62,3 +55,30 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-github-webhook-cd-${environment}-pauwels-labs
+  - port:
+      number: 443
+      name: https-dev-redact-ws
+      protocol: HTTPS
+    hosts:
+    - "dev.redact.ws"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-dev-redact-ws
+  - port:
+      number: 443
+      name: https-staging-redact-ws
+      protocol: HTTPS
+    hosts:
+    - "staging.redact.ws"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-staging-redact-ws
+  - port:
+      number: 443
+      name: https-prod-redact-ws
+      protocol: HTTPS
+    hosts:
+    - "t-pauwels-labs-main/redact.ws"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-prod-redact-ws
