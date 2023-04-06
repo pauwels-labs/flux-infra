@@ -21,6 +21,8 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    pilot:
+      replicaCount: 3
     revision: "1-16-0"
     revisionTags: ["stable"]
     meshConfig:
