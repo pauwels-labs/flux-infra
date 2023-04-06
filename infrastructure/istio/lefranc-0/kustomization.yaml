@@ -5,5 +5,5 @@ resources:
 patches:
 - path: patch-gateway-pauwelslabs-com.yaml
   target:
-    name: pauwels-labs
+    name: pauwelslabs-com
     kind: Gateway

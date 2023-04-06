@@ -4,7 +4,11 @@ resources:
 - ../extras
 - envoyfilter-referer-routing.yaml
 patches:
-- path: patch-gateway.yaml
+- path: patch-gateway-pauwelslabs-com.yaml
   target:
-    name: pauwels-labs
+    name: pauwelslabs-com
+    kind: Gateway
+- path: patch-gateway-redact-ws.yaml
+  target:
+    name: redact-ws
     kind: Gateway
