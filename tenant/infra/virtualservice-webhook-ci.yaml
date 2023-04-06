@@ -6,7 +6,7 @@ spec:
   hosts:
   - webhook.ci.pauwelslabs.com
   gateways:
-  - ${infranamespaceprefix}istio-ingress/pauwels-labs
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
   http:
   - name: "pauwels-labs"
     match:

@@ -7,7 +7,7 @@ spec:
   hosts:
   - alertmanager.pauwelslabs.com
   gateways:
-  - ${infranamespaceprefix}istio-ingress/pauwels-labs
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
   http:
   - name: "http-metrics"
     route:

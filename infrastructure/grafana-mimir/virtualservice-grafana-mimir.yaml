@@ -7,7 +7,7 @@ spec:
   hosts:
   - telemetry.pauwelslabs.com
   gateways:
-  - ${infranamespaceprefix}istio-ingress/pauwels-labs
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
   http:
   - match:
     - uri:

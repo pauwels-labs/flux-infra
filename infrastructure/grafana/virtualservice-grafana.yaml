@@ -5,7 +5,7 @@ metadata:
   namespace: ${infranamespaceprefix}grafana
 spec:
   gateways:
-  - ${infranamespaceprefix}istio-ingress/pauwels-labs
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
   hosts:
   - dashboards.pauwelslabs.com
   http:

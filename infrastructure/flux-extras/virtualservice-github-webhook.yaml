@@ -8,7 +8,7 @@ spec:
   hosts:
   - github-webhook.cd.${environment}.pauwelslabs.com
   gateways:
-  - ${infranamespaceprefix}istio-ingress/pauwels-labs
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
   http:
   - name: "webhook-receiver"
     route:

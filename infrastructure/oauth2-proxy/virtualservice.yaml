@@ -7,7 +7,7 @@ spec:
   hosts:
   - auth.pauwelslabs.com
   gateways:
-  - i-istio-ingress/pauwels-labs
+  - i-istio-ingress/pauwelslabs-com
   http:
   - name: "oauth2-proxy"
     route:
