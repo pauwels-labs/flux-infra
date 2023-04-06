@@ -27,7 +27,7 @@ spec:
         fsGroup: 65534
       serviceAccountName: cluster-autoscaler
       containers:
-        - image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.23.1
+        - image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/k8s/autoscaling/cluster-autoscaler:v1.24.1
           name: cluster-autoscaler
           resources:
             limits:
