@@ -1,0 +1,44 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: redact-ws
+  namespace: "${infranamespaceprefix}istio-ingress"
+spec:
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "redact.ws"
+    - "dev.redact.ws"
+    - "staging.redact.ws"
+    tls:
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: https-dev-redact-ws
+      protocol: HTTPS
+    hosts:
+    - "dev.redact.ws"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-dev-redact-ws
+  - port:
+      number: 443
+      name: https-staging-redact-ws
+      protocol: HTTPS
+    hosts:
+    - "staging.redact.ws"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-staging-redact-ws
+  - port:
+      number: 443
+      name: https-prod-redact-ws
+      protocol: HTTPS
+    hosts:
+    - "t-pauwels-labs-main/redact.ws"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-prod-redact-ws

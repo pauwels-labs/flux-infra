@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: pauwels-labs
+  name: redact-ws
   namespace: "${infranamespaceprefix}istio-ingress"
 spec:
   selector:

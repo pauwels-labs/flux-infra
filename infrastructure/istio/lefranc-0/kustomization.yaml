@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - ../extras
 patches:
-- path: patch-gateway.yaml
+- path: patch-gateway-pauwelslabs-com.yaml
   target:
     name: pauwels-labs
     kind: Gateway
