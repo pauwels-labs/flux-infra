@@ -1,0 +1,40 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: "${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: "${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: 78287574+capt-haddock@users.noreply.github.com
+        name: capt-haddock
+      messageTemplate: |
+        fix: automatic image tag update
+
+        automation name: {{ .AutomationObject }}
+
+        images:
+        {{ range .Updated.Images -}}
+        - {{ . }}
+        {{ end -}}
+
+        files:
+        {{ range $filename, $_ := .Updated.Files -}}
+        - {{ $filename }}
+        {{ end -}}
+
+        objects:
+        {{ range $resource, $_ := .Updated.Objects -}}
+        - {{ $resource.Kind }}/{{ $resource.Name }}
+        {{ end -}}
+    push:
+      branch: main
+  update:
+    strategy: Setters

@@ -5,3 +5,4 @@ resources:
 - kustomization-flux.yaml
 - rolebinding.yaml
 - externalsecret-ssh.yaml
+- imageupdateautomation.yaml
