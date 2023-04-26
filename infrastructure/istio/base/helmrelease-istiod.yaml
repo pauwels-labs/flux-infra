@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: istio/istiod
-      version: 1.16.0
+      version: 1.17.2
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -23,7 +23,7 @@ spec:
   values:
     pilot:
       replicaCount: 3
-    revision: "1-16-0"
+    revision: "1-17-2"
     revisionTags: ["stable"]
     meshConfig:
       rootNamespace: "${infranamespaceprefix}istio-system"

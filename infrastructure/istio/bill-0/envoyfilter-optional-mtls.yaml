@@ -2,7 +2,8 @@ apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
   name: optional-mtls
-  namespace: "${infranamespaceprefix}istio-ingress"
+  namespace: "i-istio-ingress"
+  #namespace: "${infranamespaceprefix}istio-ingress"
 spec:
   workloadSelector:
     labels:
@@ -24,6 +25,18 @@ spec:
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
             common_tls_context:
+              tls_params:
+                signature_algorithms:
+                - "ed25519"
+                - "ecdsa_secp256r1_sha256"
+                - "rsa_pss_rsae_sha256"
+                - "rsa_pkcs1_sha256"
+                - "ecdsa_secp384r1_sha384"
+                - "rsa_pss_rsae_sha384"
+                - "rsa_pkcs1_sha384"
+                - "rsa_pss_rsae_sha512"
+                - "rsa_pkcs1_sha512"
+                - "rsa_pkcs1_sha1"
               validation_context:
                 trust_chain_verification: ACCEPT_UNTRUSTED
   - applyTo: FILTER_CHAIN
@@ -42,6 +55,18 @@ spec:
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
             common_tls_context:
+              tls_params:
+                signature_algorithms:
+                - "ed25519"
+                - "ecdsa_secp256r1_sha256"
+                - "rsa_pss_rsae_sha256"
+                - "rsa_pkcs1_sha256"
+                - "ecdsa_secp384r1_sha384"
+                - "rsa_pss_rsae_sha384"
+                - "rsa_pkcs1_sha384"
+                - "rsa_pss_rsae_sha512"
+                - "rsa_pkcs1_sha512"
+                - "rsa_pkcs1_sha1"
               validation_context:
                 trust_chain_verification: ACCEPT_UNTRUSTED
   - applyTo: FILTER_CHAIN
@@ -60,6 +85,18 @@ spec:
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
             common_tls_context:
+              tls_params:
+                signature_algorithms:
+                - "ed25519"
+                - "ecdsa_secp256r1_sha256"
+                - "rsa_pss_rsae_sha256"
+                - "rsa_pkcs1_sha256"
+                - "ecdsa_secp384r1_sha384"
+                - "rsa_pss_rsae_sha384"
+                - "rsa_pkcs1_sha384"
+                - "rsa_pss_rsae_sha512"
+                - "rsa_pkcs1_sha512"
+                - "rsa_pkcs1_sha1"
               validation_context:
                 trust_chain_verification: ACCEPT_UNTRUSTED
   - applyTo: FILTER_CHAIN
@@ -78,6 +115,18 @@ spec:
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
             common_tls_context:
+              tls_params:
+                signature_algorithms:
+                - "ed25519"
+                - "ecdsa_secp256r1_sha256"
+                - "rsa_pss_rsae_sha256"
+                - "rsa_pkcs1_sha256"
+                - "ecdsa_secp384r1_sha384"
+                - "rsa_pss_rsae_sha384"
+                - "rsa_pkcs1_sha384"
+                - "rsa_pss_rsae_sha512"
+                - "rsa_pkcs1_sha512"
+                - "rsa_pkcs1_sha1"
               validation_context:
                 trust_chain_verification: ACCEPT_UNTRUSTED
   - applyTo: FILTER_CHAIN
@@ -96,6 +145,18 @@ spec:
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
             common_tls_context:
+              tls_params:
+                signature_algorithms:
+                - "ed25519"
+                - "ecdsa_secp256r1_sha256"
+                - "rsa_pss_rsae_sha256"
+                - "rsa_pkcs1_sha256"
+                - "ecdsa_secp384r1_sha384"
+                - "rsa_pss_rsae_sha384"
+                - "rsa_pkcs1_sha384"
+                - "rsa_pss_rsae_sha512"
+                - "rsa_pkcs1_sha512"
+                - "rsa_pkcs1_sha1"
               validation_context:
                 trust_chain_verification: ACCEPT_UNTRUSTED
   - applyTo: FILTER_CHAIN
@@ -114,5 +175,17 @@ spec:
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
             common_tls_context:
+              tls_params:
+                signature_algorithms:
+                - "ed25519"
+                - "ecdsa_secp256r1_sha256"
+                - "rsa_pss_rsae_sha256"
+                - "rsa_pkcs1_sha256"
+                - "ecdsa_secp384r1_sha384"
+                - "rsa_pss_rsae_sha384"
+                - "rsa_pkcs1_sha384"
+                - "rsa_pss_rsae_sha512"
+                - "rsa_pkcs1_sha512"
+                - "rsa_pkcs1_sha1"
               validation_context:
                 trust_chain_verification: ACCEPT_UNTRUSTED
