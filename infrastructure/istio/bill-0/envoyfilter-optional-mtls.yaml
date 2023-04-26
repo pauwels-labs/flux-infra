@@ -15,7 +15,7 @@ spec:
         filterChain:
           filter:
             name: "envoy.transport_sockets.tls"
-          sni: "dev.pauwelslabs.com"
+          sni: "${basednszonename}"
     patch:
       operation: MERGE
       value:
