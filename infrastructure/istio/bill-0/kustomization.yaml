@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - ../extras
 - envoyfilter-referer-routing.yaml
+- envoyfilter-optional-mtls.yaml
 patches:
 - path: patch-gateway-pauwelslabs-com.yaml
   target:
