@@ -22,7 +22,7 @@ spec:
     hosts:
     - "dev.redact.ws"
     tls:
-      mode: SIMPLE
+      mode: MUTUAL
       credentialName: tls-dev-redact-ws
   - port:
       number: 443
@@ -31,7 +31,7 @@ spec:
     hosts:
     - "staging.redact.ws"
     tls:
-      mode: SIMPLE
+      mode: MUTUAL
       credentialName: tls-staging-redact-ws
   - port:
       number: 443
@@ -40,5 +40,5 @@ spec:
     hosts:
     - "t-pauwels-labs-main/redact.ws"
     tls:
-      mode: SIMPLE
+      mode: MUTUAL
       credentialName: tls-prod-redact-ws

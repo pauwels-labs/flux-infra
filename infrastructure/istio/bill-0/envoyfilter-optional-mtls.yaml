@@ -62,3 +62,57 @@ spec:
             common_tls_context:
               validation_context:
                 trust_chain_verification: ACCEPT_UNTRUSTED
+  - applyTo: FILTER_CHAIN
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: "envoy.transport_sockets.tls"
+          sni: "dev.redact.ws"
+    patch:
+      operation: MERGE
+      value:
+        transport_socket:
+          name: envoy.transport_sockets.tls
+          typed_config:
+            "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
+            common_tls_context:
+              validation_context:
+                trust_chain_verification: ACCEPT_UNTRUSTED
+  - applyTo: FILTER_CHAIN
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: "envoy.transport_sockets.tls"
+          sni: "staging.redact.ws"
+    patch:
+      operation: MERGE
+      value:
+        transport_socket:
+          name: envoy.transport_sockets.tls
+          typed_config:
+            "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
+            common_tls_context:
+              validation_context:
+                trust_chain_verification: ACCEPT_UNTRUSTED
+  - applyTo: FILTER_CHAIN
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: "envoy.transport_sockets.tls"
+          sni: "redact.ws"
+    patch:
+      operation: MERGE
+      value:
+        transport_socket:
+          name: envoy.transport_sockets.tls
+          typed_config:
+            "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
+            common_tls_context:
+              validation_context:
+                trust_chain_verification: ACCEPT_UNTRUSTED
