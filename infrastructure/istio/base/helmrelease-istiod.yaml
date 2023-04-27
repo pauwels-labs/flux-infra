@@ -81,7 +81,7 @@ spec:
       imagePullSecrets:
       - ecr-credentials
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
-      tag: 1.18.0-alpha.0-envoy1.27
+      tag: master
       logging:
         level: "default:debug"
       proxy:
