@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "${infranamespaceprefix}weaveworks-gitops"
+  labels:
+    istio.io/rev: stable
+    name: "${infranamespaceprefix}weaveworks-gitops"
