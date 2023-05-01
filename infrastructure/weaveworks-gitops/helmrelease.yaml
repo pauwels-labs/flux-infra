@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: weaveworks-gitops
+  namespace: flux-system
+spec:
+  releaseName: weaveworks-gitops
+  serviceAccountName: helm-controller
+  targetName: "${infranamespaceprefix}weaveworks-gitops"
+  chart:
+    spec:
+      chart: weaveworks/weave-gitops
+      version: v4.0.20
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 1h0m0s
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    image:
+      repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/weaveworks/wego-app
+      tag: v0.22.0
+    adminUser:
+      create: true
+      passwordHash: $2a$10$cEndp.XZxOIPNiiC0xxGIOvzr0Cv64ALnZI6bDZ8yEOe/5qkmLihi
+      username: admin
+
