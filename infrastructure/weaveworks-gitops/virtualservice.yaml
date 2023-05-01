@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: weaveworks-gitops
+  namespace: "${infranamespaceprefix}weaveworks-gitops"
+spec:
+  hosts:
+  - "cd.${environment}.pauwelslabs.com"
+  gateways:
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
+  http:
+  - name: "weaveworks-gitops"
+    route:
+    - destination:
+        port:
+          number: 9001
+        host: weaveworks-gitops-weave-gitops

@@ -12,6 +12,7 @@ spec:
     hosts:
     - "network.pauwelslabs.com"
     - "github-webhook.cd.${environment}.pauwelslabs.com"
+    - "cd.${environment}.pauwelslabs.com"
     - "secrets.pauwelslabs.com"
     - "identity.pauwelslabs.com"
     - "echo.pauwelslabs.com"
@@ -41,6 +42,15 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-github-webhook-cd-${environment}-pauwels-labs
+  - port:
+      number: 443
+      name: https-cd-${environment}
+      protocol: HTTPS
+    hosts:
+    - "${infranamespaceprefix}weaveworks-gitops/cd.${environment}.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-cd-${environment}-pauwels-labs
   - port:
       number: 443
       name: https-secrets

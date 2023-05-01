@@ -6,6 +6,7 @@ resources:
 - issuer-letsencrypt-prod.yaml
 - certificate-network-pauwels-labs.yaml
 - certificate-github-webhook-cd-environment-pauwels-labs.yaml
+- certificate-cd-environment-pauwels-labs.yaml
 - certificate-webhook-ci-pauwels-labs.yaml
 - certificate-secrets-pauwels-labs.yaml
 - certificate-identity-pauwels-labs.yaml
