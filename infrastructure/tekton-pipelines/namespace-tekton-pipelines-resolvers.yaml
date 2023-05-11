@@ -3,5 +3,8 @@ kind: Namespace
 metadata:
   name: "${infranamespaceprefix}tekton-pipelines-resolvers"
   labels:
+    app.kubernetes.io/component: resolvers
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/part-of: tekton-pipelines
+    pod-security.kubernetes.io/enforce: restricted
     istio.io/rev: stable
-    name: "${infranamespaceprefix}tekton-pipelines-resolvers"
