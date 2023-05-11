@@ -123,13 +123,13 @@ rules:
     verbs: ["get"]
     # The webhook configured the namespace as the OwnerRef on various cluster-scoped resources,
     # which requires we can Get the system namespace.
-    resourceNames: ["tekton-pipelines"]
+    resourceNames: ["${infranamespaceprefix}tekton-pipelines"]
   - apiGroups: [""]
     resources: ["namespaces/finalizers"]
     verbs: ["update"]
     # The webhook configured the namespace as the OwnerRef on various cluster-scoped resources,
     # which requires we can update the system namespace finalizers.
-    resourceNames: ["tekton-pipelines"]
+    resourceNames: ["${infranamespaceprefix}tekton-pipelines"]
 
 ---
 # Copyright 2020 The Tekton Authors
