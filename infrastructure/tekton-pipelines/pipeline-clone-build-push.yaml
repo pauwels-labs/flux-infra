@@ -16,6 +16,8 @@ spec:
     type: string
   - name: imageurl
     type: string
+  - name: ghtokensecretname
+    type: string
   workspaces:
   - name: shared-data
     description: "Contains the cloned git repo"
