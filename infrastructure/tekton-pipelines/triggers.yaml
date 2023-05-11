@@ -12,37 +12,37 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  name: tekton-triggers
-  labels:
-    app.kubernetes.io/instance: default
-    app.kubernetes.io/part-of: tekton-triggers
-spec:
-  privileged: false
-  allowPrivilegeEscalation: false
-  volumes:
-    - 'emptyDir'
-    - 'configMap'
-    - 'secret'
-  hostNetwork: false
-  hostIPC: false
-  hostPID: false
-  runAsUser:
-    rule: 'MustRunAsNonRoot'
-  seLinux:
-    rule: 'RunAsAny'
-  supplementalGroups:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
-  fsGroup:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
+# apiVersion: policy/v1beta1
+# kind: PodSecurityPolicy
+# metadata:
+#   name: tekton-triggers
+#   labels:
+#     app.kubernetes.io/instance: default
+#     app.kubernetes.io/part-of: tekton-triggers
+# spec:
+#   privileged: false
+#   allowPrivilegeEscalation: false
+#   volumes:
+#     - 'emptyDir'
+#     - 'configMap'
+#     - 'secret'
+#   hostNetwork: false
+#   hostIPC: false
+#   hostPID: false
+#   runAsUser:
+#     rule: 'MustRunAsNonRoot'
+#   seLinux:
+#     rule: 'RunAsAny'
+#   supplementalGroups:
+#     rule: 'MustRunAs'
+#     ranges:
+#       - min: 1
+#         max: 65535
+#   fsGroup:
+#     rule: 'MustRunAs'
+#     ranges:
+#       - min: 1
+#         max: 65535
 
 ---
 # Copyright 2019 The Tekton Authors
