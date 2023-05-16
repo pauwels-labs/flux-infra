@@ -26,10 +26,10 @@ spec:
       namespace: "${infranamespaceprefix}kiali"
       spec:
         deployment:
-          image_name: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kiali/kiali
+          image_name: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/kiali/kiali
           image_version: v1.67.0
     image:
-      repo: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/kiali/kiali-operator
+      repo: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/kiali/kiali-operator
       tag: v1.67.0
       pullSecrets:
       - ecr-credentials
