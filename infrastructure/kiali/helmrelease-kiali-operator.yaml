@@ -25,6 +25,7 @@ spec:
       create: true
       namespace: "${infranamespaceprefix}kiali"
       spec:
+        istio_namespace: "${infranamespaceprefix}istio-system"
         deployment:
           image_name: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/kiali/kiali
           image_version: v1.67.0
