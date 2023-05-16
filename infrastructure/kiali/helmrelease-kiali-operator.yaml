@@ -26,6 +26,19 @@ spec:
       namespace: "${infranamespaceprefix}kiali"
       spec:
         istio_namespace: "${infranamespaceprefix}istio-system"
+        external_services:
+          istio:
+            istio_canary_revision:
+              current: "1-17-2"
+            component_status:
+              components:
+              - app_label: "istiod"
+                is_core: true
+                is_proxy: false
+              - app_label: "istio-gateway"
+                is_core: true
+                is_proxy: true
+                namespace: "${infranamespaceprefix}istio-ingress"
         deployment:
           image_name: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/kiali/kiali
           image_version: v1.67.0
