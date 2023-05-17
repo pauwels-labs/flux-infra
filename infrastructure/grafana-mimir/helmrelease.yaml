@@ -21,9 +21,18 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    smoke_test:
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/mimir-continuous-test
+        tag: main-409a26d9d
+    continuous_test:
+      enabled: true
+      image:
+        repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/mimir-continuous-test
+        tag: main-409a26d9d
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/mimir
-      tag: 2.8.0
+      tag: main-409a26d9d
     nginx:
       enabled: false
     gateway:
