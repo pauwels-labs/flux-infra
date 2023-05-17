@@ -42,7 +42,8 @@ spec:
       - command:
         - /bin/sh
         - -c
-        - HASH_MOD_ID="$${POD_NAME##*-}" /bin/agent -config.file=/etc/agent/agent.yaml -enable-features=integrations-next -server.http.address=0.0.0.0:80 -config.expand-env=true
+        #- HASH_MOD_ID="$${POD_NAME##*-}" /bin/agent -config.file=/etc/agent/agent.yaml -enable-features=integrations-next -server.http.address=0.0.0.0:80 -config.expand-env=true
+        - /bin/agent -config.file=/etc/agent/agent.yaml -enable-features=integrations-next -server.http.address=0.0.0.0:80 -config.expand-env=true
         env:
         - name: HOSTNAME
           valueFrom:
@@ -52,7 +53,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.29.0
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.33.2
         imagePullPolicy: IfNotPresent
         name: grafana-agent
         ports:
