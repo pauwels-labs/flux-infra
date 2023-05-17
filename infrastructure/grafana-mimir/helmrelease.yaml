@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: grafana/mimir-distributed
-      version: 4.0.0
+      version: 4.4.1
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/mimir
-      tag: 2.5.0-inet6.2
+      tag: 2.8.0
     nginx:
       enabled: false
     gateway:
@@ -42,7 +42,7 @@ spec:
         valueFrom:
           fieldRef:
             fieldPath: status.podIP
-    alert_manager:
+    alertmanager:
       zoneAwareReplication:
         enabled: true
         topologyKey: "kubernetes.io/hostname"
@@ -92,10 +92,12 @@ spec:
             s3:
               endpoint: "s3.eu-west-1.amazonaws.com"
               region: "eu-west-1"
+        overrides_exporter:
+          ring:
+            instance_enable_ipv6: true
         alertmanager:
           sharding_ring:
-            enable_inet6: true
-            instance_addr: "$${POD_IP}"
+            instance_enable_ipv6: true
         alertmanager_storage:
           backend: s3
           storage_prefix: alerts
@@ -106,42 +108,36 @@ spec:
           s3:
             bucket_name: "${grafanamimirblocksbucketname}"
         compactor:
-          sharding_ring:
-            enable_inet6: true
-            instance_addr: "$${POD_IP}"
+          ring:
+            instance_enable_ipv6: true
         distributor:
           ring:
-            enable_inet6: true
-            instance_addr: "$${POD_IP}"
-        frontend:
-          enable_inet6: true
-          address: "[$${POD_IP}]"
+            instance_enable_ipv6: true
+        # frontend:
+        #   enable_inet6: true
+        #   address: "[$${POD_IP}]"
         ingester:
           ring:
-            enable_inet6: true
-            instance_addr: "[$${POD_IP}]"
-        memberlist:
-          bind_addr:
-          - "[::0]"
-          advertise_addr: "$${POD_IP}"
+            instance_enable_ipv6: true
+        # memberlist:
+        #   bind_addr:
+        #   - "[::0]"
+        #   advertise_addr: "$${POD_IP}"
         query_scheduler:
           ring:
-            enable_inet6: true
-            instance_addr: "$${POD_IP}"
+            instance_enable_ipv6: true
         ruler:
           alertmanager_url: dnssrvnoa+http://_http-metrics._tcp.{{ template "mimir.fullname" . }}-alertmanager-headless.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:8080/alertmanager
           query_frontend:
             address: dns:///grafana-mimir-query-frontend-headless.${infranamespaceprefix}grafana-mimir.svc:9095
           ring:
-            enable_inet6: true
-            instance_addr: "$${POD_IP}"
+            instance_enable_ipv6: true
         ruler_storage:
           storage_prefix: ruler
           s3:
             bucket_name: "${grafanamimirrulerbucketname}"
         store_gateway:
           sharding_ring:
-            enable_inet6: true
-            instance_addr: "$${POD_IP}"
+            instance_enable_ipv6: true
         server:
           log_level: "info"
