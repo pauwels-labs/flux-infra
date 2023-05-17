@@ -123,8 +123,6 @@ spec:
           ring:
             instance_enable_ipv6: true
         frontend:
-          ring:
-            instance_enable_ipv6: true
           address: "[$${POD_IP}]"
         ingester:
           ring:
