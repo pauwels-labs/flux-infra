@@ -117,7 +117,7 @@ spec:
           s3:
             bucket_name: "${grafanamimirblocksbucketname}"
         compactor:
-          ring:
+          sharding_ring:
             instance_enable_ipv6: true
         distributor:
           ring:
