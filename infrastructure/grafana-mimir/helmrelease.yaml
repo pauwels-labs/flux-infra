@@ -128,10 +128,10 @@ spec:
         ingester:
           ring:
             instance_enable_ipv6: true
-        # memberlist:
-        #   bind_addr:
-        #   - "[::0]"
-        #   advertise_addr: "$${POD_IP}"
+        memberlist:
+          bind_addr:
+          - "[::0]"
+          advertise_addr: "$${POD_IP}"
         query_scheduler:
           ring:
             instance_enable_ipv6: true
