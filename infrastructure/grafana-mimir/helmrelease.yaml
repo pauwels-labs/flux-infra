@@ -148,4 +148,4 @@ spec:
           sharding_ring:
             instance_enable_ipv6: true
         server:
-          log_level: "info"
+          log_level: "debug"
