@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: grafana/grafana
-      version: 6.50.5
+      version: 6.56.4
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -37,7 +37,7 @@ spec:
       traffic.sidecar.istio.io/excludeOutboundPorts: "9095"
     image:
       repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/grafana
-      tag: 9.4.0-beta1
+      tag: 9.5.2
     service:
       port: 3000
       targetPort: 3000
