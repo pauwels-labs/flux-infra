@@ -4,6 +4,8 @@ metadata:
 apiVersion: v1
 data:
   agent.yaml: |
+    server:
+      log_level: debug
     metrics:
       wal_directory: /var/lib/agent/wal
       global:
