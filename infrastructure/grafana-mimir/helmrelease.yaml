@@ -122,9 +122,10 @@ spec:
         distributor:
           ring:
             instance_enable_ipv6: true
-        # frontend:
-        #   enable_inet6: true
-        #   address: "[$${POD_IP}]"
+        frontend:
+          ring:
+            instance_enable_ipv6: true
+          #address: "[$${POD_IP}]"
         ingester:
           ring:
             instance_enable_ipv6: true
