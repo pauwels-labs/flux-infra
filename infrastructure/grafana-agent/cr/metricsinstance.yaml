@@ -1,0 +1,22 @@
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: MetricsInstance
+metadata:
+  name: primary
+  namespace: "${infranamespaceprefix}grafana-agent"
+  labels:
+    agent: grafana-agent-metrics
+spec:
+  remoteWrite:
+  - url: http://127.0.0.1:20202/push
+  serviceMonitorNamespaceSelector: {}
+  serviceMonitorSelector:
+    matchLabels:
+      instance: primary
+  podMonitorNamespaceSelector: {}
+  podMonitorSelector:
+    matchLabels:
+      instance: primary
+  probeNamespaceSelector: {}
+  probeSelector:
+    matchLabels:
+      instance: primary

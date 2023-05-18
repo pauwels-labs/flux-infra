@@ -1,0 +1,97 @@
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: GrafanaAgent
+metadata:
+  name: grafana-agent
+  namespace: "${infranamespaceprefix}grafana-agent"
+  labels:
+    app: grafana-agent
+spec:
+  image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.33.2
+  containers:
+  - image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/cortex/tenant:1.7.4-jwt
+    imagePullPolicy: IfNotPresent
+    name: cortex-tenant
+    ports:
+    - containerPort: 20202
+      name: cortex-tenant
+      protocol: TCP
+    volumeMounts:
+    - mountPath: /data/
+      name: cortex-tenant-config
+    - mountPath: /token
+      name: telemetry-credentials
+  volumes:
+  - configMap:
+      name: cortex-tenant
+    name: cortex-tenant-config
+  - secret:
+      secretName: telemetry-credentials
+    name: telemetry-credentials
+  integrations:
+    selector:
+      matchLabels:
+          agent: grafana-agent-integrations
+  logLevel: info
+  serviceAccountName: grafana-agent
+  metrics:
+    instanceSelector:
+      matchLabels:
+        agent: grafana-agent-metrics
+    externalLabels:
+      cluster: "${clustername}"
+  logs:
+    instanceSelector:
+      matchLabels:
+        agent: grafana-agent-logs
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: grafana-agent
+  namespace: "${infranamespaceprefix}grafana-agent"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: grafana-agent
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - nodes/proxy
+  - nodes/metrics
+  - services
+  - endpoints
+  - pods
+  - events
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch
+- nonResourceURLs:
+  - /metrics
+  - /metrics/cadvisor
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: grafana-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: grafana-agent
+subjects:
+- kind: ServiceAccount
+  name: grafana-agent
+  namespace: "${infranamespaceprefix}grafana-agent"
