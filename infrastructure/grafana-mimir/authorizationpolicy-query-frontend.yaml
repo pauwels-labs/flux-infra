@@ -12,11 +12,7 @@ spec:
   provider:
     name: oauth2-proxy
   rules:
-  - from:
-    - source:
-        requestPrincipals:
-        - "https://identity.pauwelslabs.com/realms/pauwels-labs-main/*"
-    to:
+  - to:
     - operation:
         paths:
         - "/prometheus"

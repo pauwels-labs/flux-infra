@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/instance: grafana-mimir
-      app.kubernetes.io/component: query-frontend
+      app.kubernetes.io/component: distributor
   action: CUSTOM
   provider:
     name: oauth2-proxy
