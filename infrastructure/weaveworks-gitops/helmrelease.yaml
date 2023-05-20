@@ -26,6 +26,6 @@ spec:
       tag: v0.22.0
     adminUser:
       create: true
-      passwordHash: $2a$10$cEndp.XZxOIPNiiC0xxGIOvzr0Cv64ALnZI6bDZ8yEOe/5qkmLihi
+      passwordHash: $2a$10$G3ciHDYBP7DPoKTfzH2DW.edCWRATF0t0osx3q7EsTdgPbSW0XPWC
       username: admin
 
