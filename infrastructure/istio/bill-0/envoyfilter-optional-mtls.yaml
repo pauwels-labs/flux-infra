@@ -9,96 +9,96 @@ spec:
     labels:
       istio: gateway
   configPatches:
-  - applyTo: FILTER_CHAIN
-    match:
-      context: GATEWAY
-      listener:
-        filterChain:
-          filter:
-            name: "envoy.transport_sockets.tls"
-          sni: "${basednszonename}"
-    patch:
-      operation: MERGE
-      value:
-        transport_socket:
-          name: envoy.transport_sockets.tls
-          typed_config:
-            "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
-            common_tls_context:
-              tls_params:
-                signature_algorithms:
-                - "ed25519"
-                - "ecdsa_secp256r1_sha256"
-                - "rsa_pss_rsae_sha256"
-                - "rsa_pkcs1_sha256"
-                - "ecdsa_secp384r1_sha384"
-                - "rsa_pss_rsae_sha384"
-                - "rsa_pkcs1_sha384"
-                - "rsa_pss_rsae_sha512"
-                - "rsa_pkcs1_sha512"
-                - "rsa_pkcs1_sha1"
-              validation_context:
-                trust_chain_verification: ACCEPT_UNTRUSTED
-  - applyTo: FILTER_CHAIN
-    match:
-      context: GATEWAY
-      listener:
-        filterChain:
-          filter:
-            name: "envoy.transport_sockets.tls"
-          sni: "staging.pauwelslabs.com"
-    patch:
-      operation: MERGE
-      value:
-        transport_socket:
-          name: envoy.transport_sockets.tls
-          typed_config:
-            "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
-            common_tls_context:
-              tls_params:
-                signature_algorithms:
-                - "ed25519"
-                - "ecdsa_secp256r1_sha256"
-                - "rsa_pss_rsae_sha256"
-                - "rsa_pkcs1_sha256"
-                - "ecdsa_secp384r1_sha384"
-                - "rsa_pss_rsae_sha384"
-                - "rsa_pkcs1_sha384"
-                - "rsa_pss_rsae_sha512"
-                - "rsa_pkcs1_sha512"
-                - "rsa_pkcs1_sha1"
-              validation_context:
-                trust_chain_verification: ACCEPT_UNTRUSTED
-  - applyTo: FILTER_CHAIN
-    match:
-      context: GATEWAY
-      listener:
-        filterChain:
-          filter:
-            name: "envoy.transport_sockets.tls"
-          sni: "pauwelslabs.com"
-    patch:
-      operation: MERGE
-      value:
-        transport_socket:
-          name: envoy.transport_sockets.tls
-          typed_config:
-            "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
-            common_tls_context:
-              tls_params:
-                signature_algorithms:
-                - "ed25519"
-                - "ecdsa_secp256r1_sha256"
-                - "rsa_pss_rsae_sha256"
-                - "rsa_pkcs1_sha256"
-                - "ecdsa_secp384r1_sha384"
-                - "rsa_pss_rsae_sha384"
-                - "rsa_pkcs1_sha384"
-                - "rsa_pss_rsae_sha512"
-                - "rsa_pkcs1_sha512"
-                - "rsa_pkcs1_sha1"
-              validation_context:
-                trust_chain_verification: ACCEPT_UNTRUSTED
+  # - applyTo: FILTER_CHAIN
+  #   match:
+  #     context: GATEWAY
+  #     listener:
+  #       filterChain:
+  #         filter:
+  #           name: "envoy.transport_sockets.tls"
+  #         sni: "${basednszonename}"
+  #   patch:
+  #     operation: MERGE
+  #     value:
+  #       transport_socket:
+  #         name: envoy.transport_sockets.tls
+  #         typed_config:
+  #           "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
+  #           common_tls_context:
+  #             tls_params:
+  #               signature_algorithms:
+  #               - "ed25519"
+  #               - "ecdsa_secp256r1_sha256"
+  #               - "rsa_pss_rsae_sha256"
+  #               - "rsa_pkcs1_sha256"
+  #               - "ecdsa_secp384r1_sha384"
+  #               - "rsa_pss_rsae_sha384"
+  #               - "rsa_pkcs1_sha384"
+  #               - "rsa_pss_rsae_sha512"
+  #               - "rsa_pkcs1_sha512"
+  #               - "rsa_pkcs1_sha1"
+  #             validation_context:
+  #               trust_chain_verification: ACCEPT_UNTRUSTED
+  # - applyTo: FILTER_CHAIN
+  #   match:
+  #     context: GATEWAY
+  #     listener:
+  #       filterChain:
+  #         filter:
+  #           name: "envoy.transport_sockets.tls"
+  #         sni: "staging.pauwelslabs.com"
+  #   patch:
+  #     operation: MERGE
+  #     value:
+  #       transport_socket:
+  #         name: envoy.transport_sockets.tls
+  #         typed_config:
+  #           "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
+  #           common_tls_context:
+  #             tls_params:
+  #               signature_algorithms:
+  #               - "ed25519"
+  #               - "ecdsa_secp256r1_sha256"
+  #               - "rsa_pss_rsae_sha256"
+  #               - "rsa_pkcs1_sha256"
+  #               - "ecdsa_secp384r1_sha384"
+  #               - "rsa_pss_rsae_sha384"
+  #               - "rsa_pkcs1_sha384"
+  #               - "rsa_pss_rsae_sha512"
+  #               - "rsa_pkcs1_sha512"
+  #               - "rsa_pkcs1_sha1"
+  #             validation_context:
+  #               trust_chain_verification: ACCEPT_UNTRUSTED
+  # - applyTo: FILTER_CHAIN
+  #   match:
+  #     context: GATEWAY
+  #     listener:
+  #       filterChain:
+  #         filter:
+  #           name: "envoy.transport_sockets.tls"
+  #         sni: "pauwelslabs.com"
+  #   patch:
+  #     operation: MERGE
+  #     value:
+  #       transport_socket:
+  #         name: envoy.transport_sockets.tls
+  #         typed_config:
+  #           "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext"
+  #           common_tls_context:
+  #             tls_params:
+  #               signature_algorithms:
+  #               - "ed25519"
+  #               - "ecdsa_secp256r1_sha256"
+  #               - "rsa_pss_rsae_sha256"
+  #               - "rsa_pkcs1_sha256"
+  #               - "ecdsa_secp384r1_sha384"
+  #               - "rsa_pss_rsae_sha384"
+  #               - "rsa_pkcs1_sha384"
+  #               - "rsa_pss_rsae_sha512"
+  #               - "rsa_pkcs1_sha512"
+  #               - "rsa_pkcs1_sha1"
+  #             validation_context:
+  #               trust_chain_verification: ACCEPT_UNTRUSTED
   - applyTo: FILTER_CHAIN
     match:
       context: GATEWAY

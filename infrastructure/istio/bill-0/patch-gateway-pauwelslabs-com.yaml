@@ -24,7 +24,7 @@ spec:
     hosts:
     - "dev.pauwelslabs.com"
     tls:
-      mode: MUTUAL
+      mode: SIMPLE
       credentialName: tls-dev-pauwels-labs
   - port:
       number: 443
@@ -33,7 +33,7 @@ spec:
     hosts:
     - "staging.pauwelslabs.com"
     tls:
-      mode: MUTUAL
+      mode: SIMPLE
       credentialName: tls-staging-pauwels-labs
   - port:
       number: 443
@@ -42,7 +42,7 @@ spec:
     hosts:
     - "t-pauwels-labs-main/pauwelslabs.com"
     tls:
-      mode: MUTUAL
+      mode: SIMPLE
       credentialName: tls-prod-pauwels-labs
   - port:
       number: 443
