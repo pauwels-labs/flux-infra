@@ -137,7 +137,7 @@ spec:
         ruler:
           alertmanager_url: dnssrvnoa+http://_http-metrics._tcp.{{ template "mimir.fullname" . }}-alertmanager-headless.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:8080/alertmanager
           query_frontend:
-            address: dns:///grafana-mimir-query-frontend-headless.${infranamespaceprefix}grafana-mimir.svc:9095
+            address: dns://grafana-mimir-query-frontend-headless.${infranamespaceprefix}grafana-mimir.svc:9095
           ring:
             instance_enable_ipv6: true
         ruler_storage:
