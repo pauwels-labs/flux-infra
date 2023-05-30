@@ -17,6 +17,7 @@ resources:
 - node-exporter-networkPolicy.yaml
 - node-exporter-serviceAccount.yaml
 - node-exporter-service.yaml
+- service-kube-dns-metrics.yaml
 - servicemonitor-kube-state-metrics.yaml
 - servicemonitor-node-exporter.yaml
 - servicemonitor-apiserver.yaml

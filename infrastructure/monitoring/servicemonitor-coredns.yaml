@@ -20,10 +20,10 @@ spec:
     relabelings:
     - replacement: pauwels-labs-main
       targetLabel: tenant
-  jobLabel: kubernetes.io/name
+  jobLabel: app.kubernetes.io/name
   namespaceSelector:
     matchNames:
     - kube-system
   selector:
     matchLabels:
-      k8s-app: kube-dns
+      k8s-app: kube-dns-metrics
