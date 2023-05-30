@@ -149,3 +149,5 @@ spec:
             instance_enable_ipv6: true
         server:
           log_level: "debug"
+        limits:
+          max_global_series_per_user: 1000000
