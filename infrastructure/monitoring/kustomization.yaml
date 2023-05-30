@@ -19,3 +19,5 @@ resources:
 - node-exporter-service.yaml
 - servicemonitor-kube-state-metrics.yaml
 - servicemonitor-node-exporter.yaml
+- servicemonitor-apiserver.yaml
+- servicemonitor-coredns.yaml
