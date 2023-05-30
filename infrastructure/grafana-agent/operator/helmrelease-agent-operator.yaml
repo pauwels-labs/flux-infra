@@ -26,5 +26,5 @@ spec:
       repository: i/grafana/agent-operator
       tag: v0.32.1
     kubeletService:
-      namespce: "${infranamespaceprefix}monitoring"
+      namespace: "${infranamespaceprefix}monitoring"
       serviceName: kubelet
