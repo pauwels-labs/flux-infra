@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: node-exporter
     app.kubernetes.io/part-of: kube-prometheus
     app.kubernetes.io/version: 1.4.0
+    instance: primary
   name: node-exporter
   namespace: ${infranamespaceprefix}monitoring
 spec:
