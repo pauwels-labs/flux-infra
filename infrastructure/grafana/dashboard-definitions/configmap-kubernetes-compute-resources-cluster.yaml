@@ -62,7 +62,7 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "cluster:node_cpu:ratio_rate5m{cluster=\"$cluster\"}",
+                                "expr": "cluster:node_cpu:ratio_rate5m",
                                 "format": "time_series",
                                 "instant": true,
                                 "intervalFactor": 2,
