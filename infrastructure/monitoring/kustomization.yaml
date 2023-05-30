@@ -11,3 +11,11 @@ resources:
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
+- node-exporter-clusterRoleBinding.yaml
+- node-exporter-clusterRole.yaml
+- node-exporter-daemonset.yaml
+- node-exporter-networkPolicy.yaml
+- node-exporter-serviceAccount.yaml
+- node-exporter-service.yaml
+- servicemonitor-kube-state-metrics.yaml
+- servicemonitor-node-exporter.yaml

@@ -5,3 +5,4 @@ resources:
 - grafanaagent.yaml
 - metricsinstance.yaml
 - configmap-cortex-tenant.yaml
+- servicemonitor-kubelet.yaml
