@@ -53,6 +53,7 @@ spec:
             apiVersion: v1
             fieldPath: status.podIP
     loki:
+      auth_enabled: false
       commonConfig:
         instance_addr: "[$${POD_IP}]"
         ring:
