@@ -34,5 +34,6 @@ spec:
     targetLabel: container
   - replacement: "${clustername}"
     targetLabel: cluster
+  namespaceSelector: {}
   selector:
     matchLabels: {}
