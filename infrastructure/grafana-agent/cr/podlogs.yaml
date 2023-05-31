@@ -32,7 +32,7 @@ spec:
     sourceLabels:
     - __meta_kubernetes_pod_container_name
     targetLabel: container
-  - replacement: "{{ include "loki.fullname" $ }}"
+  - replacement: "${clustername}"
     targetLabel: cluster
   selector:
     matchLabels: {}
