@@ -25,20 +25,35 @@ spec:
       registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
       repository: i/bitnami/kubectl
       tag: 1.26.5
+    write:
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
+    read:
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
+    backend:
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
     loki:
-      structuredConfig: |
-        memberlist:
-          bind_addr:
-          - "[::0]"
-        ingester:
-          ring:
-            instance_enable_ipv6: true
-        query_scheduler:
-          ring:
-            instance_enable_ipv6: true
-        compactor:
-          sharding_ring:
-            instance_enable_ipv6: true
+      commonConfig:
+        instance_addr: "[${POD_IP}]"
+        ring:
+          instance_addr: "[${POD_IP}]"
+      extraMemberListConfig:
+        bind_addr:
+        - "[::0]"
       image:
         registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
         repository: i/grafana/loki
