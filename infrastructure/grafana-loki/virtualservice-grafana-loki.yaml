@@ -9,9 +9,63 @@ spec:
   gateways:
   - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
   http:
-  - name: loki
+  - match:
+    - uri:
+        exact: "/api/prom/push"
+    - uri:
+        exact: "/loki/api/v1/push"
+    - uri:
+        exact: "/distributor/ring"
+    - uri:
+        exact: "/flush"
+    - uri:
+        prefix: "/ingester/"
+    - uri:
+        exact: "/ring"
+    - uri:
+        exact: "/memberlist"
     route:
     - destination:
-        host: loki
         port:
-          number: 3000
+          number: 3100
+        host: loki-write
+  - match:
+    - uri:
+        exact: "/ruler/ring"
+    - uri:
+        prefix: "/api/prom/rules"
+    - uri:
+        prefix: "/loki/api/v1/rules"
+    - uri:
+        exact: "/prometheus/api/v1/alerts"
+    - uri:
+        exact: "/prometheus/api/v1/rules"
+    - uri:
+        exact: "/compactor/ring"
+    - uri:
+        exact: "/loki/api/v1/delete"
+    - uri:
+        exact: "/loki/api/v1/cache/generation_numbers"
+    - uri:
+        exact: "/indexgateway/ring"
+    - uri:
+        exact: "/scheduler/ring"
+    route:
+    - destination:
+        port:
+          number: 3100
+        host: loki-backend
+  - match:
+    - uri:
+        exact: "/api/prom/tail"
+    - uri:
+        exact: "/loki/api/v1/tail"
+    - uri:
+        prefix: "/api/prom/"
+    - uri:
+        prefix: "/loki/api/v1/"
+    route:
+    - destination:
+        port:
+          number: 3100
+        host: loki-read
