@@ -52,6 +52,7 @@ spec:
         ring:
           instance_addr: "[$${POD_IP}]"
       extraMemberListConfig:
+        advertise_addr: "::0"
         bind_addr:
         - "[::0]"
       image:
@@ -97,5 +98,5 @@ spec:
           registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
           repository: i/grafana/loki-canary
           tag: 2.8.2
-      gateway:
-        enabled: false
+    gateway:
+      enabled: false
