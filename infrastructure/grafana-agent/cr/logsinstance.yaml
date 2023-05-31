@@ -1,0 +1,14 @@
+apiVersion: monitoring.grafana.com/v1alpha1
+kind: LogsInstance
+metadata:
+  name: primary
+  namespace: "${infranamespaceprefix}grafana-agent"
+  labels:
+    agent: grafana-agent-logs
+spec:
+  clients:
+  - url: http://loki-write-headless.i-grafana-loki.svc.cluster.local:9095/api/v1/push
+  podLogsNamespaceSelector: {}
+  podLogsSelector:
+    matchLabels:
+      instance: primary
