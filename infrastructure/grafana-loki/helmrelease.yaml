@@ -96,7 +96,7 @@ spec:
         metricsInstance:
           enabled: false
       selfMonitoring:
-        enabled: true
+        enabled: false
         tenant:
           secretNamespace: "${infranamespaceprefix}grafana"
         grafanaAgent:
@@ -108,4 +108,4 @@ spec:
           repository: i/grafana/loki-canary
           tag: 2.8.2
     gateway:
-      enabled: true
+      enabled: false
