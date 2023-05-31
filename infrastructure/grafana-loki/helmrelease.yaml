@@ -59,7 +59,7 @@ spec:
           kvstore:
             store: memberlist
           instance_addr: "[$${POD_IP}]"
-      extraMemberListConfig:
+      extraMemberlistConfig:
         advertise_addr: "::0"
         bind_addr:
         - "[::0]"
