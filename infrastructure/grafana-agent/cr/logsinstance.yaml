@@ -7,7 +7,7 @@ metadata:
     agent: grafana-agent-logs
 spec:
   clients:
-  - url: http://loki-write-headless.i-grafana-loki.svc.cluster.local:9095/api/v1/push
+  - url: http://loki-write-headless.i-grafana-loki.svc.cluster.local:9095/loki/api/v1/push
   podLogsNamespaceSelector: {}
   podLogsSelector:
     matchLabels:
