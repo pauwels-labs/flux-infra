@@ -34,6 +34,10 @@ data:
   grafanamimiriamrolearn: "arn:aws:iam::140327370353:role/lefranc-mimir"
   grafanamimirrulerbucketname: "mimir-ruler-20221206125509500600000001"
   grafanamimirblocksbucketname: "mimir-blocks-20221206125509500600000002"
+  grafanalokiiamrolearn: "arn:aws:iam::140327370353:role/lefranc-loki"
+  grafanalokirulerbucketname: "loki-ruler-20230531092431228300000003"
+  grafanalokichunksbucketname: "loki-chunks-20230531092431228000000002"
+  grafanalokiadminbucketname: "loki-admin-20230531092431227900000001"
   cortextenanttargeturl: "http://grafana-mimir-distributor-headless.i-grafana-mimir.svc.cluster.local:8080/api/v1/push"
 kind: ConfigMap
 metadata:

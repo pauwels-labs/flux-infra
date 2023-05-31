@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana-loki
+  namespace: "${infranamespaceprefix}grafana-loki"
+spec:
+  hosts:
+  - logs.pauwelslabs.com
+  gateways:
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
+  http:
+  - name: loki
+    route:
+    - destination:
+        host: loki
+        port:
+          number: 3000
