@@ -88,6 +88,8 @@ spec:
           nodeSelector:
             topology.kubernetes.io/zone: eu-west-1c        
     ingester:
+      persistentVolume:
+        size: 10Gi
       zoneAwareReplication:
         enabled: true
         topologyKey: "kubernetes.io/hostname"
