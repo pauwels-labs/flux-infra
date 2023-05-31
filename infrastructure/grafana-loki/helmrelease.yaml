@@ -50,6 +50,8 @@ spec:
       commonConfig:
         instance_addr: "[$${POD_IP}]"
         ring:
+          kvstore:
+            store: memberlist
           instance_addr: "[$${POD_IP}]"
       extraMemberListConfig:
         advertise_addr: "::0"
