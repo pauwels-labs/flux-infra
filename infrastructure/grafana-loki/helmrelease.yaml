@@ -48,9 +48,9 @@ spec:
             fieldPath: status.podIP
     loki:
       commonConfig:
-        instance_addr: "[${POD_IP}]"
+        instance_addr: "[$${POD_IP}]"
         ring:
-          instance_addr: "[${POD_IP}]"
+          instance_addr: "[$${POD_IP}]"
       extraMemberListConfig:
         bind_addr:
         - "[::0]"
