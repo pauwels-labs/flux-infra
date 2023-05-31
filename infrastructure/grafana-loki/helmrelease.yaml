@@ -26,6 +26,8 @@ spec:
       repository: i/bitnami/kubectl
       tag: 1.26.5
     write:
+      extraArgs:
+      - "-config.expand-env=true"
       extraEnv:
       - name: POD_IP
         valueFrom:
@@ -33,6 +35,8 @@ spec:
             apiVersion: v1
             fieldPath: status.podIP
     read:
+      extraArgs:
+      - "-config.expand-env=true"
       extraEnv:
       - name: POD_IP
         valueFrom:
@@ -40,6 +44,8 @@ spec:
             apiVersion: v1
             fieldPath: status.podIP
     backend:
+      extraArgs:
+      - "-config.expand-env=true"
       extraEnv:
       - name: POD_IP
         valueFrom:
