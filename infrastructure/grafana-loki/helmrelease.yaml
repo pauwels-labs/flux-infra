@@ -60,7 +60,7 @@ spec:
             store: memberlist
           instance_addr: "[$${POD_IP}]"
       extraMemberlistConfig:
-        advertise_addr: "::0"
+        advertise_addr: "$${POD_IP}"
         bind_addr:
         - "[::0]"
       image:
@@ -76,6 +76,7 @@ spec:
         s3:
           region: eu-west-1
     serviceAccount:
+      name: grafana-loki
       annotations:
         eks.amazonaws.com/role-arn: "${grafanalokiiamrolearn}"
     test:
