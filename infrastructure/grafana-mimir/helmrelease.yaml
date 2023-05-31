@@ -21,6 +21,14 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    metaMonitoring:
+      serviceMonitor:
+        enabled: true
+      labels:
+        instance: primary
+        relabelings:
+        - replacement: pauwels-labs-main
+          targetLabel: tenant
     smoke_test:
       image:
         repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/mimir-continuous-test
