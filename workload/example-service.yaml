@@ -1,0 +1,73 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: example-service
+  namespace: "${tenantnamespaceprefix}pauwels-labs-main"
+spec:
+  interval: 1m0s
+  serviceAccountName: pauwels-labs-main
+  targetNamespace: "${tenantnamespaceprefix}pauwels-labs-main"
+  sourceRef:
+    kind: GitRepository
+    name: github-pauwels-labs-example-service
+  images:
+  - name: appimage
+    newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/pauwels-labs-main/github/pauwels-labs/example-service # {"$imagepolicy": "t-pauwels-labs-main:example-service:name"}
+    newTag: v0.0.1 # {"$imagepolicy": "t-pauwels-labs-main:example-service:tag"}
+  path: ./deploy/dev
+  prune: true
+  wait: true
+  timeout: 30s
+  postBuild:
+    substitute:
+      name: "example-service"
+      namesuffix: -dev
+      domain: "pauwelslabs.com"
+      tenantname: "pauwels-labs-main"
+    substituteFrom:
+    - kind: ConfigMap
+      name: external-infra-data
+    - kind: ConfigMap
+      name: external-tenant-data
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: github-pauwels-labs-example-service
+  namespace: "${tenantnamespaceprefix}pauwels-labs-main"
+  labels:
+    toolkit.fluxcd.io/tenant: pauwels-labs-main
+spec:
+  interval: 1m
+  ref:
+    branch: main
+  secretRef:
+    name: ssh-pauwels-labs-main-github-pauwels-labs-example-service
+  url: ssh://git@github.com/pauwels-labs/example-service
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: example-service
+  namespace: "${tenantnamespaceprefix}pauwels-labs-main"
+  labels:
+    toolkit.fluxcd.io/tenant: pauwels-labs-main
+spec:
+  image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/pauwels-labs-main/github/pauwels-labs/example-service
+  interval: 1m0s
+  secretRef:
+    name: ecr-credentials
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: example-service
+  namespace: "${tenantnamespaceprefix}pauwels-labs-main"
+  labels:
+    toolkit.fluxcd.io/tenant: pauwels-labs-main
+spec:
+  imageRepositoryRef:
+    name: example-service
+  policy:
+    semver:
+      range: ">=0.0.0 <1.0.0"
