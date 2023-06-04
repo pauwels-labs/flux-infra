@@ -2,7 +2,10 @@
 "kind": "Kustomization"
 "metadata":
   "name": "pauwels-labs-main"
+  "namespace": "flux-system"
 "spec":
+  "interval": "5m0s"
+  "path": "./tenant/base"
   "postBuild":
     "substitute":
       "tenantname": "pauwels-labs-main"
@@ -12,4 +15,14 @@
       "tenantrepoorg": "pauwels-labs"
       "tenantrepopath": "base"
       "tenantrepourl": "git@github.com:pauwels-labs/tenant-main.git"
+    "substituteFrom":
+    - "kind": "ConfigMap"
+      "name": "external-config-data"
+  "prune": true
+  "serviceAccountName": "kustomize-controller"
+  "sourceRef":
+    "kind": "GitRepository"
+    "name": "flux-system"
   "targetNamespace": "${tenantnamespaceprefix}pauwels-labs-main"
+  "timeout": "30s"
+  "wait": true
