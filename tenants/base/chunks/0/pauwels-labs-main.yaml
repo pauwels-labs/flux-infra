@@ -1,0 +1,15 @@
+"apiVersion": "kustomize.toolkit.fluxcd.io/v1beta2"
+"kind": "Kustomization"
+"metadata":
+  "name": "pauwels-labs-main"
+"spec":
+  "postBuild":
+    "substitute":
+      "tenantname": "pauwels-labs-main"
+      "tenantrepobot": "capt-haddock"
+      "tenantrepohost": "github"
+      "tenantreponame": "tenant-main"
+      "tenantrepoorg": "pauwels-labs"
+      "tenantrepopath": "base"
+      "tenantrepourl": "git@github.com:pauwels-labs/tenant-main.git"
+  "targetNamespace": "${tenantnamespaceprefix}pauwels-labs-main"
