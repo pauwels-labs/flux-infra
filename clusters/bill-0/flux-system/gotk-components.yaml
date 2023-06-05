@@ -8799,7 +8799,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/helm-controller:v0.34.1
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/helm-controller:v0.34.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -8883,7 +8883,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/image-automation-controller:v0.34.1
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/image-automation-controller:v0.34.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -8966,7 +8966,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/image-reflector-controller:v0.28.0
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/image-reflector-controller:v0.28.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -9053,7 +9053,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/kustomize-controller:v1.0.0-rc.4
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/kustomize-controller:v1.0.0-rc.4
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -9136,7 +9136,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ghcr.io/fluxcd/notification-controller:v1.0.0-rc.4
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/notification-controller:v1.0.0-rc.4
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -9231,7 +9231,7 @@ spec:
               fieldPath: metadata.namespace
         - name: TUF_ROOT
           value: /tmp/.sigstore
-        image: ghcr.io/fluxcd/source-controller:v1.0.0-rc.5
+        image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/fluxcd/source-controller:v1.0.0-rc.5
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
