@@ -3,6 +3,5 @@ kind: Kustomization
 namespace: "${infranamespaceprefix}grafana-agent"
 resources:
 - grafanaagent.yaml
-- configmap-cortex-tenant.yaml
 - logsinstance.yaml
 - podlogs-tenants.yaml

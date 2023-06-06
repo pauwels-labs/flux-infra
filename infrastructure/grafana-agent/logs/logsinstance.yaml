@@ -7,9 +7,11 @@ metadata:
     monitoring.grafana.com/agent: logs
 spec:
   clients:
-  - url: "http://127.0.0.1:20202/push"
+  - url: "${lokitargeturl}"
+    bearerTokenFile: "/token/oidc-token"
     externalLabels:
       cluster: "${clustername}"
+    tenantId: "pauwels-labs-main"
   podLogsNamespaceSelector: {}
   podLogsSelector:
     matchLabels:
