@@ -26,6 +26,7 @@ data:
   oidctokenurl: "https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/token"
   infranamespaceprefix: "i-"
   tenantnamespaceprefix: "t-"
+  mimirreadurl: "https://telemetry.pauwelslabs.com/prometheus"
   mimirtargeturl: "https://telemetry.pauwelslabs.com/api/v1/push"
   lokitargeturl: "https://logs.pauwelslabs.com/loki/api/v1/push"
 kind: ConfigMap
