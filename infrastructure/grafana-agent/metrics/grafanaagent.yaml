@@ -1,10 +1,10 @@
 apiVersion: monitoring.grafana.com/v1alpha1
 kind: GrafanaAgent
 metadata:
-  name: grafana-agent
+  name: metrics
   namespace: "${infranamespaceprefix}grafana-agent"
   labels:
-    app: grafana-agent
+    app.kubernetes.io/name: metrics
 spec:
   image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/grafana/agent:v0.33.2
   containers:
@@ -22,7 +22,7 @@ spec:
       name: telemetry-credentials
   volumes:
   - configMap:
-      name: cortex-tenant
+      name: cortex-tenant-metrics
     name: cortex-tenant-config
   - secret:
       secretName: telemetry-credentials
@@ -30,30 +30,26 @@ spec:
   integrations:
     selector:
       matchLabels:
-          agent: grafana-agent-integrations
+        monitoring.grafana.com/agent: metrics
   logLevel: info
-  serviceAccountName: grafana-agent
+  serviceAccountName: grafana-agent-metrics
   metrics:
     instanceSelector:
       matchLabels:
-        agent: grafana-agent-metrics
+        monitoring.grafana.com/agent: metrics
     externalLabels:
       cluster: "${clustername}"
-  logs:
-    instanceSelector:
-      matchLabels:
-        agent: grafana-agent-logs
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: grafana-agent
+  name: grafana-agent-metrics
   namespace: "${infranamespaceprefix}grafana-agent"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: grafana-agent
+  name: grafana-agent-metrics
 rules:
 - apiGroups:
   - ""
@@ -86,12 +82,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: grafana-agent
+  name: grafana-agent-metrics
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: grafana-agent
+  name: grafana-agent-metrics
 subjects:
 - kind: ServiceAccount
-  name: grafana-agent
+  name: grafana-agent-metrics
   namespace: "${infranamespaceprefix}grafana-agent"

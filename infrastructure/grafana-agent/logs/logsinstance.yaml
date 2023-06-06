@@ -4,14 +4,13 @@ metadata:
   name: primary
   namespace: "${infranamespaceprefix}grafana-agent"
   labels:
-    agent: grafana-agent-logs
+    monitoring.grafana.com/agent: logs
 spec:
   clients:
-  - url: "${lokitargeturl}"
+  - url: "http://127.0.0.1:20202/push"
     externalLabels:
       cluster: "${clustername}"
-    tenantId: "pauwels-labs-main"
   podLogsNamespaceSelector: {}
   podLogsSelector:
     matchLabels:
-      instance: primary
+      monitoring.grafana.com/logs-instance: primary

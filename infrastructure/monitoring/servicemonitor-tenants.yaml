@@ -1,0 +1,37 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    monitoring.grafana.com/metrics-instance: primary
+  name: tenants
+  namespace: ${infranamespaceprefix}monitoring
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 30s
+    metricRelabelings:
+    port: metrics
+    relabelings:
+    - replacement: pauwels-labs-main
+      targetLabel: tenant
+    - action: replace
+      regex: "^t-(.*)$"
+      replacement: "$1"
+      sourceLabels:
+      - __meta_kubernetes_namespace
+      targetLabel: tenant
+    scheme: http
+    tlsConfig:
+      insecureSkipVerify: true
+  jobLabel: app
+  namespaceSelector:
+    any: true
+  selector:
+    matchExpressions:
+    - key: toolkit.fluxcd.io/tenant
+      operator: Exists
+      values: []
+    - key: telemetry/metrics
+      operator: NotIn
+      values:
+      - disable

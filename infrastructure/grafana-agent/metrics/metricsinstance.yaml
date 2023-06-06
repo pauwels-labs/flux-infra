@@ -4,19 +4,19 @@ metadata:
   name: primary
   namespace: "${infranamespaceprefix}grafana-agent"
   labels:
-    agent: grafana-agent-metrics
+    monitoring.grafana.com/agent: metrics
 spec:
   remoteWrite:
   - url: "http://127.0.0.1:20202/push"
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector:
     matchLabels:
-      instance: primary
+      monitoring.grafana.com/metrics-instance: primary
   podMonitorNamespaceSelector: {}
   podMonitorSelector:
     matchLabels:
-      instance: primary
+      monitoring.grafana.com/metrics-instance: primary
   probeNamespaceSelector: {}
   probeSelector:
     matchLabels:
-      instance: primary
+      monitoring.grafana.com/metrics-instance: primary

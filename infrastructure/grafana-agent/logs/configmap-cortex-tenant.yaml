@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cortex-tenant
+  name: cortex-tenant-logs
 data:
   cortex-tenant.yml: |
     # Where to listen for incoming write requests from Prometheus
@@ -9,7 +9,7 @@ data:
     # Profiling API, remove to disable
     #listen_pprof: 0.0.0.0:7008
     # Where to send the modified requests (Cortex)
-    target: "${cortextenanttargeturl}"
+    target: "${lokitargeturl}"
     enable_ipv6: true
     # Log level
     log_level: debug

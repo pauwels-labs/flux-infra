@@ -22,3 +22,4 @@ resources:
 - servicemonitor-node-exporter.yaml
 - servicemonitor-apiserver.yaml
 - servicemonitor-coredns.yaml
+- servicemonitor-tenants.yaml

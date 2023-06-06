@@ -2,9 +2,9 @@ apiVersion: monitoring.grafana.com/v1alpha1
 kind: PodLogs
 metadata:
   labels:
-    instance: primary
-  name: kubernetes-pods
-  namespace: default
+    monitoring.grafana.com/logs-instance: primary
+  name: tenants
+  namespace: "${infranamespaceprefix}monitoring"
 spec:
   pipelineStages:
   - cri: {}
@@ -32,9 +32,20 @@ spec:
     sourceLabels:
     - __meta_kubernetes_pod_container_name
     targetLabel: container
-  - replacement: "${clustername}"
-    targetLabel: cluster
+  - action: replace
+    regex: "^t-(.*)$"
+    replacement: "$1"
+    sourceLabels:
+    - __meta_kubernetes_namespace
+    targetLabel: tenant
   namespaceSelector:
     any: true
   selector:
-    matchLabels: {}
+    matchExpressions:
+    - key: toolkit.fluxcd.io/tenant
+      operator: Exists
+      values: []
+    - key: telemetry/logs
+      operator: NotIn
+      values:
+      - disable

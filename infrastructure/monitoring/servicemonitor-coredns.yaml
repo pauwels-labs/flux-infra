@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/name: coredns
     app.kubernetes.io/part-of: kube-prometheus
-    instance: primary
+    monitoring.grafana.com/metrics-instance: primary
   name: coredns
   namespace: ${infranamespaceprefix}monitoring
 spec:
