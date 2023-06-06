@@ -16,6 +16,7 @@ resources:
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
+- dashboard.yaml
 images:
 - name: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller
   newName: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/tektoncd/controller
