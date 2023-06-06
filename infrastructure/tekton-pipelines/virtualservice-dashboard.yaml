@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: keycloak
-  namespace: "${infranamespaceprefix}keycloak"
+  name: tekton-dashboard
+  namespace: "${infranamespaceprefix}tekton-pipelines"
 spec:
   hosts:
   - ci.pauwelslabs.com
