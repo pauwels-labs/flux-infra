@@ -148,7 +148,7 @@ spec:
       name: https-logs
       protocol: HTTPS
     hosts:
-    - "${infranamespaceprefix}grafana-mimir/logs.pauwelslabs.com"
+    - "${infranamespaceprefix}grafana-loki/logs.pauwelslabs.com"
     tls:
       mode: SIMPLE
       credentialName: tls-logs-pauwels-labs
