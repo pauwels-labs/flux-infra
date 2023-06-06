@@ -32,8 +32,8 @@ spec:
       extensionProviders:
       - name: oauth2-proxy
         envoyExtAuthzHttp:
-          service: "oauth2-proxy.${infranamespaceprefix}oauth2-proxy.svc.cluster.local"
-          port: 80
+          service: "${authurl}"
+          port: ${authport}
           includeRequestHeadersInCheck:
           - "authorization"
           - "cookie"

@@ -41,6 +41,8 @@ data:
   mimirreadurl: "http://grafana-mimir-query-frontend.i-grafana-mimir.svc:8080/prometheus"
   mimirtargeturl: "http://grafana-mimir-distributor-headless.i-grafana-mimir.svc.cluster.local:8080/api/v1/push"
   lokitargeturl: "http://loki-write.i-grafana-loki.svc.cluster.local:3100/loki/api/v1/push"
+  authurl: "oauth2-proxy.i-oauth2-proxy.svc.cluster.local"
+  authport: "80"
 kind: ConfigMap
 metadata:
   name: external-config-data
