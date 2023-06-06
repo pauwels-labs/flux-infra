@@ -9,7 +9,7 @@ spec:
   endpoints:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     interval: 30s
-    metricRelabelings:
+    metricRelabelings: []
     port: metrics
     relabelings:
     - replacement: pauwels-labs-main
