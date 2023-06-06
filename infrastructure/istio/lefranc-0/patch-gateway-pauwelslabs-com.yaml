@@ -13,6 +13,7 @@ spec:
     - "network.pauwelslabs.com"
     - "github-webhook.cd.${environment}.pauwelslabs.com"
     - "cd.${environment}.pauwelslabs.com"
+    - "ci.pauwelslabs.com"
     - "secrets.pauwelslabs.com"
     - "identity.pauwelslabs.com"
     - "echo.pauwelslabs.com"
@@ -52,6 +53,15 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-cd-${environment}-pauwels-labs
+  - port:
+      number: 443
+      name: https-ci
+      protocol: HTTPS
+    hosts:
+    - "${infranamespaceprefix}tekton-pipelines/ci.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-ci-pauwels-labs
   - port:
       number: 443
       name: https-secrets

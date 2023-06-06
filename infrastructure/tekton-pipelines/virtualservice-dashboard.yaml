@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: keycloak
+  namespace: "${infranamespaceprefix}keycloak"
+spec:
+  hosts:
+  - ci.pauwelslabs.com
+  gateways:
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
+  http:
+  - name: "tekton-dashboard"
+    route:
+    - destination:
+        port:
+          number: 9097
+        host: tekton-dashboard
