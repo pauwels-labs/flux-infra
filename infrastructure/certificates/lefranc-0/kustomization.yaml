@@ -16,3 +16,4 @@ resources:
 - certificate-alertmanager-pauwels-labs.yaml
 - certificate-alerts-pauwels-labs.yaml
 - certificate-telemetry-pauwels-labs.yaml
+- certificate-logs-pauwels-labs.yaml

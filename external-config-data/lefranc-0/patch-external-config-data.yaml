@@ -39,6 +39,7 @@ data:
   grafanalokichunksbucketname: "loki-chunks-20230531092431228000000002"
   grafanalokiadminbucketname: "loki-admin-20230531092431227900000001"
   cortextenanttargeturl: "http://grafana-mimir-distributor-headless.i-grafana-mimir.svc.cluster.local:8080/api/v1/push"
+  lokitargeturl: "http://loki-write.i-grafana-loki.svc.cluster.local:3100/loki/api/v1/push"
 kind: ConfigMap
 metadata:
   name: external-config-data

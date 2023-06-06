@@ -7,7 +7,7 @@ metadata:
     agent: grafana-agent-metrics
 spec:
   remoteWrite:
-  - url: http://127.0.0.1:20202/push
+  - url: "http://127.0.0.1:20202/push"
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector:
     matchLabels:

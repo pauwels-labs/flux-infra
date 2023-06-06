@@ -27,6 +27,7 @@ data:
   infranamespaceprefix: "i-"
   tenantnamespaceprefix: "t-"
   cortextenanttargeturl: "https://telemetry.pauwelslabs.com/api/v1/push"
+  lokitargeturl: "https://telemetry.pauwelslabs.com/api/v1/push"
 kind: ConfigMap
 metadata:
   name: external-config-data

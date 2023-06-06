@@ -22,6 +22,7 @@ spec:
     - "alerts.pauwelslabs.com"
     - "webhook.ci.pauwelslabs.com"
     - "telemetry.pauwelslabs.com"
+    - "logs.pauwelslabs.com"
     tls:
       httpsRedirect: true
   - port:
@@ -132,3 +133,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-telemetry-pauwels-labs
+  - port:
+      number: 443
+      name: https-logs
+      protocol: HTTPS
+    hosts:
+    - "${infranamespaceprefix}grafana-mimir/logs.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-logs-pauwels-labs

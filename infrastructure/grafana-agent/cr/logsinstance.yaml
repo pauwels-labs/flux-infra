@@ -7,7 +7,7 @@ metadata:
     agent: grafana-agent-logs
 spec:
   clients:
-  - url: http://loki-write.i-grafana-loki.svc.cluster.local:3100/loki/api/v1/push
+  - url: "${lokitargeturl}"
     externalLabels:
       cluster: "${clustername}"
     tenantId: "pauwels-labs-main"
