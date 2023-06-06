@@ -5,6 +5,7 @@ resources:
 - issuer-letsencrypt-staging.yaml
 - issuer-letsencrypt-prod.yaml
 - certificate-dev-pauwels-labs.yaml
+- certificate-auth-dev-pauwels-labs.yaml
 - certificate-staging-pauwels-labs.yaml
 - certificate-prod-pauwels-labs.yaml
 - certificate-dev-redact-ws.yaml

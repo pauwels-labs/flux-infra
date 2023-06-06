@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: oauth2-proxy
+  namespace: "${infranamespaceprefix}oauth2-proxy"
+spec:
+  hosts:
+  - auth.dev.pauwelslabs.com
+  gateways:
+  - i-istio-ingress/pauwelslabs-com
+  http:
+  - name: "oauth2-proxy"
+    route:
+    - destination:
+        port:
+          number: 80
+        host: oauth2-proxy

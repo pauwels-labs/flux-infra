@@ -12,6 +12,7 @@ spec:
     hosts:
     - "pauwelslabs.com"
     - "dev.pauwelslabs.com"
+    - "auth.dev.pauwelslabs.com"
     - "staging.pauwelslabs.com"
     - "github-webhook.cd.${environment}.pauwelslabs.com"
     - "cd.${environment}.pauwelslabs.com"
@@ -26,6 +27,15 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: tls-dev-pauwels-labs
+  - port:
+      number: 443
+      name: https-auth-dev-pauwelslabs-com
+      protocol: HTTPS
+    hosts:
+    - "auth.dev.pauwelslabs.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-auth-dev-pauwels-labs
   - port:
       number: 443
       name: https-staging-pauwelslabs-com
