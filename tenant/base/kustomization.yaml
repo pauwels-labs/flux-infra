@@ -10,3 +10,6 @@ resources:
 - secretstore-tenant-repositories-ssh.yaml
 - serviceaccount.yaml
 - rbac-kustomize-controller.yaml
+- receiver.yaml
+- secretstore-tenant-webhooks-hmac.yaml
+- externalsecret-webhook-hmac.yaml

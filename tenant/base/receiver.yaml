@@ -1,0 +1,17 @@
+apiVersion: notification.toolkit.fluxcd.io/v1
+kind: Receiver
+metadata:
+  name: "${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
+  labels:
+    toolkit.fluxcd.io/tenant: "${tenantname}"
+spec:
+  events:
+  - "ping"
+  - "push"
+  interval: "10m"
+  resources:
+  - kind: "GitRepository"
+    name: "${tenantrepohost}-${tenantrepoorg}-${tenantreponame}"
+  secretRef:
+    name: "webhook-hmac-pauwels-labs-main-primary"
+  type: "github"
