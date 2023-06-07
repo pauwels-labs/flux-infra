@@ -7,5 +7,5 @@ resources:
 #- externalsecret-ssh-pauwels-labs-main-github-pauwels-labs-flux-infra.yaml
 - externalsecret-webhook-hmac-pauwels-labs-main-primary.yaml
 - receiver.yaml
-- virtualservice-github-webhook.yaml
+- virtualservice-webhook-cd.yaml
 - virtualservices-trailing-host-dot.yaml

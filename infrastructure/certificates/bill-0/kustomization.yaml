@@ -11,5 +11,5 @@ resources:
 - certificate-dev-redact-ws.yaml
 - certificate-staging-redact-ws.yaml
 - certificate-prod-redact-ws.yaml
-- certificate-github-webhook-cd-environment-pauwels-labs.yaml
+- certificate-webhook-cd-environment-pauwels-labs.yaml
 - certificate-cd-environment-pauwels-labs.yaml

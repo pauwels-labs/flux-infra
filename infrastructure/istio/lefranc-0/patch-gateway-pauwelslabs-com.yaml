@@ -11,7 +11,7 @@ spec:
       protocol: HTTP
     hosts:
     - "network.pauwelslabs.com"
-    - "github-webhook.cd.${environment}.pauwelslabs.com"
+    - "webhook.cd.${environment}.pauwelslabs.com"
     - "cd.${environment}.pauwelslabs.com"
     - "ci.pauwelslabs.com"
     - "secrets.pauwelslabs.com"
@@ -37,13 +37,13 @@ spec:
       credentialName: tls-network-pauwels-labs
   - port:
       number: 443
-      name: https-github-webhook-cd-${environment}
+      name: https-webhook-cd-${environment}
       protocol: HTTPS
     hosts:
-    - "flux-system/github-webhook.cd.${environment}.pauwelslabs.com"
+    - "flux-system/webhook.cd.${environment}.pauwelslabs.com"
     tls:
       mode: SIMPLE
-      credentialName: tls-github-webhook-cd-${environment}-pauwels-labs
+      credentialName: tls-webhook-cd-${environment}-pauwels-labs
   - port:
       number: 443
       name: https-cd-${environment}

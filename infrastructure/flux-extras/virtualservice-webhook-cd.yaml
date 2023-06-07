@@ -2,11 +2,11 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: github-webhook
+  name: webhook-cd
   namespace: flux-system
 spec:
   hosts:
-  - github-webhook.cd.${environment}.pauwelslabs.com
+  - webhook.cd.${environment}.pauwelslabs.com
   gateways:
   - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
   http:
