@@ -11,10 +11,10 @@
       "tenantname": "pauwels-labs-main"
       "tenantrepobot": "capt-haddock"
       "tenantrepohost": "github"
-      "tenantreponame": "tenant-main"
+      "tenantreponame": "tenant-pauwels-labs-main"
       "tenantrepoorg": "pauwels-labs"
       "tenantrepopath": "base"
-      "tenantrepourl": "ssh://git@github.com/pauwels-labs/tenant-main.git"
+      "tenantrepourl": "ssh://git@github.com/pauwels-labs/tenant-pauwels-labs-main.git"
     "substituteFrom":
     - "kind": "ConfigMap"
       "name": "external-config-data"
