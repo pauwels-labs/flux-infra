@@ -134,6 +134,7 @@ spec:
             instance_enable_ipv6: true
         frontend:
           address: "[$${POD_IP}]"
+          max_outstanding_per_tenant: 1024
         ingester:
           ring:
             instance_enable_ipv6: true
