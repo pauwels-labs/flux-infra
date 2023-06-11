@@ -82,10 +82,10 @@ spec:
       - ecr-credentials
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
       tag: 1.17.2-envoy1.27
-      logging:
-        level: "default:debug"
+      # logging:
+      #   level: "default:debug"
       proxy:
-        logLevel: "debug"
+        # logLevel: "debug"
         resources:
           limits:
             memory: 1Gi
