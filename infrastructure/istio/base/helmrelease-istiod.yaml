@@ -26,6 +26,8 @@ spec:
     revision: "1-17-2"
     revisionTags: ["stable"]
     meshConfig:
+      outboundTrafficPolicy:
+        mode: REGISTRY_ONLY
       rootNamespace: "${infranamespaceprefix}istio-system"
       accessLogFile: /dev/stdout
       meshId: ${environment}
