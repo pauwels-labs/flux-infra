@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: ipv6-serviceentry
+  namespace: "i-istio-system"
+spec:
+  configPatches:
+  - applyTo: LISTENER
+    match:
+      context: SIDECAR_OUTBOUND
+      listener:
+        portNumber: 443
+        name: "0.0.0.0_443"
+    patch:
+      operation: MERGE
+      value:
+        address:
+          socket_address:
+            address: "::"
