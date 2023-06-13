@@ -45,3 +45,5 @@ spec:
       enabled: true
       datadog:
         enabled: false
+    configMaps:
+      create: true
