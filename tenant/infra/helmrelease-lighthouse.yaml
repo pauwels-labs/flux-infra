@@ -36,6 +36,8 @@ spec:
     oauthSecretName: "token-${tenantrepohost}-${tenantrepobot}"
     hmacSecretName: "webhook-hmac-${tenantname}-primary"
     scope: "namespace"
+    tektoncontroller:
+      logLevel: debug
     webhooks:
       serviceName: ""
     keeper:
