@@ -157,4 +157,4 @@ spec:
             - do-not-merge/work-in-progress
             - needs-ok-to-test      
             repos:
-            - ${githostbot}/nodejs-example
+            - ${githostbot}/pauwels-labs/nodejs-example
