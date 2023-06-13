@@ -95,14 +95,15 @@ spec:
             pipeline_run_spec:
               serviceAccountName: pipeline-runner
               pipelineRef:
-                resolver: cluster
-                params:
-                - name: kind
-                  value: pipeline
-                - name: name
-                  value: clone-build-push
-                - name: namespace
-                  value: "${infranamespaceprefix}tekton-pipelines"
+                name: clone-build-push
+                # resolver: cluster
+                # params:
+                # - name: kind
+                #   value: pipeline
+                # - name: name
+                #   value: clone-build-push
+                # - name: namespace
+                #   value: "${infranamespaceprefix}tekton-pipelines"
                 podTemplate:
                   securityContext:
                     fsGroup: 65532
