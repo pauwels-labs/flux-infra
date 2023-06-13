@@ -17,5 +17,5 @@ spec:
     route:
     - destination:
         port:
-          number: 8080
-        host: el-github
+          number: 80
+        host: lighthouse-webhooks

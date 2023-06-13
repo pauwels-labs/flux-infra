@@ -17,3 +17,5 @@ resources:
 - role-tenant.yaml
 - rolebinding-tenant.yaml
 - configmap-external-tenant-data.yaml
+- helmrelease-lighthouse.yaml
+- helmrepository-pauwels-labs.yaml
