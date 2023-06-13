@@ -32,7 +32,7 @@ spec:
       tekton: true
       jx: false
       jenkins: false
-    user: "${githostbot}"
+    user: "${tenantrepobot}"
     oauthSecretName: "token-${tenantrepohost}-${tenantrepobot}"
     hmacSecretName: "webhook-hmac-${tenantname}-primary"
     scope: "namespace"
@@ -51,7 +51,7 @@ spec:
         approve:
         - lgtm_acts_as_approve: false
           repos:
-          - ${githostbot}/nodejs-example
+          - ${tenantrepobot}/nodejs-example
           require_self_approval: true
         config_updater:
           gzip: false
@@ -62,11 +62,11 @@ spec:
               name: plugins
         triggers:
         - repos:
-          - ${githostbot}/nodejs-example
+          - ${tenantrepobot}/nodejs-example
           ignore_ok_to_test: false
           elide_skipped_contexts: false
         plugins:
-          ${githostbot}/nodejs-example:
+          ${tenantrepobot}/nodejs-example:
           - config-updater
           - approve
           - lgtm
@@ -82,7 +82,7 @@ spec:
         plank: {}
         pod_namespace: t-pauwels-labs-main
         postsubmits:
-          ${githostbot}/nodejs-example:
+          ${tenantrepobot}/nodejs-example:
           - agent: tekton-pipeline
             branches:
             - main
@@ -157,4 +157,4 @@ spec:
             - do-not-merge/work-in-progress
             - needs-ok-to-test      
             repos:
-            - ${githostbot}/pauwels-labs/nodejs-example
+            - ${tenantrepobot}/pauwels-labs/nodejs-example
