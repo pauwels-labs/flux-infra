@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lighthouse-config
+data:
+  config.yaml: |
+    branch-protection:
+      orgs: {}
+      protect-tested-repos: true
+    github:
+      LinkURL: null
+    owners_dir_excludes:
+      default: null
+      repos: null
+    plank: {}
+    pod_namespace: t-pauwels-labs-main
+    postsubmits:
+      ${githostbot}/nodejs-example:
+      - agent: tekton-pipeline
+        branches:
+        - main
+        context: nodejs-example
+        name: nodejs-example
+        pipeline_run_spec:
+          serviceAccountName: pipeline-runner
+          pipelineRef:
+            resolver: cluster
+            params:
+            - name: kind
+              value: pipeline
+            - name: name
+              value: clone-build-push
+            - name: namespace
+              value: "${infranamespaceprefix}tekton-pipelines"
+            podTemplate:
+              securityContext:
+                fsGroup: 65532
+            workspaces:
+            - name: shared-data
+              volumeClaimTemplate:
+                spec:
+                  accessModes:
+                  - ReadWriteOnce
+                  resources:
+                    requests:
+                      storage: 1Gi
+            - name: docker-credentials
+              secret:
+                secretName: ecr-credentials
+                items:
+                - key: ".dockerconfigjson"
+                  path: "config.json"
+            - name: git-credentials
+              secret:
+                secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
+                defaultMode: 256
+                items:
+                - key: "identity"
+                  path: "id_rsa"
+                  mode: 256
+                - key: "known_hosts"
+                  path: "known_hosts"
+            params:
+            - name: revision
+              value: $(tt.params.revision)
+            - name: repositoryurl
+              value: $(tt.params.repositoryurl)
+            - name: sshurl
+              value: $(tt.params.sshurl)
+            - name: imageurl
+              value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
+            - name: ghtokensecretname
+              value: token-${tenantrepohost}-${tenantrepobot}
+    presubmits: {}
+    prowjob_namespace: t-pauwels-labs-main
+    push_gateway:
+      serve_metrics: false
+    tide:
+      context_options:
+        from-branch-protection: true
+        required-if-present-contexts: []
+        skip-unknown-contexts: false
+      merge_method: {}
+      queries:
+      - labels:
+        - approved
+        missingLabels:
+        - do-not-merge
+        - do-not-merge/hold
+        - do-not-merge/work-in-progress
+        - needs-ok-to-test      
+        repos:
+        - ${githostbot}/nodejs-example
