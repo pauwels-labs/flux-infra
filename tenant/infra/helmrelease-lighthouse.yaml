@@ -38,6 +38,7 @@ spec:
     scope: "namespace"
     tektoncontroller:
       logLevel: debug
+      dashboardURL: "https://ci.pauwelslabs.com"
     webhooks:
       serviceName: ""
     keeper:
