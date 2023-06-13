@@ -1,0 +1,126 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  labels:
+    kustomize.toolkit.fluxcd.io/name: tekton-pipelines
+    kustomize.toolkit.fluxcd.io/namespace: flux-system
+  name: clone-build-push
+  namespace: t-pauwels-labs-main
+spec:
+  description: |
+    This pipeline clones a git repo, builds a Docker image with Kaniko and
+    pushes it to a registry
+  params:
+  - name: revision
+    type: string
+  - name: repositoryurl
+    type: string
+  - name: sshurl
+    type: string
+  - name: imageurl
+    type: string
+  - name: ghtokensecretname
+    type: string
+  tasks:
+  - name: fetch-source
+    params:
+    - name: url
+      value: $(params.sshurl)
+    - name: revision
+      value: $(params.revision)
+    - name: depth
+      value: "1"
+    - name: userHome
+      value: /home/git
+    taskRef:
+      kind: Task
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: git-clone
+      - name: namespace
+        value: i-tekton-pipelines
+      resolver: cluster
+    workspaces:
+    - name: output
+      workspace: shared-data
+    - name: ssh-directory
+      workspace: git-credentials
+  - name: version
+    runAfter:
+    - fetch-source
+    taskRef:
+      kind: Task
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: version
+      - name: namespace
+        value: i-tekton-pipelines
+      resolver: cluster
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: git-ssh
+      workspace: git-credentials
+  - name: build-push
+    params:
+    - name: GH_TOKEN_SECRET_NAME
+      value: $(params.ghtokensecretname)
+    - name: IMAGE
+      value: $(params.imageurl):$(tasks.version.results.RELEASE_VERSION)
+    - name: EXTRA_ARGS
+      value:
+      - --cache=true
+      - --cache-dir=/kaniko/cache
+      - --cache-repo=$(params.imageurl)/cache
+    runAfter:
+    - version
+    taskRef:
+      kind: Task
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: kaniko
+      - name: namespace
+        value: i-tekton-pipelines
+      resolver: cluster
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: dockerconfig
+      workspace: docker-credentials
+    - name: git-ssh
+      workspace: git-credentials
+  - name: release
+    params:
+    - name: GH_TOKEN_SECRET_NAME
+      value: $(params.ghtokensecretname)
+    runAfter:
+    - build-push
+    taskRef:
+      kind: Task
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: release
+      - name: namespace
+        value: i-tekton-pipelines
+      resolver: cluster
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: git-ssh
+      workspace: git-credentials
+  workspaces:
+  - description: Contains the cloned git repo
+    name: shared-data
+  - description: Contains SSH credentials for authenticating to private Git repos
+    name: git-credentials
+  - description: Contains docker credentials for authenticating to private container
+      registry
+    name: docker-credentials

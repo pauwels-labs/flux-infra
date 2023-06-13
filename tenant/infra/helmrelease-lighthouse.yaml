@@ -104,45 +104,45 @@ spec:
                 #   value: clone-build-push
                 # - name: namespace
                 #   value: "${infranamespaceprefix}tekton-pipelines"
-                podTemplate:
-                  securityContext:
-                    fsGroup: 65532
-                workspaces:
-                - name: shared-data
-                  volumeClaimTemplate:
-                    spec:
-                      accessModes:
-                      - ReadWriteOnce
-                      resources:
-                        requests:
-                          storage: 1Gi
-                - name: docker-credentials
-                  secret:
-                    secretName: ecr-credentials
-                    items:
-                    - key: ".dockerconfigjson"
-                      path: "config.json"
-                - name: git-credentials
-                  secret:
-                    secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
-                    defaultMode: 256
-                    items:
-                    - key: "identity"
-                      path: "id_rsa"
-                      mode: 256
-                    - key: "known_hosts"
-                      path: "known_hosts"
-                params:
-                - name: revision
-                  value: $(tt.params.revision)
-                - name: repositoryurl
-                  value: $(tt.params.repositoryurl)
-                - name: sshurl
-                  value: $(tt.params.sshurl)
-                - name: imageurl
-                  value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
-                - name: ghtokensecretname
-                  value: token-${tenantrepohost}-${tenantrepobot}
+              podTemplate:
+                securityContext:
+                  fsGroup: 65532
+              workspaces:
+              - name: shared-data
+                volumeClaimTemplate:
+                  spec:
+                    accessModes:
+                    - ReadWriteOnce
+                    resources:
+                      requests:
+                        storage: 1Gi
+              - name: docker-credentials
+                secret:
+                  secretName: ecr-credentials
+                  items:
+                  - key: ".dockerconfigjson"
+                    path: "config.json"
+              - name: git-credentials
+                secret:
+                  secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
+                  defaultMode: 256
+                  items:
+                  - key: "identity"
+                    path: "id_rsa"
+                    mode: 256
+                  - key: "known_hosts"
+                    path: "known_hosts"
+              params:
+              - name: revision
+                value: $(tt.params.revision)
+              - name: repositoryurl
+                value: $(tt.params.repositoryurl)
+              - name: sshurl
+                value: $(tt.params.sshurl)
+              - name: imageurl
+                value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
+              - name: ghtokensecretname
+                value: token-${tenantrepohost}-${tenantrepobot}
         presubmits: {}
         prowjob_namespace: t-pauwels-labs-main
         push_gateway:
