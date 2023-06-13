@@ -32,6 +32,7 @@ spec:
       tekton: true
       jx: false
       jenkins: false
+    user: "${githostbot}"
     oauthSecretName: "token-${tenantrepohost}-${tenantrepobot}"
     hmacSecretName: "webhook-hmac-${tenantname}-primary"
     scope: "namespace"

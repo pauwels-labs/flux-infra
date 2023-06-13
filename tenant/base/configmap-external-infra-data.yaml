@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: external-infra-data
 data:
+  githostbot: capt-haddock
   tenantname: ${tenantname}
   clustername: ${clustername}
   environment: ${environment}
