@@ -7,7 +7,7 @@ metadata:
 spec:
   releaseName: lighthouse
   serviceAccountName: helm-controller
-  targetNamespace: "${infranamespaceprefix}${tenantname}"
+  targetNamespace: "${tenantnamespaceprefix}${tenantname}"
   chart:
     spec:
       chart: jenkins-x/lighthouse
@@ -15,7 +15,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
-        namespace: "${infranamespaceprefix}${tenantname}"
+        namespace: "${tenantnamespaceprefix}${tenantname}"
   interval: 1m0s
   install:
     crds: CreateReplace
