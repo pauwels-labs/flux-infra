@@ -22,6 +22,9 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    cluster:
+      crds:
+        create: false
     image:
       parentRepository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/jenkins-x
       tag: 1.12.10
