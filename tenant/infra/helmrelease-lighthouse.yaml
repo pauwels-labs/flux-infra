@@ -51,7 +51,7 @@ spec:
         approve:
         - lgtm_acts_as_approve: false
           repos:
-          - ${tenantrepobot}/nodejs-example
+          - ${tenantrepoorg}/nodejs-example
           require_self_approval: true
         config_updater:
           gzip: false
@@ -62,11 +62,11 @@ spec:
               name: plugins
         triggers:
         - repos:
-          - ${tenantrepobot}/nodejs-example
+          - ${tenantrepoorg}/nodejs-example
           ignore_ok_to_test: false
           elide_skipped_contexts: false
         plugins:
-          ${tenantrepobot}/nodejs-example:
+          ${tenantrepoorg}/nodejs-example:
           - config-updater
           - approve
           - lgtm
@@ -82,7 +82,7 @@ spec:
         plank: {}
         pod_namespace: t-pauwels-labs-main
         postsubmits:
-          ${tenantrepobot}/nodejs-example:
+          ${tenantrepoorg}/nodejs-example:
           - agent: tekton-pipeline
             branches:
             - main
@@ -157,4 +157,4 @@ spec:
             - do-not-merge/work-in-progress
             - needs-ok-to-test      
             repos:
-            - ${tenantrepobot}/pauwels-labs/nodejs-example
+            - ${tenantrepoorg}/nodejs-example
