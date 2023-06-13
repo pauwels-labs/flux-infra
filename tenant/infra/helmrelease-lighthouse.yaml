@@ -43,6 +43,8 @@ spec:
         enabled: false
     poller:
       enabled: true
+      env:
+        POLL_HOOK_ENDPOINT: http://lighthouse-webhooks/hook/poll
       datadog:
         enabled: false
     configMaps:
