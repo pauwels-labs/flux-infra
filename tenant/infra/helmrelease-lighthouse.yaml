@@ -36,6 +36,7 @@ spec:
     oauthSecretName: "token-${tenantrepohost}-${tenantrepobot}"
     hmacSecretName: "webhook-hmac-${tenantname}-primary"
     scope: "namespace"
+    externalPlugins: []
     tektoncontroller:
       logLevel: debug
       dashboardURL: "https://ci.pauwelslabs.com"
