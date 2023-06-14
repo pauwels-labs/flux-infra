@@ -139,9 +139,9 @@ spec:
             - name: revision
               value_template: "{{ .Refs.BaseSHA }}"
             - name: repositoryurl
-              value_template: "{{ .Refs.RepoLink }}"
-            - name: sshurl
               value_template: "{{ .Refs.CloneURI }}"
+            - name: sshurl
+              value_template: "ssh://git@github.com:{{ .Refs.Org }}/{{ .Refs.Repo }}"
             - name: imageurl
               value_template: "274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/github/{{ .Refs.Org }}/{{ .Refs.Repo }}"
             - name: ghtokensecretname
