@@ -91,7 +91,7 @@ spec:
         postsubmits:
           ${tenantrepoorg}/nodejs-example:
           - agent: tekton-pipeline
-            clone_uri: "git@github.com/pauwels-labs/nodejs-example"
+            clone_uri: "git@github.com/pauwels-labs/nodejs-example.git"
             branches:
             - main
             context: nodejs-example
@@ -142,7 +142,7 @@ spec:
             - name: repositoryurl
               value_template: "{{ .Refs.CloneURI }}"
             - name: sshurl
-              value_template: "git@github.com/{{ .Refs.Org }}/{{ .Refs.Repo }}"
+              value_template: "git@github.com/{{ .Refs.Org }}/{{ .Refs.Repo }}.git"
             - name: imageurl
               value_template: "274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/github/{{ .Refs.Org }}/{{ .Refs.Repo }}"
             - name: ghtokensecretname
