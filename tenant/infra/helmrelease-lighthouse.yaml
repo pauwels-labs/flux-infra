@@ -94,12 +94,11 @@ spec:
             clone_uri: "git@github.com:pauwels-labs/nodejs-example.git"
             branches:
             - main
-            context: nodejs-example
-            name: nodejs-example
+            context: release
+            name: release
             pipeline_run_spec:
               serviceAccountName: pipeline-runner
               pipelineRef:
-                # name: clone-build-push
                 resolver: cluster
                 params:
                 - name: kind
@@ -153,7 +152,7 @@ spec:
           serve_metrics: false
         in_repo_config:
           enabled:
-            "pauwels-labs/nodejs-example": false
+            "*": true
         tide:
           context_options:
             from-branch-protection: true
