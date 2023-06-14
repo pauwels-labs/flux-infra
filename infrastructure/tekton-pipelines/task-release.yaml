@@ -63,15 +63,9 @@ spec:
     script: |
       #!/bin/sh
       git config --global --add safe.directory "$PARAM_WORKSPACE_SOURCE_PATH"
-      if $(change auth --token "$GH_TOKEN"); then
-        exit 1
-      fi
-      if $(change tag -p); then
-        exit 1
-      fi
-      if $(change post); then
-        exit 1
-      fi
+      change auth --token "$GH_TOKEN" || return 1
+      change tag -p || return 1
+      change post || return 1
     securityContext:
       runAsUser: 10000
   - name: shutdown-sidecar

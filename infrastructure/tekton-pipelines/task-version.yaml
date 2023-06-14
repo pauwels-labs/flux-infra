@@ -62,13 +62,9 @@ spec:
         git config --global --add safe.directory "$PARAM_WORKSPACE_SOURCE_PATH"
         git fetch --tags
         if [ ! -f CHANGELOG.md ]; then
-          if $(change init); then
-            exit 1
-          fi
+          change init || return 1
         fi
-        if change; then
-          exit 1
-        fi
+        change || return 1
         sed -n "s|^\[Unreleased\]:.*/\(.*\)\.\.\.HEAD$|\1|p" CHANGELOG.md | tr -d '\n' > $(results.RELEASE_VERSION.path)
       securityContext:
         runAsUser: 10000
