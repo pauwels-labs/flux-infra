@@ -64,8 +64,6 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
-    - name: git-ssh
-      workspace: git-credentials
   - name: build-push
     runAfter: ["version"]
     taskRef:
@@ -82,11 +80,7 @@ spec:
       workspace: shared-data
     - name: dockerconfig
       workspace: docker-credentials
-    - name: git-ssh
-      workspace: git-credentials
     params:
-    - name: GH_TOKEN_SECRET_NAME
-      value: "$(params.ghtokensecretname)"
     - name: IMAGE
       value: "$(params.imageurl):$(tasks.version.results.RELEASE_VERSION)"
     - name: EXTRA_ARGS
@@ -109,8 +103,6 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
-    - name: git-ssh
-      workspace: git-credentials
     params:
     - name: GH_TOKEN_SECRET_NAME
       value: "$(params.ghtokensecretname)"

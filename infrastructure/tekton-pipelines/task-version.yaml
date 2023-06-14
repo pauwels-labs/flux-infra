@@ -20,10 +20,6 @@ spec:
   workspaces:
   - name: source
     description: Holds the context and Dockerfile
-  - name: git-ssh
-    description: Includes id_rsa and known_hosts
-    optional: true
-    mountPath: /notroot/.ssh
   results:
   - name: RELEASE_VERSION
     description: Semantic version of this release

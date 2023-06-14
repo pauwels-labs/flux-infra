@@ -38,10 +38,6 @@ spec:
       description: Includes a docker `config.json`
       optional: true
       mountPath: /kaniko/.docker
-    - name: git-ssh
-      description: Includes id_rsa and known_hosts
-      optional: true
-      mountPath: /notroot/.ssh
   results:
     - name: IMAGE_DIGEST
       description: Digest of the image just built.
