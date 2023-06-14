@@ -135,17 +135,28 @@ spec:
                     mode: 256
                   - key: "known_hosts"
                     path: "known_hosts"
-              params:
-              - name: revision
-                value: $(tt.params.revision)
-              - name: repositoryurl
-                value: $(tt.params.repositoryurl)
-              - name: sshurl
-                value: $(tt.params.sshurl)
-              - name: imageurl
-                value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
-              - name: ghtokensecretname
-                value: token-${tenantrepohost}-${tenantrepobot}
+              # params:
+              # - name: revision
+              #   value: $(tt.params.revision)
+              # - name: repositoryurl
+              #   value: $(tt.params.repositoryurl)
+              # - name: sshurl
+              #   value: $(tt.params.sshurl)
+              # - name: imageurl
+              #   value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
+              # - name: ghtokensecretname
+              #   value: token-${tenantrepohost}-${tenantrepobot}
+            pipeline_run_params:
+            - name: revision
+              value: $(tt.params.revision)
+            - name: repositoryurl
+              value: $(tt.params.repositoryurl)
+            - name: sshurl
+              value: $(tt.params.sshurl)
+            - name: imageurl
+              value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
+            - name: ghtokensecretname
+              value: token-${tenantrepohost}-${tenantrepobot}
         presubmits: {}
         prowjob_namespace: t-pauwels-labs-main
         push_gateway:
