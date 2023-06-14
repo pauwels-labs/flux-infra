@@ -127,7 +127,7 @@ spec:
                     path: "config.json"
               - name: git-credentials
                 secret:
-                  secretName: ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)
+                  secretName: ssh-${tenantname}-github-pauwels-labs-nodejs-example
                   defaultMode: 256
                   items:
                   - key: "identity"
