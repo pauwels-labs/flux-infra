@@ -220,7 +220,7 @@ spec:
           cp -R "$${WORKSPACE_SSH_DIRECTORY_PATH}" "$${PARAM_USER_HOME}"/.ssh
           chmod 700 "$${PARAM_USER_HOME}"/.ssh
           chmod -R 400 "$${PARAM_USER_HOME}"/.ssh/*
-        elseif [ ! -z "$${SSH_IDENTITY}" ] ; then
+        elif [ ! -z "$${SSH_IDENTITY}" ] ; then
           mkdir -p "$${PARAM_USER_HOME}"/.ssh
           rm -rf "$${PARAM_USER_HOME}"/.ssh
           echo "$${SSH_IDENTITY}" > "$${PARAM_USER_HOME}"/.ssh/identity
