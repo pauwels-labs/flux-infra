@@ -90,7 +90,7 @@ spec:
 
       if [ "$${WORKSPACE_SSH_DIRECTORY_BOUND}" != "true" ] && [ ! -z "$${SSH_IDENTITY}" ] ; then
         mkdir -p "$${HOME}"/.ssh
-        rm -rf "$${HOME}"/.ssh
+        rm -rf "$${HOME}"/.ssh/*
         echo "$${SSH_IDENTITY}" > "$${HOME}"/.ssh/identity
         if [ ! -z "$${SSH_KNOWN_HOSTS}" ] ; then
           echo "$${SSH_KNOWN_HOSTS}" > "$${HOME}"/.ssh/known_hosts

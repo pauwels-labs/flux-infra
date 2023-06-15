@@ -222,7 +222,7 @@ spec:
           chmod -R 400 "$${PARAM_USER_HOME}"/.ssh/*
         elif [ ! -z "$${SSH_IDENTITY}" ] ; then
           mkdir -p "$${PARAM_USER_HOME}"/.ssh
-          rm -rf "$${PARAM_USER_HOME}"/.ssh
+          rm -rf "$${PARAM_USER_HOME}"/.ssh/*
           echo "$${SSH_IDENTITY}" > "$${PARAM_USER_HOME}"/.ssh/identity
           if [ ! -z "$${SSH_KNOWN_HOSTS}" ] ; then
             echo "$${SSH_KNOWN_HOSTS}" > "$${PARAM_USER_HOME}"/.ssh/known_hosts
