@@ -10,13 +10,13 @@ spec:
   params:
   - name: revision
     type: string
-  - name: repositoryurl
-    type: string
   - name: sshurl
     type: string
   - name: imageurl
     type: string
   - name: ghtokensecretname
+    type: string
+  - name: sshsecretname
     type: string
   workspaces:
   - name: shared-data
@@ -39,8 +39,8 @@ spec:
     workspaces:
     - name: output
       workspace: shared-data
-    - name: ssh-directory
-      workspace: git-credentials
+    # - name: ssh-directory
+    #   workspace: git-credentials
     params:
     - name: url
       value: "$(params.sshurl)"
@@ -50,6 +50,8 @@ spec:
       value: "1"
     - name: userHome
       value: "/home/git"
+    - name: sshSecretName
+      value: "ssh-$(params.tenantname)-$(params.repohost)-$(params.repoorg)-$(params.reponame)"
   - name: version
     runAfter: ["fetch-source"]
     taskRef:
@@ -64,8 +66,11 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
-    - name: ssh-directory
-      workspace: git-credentials
+    # - name: ssh-directory
+    #   workspace: git-credentials
+    params:
+    - name: sshSecretName
+      value: "ssh-$(params.tenantname)-$(params.repohost)-$(params.repoorg)-$(params.reponame)"
   - name: build-push
     runAfter: ["version"]
     taskRef:
@@ -105,8 +110,10 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
-    - name: ssh-directory
-      workspace: git-credentials
+    # - name: ssh-directory
+    #   workspace: git-credentials
     params:
-    - name: GH_TOKEN_SECRET_NAME
+    - name: ghTokenSecretName
       value: "$(params.ghtokensecretname)"
+    - name: sshSecretName
+      value: "ssh-$(params.tenantname)-$(params.repohost)-$(params.repoorg)-$(params.reponame)"

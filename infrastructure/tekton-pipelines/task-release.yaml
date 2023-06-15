@@ -15,9 +15,15 @@ spec:
   description: >-
     This Task uses the CHANGELOG.md to push an appropriate tag and release to the repo host.
   params:
-  - name: GH_TOKEN_SECRET_NAME
+  - name: ghTokenSecretName
     description: Name of the secret containing the GitHub token
     type: string
+  - name: sshSecretName
+    description: |
+      Optional name of a secret containing "identity" and "known_hosts" keys which will
+      be used to populate the SSH directory IF a workspace is not provided
+    type: string
+    default: "noop"
   workspaces:
   - name: source
     description: Holds the context and Dockerfile
@@ -60,12 +66,39 @@ spec:
     - name: GH_TOKEN
       valueFrom:
         secretKeyRef:
-          name: $(params.GH_TOKEN_SECRET_NAME)
+          name: $(params.ghTokenSecretName)
           key: token
     - name: HOME
       value: /notroot
+    - name: WORKSPACE_SSH_DIRECTORY_BOUND
+      value: $(workspaces.ssh-directory.bound)
+    - name: SSH_IDENTITY
+      valueFrom:
+        secretKeyRef:
+          name: $(params.sshSecretName)
+          key: identity
+          optional: true
+    - name: SSH_KNOWN_HOSTS
+      valueFrom:
+        secretKeyRef:
+          name: $(params.sshSecretName)
+          key: known_hosts
+          optional: true
     script: |
-      #!/bin/sh
+      #!/usr/bin/env sh
+      set -eu
+
+      if [ "$${WORKSPACE_SSH_DIRECTORY_BOUND}" != "true" ] && [ ! -z "$${SSH_IDENTITY}" ] ; then
+        mkdir -p "$${HOME}"/.ssh
+        rm -rf "$${HOME}"/.ssh
+        echo "$${SSH_IDENTITY}" > "$${HOME}"/.ssh/identity
+        if [ ! -z "$${SSH_KNOWN_HOSTS}" ] ; then
+          echo "$${SSH_KNOWN_HOSTS}" > "$${HOME}"/.ssh/known_hosts
+        fi
+        chmod 700 "$${HOME}"/.ssh
+        chmod -R 400 "$${HOME}"/.ssh/*
+      fi
+
       git config --global --add safe.directory "$PARAM_WORKSPACE_SOURCE_PATH"
       change auth --token "$GH_TOKEN" || return 1
       change tag -p || return 1
