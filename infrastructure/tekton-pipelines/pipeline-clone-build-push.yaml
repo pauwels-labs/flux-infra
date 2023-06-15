@@ -10,11 +10,11 @@ spec:
   params:
   - name: revision
     type: string
-  - name: sshurl
+  - name: sshURL
     type: string
-  - name: imageurl
+  - name: imageURL
     type: string
-  - name: ghtokensecretname
+  - name: ghTokenSecretName
     type: string
   - name: sshSecretName
     type: string
@@ -43,7 +43,7 @@ spec:
     #   workspace: git-credentials
     params:
     - name: url
-      value: "$(params.sshurl)"
+      value: "$(params.sshURL)"
     - name: revision
       value: "$(params.revision)"
     - name: depth
@@ -89,12 +89,12 @@ spec:
       workspace: docker-credentials
     params:
     - name: IMAGE
-      value: "$(params.imageurl):$(tasks.version.results.RELEASE_VERSION)"
+      value: "$(params.imageURL):$(tasks.version.results.RELEASE_VERSION)"
     - name: EXTRA_ARGS
       value: [
         '--cache=true',
         '--cache-dir=/kaniko/cache',
-        '--cache-repo=$(params.imageurl)/cache'
+        '--cache-repo=$(params.imageURL)/cache'
       ]
   - name: release
     runAfter: ["build-push"]
@@ -114,6 +114,6 @@ spec:
     #   workspace: git-credentials
     params:
     - name: ghTokenSecretName
-      value: "$(params.ghtokensecretname)"
+      value: "$(params.ghTokenSecretName)"
     - name: sshSecretName
       value: "$(params.sshSecretName)"

@@ -63,5 +63,5 @@ spec:
         value: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/${tenantname}/$(tt.params.registry)/$(tt.params.repositoryownername)/$(tt.params.repositoryname)
       - name: ghtokensecretname
         value: token-${tenantrepohost}-${tenantrepobot}
-      - name: sshsecretname
+      - name: sshSecretName
         value: "ssh-${tenantname}-$(tt.params.registry)-$(tt.params.repositoryownername)-$(tt.params.repositoryname)"
