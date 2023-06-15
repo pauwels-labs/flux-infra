@@ -16,7 +16,7 @@ spec:
     type: string
   - name: ghtokensecretname
     type: string
-  - name: sshsecretname
+  - name: sshSecretName
     type: string
   workspaces:
   - name: shared-data
