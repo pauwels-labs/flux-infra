@@ -64,6 +64,8 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
+    - name: ssh-directory
+      workspace: git-credentials
   - name: build-push
     runAfter: ["version"]
     taskRef:
