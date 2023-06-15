@@ -105,6 +105,8 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
+    - name: ssh-directory
+      workspace: git-credentials
     params:
     - name: GH_TOKEN_SECRET_NAME
       value: "$(params.ghtokensecretname)"

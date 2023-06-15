@@ -21,6 +21,10 @@ spec:
   workspaces:
   - name: source
     description: Holds the context and Dockerfile
+  - name: ssh-directory
+    description: Includes id_rsa and known_hosts
+    optional: true
+    mountPath: /notroot/.ssh
   steps:
   - name: wait-for-sidecar
     workingDir: $(workspaces.source.path)
