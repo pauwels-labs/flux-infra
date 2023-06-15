@@ -51,7 +51,7 @@ spec:
     - name: userHome
       value: "/home/git"
     - name: sshSecretName
-      value: "ssh-$(params.tenantname)-$(params.repohost)-$(params.repoorg)-$(params.reponame)"
+      value: "$(params.sshSecretName)"
   - name: version
     runAfter: ["fetch-source"]
     taskRef:
@@ -70,7 +70,7 @@ spec:
     #   workspace: git-credentials
     params:
     - name: sshSecretName
-      value: "ssh-$(params.tenantname)-$(params.repohost)-$(params.repoorg)-$(params.reponame)"
+      value: "$(params.sshSecretName)"
   - name: build-push
     runAfter: ["version"]
     taskRef:
@@ -116,4 +116,4 @@ spec:
     - name: ghTokenSecretName
       value: "$(params.ghtokensecretname)"
     - name: sshSecretName
-      value: "ssh-$(params.tenantname)-$(params.repohost)-$(params.repoorg)-$(params.reponame)"
+      value: "$(params.sshSecretName)"
