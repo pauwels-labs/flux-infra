@@ -23,6 +23,7 @@ spec:
     description: "Contains the cloned git repo"
   - name: git-credentials
     description: "Contains SSH credentials for authenticating to private Git repos"
+    optional: true
   - name: docker-credentials
     description: "Contains docker credentials for authenticating to private container registry"
   tasks:
