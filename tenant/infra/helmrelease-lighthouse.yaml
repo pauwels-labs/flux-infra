@@ -90,14 +90,7 @@ spec:
         pod_namespace: t-pauwels-labs-main
         postsubmits:
           ${tenantrepoorg}/nodejs-example:
-          - agent: tekton-pipeline
-            clone_uri: "git@github.com:pauwels-labs/nodejs-example.git"
-            branches:
-            - main
-            context: release
-            name: release
-            pipeline_run_spec: {}
-            pipeline_run_params: []
+          - pipeline_run_spec: {}
         presubmits: {}
         prowjob_namespace: t-pauwels-labs-main
         push_gateway:
