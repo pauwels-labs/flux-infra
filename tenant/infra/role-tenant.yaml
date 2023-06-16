@@ -9,4 +9,4 @@ rules:
 - apiGroups: [""]
   resources: ["configmaps"]
   verbs: ["create", "get", "apply", "update", "patch", "delete"]
-  resourceNames: ["external-tenant-data", "lighthouse-config", "lighthouse-plugins"]
+  resourceNames: ["external-tenant-data", "config", "plugins"]
