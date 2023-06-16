@@ -96,46 +96,8 @@ spec:
             - main
             context: release
             name: release
-            pipeline_run_spec:
-              serviceAccountName: pipeline-runner
-              pipelineRef:
-                resolver: cluster
-                params:
-                - name: kind
-                  value: pipeline
-                - name: name
-                  value: clone-build-push
-                - name: namespace
-                  value: "i-tekton-pipelines"
-              podTemplate:
-                securityContext:
-                  fsGroup: 65532
-              workspaces:
-              - name: shared-data
-                volumeClaimTemplate:
-                  spec:
-                    accessModes:
-                    - ReadWriteOnce
-                    resources:
-                      requests:
-                        storage: 1Gi
-              - name: docker-credentials
-                secret:
-                  secretName: ecr-credentials
-                  items:
-                  - key: ".dockerconfigjson"
-                    path: "config.json"
-            pipeline_run_params:
-            - name: revision
-              value_template: "{{ .Refs.BaseSHA }}"
-            - name: sshURL
-              value_template: "git@github.com:{{ .Refs.Org }}/{{ .Refs.Repo }}.git"
-            - name: imageURL
-              value_template: "274295908850.dkr.ecr.eu-west-1.amazonaws.com/t/pauwels-labs-main/github/{{ .Refs.Org }}/{{ .Refs.Repo }}"
-            - name: ghTokenSecretName
-              value_template: "token-github-capt-haddock"
-            - name: sshSecretName
-              value_template: "ssh-pauwels-labs-main-github-{{ .Refs.Org }}-{{ .Refs.Repo }}"
+            pipeline_run_spec: {}
+            pipeline_run_params: []
         presubmits: {}
         prowjob_namespace: t-pauwels-labs-main
         push_gateway:
