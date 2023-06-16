@@ -53,7 +53,7 @@ spec:
       datadog:
         enabled: false
     configMaps:
-      create: false
+      create: true
       plugins: |
         approve:
         - lgtm_acts_as_approve: false
