@@ -8,5 +8,5 @@ rules:
   verbs: ["create", "get", "apply", "update", "patch", "delete"]
 - apiGroups: [""]
   resources: ["configmaps"]
-  verbs: ["get", "update", "patch"]
+  verbs: ["create", "get", "apply", "update", "patch", "delete"]
   resourceNames: ["external-tenant-data", "lighthouse-config", "lighthouse-plugins"]
