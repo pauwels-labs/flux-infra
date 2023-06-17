@@ -3,13 +3,13 @@ kind: Kustomization
 resources:
 - ../base
 - rbac-helm-controller.yaml
-- clusterrolebinding-tenant-event-listener.yaml
-- eventlistener.yaml
+#- clusterrolebinding-tenant-event-listener.yaml
+#- eventlistener.yaml
 - externalsecret-token-repobot.yaml
 - externalsecret-ssh.yaml
-- rolebinding-event-listener.yaml
+#- rolebinding-event-listener.yaml
 - secretstore-tenant-tokens.yaml
-- serviceaccount-event-listener.yaml
+#- serviceaccount-event-listener.yaml
 - serviceaccount-pipeline-runner.yaml
 - triggertemplate.yaml
 - trigger.yaml
