@@ -11,9 +11,11 @@ spec:
   - name: "pauwels-labs"
     match:
     - uri:
-        prefix: "/${tenantname}"
+        exact: "/${tenantname}/hook"
+    - uri:
+        exact: "/${tenantname}/hook/"
     rewrite:
-      uri: "/"
+      uri: "/hook"
     route:
     - destination:
         port:
