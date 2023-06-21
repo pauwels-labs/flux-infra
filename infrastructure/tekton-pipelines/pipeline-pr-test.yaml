@@ -15,7 +15,7 @@ spec:
     type: string
   - name: ghTokenSecretName
     type: string
-  - name: prNumber
+  - name: PULL_NUMBER
     type: string
   - name: prRun
     type: string
@@ -53,7 +53,7 @@ spec:
     - name: sshSecretName
       value: "$(params.sshSecretName)"
     - name: prNumber
-      value: "$(params.prNumber)"
+      value: "$(params.PULL_NUMBER)"
     - name: prRun
       value: "$(params.prRun)"
   - name: test
@@ -74,7 +74,7 @@ spec:
     - name: ghTokenSecretName
       value: "$(params.ghTokenSecretName)"
     - name: prNumber
-      value: "$(params.prNumber)"
+      value: "$(params.PULL_NUMBER)"
     - name: prRun
       value: "$(params.prRun)"
     
