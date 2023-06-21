@@ -86,7 +86,6 @@ spec:
         secretKeyRef:
           name: $(params.ghTokenSecretName)
           key: token
-      value: $(workspaces.source.path)/gitops-coverage.md
     - name: GITOPS_COVERAGE_OUTPUT_FILE
       value: $(workspaces.source.path)/gitops-coverage.md
     - name: PR_NUMBER
