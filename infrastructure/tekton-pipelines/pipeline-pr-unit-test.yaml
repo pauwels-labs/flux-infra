@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: pr-test
+  name: pr-unit-test
   namespace: "${infranamespaceprefix}tekton-pipelines"
 spec:
   description: | 

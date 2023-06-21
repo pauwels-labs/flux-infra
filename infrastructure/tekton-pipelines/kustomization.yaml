@@ -14,7 +14,7 @@ resources:
 - task-release.yaml
 - task-test-nodejs18.yaml
 - pipeline-clone-build-push.yaml
-- pipeline-pr-test.yaml
+- pipeline-pr-unit-test.yaml
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
