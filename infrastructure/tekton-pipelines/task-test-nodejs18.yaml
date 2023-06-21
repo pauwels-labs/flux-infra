@@ -60,7 +60,7 @@ spec:
       runAsUser: 10000
   - name: generate-code-coverage-markdown
     workingDir: $(workspaces.source.path)
-    image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/pauwels-labs/gitops-coverage:1.0.0
+    image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/pauwels-labs/gitops-coverage:v1.0.1
     env:
     - name: GITOPS_COVERAGE_JSON_SUMMARY_FILE_PATH
       value: $(workspaces.source.path)/coverage/coverage-summary.json
@@ -70,6 +70,8 @@ spec:
       value: $(workspaces.source.path)
     - name: GITOPS_COVERAGE_OUTPUT_FILE
       value: $(workspaces.source.path)/gitops-coverage.md
+    - name: HOME
+      value: /home/service
     script: |
       #!/usr/bin/env sh
       set -eu
