@@ -52,6 +52,10 @@ spec:
       value: "/home/git"
     - name: sshSecretName
       value: "$(params.sshSecretName)"
+    - name: prNumber
+      value: "$(params.prNumber)"
+    - name: prRun
+      value: "$(params.prRun)"
   - name: test
     runAfter: ["fetch-source"]
     taskRef:

@@ -115,6 +115,10 @@ spec:
         be used to populate the SSH directory IF a workspace is not provided
       type: string
       default: "noop"
+    - name: prNumber
+      type: string
+    - name: prRun
+      type: string
   results:
     - name: commit
       description: The precise commit SHA that was fetched by this Task.
@@ -182,6 +186,10 @@ spec:
             name: $(params.sshSecretName)
             key: known_hosts
             optional: true
+      - name: PR_NUMBER
+        value: $(params.prNumber)
+      - name: PR_RUN
+        value: $(params.prRun)
       securityContext:
         runAsNonRoot: true
         runAsUser: 65532

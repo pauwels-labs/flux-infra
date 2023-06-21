@@ -12,6 +12,12 @@ spec:
   - name: ghTokenSecretName
     description: Name of the secret containing the GitHub token
     type: string
+  - name: prNumber
+    description: Number of the PR being tested
+    type: string
+  - name: prRun
+    description: Run of the PR being tested
+    type: string
   workspaces:
   - name: source
     description: Holds the context and Dockerfile
@@ -45,7 +51,7 @@ spec:
     workingDir: $(workspaces.source.path)
     image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/node/node:18.16.0-alpine3.18
     script: |
-loca      #!/usr/bin/env sh
+      #!/usr/bin/env sh
       set -eu
 
       npm install || return 1
@@ -78,13 +84,13 @@ loca      #!/usr/bin/env sh
     - name: GITHUB_TOKEN
       valueFrom:
         secretKeyRef:
-          name: $(param.ghTokenSecretName)
+          name: $(params.ghTokenSecretName)
           key: token
       value: $(workspaces.source.path)/gitops-coverage.md
     - name: GITOPS_COVERAGE_OUTPUT_FILE
       value: $(workspaces.source.path)/gitops-coverage.md
     - name: PR_NUMBER
-      value: $(param.prNumber)
+      value: $(params.prNumber)
     script: |
       #!/usr/bin/env sh
       set -eu
