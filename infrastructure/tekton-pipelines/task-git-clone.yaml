@@ -117,8 +117,10 @@ spec:
       default: "noop"
     - name: prNumber
       type: string
+      default: "-1"
     - name: prRun
       type: string
+      default: "-1"
   results:
     - name: commit
       description: The precise commit SHA that was fetched by this Task.
