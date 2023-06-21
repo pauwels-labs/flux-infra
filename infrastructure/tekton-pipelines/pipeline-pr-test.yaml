@@ -1,22 +1,23 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: clone-build-push
+  name: pr-test
   namespace: "${infranamespaceprefix}tekton-pipelines"
 spec:
   description: | 
-    This pipeline clones a git repo, builds a Docker image with Kaniko and
-    pushes it to a registry
+    This pipeline clones a git repo and runs its tests as defined by its Makefile
   params:
   - name: revision
     type: string
   - name: sshURL
     type: string
-  - name: imageURL
+  - name: sshSecretName
     type: string
   - name: ghTokenSecretName
     type: string
-  - name: sshSecretName
+  - name: prNumber
+    type: string
+  - name: prRun
     type: string
   workspaces:
   - name: shared-data
@@ -51,7 +52,7 @@ spec:
       value: "/home/git"
     - name: sshSecretName
       value: "$(params.sshSecretName)"
-  - name: version
+  - name: test
     runAfter: ["fetch-source"]
     taskRef:
       resolver: cluster
@@ -59,49 +60,7 @@ spec:
       - name: kind
         value: task
       - name: name
-        value: version
-      - name: namespace
-        value: "${infranamespaceprefix}tekton-pipelines"
-    workspaces:
-    - name: source
-      workspace: shared-data
-    params:
-    - name: sshSecretName
-      value: "$(params.sshSecretName)"
-  - name: build-push
-    runAfter: ["version"]
-    taskRef:
-      resolver: cluster
-      params:
-      - name: kind
-        value: task
-      - name: name
-        value: kaniko
-      - name: namespace
-        value: "${infranamespaceprefix}tekton-pipelines"
-    workspaces:
-    - name: source
-      workspace: shared-data
-    - name: dockerconfig
-      workspace: docker-credentials
-    params:
-    - name: IMAGE
-      value: "$(params.imageURL):$(tasks.version.results.RELEASE_VERSION)"
-    - name: EXTRA_ARGS
-      value: [
-        '--cache=true',
-        '--cache-dir=/kaniko/cache',
-        '--cache-repo=$(params.imageURL)/cache'
-      ]
-  - name: release
-    runAfter: ["build-push"]
-    taskRef:
-      resolver: cluster
-      params:
-      - name: kind
-        value: task
-      - name: name
-        value: release
+        value: test-nodejs18
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
     workspaces:
@@ -110,5 +69,8 @@ spec:
     params:
     - name: ghTokenSecretName
       value: "$(params.ghTokenSecretName)"
-    - name: sshSecretName
-      value: "$(params.sshSecretName)"
+    - name: prNumber
+      value: "$(params.prNumber)"
+    - name: prRun
+      value: "$(params.prRun)"
+    
