@@ -40,7 +40,6 @@ spec:
     tektoncontroller:
       dashboardURL: "https://ci.pauwelslabs.com"
     webhooks:
-      logLevel: "debug"
       serviceName: ""
     keeper:
       datadog:
