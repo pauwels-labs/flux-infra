@@ -78,7 +78,7 @@ spec:
         FORMATTED_TS=$(date -d @$(echo "($${BUILD_TIMESTAMP} + 500) / 1000" | bc) -Iseconds | sed -E 's/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\+([0-9]{2}):([0-9]{2})$/\1\2\3T\4\5\6-\7\8/')
         VERSION="$${PR_NUMBER}-$${PR_SHA:0:7}-$${FORMATTED_TS}"
         echo "$VERSION"
-        echo "$VERSION" > $(results.PR_VERSION.path)
+        echo -n "$VERSION" > $(results.PR_VERSION.path)
       securityContext:
         runAsUser: 10000
     - name: shutdown-sidecar
