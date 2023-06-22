@@ -122,7 +122,7 @@ spec:
       description: The precise URL that was fetched by this Task.
   steps:
     - name: wait-for-sidecar
-      workingDir: $(workspaces.source.path)
+      workingDir: $(workspaces.output.path)
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
         #!/bin/sh
@@ -291,7 +291,7 @@ spec:
 
         exit "$${EXIT_CODE}"
     - name: shutdown-sidecar
-      workingDir: $(workspaces.source.path)
+      workingDir: $(workspaces.output.path)
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
         #!/bin/sh
