@@ -93,9 +93,9 @@ spec:
       value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):$(tasks.version.results.RELEASE_VERSION)"
     - name: EXTRA_ARGS
       value: [
-        '--cache=true',
-        '--cache-dir=/kaniko/cache',
-        '--cache-repo=$(params.imageURL)/cache'
+        "--cache=true",
+        "--cache-dir=/kaniko/cache",
+        "--cache-repo=$${IMAGE}/cache"
       ]
   - name: release
     runAfter: ["build-push"]
