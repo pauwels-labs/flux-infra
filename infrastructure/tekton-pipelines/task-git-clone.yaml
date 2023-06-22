@@ -249,6 +249,9 @@ spec:
         CHECKOUT_DIR="$${WORKSPACE_OUTPUT_PATH}/$${PARAM_SUBDIRECTORY}"
 
         cleandir() {
+          # Save the sidecar-check-counter contents
+          i=$(cat "sidecar-check-counter")
+
           # Delete any existing contents of the repo directory if it exists.
           #
           # We don't just "rm -rf $${CHECKOUT_DIR}" because $${CHECKOUT_DIR} might be "/"
@@ -261,6 +264,10 @@ spec:
             # Delete files and directories starting with .. plus any other character
             rm -rf "$${CHECKOUT_DIR}"/..?*
           fi
+
+          # Restore the sidecar-check-counter contents
+          echo "$i" > sidecar-check-counter
+          unset i
         }
 
         if [ "$${PARAM_DELETE_EXISTING}" = "true" ] ; then
