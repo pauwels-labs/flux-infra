@@ -30,6 +30,9 @@ spec:
   - name: buildTimestamp
     description: "UNIX timestamp in milliseconds of the build"
     type: string
+  workspaces:
+  - name: source
+    description: Holds the context and Dockerfile
   results:
   - name: PR_VERSION
     description: Version of this PR

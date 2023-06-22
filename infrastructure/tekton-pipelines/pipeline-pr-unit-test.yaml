@@ -71,6 +71,9 @@ spec:
         value: pr-version
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
+    workspaces:
+    - name: source
+      workspace: shared-data
     params:
     - name: prNumber
       value: "$(params.PULL_NUMBER)"
