@@ -103,4 +103,6 @@ spec:
           echo "SIDECAR SHUTDOWN COMMAND ISSUED"
         fi
 
+        rm -rf sidecar-check-counter
+
         exit 0

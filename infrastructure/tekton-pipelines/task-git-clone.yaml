@@ -121,6 +121,31 @@ spec:
     - name: url
       description: The precise URL that was fetched by this Task.
   steps:
+    - name: wait-for-sidecar
+      workingDir: $(workspaces.source.path)
+      image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+      script: |
+        #!/bin/sh
+        set -eu
+
+        i=0
+        echo "WAITING FOR SIDECAR"
+        until wget -qO- -o /dev/null "http://localhost:15021/healthz/ready"; do
+          i=$((i+1))
+          if [[ $i -eq 5 ]]; then
+            break
+          fi
+          echo "WAITING FOR SIDECAR"
+          sleep 3
+        done
+        if [[ $i -eq 5 ]]; then
+          echo "SIDECAR UNAVAILABLE, RUNNING WITHOUT"
+        else
+          echo "SIDECAR AVAILABLE"
+        fi
+
+        echo "$i" > sidecar-check-counter
+        exit 0
     - name: clone
       image: "$(params.gitInitImage)"
       env:
@@ -188,22 +213,6 @@ spec:
       script: |
         #!/usr/bin/env sh
         set -eu
-
-        i=0
-        echo "WAITING FOR SIDECAR"
-        until wget -qO- -o /dev/null "http://localhost:15021/healthz/ready"; do
-          i=$((i+1))
-          if [[ $i -eq 5 ]]; then
-            break
-          fi
-          echo "WAITING FOR SIDECAR"
-          sleep 3
-        done
-        if [[ $i -eq 5 ]]; then
-          echo "SIDECAR UNAVAILABLE, RUNNING WITHOUT"
-        else
-          echo "SIDECAR AVAILABLE"
-        fi
 
         if [ "$${PARAM_VERBOSE}" = "true" ] ; then
           set -x
@@ -280,10 +289,21 @@ spec:
           printf "%s" "$${PARAM_URL}" > "$(results.url.path)"
         fi
 
+        exit "$${EXIT_CODE}"
+    - name: shutdown-sidecar
+      workingDir: $(workspaces.source.path)
+      image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+      script: |
+        #!/bin/sh
+        set -eu
+
+        i=$(cat "sidecar-check-counter")
         if [[ $i -lt 5 ]]; then
           echo "QUITTING SIDECAR"
           wget -qO- -o /dev/null --post-data "" http://localhost:15020/quitquitquit > /dev/null
           echo "SIDECAR SHUTDOWN COMMAND ISSUED"
         fi
 
-        exit "$${EXIT_CODE}"
+        rm -rf sidecar-check-counter
+
+        exit 0

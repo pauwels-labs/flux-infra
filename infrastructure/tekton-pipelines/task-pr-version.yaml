@@ -35,6 +35,7 @@ spec:
     description: Version of this PR
   steps:
     - name: wait-for-sidecar
+      workingDir: $(workspaces.source.path)
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
         #!/bin/sh
@@ -76,6 +77,7 @@ spec:
       securityContext:
         runAsUser: 10000
     - name: shutdown-sidecar
+      workingDir: $(workspaces.source.path)
       image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
       script: |
         #!/bin/sh
@@ -87,5 +89,7 @@ spec:
           wget -qO- -o /dev/null --post-data "" http://localhost:15020/quitquitquit > /dev/null
           echo "SIDECAR SHUTDOWN COMMAND ISSUED"
         fi
+
+        rm -rf sidecar-check-counter
 
         exit 0
