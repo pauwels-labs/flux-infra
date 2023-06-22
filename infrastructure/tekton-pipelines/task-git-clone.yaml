@@ -250,7 +250,7 @@ spec:
 
         cleandir() {
           # Save the sidecar-check-counter contents
-          i=$(cat "sidecar-check-counter")
+          i=$(cat "$${CHECKOUT_DIR}/sidecar-check-counter")
 
           # Delete any existing contents of the repo directory if it exists.
           #
@@ -266,7 +266,7 @@ spec:
           fi
 
           # Restore the sidecar-check-counter contents
-          echo "$i" > sidecar-check-counter
+          echo "$i" > "$${CHECKOUT_DIR}/sidecar-check-counter"
           unset i
         }
 
