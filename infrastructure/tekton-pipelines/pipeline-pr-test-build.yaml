@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: pr-unit-test
+  name: pr-test-build
   namespace: "${infranamespaceprefix}tekton-pipelines"
 spec:
   description: | 
@@ -20,8 +20,6 @@ spec:
   - name: tenantName
     type: string
   - name: imageRegistry
-    type: string
-  - name: ghTokenSecretName
     type: string
   workspaces:
   - name: shared-data
@@ -94,34 +92,11 @@ spec:
     - name: dockerconfig
       workspace: docker-credentials
     params:
-    - name: DOCKERFILE
-      value: ./Dockerfile.test
     - name: IMAGE
-      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-pr$(tasks.version.results.PR_VERSION)"
+      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):pr$(tasks.version.results.PR_VERSION)"
     - name: EXTRA_ARGS
       value: [
         "--cache=true",
         "--cache-dir=/kaniko/cache",
         "--cache-repo=$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME)/cache"
       ]
-  - name: test
-    runAfter: ["build-push"]
-    taskRef:
-      resolver: cluster
-      params:
-      - name: kind
-        value: task
-      - name: name
-        value: test-pr
-      - name: namespace
-        value: "${infranamespaceprefix}tekton-pipelines"
-    workspaces:
-    - name: source
-      workspace: shared-data
-    params:
-    - name: image
-      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-pr$(tasks.version.results.PR_VERSION)"
-    - name: ghTokenSecretName
-      value: "$(params.ghTokenSecretName)"
-    - name: prNumber
-      value: "$(params.PULL_NUMBER)"    

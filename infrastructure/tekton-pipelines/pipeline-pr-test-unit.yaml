@@ -1,14 +1,15 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: clone-build-push
+  name: pr-test-unit
   namespace: "${infranamespaceprefix}tekton-pipelines"
 spec:
   description: | 
-    This pipeline clones a git repo, builds a Docker image with Kaniko and
-    pushes it to a registry
+    This pipeline clones a git repo and runs its tests as defined by its Makefile
   params:
-  - name: PULL_BASE_SHA
+  - name: PULL_PULL_SHA
+    type: string
+  - name: PULL_NUMBER
     type: string
   - name: REPO_URL
     type: string
@@ -48,13 +49,15 @@ spec:
     - name: url
       value: "$(params.REPO_URL)"
     - name: revision
-      value: "$(params.PULL_BASE_SHA)"
+      value: "$(params.PULL_PULL_SHA)"
     - name: depth
       value: "1"
     - name: userHome
       value: "/home/git"
     - name: sshSecretName
       value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
+    - name: prNumber
+      value: "$(params.PULL_NUMBER)"
   - name: version
     runAfter: ["fetch-source"]
     taskRef:
@@ -63,16 +66,18 @@ spec:
       - name: kind
         value: task
       - name: name
-        value: version-release
+        value: version-pr
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
     workspaces:
     - name: source
       workspace: shared-data
     params:
-    - name: sshSecretName
-      value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
-  - name: build-push-test-image
+    - name: prNumber
+      value: "$(params.PULL_NUMBER)"
+    - name: prSHA
+      value: "$(params.PULL_PULL_SHA)"
+  - name: build-push
     runAfter: ["version"]
     taskRef:
       resolver: cluster
@@ -92,7 +97,7 @@ spec:
     - name: DOCKERFILE
       value: ./Dockerfile.test
     - name: IMAGE
-      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-$(tasks.version.results.RELEASE_VERSION)"
+      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-pr$(tasks.version.results.PR_VERSION)"
     - name: EXTRA_ARGS
       value: [
         "--cache=true",
@@ -100,14 +105,14 @@ spec:
         "--cache-repo=$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME)/cache"
       ]
   - name: test
-    runAfter: ["build-push-test-image"]
+    runAfter: ["build-push"]
     taskRef:
       resolver: cluster
       params:
       - name: kind
         value: task
       - name: name
-        value: test-release
+        value: test-pr
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
     workspaces:
@@ -115,50 +120,8 @@ spec:
       workspace: shared-data
     params:
     - name: image
-      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-$(tasks.version.results.RELEASE_VERSION)"
+      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-pr$(tasks.version.results.PR_VERSION)"
     - name: ghTokenSecretName
       value: "$(params.ghTokenSecretName)"
-  - name: build-push-release-image
-    runAfter: ["test"]
-    taskRef:
-      resolver: cluster
-      params:
-      - name: kind
-        value: task
-      - name: name
-        value: kaniko
-      - name: namespace
-        value: "${infranamespaceprefix}tekton-pipelines"
-    workspaces:
-    - name: source
-      workspace: shared-data
-    - name: dockerconfig
-      workspace: docker-credentials
-    params:
-    - name: IMAGE
-      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):$(tasks.version.results.RELEASE_VERSION)"
-    - name: EXTRA_ARGS
-      value: [
-        "--cache=true",
-        "--cache-dir=/kaniko/cache",
-        "--cache-repo=$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME)/cache"
-      ]
-  - name: release
-    runAfter: ["build-push-release-image"]
-    taskRef:
-      resolver: cluster
-      params:
-      - name: kind
-        value: task
-      - name: name
-        value: release
-      - name: namespace
-        value: "${infranamespaceprefix}tekton-pipelines"
-    workspaces:
-    - name: source
-      workspace: shared-data
-    params:
-    - name: ghTokenSecretName
-      value: "$(params.ghTokenSecretName)"
-    - name: sshSecretName
-      value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
+    - name: prNumber
+      value: "$(params.PULL_NUMBER)"    
