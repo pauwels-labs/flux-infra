@@ -1,14 +1,14 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: version
+  name: version-release
   namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
-    app.kubernetes.io/version: "0.1.0"
+    app.kubernetes.io/version: "1.0.0"
   annotations:
     tekton.dev/pipelines.minVersion: "0.41.0"
     tekton.dev/categories: Semantic Versioning
-    tekton.dev/tags: version
+    tekton.dev/tags: version-release
     tekton.dev/displayName: "Generate version for the release based on tags, past releases, and the conventional commits standard"
     tekton.dev/platforms: "linux/amd64,linux/arm64,linux/ppc64le"
 spec:

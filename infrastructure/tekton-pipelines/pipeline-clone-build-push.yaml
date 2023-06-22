@@ -63,7 +63,7 @@ spec:
       - name: kind
         value: task
       - name: name
-        value: version
+        value: version-release
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
     workspaces:
@@ -72,8 +72,54 @@ spec:
     params:
     - name: sshSecretName
       value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
-  - name: build-push
+  - name: build-push-test-image
     runAfter: ["version"]
+    taskRef:
+      resolver: cluster
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: kaniko
+      - name: namespace
+        value: "${infranamespaceprefix}tekton-pipelines"
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: dockerconfig
+      workspace: docker-credentials
+    params:
+    - name: DOCKERFILE
+      value: ./Dockerfile.test
+    - name: IMAGE
+      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-$(tasks.version.results.RELEASE_VERSION)"
+    - name: EXTRA_ARGS
+      value: [
+        "--cache=true",
+        "--cache-dir=/kaniko/cache",
+        "--cache-repo=$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME)/cache"
+      ]
+  - name: test
+    runAfter: ["build-push-test-image"]
+    taskRef:
+      resolver: cluster
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: test-release
+      - name: namespace
+        value: "${infranamespaceprefix}tekton-pipelines"
+    workspaces:
+    - name: source
+      workspace: shared-data
+    params:
+    - name: image
+      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-$(tasks.version.results.RELEASE_VERSION)"
+    - name: ghTokenSecretName
+      value: "$(params.ghTokenSecretName)"
+  - name: build-push-release-image
+    runAfter: ["test"]
     taskRef:
       resolver: cluster
       params:
@@ -98,7 +144,7 @@ spec:
         "--cache-repo=$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME)/cache"
       ]
   - name: release
-    runAfter: ["build-push"]
+    runAfter: ["build-push-release-image"]
     taskRef:
       resolver: cluster
       params:

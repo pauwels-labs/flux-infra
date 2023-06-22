@@ -68,7 +68,7 @@ spec:
       - name: kind
         value: task
       - name: name
-        value: pr-version
+        value: version-pr
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
     workspaces:
@@ -116,7 +116,7 @@ spec:
       - name: kind
         value: task
       - name: name
-        value: test
+        value: test-pr
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
     workspaces:

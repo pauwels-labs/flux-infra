@@ -1,14 +1,14 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: pr-version
+  name: version-pr
   namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
     app.kubernetes.io/version: "1.0.0"
   annotations:
     tekton.dev/pipelines.minVersion: "0.41.0"
     tekton.dev/categories: PR Versioning
-    tekton.dev/tags: pr-version
+    tekton.dev/tags: version-pr
     tekton.dev/displayName: "Generate version for the release based on the PR number, the pull SHA, and the timestamp of the build"
     tekton.dev/platforms: "linux/amd64,linux/arm64,linux/ppc64le"
 spec:

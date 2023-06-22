@@ -1,0 +1,70 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test-release
+  namespace: "${infranamespaceprefix}tekton-pipelines"
+  labels:
+    app.kubernetes.io/version: "1.0.0"
+spec:
+  description: >-
+    This Task run a Dockerfile test image but does not attempt to post a PR comment
+  params:
+  - name: image
+    description: Test image to load
+    type: string
+  - name: ghTokenSecretName
+    description: Name of the secret containing the GitHub token
+    type: string
+  workspaces:
+  - name: source
+    description: Holds the context and Dockerfile
+  steps:
+  - name: wait-for-sidecar
+    workingDir: $(workspaces.source.path)
+    image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+    script: |
+      #!/bin/sh
+      set -eu
+
+      i=0
+      echo "WAITING FOR SIDECAR"
+      until wget -qO- -o /dev/null "http://localhost:15021/healthz/ready"; do
+        i=$((i+1))
+        if [[ $i -eq 5 ]]; then
+          break
+        fi
+        echo "WAITING FOR SIDECAR"
+        sleep 3
+      done
+      if [[ $i -eq 5 ]]; then
+        echo "SIDECAR UNAVAILABLE, RUNNING WITHOUT"
+      else
+        echo "SIDECAR AVAILABLE"
+      fi
+
+      echo "$i" > sidecar-check-counter
+      exit 0
+  - name: test
+    image: $(params.image)
+    env:
+    - name: COVERAGE_DIRECTORY
+      value: "$(workspaces.source.path)/coverage"
+    securityContext:
+      runAsUser: 10000
+  - name: shutdown-sidecar
+    workingDir: $(workspaces.source.path)
+    image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+    script: |
+      #!/bin/sh
+      set -eu
+
+      i=$(cat "sidecar-check-counter")
+      if [[ $i -lt 5 ]]; then
+        echo "QUITTING SIDECAR"
+        wget -qO- -o /dev/null --post-data "" http://localhost:15020/quitquitquit > /dev/null
+        echo "SIDECAR SHUTDOWN COMMAND ISSUED"
+      fi
+
+      rm -rf sidecar-check-counter
+
+      exit 0

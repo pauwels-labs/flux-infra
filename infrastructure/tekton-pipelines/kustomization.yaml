@@ -10,11 +10,11 @@ resources:
 - clusterrole-tenant-event-listener.yaml
 - task-git-clone.yaml
 - task-kaniko.yaml
-- task-version.yaml
-- task-pr-version.yaml
 - task-release.yaml
-- task-test.yaml
-- task-test-nodejs18.yaml
+- task-version-release.yaml
+- task-version-pr.yaml
+- task-test-release.yaml
+- task-test-pr.yaml
 - pipeline-clone-build-push.yaml
 - pipeline-pr-unit-test.yaml
 - ecr-credentials-sync.yaml
