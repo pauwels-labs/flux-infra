@@ -124,7 +124,7 @@ spec:
       workspace: shared-data
     params:
     - name: image
-      value: "test-pr$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):$(tasks.version.results.PR_VERSION)"
+      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):test-pr$(tasks.version.results.PR_VERSION)"
     - name: ghTokenSecretName
       value: "$(params.ghTokenSecretName)"
     - name: prNumber
