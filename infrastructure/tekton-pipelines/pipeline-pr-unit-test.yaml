@@ -7,15 +7,21 @@ spec:
   description: | 
     This pipeline clones a git repo and runs its tests as defined by its Makefile
   params:
-  - name: revision
-    type: string
-  - name: sshURL
-    type: string
-  - name: sshSecretName
-    type: string
-  - name: ghTokenSecretName
+  - name: PULL_BASE_SHA
     type: string
   - name: PULL_NUMBER
+    type: string
+  - name: REPO_URL
+    type: string
+  - name: REPO_OWNER
+    type: string
+  - name: REPO_NAME
+    type: string
+  - name: tenantName
+    type: string
+  - name: imageRegistry
+    type: string
+  - name: ghTokenSecretName
     type: string
   - name: prRun
     type: string
@@ -43,15 +49,15 @@ spec:
       workspace: shared-data
     params:
     - name: url
-      value: "$(params.sshURL)"
+      value: "$(params.REPO_URL)"
     - name: revision
-      value: "$(params.revision)"
+      value: "$(params.PULL_BASE_SHA)"
     - name: depth
       value: "1"
     - name: userHome
       value: "/home/git"
     - name: sshSecretName
-      value: "$(params.sshSecretName)"
+      value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
     - name: prNumber
       value: "$(params.PULL_NUMBER)"
     - name: prRun

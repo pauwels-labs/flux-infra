@@ -8,15 +8,19 @@ spec:
     This pipeline clones a git repo, builds a Docker image with Kaniko and
     pushes it to a registry
   params:
-  - name: revision
+  - name: PULL_BASE_SHA
     type: string
-  - name: sshURL
+  - name: REPO_URL
     type: string
-  - name: imageURL
+  - name: REPO_OWNER
+    type: string
+  - name: REPO_NAME
+    type: string
+  - name: tenantName
+    type: string
+  - name: imageRegistry
     type: string
   - name: ghTokenSecretName
-    type: string
-  - name: sshSecretName
     type: string
   workspaces:
   - name: shared-data
@@ -42,15 +46,15 @@ spec:
       workspace: shared-data
     params:
     - name: url
-      value: "$(params.sshURL)"
+      value: "$(params.REPO_URL)"
     - name: revision
-      value: "$(params.revision)"
+      value: "$(params.PULL_BASE_SHA)"
     - name: depth
       value: "1"
     - name: userHome
       value: "/home/git"
     - name: sshSecretName
-      value: "$(params.sshSecretName)"
+      value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
   - name: version
     runAfter: ["fetch-source"]
     taskRef:
@@ -67,7 +71,7 @@ spec:
       workspace: shared-data
     params:
     - name: sshSecretName
-      value: "$(params.sshSecretName)"
+      value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
   - name: build-push
     runAfter: ["version"]
     taskRef:
@@ -86,7 +90,7 @@ spec:
       workspace: docker-credentials
     params:
     - name: IMAGE
-      value: "$(params.imageURL):$(tasks.version.results.RELEASE_VERSION)"
+      value: "$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):$(tasks.version.results.RELEASE_VERSION)"
     - name: EXTRA_ARGS
       value: [
         '--cache=true',
@@ -111,4 +115,4 @@ spec:
     - name: ghTokenSecretName
       value: "$(params.ghTokenSecretName)"
     - name: sshSecretName
-      value: "$(params.sshSecretName)"
+      value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
