@@ -49,6 +49,7 @@ spec:
       exit 0
   - name: test
     image: $(params.image)
+    imagePullPolicy: Always
     env:
     - name: COVERAGE_DIRECTORY
       value: "$(workspaces.source.path)/coverage"

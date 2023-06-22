@@ -7,8 +7,6 @@ spec:
   description: | 
     This pipeline clones a git repo and runs its tests as defined by its Makefile
   params:
-  - name: BUILD_ID
-    type: string
   - name: PULL_PULL_SHA
     type: string
   - name: PULL_NUMBER
@@ -79,8 +77,6 @@ spec:
       value: "$(params.PULL_NUMBER)"
     - name: prSHA
       value: "$(params.PULL_PULL_SHA)"
-    - name: buildTimestamp
-      value: "$(params.BUILD_ID)"
   - name: build-push
     runAfter: ["version"]
     taskRef:

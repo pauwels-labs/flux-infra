@@ -13,22 +13,16 @@ metadata:
     tekton.dev/platforms: "linux/amd64,linux/arm64,linux/ppc64le"
 spec:
   description: >-
-    This Task uses the PR number, pull SHA, and build timestamp to
-    generate a version that follows the format
-    $${PR_NUMBER}-$${PR_SHA}-$${BUILD_TIMESTAMP}. The PR number is kept
-    as is, the PR SHA is truncated to the seven first characters, and
-    the build timestamp should be inputted as a standard UNIX
-    milliseconds timestamp but is converted into a human-readable
-    timestamp as YYYYMMDDTHHMMSS+0000
+    This Task uses the PR number and commit SHA to generate a version
+    that follows the format $${PR_NUMBER}-$${PR_SHA}. The PR number is
+    kept as is, but the PR SHA is truncated to the seven first
+    characters of the commit hash.
   params:
   - name: prNumber
     description: "Number of the PR"
     type: string
   - name: prSHA
     description: "SHA of the latest PR commit"
-    type: string
-  - name: buildTimestamp
-    description: "UNIX timestamp in milliseconds of the build"
     type: string
   workspaces:
   - name: source
@@ -69,14 +63,12 @@ spec:
         value: "$(params.prNumber)"
       - name: PR_SHA
         value: "$(params.prSHA)"
-      - name: BUILD_TIMESTAMP
-        value: "$(params.buildTimestamp)"
       script: |
         #!/usr/bin/env sh
         set -eu
 
-        FORMATTED_TS=$(date -d @$(echo "($${BUILD_TIMESTAMP} + 500) / 1000" | bc) -Iseconds | sed -E 's/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\+([0-9]{2}):([0-9]{2})$/\1\2\3T\4\5\6-\7\8/')
-        VERSION="$${PR_NUMBER}-$${PR_SHA:0:7}-$${FORMATTED_TS}"
+        #FORMATTED_TS=$(date -d @$(echo "($${BUILD_TIMESTAMP} + 500) / 1000" | bc) -Iseconds | sed -E 's/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\+([0-9]{2}):([0-9]{2})$/\1\2\3T\4\5\6-\7\8/')
+        VERSION="$${PR_NUMBER}-$${PR_SHA:0:7}"
         echo "$VERSION"
         echo -n "$VERSION" > $(results.PR_VERSION.path)
       securityContext:
