@@ -1,14 +1,17 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: test-nodejs18
+  name: test
   namespace: "${infranamespaceprefix}tekton-pipelines"
   labels:
-    app.kubernetes.io/version: "0.1.0"
+    app.kubernetes.io/version: "1.0.0"
 spec:
   description: >-
-    This Task provides a nodejs 18.x environment for calling `make test`
+    This Task loads a Dockerfile test image and calls `make test` within it
   params:
+  - name: image
+    description: Test image to load
+    type: string
   - name: ghTokenSecretName
     description: Name of the secret containing the GitHub token
     type: string
@@ -20,7 +23,6 @@ spec:
     description: Holds the context and Dockerfile
   steps:
   - name: wait-for-sidecar
-    workingDir: $(workspaces.source.path)
     image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
     script: |
       #!/bin/sh
@@ -45,17 +47,9 @@ spec:
       echo "$i" > sidecar-check-counter
       exit 0
   - name: test
-    workingDir: $(workspaces.source.path)
-    image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/pauwels-labs/gitops-coverage:v1.0.3
-    env:
-    - name: HOME
-      value: /home/service
-    script: |
-      #!/usr/bin/env sh
-      set -eu
-
-      npm install || return 1
-      npm test -- --ci || return 1
+    image: $(params.image)
+    args:
+    - --coverageDirectory=$(workspaces.source.path)/coverage
     securityContext:
       runAsUser: 10000
   - name: generate-code-coverage-markdown
@@ -105,7 +99,6 @@ spec:
     securityContext:
       runAsUser: 10000
   - name: shutdown-sidecar
-    workingDir: $(workspaces.source.path)
     image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
     script: |
       #!/bin/sh

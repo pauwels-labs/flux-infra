@@ -11,7 +11,9 @@ resources:
 - task-git-clone.yaml
 - task-kaniko.yaml
 - task-version.yaml
+- task-pr-version.yaml
 - task-release.yaml
+- task-test.yaml
 - task-test-nodejs18.yaml
 - pipeline-clone-build-push.yaml
 - pipeline-pr-unit-test.yaml

@@ -7,7 +7,9 @@ spec:
   description: | 
     This pipeline clones a git repo and runs its tests as defined by its Makefile
   params:
-  - name: PULL_BASE_SHA
+  - name: BUILD_ID
+    type: string
+  - name: PULL_PULL_SHA
     type: string
   - name: PULL_NUMBER
     type: string
@@ -22,8 +24,6 @@ spec:
   - name: imageRegistry
     type: string
   - name: ghTokenSecretName
-    type: string
-  - name: prRun
     type: string
   workspaces:
   - name: shared-data
@@ -51,7 +51,7 @@ spec:
     - name: url
       value: "$(params.REPO_URL)"
     - name: revision
-      value: "$(params.PULL_BASE_SHA)"
+      value: "$(params.PULL_PULL_SHA)"
     - name: depth
       value: "1"
     - name: userHome
@@ -60,9 +60,7 @@ spec:
       value: "ssh-$(params.tenantName)-github-$(params.REPO_OWNER)-$(params.REPO_NAME)"
     - name: prNumber
       value: "$(params.PULL_NUMBER)"
-    - name: prRun
-      value: "$(params.prRun)"
-  - name: test
+  - name: version
     runAfter: ["fetch-source"]
     taskRef:
       resolver: cluster
@@ -70,17 +68,66 @@ spec:
       - name: kind
         value: task
       - name: name
-        value: test-nodejs18
+        value: pr-version
+      - name: namespace
+        value: "${infranamespaceprefix}tekton-pipelines"
+    params:
+    - name: prNumber
+      value: "$(params.PULL_NUMBER)"
+    - name: prSHA
+      value: "$(params.PULL_PULL_SHA)"
+    - name: buildTimestamp
+      value: "$(params.BUILD_ID)"
+  - name: build-push
+    runAfter: ["version"]
+    taskRef:
+      resolver: cluster
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: kaniko
+      - name: namespace
+        value: "${infranamespaceprefix}tekton-pipelines"
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: dockerconfig
+      workspace: docker-credentials
+    params:
+    - name: DOCKERFILE
+      value: ./Dockerfile.test
+    - name: IMAGE
+      value: "test-pr$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):$(tasks.version.results.PR_VERSION)"
+    - name: EXTRA_ARGS
+      value: [
+        "--cache=true",
+        "--cache-dir=/kaniko/cache",
+        "--cache-repo=$${IMAGE}/cache"
+      ]
+    params:
+    - name: ghTokenSecretName
+      value: "$(params.ghTokenSecretName)"
+    - name: prNumber
+      value: "$(params.PULL_NUMBER)"      
+  - name: test
+    runAfter: ["build-push"]
+    taskRef:
+      resolver: cluster
+      params:
+      - name: kind
+        value: task
+      - name: name
+        value: test
       - name: namespace
         value: "${infranamespaceprefix}tekton-pipelines"
     workspaces:
     - name: source
       workspace: shared-data
     params:
+    - name: image
+      value: "test-pr$(params.imageRegistry)/t/$(params.tenantName)/github/$(params.REPO_OWNER)/$(params.REPO_NAME):$(tasks.version.results.PR_VERSION)"
     - name: ghTokenSecretName
       value: "$(params.ghTokenSecretName)"
     - name: prNumber
-      value: "$(params.PULL_NUMBER)"
-    - name: prRun
-      value: "$(params.prRun)"
-    
+      value: "$(params.PULL_NUMBER)"    

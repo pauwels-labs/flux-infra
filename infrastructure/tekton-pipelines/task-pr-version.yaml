@@ -1,0 +1,91 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: pr-version
+  namespace: "${infranamespaceprefix}tekton-pipelines"
+  labels:
+    app.kubernetes.io/version: "1.0.0"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.41.0"
+    tekton.dev/categories: PR Versioning
+    tekton.dev/tags: pr-version
+    tekton.dev/displayName: "Generate version for the release based on the PR number, the pull SHA, and the timestamp of the build"
+    tekton.dev/platforms: "linux/amd64,linux/arm64,linux/ppc64le"
+spec:
+  description: >-
+    This Task uses the PR number, pull SHA, and build timestamp to
+    generate a version that follows the format
+    ${PR_NUMBER}-${PR_SHA}-${BUILD_TIMESTAMP}. The PR number is kept
+    as is, the PR SHA is truncated to the seven first characters, and
+    the build timestamp should be inputted as a standard UNIX
+    milliseconds timestamp but is converted into a human-readable
+    timestamp as YYYYMMDDTHHMMSS+0000
+  params:
+  - name: prNumber
+    description: "Number of the PR"
+    type: string
+  - name: prSHA
+    description: "SHA of the latest PR commit"
+    type: string
+  - name: buildTimestamp
+    description: "UNIX timestamp in milliseconds of the build"
+    type: string
+  results:
+  - name: PR_VERSION
+    description: Version of this PR
+  steps:
+    - name: wait-for-sidecar
+      image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+      script: |
+        #!/bin/sh
+        set -eu
+
+        i=0
+        echo "WAITING FOR SIDECAR"
+        until wget -qO- -o /dev/null "http://localhost:15021/healthz/ready"; do
+          i=$((i+1))
+          if [[ $i -eq 5 ]]; then
+            break
+          fi
+          echo "WAITING FOR SIDECAR"
+          sleep 3
+        done
+        if [[ $i -eq 5 ]]; then
+          echo "SIDECAR UNAVAILABLE, RUNNING WITHOUT"
+        else
+          echo "SIDECAR AVAILABLE"
+        fi
+
+        echo "$i" > sidecar-check-counter
+        exit 0
+    - name: version
+      image: alpine:3.18.2
+      env:
+      - name: PR_NUMBER
+        value: "$(params.prNumber)"
+      - name: PR_SHA
+        value: "$(params.prSHA)"
+      - name: BUILD_TIMESTAMP
+        value: "$(params.buildTimestamp)"
+      script: |
+        #!/usr/bin/env sh
+        set -eu
+
+        FORMATTED_TS=$(date -d @$(echo "(${BUILD_TIMESTAMP} + 500) / 1000" | bc) -Iseconds | sed -E 's/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\+([0-9]{2}):([0-9]{2})$/\1\2\3T\4\5\6+\7\8/')
+        echo "${PR_NUMBER}-${PR_SHA:0:7}-${FORMATTED_TS}" > $(results.PR_VERSION.path)
+      securityContext:
+        runAsUser: 10000
+    - name: shutdown-sidecar
+      image: docker.io/library/bash:5.1.4@sha256:c523c636b722339f41b6a431b44588ab2f762c5de5ec3bd7964420ff982fb1d9
+      script: |
+        #!/bin/sh
+        set -eu
+
+        i=$(cat "sidecar-check-counter")
+        if [[ $i -lt 5 ]]; then
+          echo "QUITTING SIDECAR"
+          wget -qO- -o /dev/null --post-data "" http://localhost:15020/quitquitquit > /dev/null
+          echo "SIDECAR SHUTDOWN COMMAND ISSUED"
+        fi
+
+        exit 0

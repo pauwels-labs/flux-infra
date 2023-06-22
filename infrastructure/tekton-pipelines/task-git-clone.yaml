@@ -115,12 +115,6 @@ spec:
         be used to populate the SSH directory IF a workspace is not provided
       type: string
       default: "noop"
-    - name: prNumber
-      type: string
-      default: "-1"
-    - name: prRun
-      type: string
-      default: "-1"
   results:
     - name: commit
       description: The precise commit SHA that was fetched by this Task.
@@ -188,10 +182,6 @@ spec:
             name: $(params.sshSecretName)
             key: known_hosts
             optional: true
-      - name: PR_NUMBER
-        value: $(params.prNumber)
-      - name: PR_RUN
-        value: $(params.prRun)
       securityContext:
         runAsNonRoot: true
         runAsUser: 65532
@@ -273,7 +263,6 @@ spec:
         test -z "$${PARAM_NO_PROXY}" || export NO_PROXY="$${PARAM_NO_PROXY}"
 
         git config --global --add safe.directory "$${WORKSPACE_OUTPUT_PATH}"
-        echo "PR NUMBER: $PR_NUMBER, PR_RUN: $PR_RUN"
         /ko-app/git-init \
           -url="$${PARAM_URL}" \
           -revision="$${PARAM_REVISION}" \
