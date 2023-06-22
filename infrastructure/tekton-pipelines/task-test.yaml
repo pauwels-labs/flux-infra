@@ -48,8 +48,9 @@ spec:
       exit 0
   - name: test
     image: $(params.image)
-    args:
-    - --coverageDirectory=$(workspaces.source.path)/coverage
+    env:
+    - name: COVERAGE_DIRECTORY
+      value: "$(workspaces.source.path)/coverage"
     securityContext:
       runAsUser: 10000
   - name: generate-code-coverage-markdown
@@ -61,7 +62,7 @@ spec:
     - name: GITOPS_COVERAGE_LCOV_INFO_FILE_PATH
       value: $(workspaces.source.path)/coverage/lcov.info
     - name: GITOPS_COVERAGE_PROJECT_PATH
-      value: $(workspaces.source.path)
+      value: "/usr/src/service"
     - name: GITOPS_COVERAGE_OUTPUT_FILE
       value: $(workspaces.source.path)/gitops-coverage.md
     - name: HOME
