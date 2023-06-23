@@ -1,0 +1,36 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana-agent-flow
+  namespace: flux-system
+spec:
+  releaseName: grafana-agent-flow
+  serviceAccountName: helm-controller
+  targetNamespace: "${infranamespaceprefix}grafana-agent-flow"
+  chart:
+    spec:
+      chart: grafana/grafana-agent
+      version: 0.16.0
+      sourceRef:
+        kind: HelmRepository
+        name: pauwels-labs
+        namespace: flux-system
+  interval: 1m0s
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    global:
+      image:
+        registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
+    agent:
+      mode: "flow"
+      enableReporting: false
+    image:
+      repository: i/grafana/agent
+      tag: v0.34.2
+    configReloader:
+      image:
+        repository: i/jimmidyson/configmap-reload
+        tag: v0.8.0

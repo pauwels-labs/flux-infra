@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "${infranamespaceprefix}grafana-agent-flow"
+  labels:
+    istio.io/rev: stable
+    name: "${infranamespaceprefix}grafana-agent-flow"
