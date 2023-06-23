@@ -99,6 +99,8 @@ spec:
       annotations:
         eks.amazonaws.com/role-arn: "${grafanatempoiamrolearn}"
     multitenancyEnabled: true
+    server:
+      logLevel: debug
     traces:
       otlp:
         grpc:
