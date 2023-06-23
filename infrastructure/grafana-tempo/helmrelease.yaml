@@ -77,7 +77,6 @@ spec:
         tag: main-c633387
       structuredConfig:
         memberlist:
-          advertise_addr: "$${POD_IP}"
           bind_addr:
           - "::0"
           bind_port: 7946
@@ -100,7 +99,7 @@ spec:
         eks.amazonaws.com/role-arn: "${grafanatempoiamrolearn}"
     multitenancyEnabled: true
     server:
-      logLevel: debug
+      logLevel: info
     traces:
       otlp:
         grpc:
