@@ -28,6 +28,9 @@ spec:
       image:
         repository: i/grafana/tempo
         tag: 2.1.1
+    serviceAccount:
+      annotations:
+        eks.amazonaws.com/role-arn: "${grafanatempoiamrolearn}"
     multitenancyEnabled: true
     traces:
       otlp:

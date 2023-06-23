@@ -38,6 +38,7 @@ data:
   grafanalokirulerbucketname: "loki-ruler-20230531092431228300000003"
   grafanalokichunksbucketname: "loki-chunks-20230531092431228000000002"
   grafanalokiadminbucketname: "loki-admin-20230531092431227900000001"
+  grafanatempoiamrolearn: "arn:aws:iam::140327370353:role/lefranc-tempo"
   grafanatempotracesbucketname: "tempo-traces-20230623122626347800000001"
   grafanatempoadminbucketname: "tempo-admin-20230623122626348100000002"
   mimirreadurl: "http://grafana-mimir-query-frontend.i-grafana-mimir.svc:8080/prometheus"
