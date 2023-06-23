@@ -78,7 +78,7 @@ spec:
       structuredConfig:
         memberlist:
           bind_addr:
-          - "::0"
+          - "::"
           bind_port: 7946
         compactor:
           ring:
