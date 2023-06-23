@@ -27,7 +27,7 @@ spec:
     tempo:
       image:
         repository: i/grafana/tempo
-        tag: 2.1.1
+        tag: main-c633387
       structuredConfig:
         memberlist:
           bind_addr:
