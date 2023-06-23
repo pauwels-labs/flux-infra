@@ -40,12 +40,14 @@ spec:
         backend: s3
         s3:
           bucket: "${grafanatempotracesbucketname}"
-          region: eu-west-1
+          region: "eu-west-1"
+          endpoint: "s3.eu-west-1.amazonaws.com"
       admin:
         backend: s3
         s3:
           bucket: "${grafanatempoadminbucketname}"
-          region: eu-west-1
+          region: "eu-west-1"
+          endpoint: "s3.eu-west-1.amazonaws.com"
     minio:
       enabled: false
     gateway:
