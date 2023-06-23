@@ -16,10 +16,14 @@ spec:
         name: pauwels-labs
         namespace: flux-system
   interval: 1m0s
+  # Temporarily skips CRD CreateReplace policy until
+  # the grafana-agent-operator HelmRelease can be removed
+  # The operator helm chart installs the PodLogs CRD without
+  # the v1alpha2 version which creates conflicts
   install:
-    crds: CreateReplace
+    crds: Skip
   upgrade:
-    crds: CreateReplace
+    crds: Skip
   values:
     global:
       image:
