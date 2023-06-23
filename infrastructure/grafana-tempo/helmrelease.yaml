@@ -55,10 +55,12 @@ spec:
       otlp:
         grpc:
           enabled: true
-          endpoint: "[::0]:4317"
+          receiverConfig:
+            endpoint: "[::0]:4317"
         http:
           enabled: true
-          endpoint: "[::0]:4318"
+          receiverConfig:
+            endpoint: "[::0]:4318"
     storage:
       trace:
         backend: s3
