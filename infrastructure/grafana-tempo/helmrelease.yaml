@@ -79,14 +79,10 @@ spec:
         memberlist:
           advertise_addr: "$${POD_IP}"
           bind_addr:
-          - "[::0]"
+          - "::0"
           bind_port: 7946
-        distributor:
-          ring:
-            instance_addr: "[$${POD_IP}]"
         compactor:
           ring:
-            instance_addr: "[$${POD_IP}]"
             kvstore:
               store: memberlist
             enable_inet6: true
@@ -94,8 +90,6 @@ spec:
           lifecycler:
             address: "::"
             enable_inet6: true
-            ring:
-              instance_addr: "[$${POD_IP}]"
         server:
           grpc_listen_address: "[::0]"
           grpc_listen_port: 9095
