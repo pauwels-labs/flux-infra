@@ -70,6 +70,8 @@ spec:
             apiVersion: v1
             fieldPath: status.podIP
     tempo:
+      memberlist:
+        appProtocol: tcp
       image:
         repository: i/grafana/tempo
         tag: main-c633387
@@ -78,7 +80,6 @@ spec:
           bind_addr:
           - "::"
           bind_port: 7946
-          advertise_addr: "$${POD_IP}"
         compactor:
           ring:
             kvstore:
