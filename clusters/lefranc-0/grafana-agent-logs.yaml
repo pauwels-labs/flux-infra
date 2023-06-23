@@ -19,6 +19,7 @@ spec:
   - name: sources
   - name: istio-system
   - name: istio-extras
+  - name: grafana-agent-operator
   postBuild:
     substituteFrom:
     - kind: ConfigMap
