@@ -76,7 +76,7 @@ spec:
         type: s3
         s3:
           region: eu-west-1
-      frontned:
+      frontend:
         max_outstanding_per_tenant: 8192
     serviceAccount:
       name: grafana-loki

@@ -24,6 +24,51 @@ spec:
     global:
       image:
         registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
+    compactor:
+      extraArgs:
+      - "-config.expand-env=true"
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
+    distributor:
+      extraArgs:
+      - "-config.expand-env=true"
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
+    ingester:
+      extraArgs:
+      - "-config.expand-env=true"
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
+    querier:
+      extraArgs:
+      - "-config.expand-env=true"
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
+    queryFrontend:
+      extraArgs:
+      - "-config.expand-env=true"
+      extraEnv:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: status.podIP
     tempo:
       image:
         repository: i/grafana/tempo
@@ -33,6 +78,7 @@ spec:
           bind_addr:
           - "::"
           bind_port: 7946
+          advertise_addr: "$${POD_IP}"
         compactor:
           ring:
             kvstore:
