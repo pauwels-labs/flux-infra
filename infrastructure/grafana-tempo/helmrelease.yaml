@@ -54,3 +54,5 @@ spec:
       enabled: false
     enterprise:
       enabled: false
+    memcached:
+      enabled: false
