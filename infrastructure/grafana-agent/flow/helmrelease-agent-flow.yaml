@@ -38,6 +38,10 @@ spec:
         protocol: "TCP"
       configMap:
         content: |
+          logging {
+            level = "debug"
+          }
+
           otelcol.receiver.otlp "default" {
             grpc {
               endpoint = "[::0]:9095"
