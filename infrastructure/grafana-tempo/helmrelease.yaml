@@ -96,7 +96,7 @@ spec:
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: "${grafanatempoiamrolearn}"
-    multitenancyEnabled: true
+    multitenancyEnabled: false
     server:
       logLevel: info
     traces:

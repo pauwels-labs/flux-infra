@@ -31,6 +31,39 @@ spec:
     agent:
       mode: "flow"
       enableReporting: false
+      extraPorts:
+      - name: "grpc"
+        port: 9095
+        targetPort: 9095
+        protocol: "TCP"
+      configMap:
+        content: |
+          otelcol.receiver.otlp "default" {
+            grpc {
+              endpoint = [::0]:9095
+            }
+
+            output {
+              metrics = []
+              logs    = []
+              traces  = [otelcol.processor.batch.default.input]
+            }
+          }
+
+          otelcol.processor.batch "default" {
+            output {
+              metrics = []
+              logs    = []
+              traces  = [otelcol.exporter.otlp.default.input]
+            }
+          }
+
+          otelcol.exporter.otlp "default" {
+            client {
+              url = "grafana-tempo-ingester.i-grafana-tempo.svc.cluster.local:9095"
+            }
+          }
+
     image:
       repository: i/grafana/agent
       tag: v0.34.2
