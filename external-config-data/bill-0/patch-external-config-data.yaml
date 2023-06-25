@@ -29,6 +29,7 @@ data:
   mimirreadurl: "https://telemetry.pauwelslabs.com/prometheus"
   mimirtargeturl: "https://telemetry.pauwelslabs.com/api/v1/push"
   lokitargeturl: "https://logs.pauwelslabs.com/loki/api/v1/push"
+  tempotargeturl: "https://traces.pauwelslabs.com/otlp/v1/traces"
   authurl: "oauth2-proxy.i-oauth2-proxy.svc.cluster.local"
   authport: "80"
   # authurl: "auth.pauwelslabs.com"

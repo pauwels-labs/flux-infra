@@ -1,0 +1,57 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana-agent-flow
+  namespace: "${infranamespaceprefix}grafana-agent-flow"
+spec:
+  hosts:
+  - traces.pauwelslabs.com
+  gateways:
+  - ${infranamespaceprefix}istio-ingress/pauwelslabs-com
+  http:
+  - match:
+    - uri:
+        exact: "/otlp/v1/traces"
+    rewrite:
+      uri: "/v1/traces"
+    route:
+    - destination:
+        port:
+          number: 4317
+        host: grafana-tempo-distributor
+  - match:
+    - uri:
+        exact: "/distributor/ring"
+    - uri:
+        exact: "/ingester/ring"
+    route:
+    - destination:
+        port:
+          number: 3100
+        host: grafana-tempo-distributor
+  - match:
+    - uri:
+        prefix: "/api"
+    route:
+    - destination:
+        port:
+          number: 3100
+        host: grafana-tempo-query-frontend
+  - match:
+    - uri:
+        exact: "/flush"
+    - uri:
+        exact: "/shutdown"
+    route:
+    - destination:
+        port:
+          number: 3100
+        host: grafana-tempo-ingester
+  - match:
+    - uri:
+        exact: "/compactor/ring"
+    route:
+    - destination:
+        port:
+          number: 3100
+        host: grafana-tempo-compactor

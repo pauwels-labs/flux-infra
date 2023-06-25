@@ -18,3 +18,4 @@ resources:
 - certificate-alerts-pauwels-labs.yaml
 - certificate-telemetry-pauwels-labs.yaml
 - certificate-logs-pauwels-labs.yaml
+- certificate-traces-pauwels-labs.yaml

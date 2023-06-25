@@ -60,7 +60,7 @@ spec:
 
           otelcol.exporter.otlp "default" {
             client {
-              url = "grafana-tempo-ingester.i-grafana-tempo.svc.cluster.local:9095"
+              url = "${tempotargeturl}"
             }
           }
 
