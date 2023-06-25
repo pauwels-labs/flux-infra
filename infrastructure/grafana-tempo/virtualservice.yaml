@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: grafana-agent-flow
-  namespace: "${infranamespaceprefix}grafana-agent-flow"
+  name: grafana-tempo
+  namespace: "${infranamespaceprefix}grafana-tempo"
 spec:
   hosts:
   - traces.pauwelslabs.com
