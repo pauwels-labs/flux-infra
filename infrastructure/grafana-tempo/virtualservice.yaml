@@ -17,7 +17,7 @@ spec:
     route:
     - destination:
         port:
-          number: 4317
+          number: 4318
         host: grafana-tempo-distributor
   - match:
     - uri:

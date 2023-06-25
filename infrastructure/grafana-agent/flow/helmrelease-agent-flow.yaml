@@ -62,7 +62,7 @@ spec:
             }
           }
 
-          otelcol.exporter.otlp "default" {
+          otelcol.exporter.otlphttp "default" {
             client {
               endpoint = "${tempotargeturl}"
             }

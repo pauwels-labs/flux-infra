@@ -7,4 +7,3 @@ resources:
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
 - helmrelease-agent-flow.yaml
-- virtualservice.yaml
