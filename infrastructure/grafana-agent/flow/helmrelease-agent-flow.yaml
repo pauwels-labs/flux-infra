@@ -40,7 +40,7 @@ spec:
         content: |
           otelcol.receiver.otlp "default" {
             grpc {
-              endpoint = [::0]:9095
+              endpoint = "[::0]:9095"
             }
 
             output {
@@ -60,7 +60,7 @@ spec:
 
           otelcol.exporter.otlp "default" {
             client {
-              url = "${tempotargeturl}"
+              endpoint = "${tempotargeturl}"
             }
           }
 
