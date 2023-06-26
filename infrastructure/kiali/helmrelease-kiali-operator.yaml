@@ -38,11 +38,11 @@ spec:
               token: "secret:telemetry-credentials:oidc-token"
           istio:
             root_namespace: "${infranamespaceprefix}istio-system"
-            config_map_name: "istio-1-17-2"
-            istio_sidecar_injector_config_map_name: "istio-sidecar-injector-1-17-2"
-            istiod_deployment_name: "istiod-1-17-2"
+            config_map_name: "istio-1-18-0"
+            istio_sidecar_injector_config_map_name: "istio-sidecar-injector-1-18-0"
+            istiod_deployment_name: "istiod-1-18-0"
             istio_canary_revision:
-              current: "1-17-2"
+              current: "1-18-0"
             component_status:
               components:
               - app_label: "istiod"
