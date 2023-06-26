@@ -114,6 +114,11 @@ spec:
             groupsClaim: groups
             audienceClaims:
             - aud
+            # Allow telemetry-client JWTs through as well
+            # This is so that kiali can access the /prometheus endpoint
+            # on the mimir query-frontend via the telemetry-credentials-sync token
+            extraAudiences:
+            - telemetry
             insecureSkipNonce: true # TODO: try setting to false?
             issuerURL: https://identity.pauwelslabs.com/realms/pauwels-labs-main
           provider: oidc

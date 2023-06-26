@@ -33,6 +33,8 @@ spec:
         external_services:
           prometheus:
             url: "${mimirreadurl}"
+            auth:
+              token: "secret:telemetry-credentials:oidc-token"
           istio:
             root_namespace: "${infranamespaceprefix}istio-system"
             config_map_name: "istio-1-17-2"

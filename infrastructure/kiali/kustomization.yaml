@@ -7,3 +7,4 @@ resources:
 - ecr-credentials-sync.yaml
 - gitrepository-ecr-credentials-sync.yaml
 - rbac-kustomize-controller.yaml
+- telemetry-credentials-sync.yaml
