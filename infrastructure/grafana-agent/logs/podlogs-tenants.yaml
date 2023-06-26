@@ -21,10 +21,14 @@ spec:
     sourceLabels:
     - app_kubernetes_io_name
     targetLabel: name
+  - action: labeldrop
+    regex: ^app_kubernetes_io_name$
   - action: replace
     sourceLabels:
     - app_kubernetes_io_version
     targetLabel: version
+  - action: labeldrop
+    regex: ^app_kubernetes_io_version$
   - action: replace
     sourceLabels:
     - __meta_kubernetes_pod_container_name
