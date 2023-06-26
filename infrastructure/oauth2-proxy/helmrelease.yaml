@@ -134,6 +134,6 @@ spec:
         cookie_samesite           = "strict"
         cookie_expire             = "12h"
         cookie_refresh            = "5m"
-        skip_jwt_bearer_tokens    = false
+        skip_jwt_bearer_tokens    = true
         reverse_proxy             = true
         real_client_ip_header     = "x-forwarded-for"
