@@ -132,6 +132,8 @@ spec:
       enabled: false
     metricsGenerator:
       enabled: false
+    global_overrides:
+      metrics_generator_processors: null
     # Have to override this because it includes config values that no longer exist and
     # canot be removed
     config: |
