@@ -28,6 +28,9 @@ spec:
         auth:
           strategy: anonymous
         istio_namespace: "${infranamespaceprefix}istio-system"
+        istio_labels:
+          app_label_name: "service.istio.io/canonical-name"
+          version_label_name: "service.istio.io/canonical-revision"
         kiali_feature_flags:
           istio_upgrade_action: true
         external_services:
