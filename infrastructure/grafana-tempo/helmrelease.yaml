@@ -130,6 +130,8 @@ spec:
       enabled: false
     memcached:
       enabled: false
+    metricsGenerator:
+      enabled: false
     # Have to override this because it includes config values that no longer exist and
     # canot be removed
     config: |
