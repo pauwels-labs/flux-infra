@@ -29,7 +29,10 @@ spec:
           strategy: anonymous
         istio_namespace: "${infranamespaceprefix}istio-system"
         external_services:
+          prometheus:
+            url: "${mimirreadurl}"
           istio:
+            root_namespace: "${infranamespaceprefix}istio-system"
             istio_canary_revision:
               current: "1-17-2"
             component_status:

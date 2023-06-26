@@ -20,3 +20,4 @@ spec:
   jobLabel: app
   namespaceSelector:
     any: true
+  selector: {}
