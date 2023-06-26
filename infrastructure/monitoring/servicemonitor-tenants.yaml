@@ -23,7 +23,7 @@ spec:
     scheme: http
     tlsConfig:
       insecureSkipVerify: true
-  jobLabel: app
+  jobLabel: app.kubernetes.io/name
   namespaceSelector:
     any: true
   selector:

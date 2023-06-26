@@ -38,6 +38,7 @@ spec:
     sourceLabels:
     - __meta_kubernetes_namespace
     targetLabel: tenant
+  jobLabel: app.kubernetes.io/name
   namespaceSelector:
     any: true
   selector:
