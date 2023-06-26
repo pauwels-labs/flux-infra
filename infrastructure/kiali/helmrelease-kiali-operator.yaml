@@ -25,6 +25,8 @@ spec:
       create: true
       namespace: "${infranamespaceprefix}kiali"
       spec:
+        auth:
+          strategy: anonymous
         istio_namespace: "${infranamespaceprefix}istio-system"
         external_services:
           istio:
