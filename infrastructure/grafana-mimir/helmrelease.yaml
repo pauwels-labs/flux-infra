@@ -61,7 +61,7 @@ spec:
             fieldPath: status.podIP
     alertmanager:
       zoneAwareReplication:
-        enabled: true
+        enabled: false
         topologyKey: "kubernetes.io/hostname"
         zones:
         - name: eu-west-1a
@@ -75,7 +75,7 @@ spec:
             topology.kubernetes.io/zone: eu-west-1c        
     store_gateway:
       zoneAwareReplication:
-        enabled: true
+        enabled: false
         topologyKey: "kubernetes.io/hostname"
         zones:
         - name: eu-west-1a
@@ -91,7 +91,7 @@ spec:
       persistentVolume:
         size: 10Gi
       zoneAwareReplication:
-        enabled: true
+        enabled: false
         topologyKey: "kubernetes.io/hostname"
         zones:
         - name: eu-west-1a
