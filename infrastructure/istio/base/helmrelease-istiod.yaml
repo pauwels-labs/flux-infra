@@ -29,6 +29,7 @@ spec:
       # We don't use prometheus.io annotations to control scrapin
       # Use ServiceMonitor/PodMonitor CRs instead
       enabledPrometheusMerge: false
+      enabledTracing: false
       outboundTrafficPolicy:
         mode: ALLOW_ANY
       rootNamespace: "${infranamespaceprefix}istio-system"
@@ -70,6 +71,7 @@ spec:
           includeAdditionalHeadersInCheck:
             x-auth-request-redirect: "https://%REQ(:authority)%%REQ(x-envoy-original-path?:path)%"
       defaultConfig:
+        tracing: {}
         gatewayTopology:
           # The PROXY protocol is enabled on both the NLB and inside
           # Istio, allowing the NLB to transfer source IP exclusively
