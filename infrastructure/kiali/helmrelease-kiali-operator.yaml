@@ -34,6 +34,7 @@ spec:
           prometheus:
             url: "${mimirreadurl}"
             auth:
+              type: "bearer"
               token: "secret:telemetry-credentials:oidc-token"
           istio:
             root_namespace: "${infranamespaceprefix}istio-system"
