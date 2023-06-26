@@ -1,0 +1,32 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    monitoring.grafana.com/metrics-instance: primary
+  name: istio-gateway
+  namespace: ${infranamespaceprefix}monitoring
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 30s
+    metricRelabelings: []
+    port: http-monitoring
+    relabelings:
+    - replacement: pauwels-labs-main
+      targetLabel: tenant
+    - action: replace
+      regex: "^(.+)$"
+      replacement: "$1"
+      sourceLabels:
+      - __meta_kubernetes_service_label_istio_io_rev
+      targetLabel: istio_revision
+    scheme: http
+    tlsConfig:
+      insecureSkipVerify: true
+  jobLabel: app
+  namespaceSelector:
+    matchNames:
+    - "${infranamespaceprefix}istio-ingress"
+  selector:
+    matchLabels:
+      app: istio-gateway
