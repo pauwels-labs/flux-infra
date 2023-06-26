@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  labels:
+    monitoring.grafana.com/metrics-instance: primary
+  name: envoy-sidecar
+  namespace: ${infranamespaceprefix}monitoring
+spec:
+  podMetricsEndpoints:
+  - interval: 30s
+    metricRelabelings: []
+    port: http-envoy-prom
+    path: /stats/prometheus
+    relabelings:
+    - replacement: pauwels-labs-main
+      targetLabel: tenant
+    scheme: http
+    tlsConfig:
+      insecureSkipVerify: true
+  jobLabel: app
+  namespaceSelector:
+    any: true
