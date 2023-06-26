@@ -88,7 +88,6 @@ spec:
             enable_inet6: true
         ingester:
           lifecycler:
-            address: grafana-tempo-ingester-discovery
             enable_inet6: true
         server:
           grpc_listen_address: "[::0]"
