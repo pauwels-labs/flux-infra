@@ -24,5 +24,4 @@ resources:
 - servicemonitor-coredns.yaml
 - servicemonitor-tenants.yaml
 - servicemonitor-istiod.yaml
-- servicemonitor-istio-gateway.yaml
 - podmonitor-envoy-sidecar.yaml
