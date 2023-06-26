@@ -28,11 +28,16 @@ spec:
         auth:
           strategy: anonymous
         istio_namespace: "${infranamespaceprefix}istio-system"
+        kiali_feature_flags:
+          istio_upgrade_action: true
         external_services:
           prometheus:
             url: "${mimirreadurl}"
           istio:
             root_namespace: "${infranamespaceprefix}istio-system"
+            config_map_name: "istio-1-17-2"
+            istio_sidecar_injector_config_map_name: "istio-sidecar-injector-1-17-2"
+            istiod_deployment_name: "istiod-1-17-2"
             istio_canary_revision:
               current: "1-17-2"
             component_status:
