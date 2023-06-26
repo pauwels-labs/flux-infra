@@ -9,35 +9,26 @@ spec:
   pipelineStages:
   - cri: {}
   relabelings:
-  - sourceLabels:
-    - __meta_kubernetes_pod_node_name
-    targetLabel: __host__
   - action: labelmap
     regex: __meta_kubernetes_pod_label_(.+)
-  - action: replace
-    replacement: "$1"
-    separator: "-"
-    sourceLabels:
-    - __meta_kubernetes_pod_label_app_kubernetes_io_name
-    - __meta_kubernetes_pod_label_app_kubernetes_io_component
-    targetLabel: __service__
-  - action: replace
-    replacement: "$1"
-    separator: "/"
-    sourceLabels:
-    - __meta_kubernetes_namespace
-    - __service__
-    targetLabel: job
-  - action: replace
-    sourceLabels:
-    - __meta_kubernetes_pod_container_name
-    targetLabel: container
   - action: replace
     regex: "^t-(.*)$"
     replacement: "$1"
     sourceLabels:
     - __meta_kubernetes_namespace
     targetLabel: tenant
+  - action: replace
+    sourceLabels:
+    - app_kubernetes_io_name
+    targetLabel: name
+  - action: replace
+    sourceLabels:
+    - app_kubernetes_io_version
+    targetLabel: version
+  - action: replace
+    sourceLabels:
+    - __meta_kubernetes_pod_container_name
+    targetLabel: container
   jobLabel: app.kubernetes.io/name
   namespaceSelector:
     any: true
