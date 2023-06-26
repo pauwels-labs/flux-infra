@@ -26,7 +26,7 @@ spec:
     revision: "1-17-2"
     revisionTags: ["stable"]
     meshConfig:
-      # We don't use prometheus.io annotations to control scrapin
+      # We don't use prometheus.io annotations to control scraping
       # Use ServiceMonitor/PodMonitor CRs instead
       enabledPrometheusMerge: false
       enabledTracing: false
