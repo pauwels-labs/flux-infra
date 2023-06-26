@@ -33,6 +33,7 @@ spec:
         external_services:
           prometheus:
             url: "${mimirreadurl}"
+            health_check_url: "${mimirreadhealthcheckurl}"
             auth:
               type: "bearer"
               token: "secret:telemetry-credentials:oidc-token"
