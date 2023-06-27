@@ -8,6 +8,9 @@ metadata:
 spec:
   podMetricsEndpoints:
   - interval: 30s
+    bearerTokenSecret:
+      key: token
+      name: agent-token
     metricRelabelings: []
     port: http-envoy-prom
     path: /stats/prometheus
@@ -25,8 +28,5 @@ spec:
       operator: Exists
       values: []
     - key: app
-      operator: DoesNotExist
-      values: []
-    - key: grafana-agent
       operator: DoesNotExist
       values: []
