@@ -27,3 +27,6 @@ spec:
     - key: app
       operator: DoesNotExist
       values: []
+    - key: grafana-agent
+      operator: DoesNotExist
+      values: []

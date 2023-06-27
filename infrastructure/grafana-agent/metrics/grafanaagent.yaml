@@ -74,6 +74,7 @@ rules:
   - list
   - watch
 - nonResourceURLs:
+  - /stats/prometheus
   - /metrics
   - /metrics/cadvisor
   verbs:
