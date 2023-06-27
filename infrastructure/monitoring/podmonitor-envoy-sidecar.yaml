@@ -17,7 +17,13 @@ spec:
     scheme: http
     tlsConfig:
       insecureSkipVerify: true
-  jobLabel: app
   namespaceSelector:
     any: true
-  selector: {}
+  selector:
+    matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: Exists
+      values: []
+    - key: app
+      operator: DoesNotExist
+      values: []
