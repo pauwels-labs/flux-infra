@@ -25,6 +25,19 @@ spec:
       replicaCount: 3
     revision: "1-18-0"
     revisionTags: ["stable"]
+    sidecarInjectorWebhook:
+      templates:
+        mergedPrometheusPort: |
+          spec:
+            containers:
+            - name: istio-proxy
+              ports:
+              - containerPort: 15020
+                name: http-envoy-prom-merged
+                protocol: TCP
+      defaultTemplates:
+      - sidecar
+      - mergedPrometheusPort
     meshConfig:
       # We don't use prometheus.io annotations to control scraping
       # Use ServiceMonitor/PodMonitor CRs instead
