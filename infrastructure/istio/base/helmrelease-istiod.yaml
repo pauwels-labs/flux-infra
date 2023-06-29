@@ -28,7 +28,7 @@ spec:
     meshConfig:
       # We don't use prometheus.io annotations to control scraping
       # Use ServiceMonitor/PodMonitor CRs instead
-      enabledPrometheusMerge: false
+      enabledPrometheusMerge: true
       enabledTracing: false
       outboundTrafficPolicy:
         mode: ALLOW_ANY
