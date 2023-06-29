@@ -27,17 +27,17 @@ spec:
     revisionTags: ["stable"]
     sidecarInjectorWebhook:
       templates:
-        mergedPrometheusPort: |
+        mergedMetricsPort: |
           spec:
             containers:
             - name: istio-proxy
               ports:
               - containerPort: 15020
-                name: http-envoy-prom-merged
+                name: http-metrics
                 protocol: TCP
       defaultTemplates:
       - sidecar
-      - mergedPrometheusPort
+      - mergedMetricsPort
     meshConfig:
       # We don't use prometheus.io annotations to control scraping
       # Use ServiceMonitor/PodMonitor CRs instead
