@@ -33,7 +33,7 @@ spec:
             - name: istio-proxy
               ports:
               - containerPort: 15020
-                name: http-metrics
+                name: http-istio-prom
                 protocol: TCP
       defaultTemplates:
       - sidecar

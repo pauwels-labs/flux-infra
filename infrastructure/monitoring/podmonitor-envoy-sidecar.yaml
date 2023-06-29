@@ -12,7 +12,7 @@ spec:
       key: token
       name: agent-token
     metricRelabelings: []
-    port: http-envoy-prom
+    port: http-istio-prom
     path: /stats/prometheus
     relabelings:
     - replacement: pauwels-labs-main
