@@ -22,6 +22,8 @@ spec:
     crds: CreateReplace
   values:
     revision: "stable"
+    podAnnotations:
+      inject.istio.io/templates: "gateway,mergedMetricsPort"
     service:
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-type: "external"
