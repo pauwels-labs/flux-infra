@@ -24,4 +24,5 @@ resources:
 - servicemonitor-coredns.yaml
 - servicemonitor-tenants.yaml
 - servicemonitor-istiod.yaml
-- podmonitor-envoy-sidecar.yaml
+- podmonitor-istio-with-app-label.yaml
+- podmonitor-istio-with-app-kubernetes-io-label.yaml

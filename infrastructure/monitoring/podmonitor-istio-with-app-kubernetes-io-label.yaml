@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  labels:
+    monitoring.grafana.com/metrics-instance: primary
+  name: istio-with-app-kubernetes-io-label
+  namespace: ${infranamespaceprefix}monitoring
+spec:
+  podMetricsEndpoints:
+  - interval: 30s
+    bearerTokenSecret:
+      key: token
+      name: agent-token
+    metricRelabelings: []
+    port: http-istio-prom
+    path: /stats/prometheus
+    relabelings:
+    - source_labels:
+      - __meta_kubernetes_pod_label_app_kubernetes_io_name
+      target_label: app
+    - replacement: pauwels-labs-main
+      targetLabel: tenant
+    scheme: http
+    tlsConfig:
+      insecureSkipVerify: true
+  namespaceSelector:
+    any: true
+  selector:
+    matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: Exists
+      values: []
+    - key: app
+      operator: DoesNotExist
+      values: []

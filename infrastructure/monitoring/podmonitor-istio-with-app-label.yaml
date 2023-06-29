@@ -3,7 +3,7 @@ kind: PodMonitor
 metadata:
   labels:
     monitoring.grafana.com/metrics-instance: primary
-  name: envoy-sidecar
+  name: istio-with-app-label
   namespace: ${infranamespaceprefix}monitoring
 spec:
   podMetricsEndpoints:
@@ -15,6 +15,9 @@ spec:
     port: http-istio-prom
     path: /stats/prometheus
     relabelings:
+    - source_labels:
+      - __meta_kubernetes_pod_label_app
+      target_label: app
     - replacement: pauwels-labs-main
       targetLabel: tenant
     scheme: http
@@ -25,8 +28,8 @@ spec:
   selector:
     matchExpressions:
     - key: app.kubernetes.io/name
-      operator: Exists
+      operator: DoesNotExist
       values: []
     - key: app
-      operator: DoesNotExist
+      operator: Exists
       values: []
