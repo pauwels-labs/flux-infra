@@ -40,6 +40,8 @@ spec:
             auth:
               type: "bearer"
               token: "secret:telemetry-credentials:oidc-token"
+            custom_headers:
+              x-scope-orgid: pauwels-labs-main
           istio:
             root_namespace: "${infranamespaceprefix}istio-system"
             config_map_name: "istio-1-18-0"
