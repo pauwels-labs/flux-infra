@@ -15,9 +15,9 @@ spec:
     port: http-istio-prom
     path: /stats/prometheus
     relabelings:
-    - source_labels:
+    - sourceLabels:
       - __meta_kubernetes_pod_label_app
-      target_label: app
+      targetLabel: app
     - replacement: pauwels-labs-main
       targetLabel: tenant
     scheme: http
