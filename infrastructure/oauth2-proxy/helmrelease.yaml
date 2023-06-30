@@ -119,7 +119,7 @@ spec:
             # on the mimir query-frontend via the telemetry-credentials-sync token
             extraAudiences:
             - telemetry
-            insecureSkipNonce: true # TODO: try setting to false?
+            insecureSkipNonce: false # TODO: try setting to false?
             issuerURL: https://identity.pauwelslabs.com/realms/pauwels-labs-main
           provider: oidc
         upstreamConfig:
@@ -136,6 +136,8 @@ spec:
         redirect_url              = "https://auth.pauwelslabs.com/oauth2/callback"
         skip_provider_button      = true
         silence_ping_logging      = true
+        cookie_csrf_per_request   = true
+        cookie_csrf_expire        = "5m"
         cookie_samesite           = "strict"
         cookie_expire             = "12h"
         cookie_refresh            = "5m"
