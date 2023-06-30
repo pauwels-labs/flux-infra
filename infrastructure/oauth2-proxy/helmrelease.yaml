@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: oauth2-proxy/oauth2-proxy
-      version: 6.2.7
+      version: 6.13.1
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -21,10 +21,9 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    kubeVersion: "1.23"
     image:
       repository: "274295908850.dkr.ecr.eu-west-1.amazonaws.com/oauth2-proxy/oauth2-proxy"
-      tag: "v7.3.0"
+      tag: "v7.4.0"
     imagePullSecrets:
     - name: ecr-credentials
     # This previously mounted the client ID/secret and cookie secret
@@ -99,6 +98,7 @@ spec:
         - clientID: web
           clientSecretFile: /etc/oauth2_proxy/client_secrets/client-secret
           id: oidc=web
+          code_challenge_method: "S256"
           loginURLParameters:
           - default:
             - force
@@ -130,8 +130,8 @@ spec:
             staticCode: 200
     config:
       configFile: |-
-        cookie_domains            = ".pauwelslabs.com,grafana-mimir-query-frontend.i-grafana-mimir.svc,grafana-mimir-query-frontend.i-grafana-mimir.svc"
-        whitelist_domains         = ".pauwelslabs.com:443,grafana-mimir-query-frontend.i-grafana-mimir.svc:8080,grafana-mimir-query-frontend.i-grafana-mimir.svc.cluster.local:8080"
+        cookie_domains            = ".pauwelslabs.com"
+        whitelist_domains         = ".pauwelslabs.com,grafana-mimir-query-frontend.i-grafana-mimir.svc:8080,grafana-mimir-query-frontend.i-grafana-mimir.svc.cluster.local:8080"
         email_domains             = [ "*" ]
         redirect_url              = "https://auth.pauwelslabs.com/oauth2/callback"
         skip_provider_button      = true
