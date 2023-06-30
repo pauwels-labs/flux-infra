@@ -130,8 +130,8 @@ spec:
             staticCode: 200
     config:
       configFile: |-
-        cookie_domains            = ".pauwelslabs.com"
-        whitelist_domains         = ".pauwelslabs.com"
+        cookie_domains            = ".pauwelslabs.com,grafana-mimir-query-frontend.i-grafana-mimir.svc,grafana-mimir-query-frontend.i-grafana-mimir.svc"
+        whitelist_domains         = ".pauwelslabs.com:443,grafana-mimir-query-frontend.i-grafana-mimir.svc:8080,grafana-mimir-query-frontend.i-grafana-mimir.svc.cluster.local:8080"
         email_domains             = [ "*" ]
         redirect_url              = "https://auth.pauwelslabs.com/oauth2/callback"
         skip_provider_button      = true
