@@ -13,3 +13,7 @@ patches:
   target:
     name: redact-ws
     kind: Gateway
+- path: patch-gateway-bitmantle-com.yaml
+  target:
+    name: bitmantle-com
+    kind: Gateway

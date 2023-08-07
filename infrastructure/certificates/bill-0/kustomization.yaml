@@ -13,3 +13,6 @@ resources:
 - certificate-prod-redact-ws.yaml
 - certificate-webhook-cd-environment-pauwels-labs.yaml
 - certificate-cd-environment-pauwels-labs.yaml
+- certificate-dev-bitmantle-com.yaml
+- certificate-staging-bitmantle-com.yaml
+- certificate-prod-bitmantle-com.yaml

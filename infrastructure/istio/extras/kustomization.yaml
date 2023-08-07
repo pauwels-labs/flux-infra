@@ -6,3 +6,4 @@ resources:
 - peerauthentication.yaml
 - gateway-pauwelslabs-com.yaml
 - gateway-redact-ws.yaml
+- gateway-bitmantle-com.yaml

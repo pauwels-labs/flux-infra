@@ -1,0 +1,44 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: bitmantle-com
+  namespace: "${infranamespaceprefix}istio-ingress"
+spec:
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "bitmantle.com"
+    - "dev.bitmantle.com"
+    - "staging.bitmantle.com"
+    tls:
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: https-dev-bitmantle-com
+      protocol: HTTPS
+    hosts:
+    - "dev.bitmantle.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-dev-bitmantle-com
+  - port:
+      number: 443
+      name: https-staging-bitmantle-com
+      protocol: HTTPS
+    hosts:
+    - "staging.bitmantle.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-staging-bitmantle-com
+  - port:
+      number: 443
+      name: https-prod-bitmantle-com
+      protocol: HTTPS
+    hosts:
+    - "t-pauwels-labs-main/bitmantle.com"
+    tls:
+      mode: SIMPLE
+      credentialName: tls-prod-bitmantle-com
