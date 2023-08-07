@@ -52,3 +52,24 @@ spec:
         route53:
           region: us-east-1
           hostedZoneID: Z0197729197SKJ32OOZ8N
+    - selector:
+        dnsZones:
+        - dev.bitmantle.com
+      dns01:
+        route53:
+          region: us-east-1
+          hostedZoneID: Z04747201LK7H42O7EE4X
+    - selector:
+        dnsZones:
+        - staging.bitmantle.com
+      dns01:
+        route53:
+          region: us-east-1
+          hostedZoneID: Z093899620L5UDWE924EA
+    - selector:
+        dnsZones:
+        - bitmantle.com
+      dns01:
+        route53:
+          region: us-east-1
+          hostedZoneID: Z023444639QIS0CFUPIH9
