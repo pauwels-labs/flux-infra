@@ -14,7 +14,7 @@ spec:
     - "--zone-id-filter=Z0197729197SKJ32OOZ8N"
     - "--zone-id-filter=Z04747201LK7H42O7EE4X"
     - "--zone-id-filter=Z093899620L5UDWE924EA"
-    - "--zone-id-filter=Z093899620L5UDWE924EA"
+    - "--zone-id-filter=Z023444639QIS0CFUPIH9"
     - "--domain-filter=${basednszonename}"
     - "--domain-filter=staging.pauwelslabs.com"
     - "--domain-filter=pauwelslabs.com"
