@@ -57,7 +57,7 @@ spec:
       runAsUser: 10000
   - name: generate-code-coverage-markdown
     workingDir: $(workspaces.source.path)
-    image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/pauwels-labs/gitops-coverage:v1.0.6
+    image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/pauwels-labs/gitops-coverage:v1.0.7
     env:
     - name: GITOPS_COVERAGE_JSON_SUMMARY_FILE_PATH
       value: $(workspaces.source.path)/coverage/coverage-summary.json
@@ -78,7 +78,7 @@ spec:
       runAsUser: 10000
   - name: post-pr-comment
     workingDir: $(workspaces.source.path)
-    image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/pauwels-labs/gitops-coverage:v1.0.6
+    image: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/pauwels-labs/gitops-coverage:v1.0.7
     env:
     - name: GITHUB_TOKEN
       valueFrom:
