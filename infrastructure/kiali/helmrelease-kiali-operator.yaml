@@ -30,6 +30,12 @@ spec:
           openid:
             client_id: "kubernetes-lefranc"
             issuer_uri: "https://identity.pauwelslabs.com/realms/bitmantle-shared"
+            username_claim: preferred_username
+        server:
+          web_fqdn: "network.${basednszonename}"
+          web_port: 443
+          web_root: "/"
+          web_schema: "https"
         istio_namespace: "${infranamespaceprefix}istio-system"
         istio_labels:
           app_label_name: "app.kubernetes.io/name"
