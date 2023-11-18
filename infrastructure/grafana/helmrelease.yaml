@@ -66,6 +66,9 @@ spec:
         enabled: true
         label: pauwelslabs.com/datasources
         labelValue: "true"
+        skipReload: true
+        reloadURL: http://grafana.${infranamespaceprefix}grafana.svc.cluster.local/api/admin/provisioning/datasources/reload
+        initDatasources: true
     grafana.ini:
       feature_toggles:
         enable: accessTokenExpirationCheck
