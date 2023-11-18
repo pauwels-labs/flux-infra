@@ -81,6 +81,7 @@ spec:
         enabled: true
         name: keycloak
         use_refresh_token: true
+        auto_login: true
         allow_sign_up: false
         client_id: grafana
         scopes: openid email profile offline_access roles
