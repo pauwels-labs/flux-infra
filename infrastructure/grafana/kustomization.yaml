@@ -9,8 +9,8 @@ resources:
 - virtualservice-grafana.yaml
 - configmap-grafana-datasources.yaml
 - envoyfilter-add-org-id-headers.yaml
-- authorizationpolicy-grafana.yaml
-- requestauthentication-grafana.yaml
+# - authorizationpolicy-grafana.yaml
+# - requestauthentication-grafana.yaml
 - externalsecret-grafana-db-credentials.yaml
 - externalsecret-grafana-oauth-secret.yaml
 - secretstore-grafana.yaml
