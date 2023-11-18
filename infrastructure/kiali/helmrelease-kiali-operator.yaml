@@ -26,7 +26,10 @@ spec:
       namespace: "${infranamespaceprefix}kiali"
       spec:
         auth:
-          strategy: anonymous
+          strategy: openid
+          openid:
+            client_id: "kubernetes-lefranc"
+            issuer_uri: "https://identity.pauwelslabs.com/realms/bitmantle-shared"
         istio_namespace: "${infranamespaceprefix}istio-system"
         istio_labels:
           app_label_name: "app.kubernetes.io/name"
