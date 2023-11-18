@@ -15,7 +15,7 @@ stringData:
             {
                 "access": "proxy",
                 "editable": true,
-                "name": "mimir",
+                "name": "Mimir",
                 "orgId": 1,
                 "type": "prometheus",
                 "url": "http://grafana-mimir-query-frontend.i-grafana-mimir.svc:8080/prometheus",
@@ -24,9 +24,7 @@ stringData:
                 "jsonData": {
                   "prometheusType": "Mimir",
                   "prometheusVersion": "2.4.0",
-                  "keepCookies": [
-                    "_oauth2_proxy"
-                  ]
+                  "oauthPassThru": true
                 }
             }
         ]
