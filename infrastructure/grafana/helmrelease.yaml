@@ -58,14 +58,12 @@ spec:
         label: pauwelslabs.com/alerts
         labelValue: "true"
         skipReload: true
-        initDatasources: true
       dashboards:
         enabled: true
         label: pauwelslabs.com/dashboards
         searchNamespace: ALL
         labelValue: "true"
         skipReload: true
-        initDatasources: true
       datasources:
         enabled: true
         label: pauwelslabs.com/datasources
