@@ -8,7 +8,7 @@ spec:
   - issuer: "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
     jwksUri: https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs
     fromHeaders:
-    - name: "x-forwarded-id-token"
+    - name: "x-id-token"
   selector:
     matchLabels:
       app.kubernetes.io/instance: grafana-mimir
