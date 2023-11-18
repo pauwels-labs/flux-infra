@@ -32,6 +32,10 @@ spec:
         secretKeyRef:
           key: password
           name: grafana-db-credentials
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+        secretKeyRef:
+          key: secret
+          name: grafana-oauth-secret
     podAnnotations:
       traffic.sidecar.istio.io/excludeInboundPorts: "9095"
       traffic.sidecar.istio.io/excludeOutboundPorts: "9095"
@@ -63,6 +67,8 @@ spec:
         label: pauwelslabs.com/datasources
         labelValue: "true"
     grafana.ini:
+      feature_toggles:
+        enable: accessTokenExpirationCheck
       users:
         allow_sign_up: false
         allow_org_create: true
@@ -71,11 +77,23 @@ spec:
         signout_redirect_url: "https://auth.pauwelslabs.com/oauth2/sign_out?rd=https%3A%2F%2Fidentity.pauwelslabs.com%2Frealms%2Fpauwels-labs-main%2Fprotocol%2Fopenid-connect%2Flogout%3Fpost_logout_redirect_uri%3Dhttps%3A%2F%2Fdashboards.pauwelslabs.com%26client_id%3Dweb"
       auth.basic:
         enabled: false
+      auth.generic_oauth:
+        enabled: true
+        name: keycloak
+        use_refresh_token: true
+        allow_sign_up: false
+        client_id: grafana
+        scopes: openid email profile offline_access roles
+        email_attribute_path: email
+        login_attribute_path: preferred_username
+        name_attribute_path: preferred_username
+        allow_assign_grafana_admin: true
+        role_attribute_path: groups[?contains(@, '/root/admins')] && 'GrafanaAdmin' || groups[?contains(@, '/grafana/admins')] && 'Admin' || groups[?contains(@, '/root/writers')] && 'Editor' || groups[?contains(@, '/grafana/writers')] && 'Editor' || 'Viewer'
       auth.jwt:
         allow_assign_grafana_admin: true
         auto_sign_up: true
         email_claim: email
-        enabled: true
+        enabled: false
         expect_claims: "{\"iss\": \"https://identity.pauwelslabs.com/realms/pauwels-labs-main\"}"
         header_name: x-forwarded-access-token
         jwk_set_url: https://identity.pauwelslabs.com/realms/pauwels-labs-main/protocol/openid-connect/certs

@@ -12,6 +12,7 @@ resources:
 - authorizationpolicy-grafana.yaml
 - requestauthentication-grafana.yaml
 - externalsecret-grafana-db-credentials.yaml
+- externalsecret-grafana-oauth-secret.yaml
 - secretstore-grafana.yaml
 - dashboard-definitions/configmap-mimir-alertmanager-resources.yaml
 - dashboard-definitions/configmap-mimir-alertmanager.yaml
