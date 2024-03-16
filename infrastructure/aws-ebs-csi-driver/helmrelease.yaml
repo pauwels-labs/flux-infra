@@ -52,7 +52,7 @@ spec:
         image:
           repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/amazon/kubernetes-csi/external-snapshotter
           tag: v7.0.0-eks-1-29-5
-      livenessprobe:
+      livenessProbe:
         image:
           repository: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/amazon/kubernetes-csi/livenessprobe
           tag: v2.12.0-eks-1-29-5
