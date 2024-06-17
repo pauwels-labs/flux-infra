@@ -103,9 +103,9 @@ spec:
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
       tag: 1.22.1
       logging:
-        level: "default:debug"
+        level: "default:info"
       proxy:
-        logLevel: "debug"
+        logLevel: "info"
         resources:
           limits:
             memory: 1Gi
