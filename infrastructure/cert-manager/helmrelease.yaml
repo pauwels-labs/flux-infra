@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+oapiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: cert-manager
@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: jetstack/cert-manager
-      version: v1.9.1
+      version: v1.15.0
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -45,6 +45,10 @@ spec:
       image:
         registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
         repository: jetstack/cert-manager-cainjector
+    acmeresolver:
+      image:
+        registry: 274295908850.dkr.ecr.eu-west-1.amazonaws.com
+        repository: jetstack/cert-manager-acmeresolver
     startupapicheck:
       enabled: false
       image:
