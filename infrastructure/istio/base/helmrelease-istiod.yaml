@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: istio/istiod
-      version: 1.18.0
+      version: 1.22.1
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -23,7 +23,7 @@ spec:
   values:
     pilot:
       replicaCount: 3
-    revision: "1-18-0"
+    revision: "1-22-1"
     revisionTags: ["stable"]
     sidecarInjectorWebhook:
       templates:
@@ -101,7 +101,7 @@ spec:
       imagePullSecrets:
       - ecr-credentials
       hub: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/istio
-      tag: 1.18.0
+      tag: 1.22.1
       logging:
         level: "default:debug"
       proxy:
