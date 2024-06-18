@@ -5,33 +5,25 @@ metadata:
   namespace: "${infranamespaceprefix}keycloak"
 spec:
   instances: 1
-  #image: "${artifactregistryhost}/keycloak/keycloak:19.0.2"
-  serverConfiguration:
-  - name: hostname-path
-    value: "/"
-  # - name: hostname-strict
-  #   value: "true"
-  # - name: hostname-strict-backchannel
-  #   value: "true"
-  - name: db
-    value: "${keycloakdbtype}"
-  - name: db-url-host
-    value: "${keycloakdbhost}"
-  # - name: db-url-port
-  #   value: "${keycloakdbport}"
-  - name: db-url-database
-    value: "${keycloakdbname}"
-  - name: db-username
-    secret:
+  image: "${artifactregistryhost}/keycloak/keycloak:25.0.0"
+  db:
+    vendor: "${keycloakdbtype}"
+    host: "${keycloakdbhost}"
+    port: "${keycloakdbport}"
+    database: "${keycloakdbname}"
+    usernameSecret:
       name: keycloak-db-credentials
       key: username
-  - name: db-password
-    secret:
+    passwordSecret:
       name: keycloak-db-credentials
       key: password
-  hostname: identity.pauwelslabs.com
-  tlsSecret: INSECURE-DISABLE
-  disableDefaultIngress: true
+  hostname:
+    hostname: identity.pauwelslabs.com
+  http:
+    httpEnabled: true
+    httpPort: 8080
+  ingress:
+    enabled: false
   unsupported:
     podTemplate:
       spec:
