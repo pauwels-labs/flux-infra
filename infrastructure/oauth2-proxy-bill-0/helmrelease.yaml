@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: oauth2-proxy/oauth2-proxy
-      version: 6.2.7
+      version: 7.7.4
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -21,10 +21,9 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    kubeVersion: "1.23"
     image:
       repository: "274295908850.dkr.ecr.eu-west-1.amazonaws.com/oauth2-proxy/oauth2-proxy"
-      tag: "v7.3.0"
+      tag: "v7.6.0"
     imagePullSecrets:
     - name: ecr-credentials
     # This previously mounted the client ID/secret and cookie secret
@@ -131,6 +130,8 @@ spec:
         redirect_url              = "https://auth.dev.pauwelslabs.com/oauth2/callback"
         skip_provider_button      = true
         silence_ping_logging      = true
+        cookie_csrf_per_request   = true
+        cookie_csrf_expire        = "5m"
         cookie_samesite           = "strict"
         cookie_expire             = "12h"
         cookie_refresh            = "5m"
