@@ -24,7 +24,7 @@ data:
   grafanadbname: "grafana"
   keycloakdbtype: "postgres"
   keycloakdbhost: "prod.cluster-ccnsohn6v88v.eu-west-1.rds.amazonaws.com"
-  keycloakdbport: 5432
+  keycloakdbport: "5432"
   keycloakdbname: "keycloak"
   vaulturl: "http://vault.i-vault:8200"
   oidcurl: "https://identity.pauwelslabs.com/realms/pauwels-labs-main"
