@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - helmrelease-gateway.yaml
-- envoyfilter-proxy-protocol.yaml
 - peerauthentication.yaml
 - gateway-pauwelslabs-com.yaml
 - gateway-redact-ws.yaml

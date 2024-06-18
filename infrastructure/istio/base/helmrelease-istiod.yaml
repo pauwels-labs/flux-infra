@@ -96,6 +96,7 @@ spec:
           # (even though the NLB is there).
           numTrustedProxies: 0
           forwardClientCertDetails: SANITIZE_SET
+          proxyProtocol: {}
     global:
       istioNamespace: "${infranamespaceprefix}istio-system"
       imagePullSecrets:
