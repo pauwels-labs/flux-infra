@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: kiali/kiali-operator
-      version: 1.67.0
+      version: 1.86.0
       sourceRef:
         kind: HelmRepository
         name: pauwels-labs
@@ -53,11 +53,11 @@ spec:
               x-scope-orgid: pauwels-labs-main
           istio:
             root_namespace: "${infranamespaceprefix}istio-system"
-            config_map_name: "istio-1-18-0"
-            istio_sidecar_injector_config_map_name: "istio-sidecar-injector-1-18-0"
-            istiod_deployment_name: "istiod-1-18-0"
+            config_map_name: "istio-1-22-1"
+            istio_sidecar_injector_config_map_name: "istio-sidecar-injector-1-22-1"
+            istiod_deployment_name: "istiod-1-22-1"
             istio_canary_revision:
-              current: "1-18-0"
+              current: "1-22-1"
             component_status:
               components:
               - app_label: "istiod"
@@ -69,10 +69,10 @@ spec:
                 namespace: "${infranamespaceprefix}istio-ingress"
         deployment:
           image_name: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/kiali/kiali
-          image_version: v1.67.0
+          image_version: v1.86.0
     image:
       repo: 274295908850.dkr.ecr.eu-west-1.amazonaws.com/i/kiali/kiali-operator
-      tag: v1.67.0
+      tag: v1.86.0
       pullSecrets:
       - ecr-credentials
     allowAdHocKialiNamespace: false
