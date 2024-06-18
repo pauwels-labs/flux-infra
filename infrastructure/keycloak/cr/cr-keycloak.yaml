@@ -18,7 +18,7 @@ spec:
       name: keycloak-db-credentials
       key: password
   hostname:
-    hostname: identity.pauwelslabs.com
+    hostname: https://identity.pauwelslabs.com
   http:
     httpEnabled: true
     httpPort: 8080
