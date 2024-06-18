@@ -5,7 +5,7 @@ metadata:
   namespace: "${infranamespaceprefix}keycloak"
 spec:
   instances: 1
-  image: "${artifactregistryhost}/keycloak/keycloak:25.0.0"
+  image: "${artifactregistryhost}/keycloak/keycloak:19.0.2"
   db:
     vendor: "${keycloakdbtype}"
     host: "${keycloakdbhost}"
