@@ -9,7 +9,7 @@ spec:
   db:
     vendor: "${keycloakdbtype}"
     host: "${keycloakdbhost}"
-    port: "${keycloakdbport}"
+    port: ${keycloakdbport}
     database: "${keycloakdbname}"
     usernameSecret:
       name: keycloak-db-credentials
